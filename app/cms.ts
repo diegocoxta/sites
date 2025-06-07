@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import readingTime from 'reading-time';
 import { cache } from 'react';
 
-export { default as profile } from '~/public/content/profile';
+export { default as profile } from '~/content/profile';
 
 export type ContentAttributes = {
   title: string;
@@ -23,7 +23,7 @@ export type BlogContentAttributes = ContentAttributes & {
 };
 
 export const readFile = cache(function readFile<T extends ContentAttributes>(filename: string): T | undefined {
-  const file = path.join(process.cwd(), 'public', 'content', filename, 'index.mdx');
+  const file = path.join(process.cwd(), 'content', filename, 'index.mdx');
 
   if (!fs.existsSync(file)) {
     return undefined;
@@ -45,7 +45,7 @@ export const readFile = cache(function readFile<T extends ContentAttributes>(fil
 });
 
 function getFileList<T extends ContentAttributes>(dir: string): Array<T> {
-  return fs.readdirSync(path.join(process.cwd(), 'public', 'content', dir)).map((slug) => ({
+  return fs.readdirSync(path.join(process.cwd(), 'content', dir)).map((slug) => ({
     ...readFile<T>(`${dir}/${slug}`)!,
     slug,
   }));
@@ -53,7 +53,7 @@ function getFileList<T extends ContentAttributes>(dir: string): Array<T> {
 
 function updateContentImagePaths(bodyContent: string, dirname: string) {
   return bodyContent.replace(/!\[(.*?)\]\(\.\/([^)]+)\)/g, (_, altText, fileName) => {
-    return `![${altText}](/content${dirname}/${fileName})`;
+    return `![${altText}](/assets/content${dirname}/${fileName})`;
   });
 }
 
