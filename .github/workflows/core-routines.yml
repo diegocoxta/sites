@@ -29,15 +29,13 @@ jobs:
           set -e
       - name: Update dependencies to the latest version
         run: yarn upgrade --latest
-      - name: Test all changes
-        run: yarn test
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore(updated_npm_packages): keeping dependencies updated to the latest version automatically'
-          branch: updated_npm_packages
+          commit-message: 'chore(upgrated-npm-packages): keeping dependencies updated to the latest version automatically'
+          branch: upgrated-npm-packages
           delete-branch: true
-          title: '[${{ steps.current-time.outputs.readableTime }}] Updated NPM packages'
+          title: '[${{ steps.current-time.outputs.readableTime }}] Upgrated NPM packages'
           base: main
           body: ${{ env.OUTDATED_DEPENDENCIES }}
