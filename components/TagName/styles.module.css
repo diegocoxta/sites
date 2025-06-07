@@ -1,0 +1,9 @@
+.title {
+  background: var(--main-accent-color);
+  display: inline-block;
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  padding: 0 16px;
+  margin: 0 0 20px;
+}

@@ -1,0 +1,19 @@
+.container {
+  color: var(--main-title-color);
+  box-shadow: none;
+  text-decoration: none;
+  font-size: 36px;
+  margin: 0;
+  font-weight: 700;
+
+  a {
+    color: var(--main-title-color);
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      border-bottom: 1px solid var(--main-title-color);
+      outline: none;
+    }
+  }
+}

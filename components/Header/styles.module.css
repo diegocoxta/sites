@@ -1,0 +1,44 @@
+.container {
+  composes: container from '~/components/Container/styles.module.css';
+  margin: 16px auto 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (width >= 760px) {
+    margin: 40px auto;
+  }
+}
+
+.link {
+  text-decoration: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.name {
+  color: var(--main-title-color);
+  font-weight: 700;
+  text-transform: lowercase;
+  margin: 0;
+  font-size: 15vw;
+
+  @media (width >= 760px) {
+    font-size: 110px;
+  }
+}
+
+.lastName {
+  color: var(--main-accent-color);
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

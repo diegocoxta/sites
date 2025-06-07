@@ -1,0 +1,53 @@
+.codeInline {
+  background-color: rgb(from var(--main-accent-color) r g b / 25%);
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.codeblock {
+  --sh-class: #f8c90a;
+  --sh-identifier: #91ffff;
+  --sh-sign: #efefef;
+  --sh-property: #f8c90a;
+  --sh-entity: #91ffff;
+  --sh-jsxliterals: #6266d1;
+  --sh-string: #00a99a;
+  --sh-keyword: #fc8b08;
+  --sh-comment: #a19595;
+
+  background-color: #131224;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 16px 0;
+  font-size: 16px;
+  overflow: scroll;
+  color: #efefef;
+}
+
+.carbon {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.carbonButton {
+  width: 14px;
+  height: 14px;
+  background: gray;
+  border-radius: 14px;
+  margin-right: 5px;
+
+  &[data-red] {
+    background-color: #fc4645;
+  }
+
+  &[data-yellow] {
+    background-color: #fdb124;
+  }
+
+  &[data-green] {
+    background-color: #28c230;
+  }
+}

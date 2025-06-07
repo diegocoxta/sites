@@ -1,0 +1,23 @@
+:root {
+  --main-title-color: #2f3d4f;
+  --main-subtitle-color: #38485d;
+  --main-text-color: #2f3d4f;
+  --main-background-color: #fff;
+  --main-accent-color: #0513d8;
+}
+
+[data-theme='dark'] {
+  --main-title-color: #edf0f1;
+  --main-subtitle-color: #bec3c7;
+  --main-text-color: #edf0f1;
+  --main-background-color: #0e1116;
+  --main-accent-color: #c4d14d;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--main-text-color);
+  background: var(--main-background-color);
+  font-family: var(--main-primary-font);
+}

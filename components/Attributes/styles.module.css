@@ -1,0 +1,32 @@
+.container {
+  color: var(--main-subtitle-color);
+  font-size: 19px;
+  margin: 10px 0;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+.tagItem {
+  list-style: none;
+  padding: 0 10px 0 0;
+}
+
+.tagLink {
+  text-decoration: none;
+  box-shadow: none;
+  font-size: 16px;
+  color: var(--main-accent-color);
+  font-weight: 700;
+  text-transform: lowercase;
+
+  &:hover,
+  &:focus {
+    border-bottom: 1px solid var(--main-accent-color);
+    outline: none;
+  }
+}

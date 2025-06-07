@@ -1,0 +1,18 @@
+.container {
+  max-width: 960px;
+  margin: 100px auto;
+  padding: 0 20px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  color: var(--main-title-color);
+  font-size: 36px;
+  margin: 0;
+  font-weight: 700;
+
+  svg {
+    margin-right: 10px;
+  }
+}
