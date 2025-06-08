@@ -13,23 +13,6 @@ interface BlogPostPageProps {
   params: Promise<{ post: string }>;
 }
 
-export function generateStaticParams() {
-  return getPosts().map((page) => ({
-    post: page.slug,
-  }));
-}
-
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const { post } = await params;
-  const content = readFile(`/posts/${post}`);
-
-  if (!content) {
-    notFound();
-  }
-
-  return { title: content?.title, description: content?.summary };
-}
-
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { post } = await params;
   const content = readFile(`/posts/${post}`);
@@ -44,4 +27,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </Container>
     </>
   );
+}
+
+export function generateStaticParams() {
+  return getPosts().map(({ slug }) => ({
+    post: slug,
+  }));
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { post } = await params;
+  const content = readFile(`/posts/${post}`);
+
+  if (!content) {
+    notFound();
+  }
+
+  return { title: content?.title, description: content?.summary };
 }

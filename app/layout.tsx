@@ -17,14 +17,6 @@ const sourceSans = Source_Sans_3({
   weight: ['400', '700'],
 });
 
-export const metadata: Metadata = {
-  title: {
-    template: `%s | ${profile.title}`,
-    default: profile.title,
-  },
-  description: profile.description,
-};
-
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -41,3 +33,11 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
     </html>
   );
 }
+
+export const metadata: Metadata = {
+  title: {
+    template: `%s | ${profile.title}`,
+    default: profile.title,
+  },
+  description: profile.description,
+};

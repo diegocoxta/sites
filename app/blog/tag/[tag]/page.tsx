@@ -14,18 +14,6 @@ interface TagsSinglePageProps {
   params: Promise<{ tag: string }>;
 }
 
-export function generateStaticParams() {
-  return getTags().map((tag) => ({
-    tag,
-  }));
-}
-
-export async function generateMetadata({ params }: TagsSinglePageProps): Promise<Metadata> {
-  const { tag } = await params;
-
-  return { title: `#${tag}` };
-}
-
 export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
   const { tag } = await params;
 
@@ -48,4 +36,16 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
       </Container>
     </>
   );
+}
+
+export function generateStaticParams() {
+  return getTags().map((tag) => ({
+    tag,
+  }));
+}
+
+export async function generateMetadata({ params }: TagsSinglePageProps): Promise<Metadata> {
+  const { tag } = await params;
+
+  return { title: `#${tag}` };
 }
