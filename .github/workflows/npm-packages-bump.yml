@@ -1,4 +1,4 @@
-name: Core Routines
+name: npm-packages-bump
 
 on:
   schedule:
