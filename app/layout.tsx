@@ -7,7 +7,6 @@ import './globals.css';
 import Header from '~/components/Header';
 import ThemeSwitcher from '~/components/ThemeSwitcher';
 import CommandBar from '~/components/CommandBar';
-import Footer from '~/components/Footer';
 
 import { getPosts, getPages, profile } from '~/app/cms';
 
@@ -27,7 +26,6 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
             <CommandBar pages={[...getPosts(), ...getPages()]} repository={profile.repository.url} />
           </Header>
           {children}
-          <Footer sourceCode={profile.repository.url} author={profile.author} />
         </ThemeProvider>
       </body>
     </html>

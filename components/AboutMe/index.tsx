@@ -20,7 +20,12 @@ export default function AboutMe(props: AboutMeProps) {
         <ul className={styles.links} data-testid="about-me-links">
           {props.links.map((nav, index) => (
             <li className={styles.linksItem} key={`nav-${index}`} data-testid="about-me-links-item">
-              <a className={styles.linksLink} href={nav.url} rel="me" target="_blank">
+              <a
+                className={styles.linksLink}
+                href={nav.url}
+                rel="me"
+                target={nav.url.startsWith('http') ? '_blank' : undefined}
+              >
                 {nav.label}
               </a>
             </li>

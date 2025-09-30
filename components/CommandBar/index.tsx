@@ -35,8 +35,8 @@ export default function CommandBar({ pages, repository }: CommandBarProps): Reac
       icon: <BsFillHouseFill />,
     },
     {
-      id: 'articles',
-      name: 'Articles',
+      id: 'blog',
+      name: 'Blog',
       shortcut: ['g', 'a'],
       section: 'Pages',
       icon: <BsNewspaper />,
@@ -46,7 +46,7 @@ export default function CommandBar({ pages, repository }: CommandBarProps): Reac
       name: p.title,
       perform: () => redirect(p.date ? `/blog/${p.slug}` : `/${p.slug}`),
       icon: <BsFillFileEarmarkFill />,
-      parent: p.date ? 'articles' : undefined,
+      parent: p.date ? 'blog' : undefined,
     })),
     {
       id: 'theme',
