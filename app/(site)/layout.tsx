@@ -2,7 +2,6 @@ import Header from '~/components/Header';
 import ThemeSwitcher from '~/components/ThemeSwitcher';
 import CommandBar from '~/components/CommandBar';
 import Footer from '~/components/Footer';
-import Container from '~/components/Container';
 
 import { getPosts, getPages, profile } from '~/app/cms';
 
