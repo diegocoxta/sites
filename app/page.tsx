@@ -17,7 +17,6 @@ export default function HomePage() {
           <CommandBar pages={[...getPosts(), ...getPages()]} repository={profile.repository.url} />
         </Header>
         <AboutMe bio={profile.bio} links={profile.links} />
-        <Footer sourceCode={profile.repository.url} author={profile.author} />
       </Container>
     </Center>
   );

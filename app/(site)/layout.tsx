@@ -14,9 +14,7 @@ export default function SiteLayout({ children }: React.PropsWithChildren) {
         <CommandBar pages={[...getPosts(), ...getPages()]} repository={profile.repository.url} />
       </Header>
       {children}
-      <Container>
-        <Footer sourceCode={profile.repository.url} author={profile.author} />
-      </Container>
+      <Footer sourceCode={profile.repository.url} author={profile.author} />
     </>
   );
 }
