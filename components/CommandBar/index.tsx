@@ -31,7 +31,7 @@ export default function CommandBar({ pages, repository }: CommandBarProps): Reac
       name: 'Home',
       shortcut: ['g', 'h'],
       section: 'Pages',
-      perform: () => {},
+      perform: () => window.location.replace('/'),
       icon: <BsFillHouseFill />,
     },
     {

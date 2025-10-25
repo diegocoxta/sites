@@ -53,7 +53,7 @@ function getFileList<T extends ContentAttributes>(dir: string): Array<T> {
 
 function updateContentImagePaths(bodyContent: string, dirname: string) {
   return bodyContent.replace(/!\[(.*?)\]\(\.\/([^)]+)\)/g, (_, altText, fileName) => {
-    return `![${altText}](${dirname}/${fileName})`;
+    return `![${altText}](/content${dirname}/${fileName})`;
   });
 }
 
