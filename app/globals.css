@@ -3,15 +3,15 @@
   --main-subtitle-color: #38485d;
   --main-text-color: #2f3d4f;
   --main-background-color: #fff;
-  --main-accent-color: #0513d8;
+  --main-accent-color: #e55242;
 }
 
 [data-theme='dark'] {
   --main-title-color: #edf0f1;
   --main-subtitle-color: #bec3c7;
   --main-text-color: #edf0f1;
-  --main-background-color: #0e1116;
-  --main-accent-color: #c4d14d;
+  --main-background-color: #352526;
+  --main-accent-color: #e55242;
 }
 
 body {

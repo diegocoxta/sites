@@ -10,10 +10,8 @@ export default function ThemeSwitcher(): React.ReactElement {
   const { theme, setTheme } = useTheme();
   const isDarkMode = theme === 'dark';
 
-  useEffect(() => setMounted(true), []);
-
   if (!mounted) {
-    return <_ThemeSwitcher isDarkMode={false} />;
+    return <_ThemeSwitcher isDarkMode={true} />;
   }
 
   return <_ThemeSwitcher isDarkMode={isDarkMode} onClick={() => setTheme(isDarkMode ? 'default' : 'dark')} />;
