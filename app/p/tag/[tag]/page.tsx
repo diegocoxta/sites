@@ -27,7 +27,7 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
           .map((post, index: number) => (
             <article key={`article-${index}`}>
               <Title>
-                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                <Link href={`/p/${post.slug}`}>{post.title}</Link>
               </Title>
               <Attributes {...post} />
               <Article>{post.expanded ? post.content : post.summary!}</Article>

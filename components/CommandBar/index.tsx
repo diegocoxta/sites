@@ -44,7 +44,7 @@ export default function CommandBar({ pages, repository }: CommandBarProps): Reac
     ...pages.map((p) => ({
       id: `page-${p.slug}`,
       name: p.title,
-      perform: () => redirect(p.date ? `/blog/${p.slug}` : `/${p.slug}`),
+      perform: () => redirect(p.date ? `/p/${p.slug}` : `/${p.slug}`),
       icon: <BsFillFileEarmarkFill />,
       parent: p.date ? 'blog' : undefined,
     })),

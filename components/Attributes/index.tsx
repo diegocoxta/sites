@@ -15,7 +15,7 @@ export default function MetaAttributes(props: MetaAttributesProps): React.ReactE
       <ul className={styles.tagList} data-testid="taglist-list">
         {props.tags?.map((tag: string, index: number) => (
           <li className={styles.tagItem} key={`${index}-${tag}`} data-testid="taglist-item">
-            <Link className={styles.tagLink} href={`/blog/tag/${tag}`}>{`#${tag}`}</Link>
+            <Link className={styles.tagLink} href={`/p/tag/${tag}`}>{`#${tag}`}</Link>
           </li>
         ))}
       </ul>
