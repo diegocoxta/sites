@@ -21,7 +21,8 @@ export default function Header({
           {firstName}
           {lastName && (
             <span className={styles.lastName} data-testid="logo-lastname">
-              {lastName[0]}.
+              {lastName[0]}
+              <span className={styles.dot}>.</span>
             </span>
           )}
         </h1>
