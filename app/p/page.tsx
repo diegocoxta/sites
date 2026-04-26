@@ -5,12 +5,13 @@ import Container from '~/components/Container';
 import Title from '~/components/Title';
 import Attributes from '~/components/Attributes';
 import Article from '~/components/Article';
+import Layout from '~/components/Layout';
 
-import { getPosts } from '~/app/cms';
+import { getPages, getPosts, profile } from '~/app/cms';
 
 export default function HomePage() {
   return (
-    <>
+    <Layout repository={profile.repository.url} author={profile.author} pages={[...getPosts(), ...getPages()]}>
       <Divisor />
       <Container>
         {getPosts().map((post, index: number) => (
@@ -23,6 +24,6 @@ export default function HomePage() {
           </article>
         ))}
       </Container>
-    </>
+    </Layout>
   );
 }

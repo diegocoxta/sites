@@ -7,8 +7,9 @@ import TagName from '~/components/TagName';
 import Title from '~/components/Title';
 import Attributes from '~/components/Attributes';
 import Article from '~/components/Article';
+import Layout from '~/components/Layout';
 
-import { getPosts, getTags } from '~/app/cms';
+import { getPages, getPosts, getTags, profile } from '~/app/cms';
 
 interface TagsSinglePageProps {
   params: Promise<{ tag: string }>;
@@ -18,7 +19,7 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
   const { tag } = await params;
 
   return (
-    <>
+    <Layout repository={profile.repository.url} author={profile.author} pages={[...getPosts(), ...getPages()]}>
       <Divisor />
       <Container>
         <TagName>#{tag}</TagName>
@@ -34,7 +35,7 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
             </article>
           ))}
       </Container>
-    </>
+    </Layout>
   );
 }
 

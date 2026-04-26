@@ -5,8 +5,9 @@ import Container from '~/components/Container';
 import Divisor from '~/components/Divisor';
 import Title from '~/components/Title';
 import Article from '~/components/Article';
+import Layout from '~/components/Layout';
 
-import { getPages, readFile } from '~/app/cms';
+import { getPages, getPosts, profile, readFile } from '~/app/cms';
 
 interface PageProps {
   params: Promise<{ page: string }>;
@@ -17,13 +18,13 @@ export default async function Page({ params }: PageProps) {
   const content = readFile(`/pages/${page}`);
 
   return (
-    <>
+    <Layout repository={profile.repository.url} author={profile.author} pages={[...getPosts(), ...getPages()]}>
       <Divisor />
       <Container>
         <Title>{content?.title}</Title>
         <Article>{content?.content}</Article>
       </Container>
-    </>
+    </Layout>
   );
 }
 

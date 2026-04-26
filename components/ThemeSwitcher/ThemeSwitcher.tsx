@@ -11,7 +11,7 @@ export default function ThemeSwitcher({ isDarkMode, onClick }: ThemeSwitcherProp
   return (
     <button
       className={styles.container}
-      data-isdarkmode={isDarkMode}
+      data-isdarkmode={`${isDarkMode}`}
       aria-label="Change color scheme"
       onClick={onClick}
       data-testid="themeswitcher--button"

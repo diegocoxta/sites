@@ -1,17 +1,18 @@
 import Link from 'next/link';
 
 import Container from '~/components/Container';
+import Layout from '~/components/Layout';
 import AboutMe from '~/components/AboutMe';
 import Divisor from '~/components/Divisor';
 import Title from '~/components/Title';
 import Attributes from '~/components/Attributes';
 import Article from '~/components/Article';
 
-import { getPosts, profile } from '~/app/cms';
+import { getPages, getPosts, profile } from '~/app/cms';
 
 export default function HomePage() {
   return (
-    <>
+    <Layout repository={profile.repository.url} author={profile.author} pages={[...getPosts(), ...getPages()]}>
       <AboutMe bio={profile.bio} links={profile.links} />
       <Divisor />
       <Container>
@@ -25,6 +26,6 @@ export default function HomePage() {
           </article>
         ))}
       </Container>
-    </>
+    </Layout>
   );
 }

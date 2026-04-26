@@ -6,8 +6,9 @@ import Divisor from '~/components/Divisor';
 import Attributes from '~/components/Attributes';
 import Title from '~/components/Title';
 import Article from '~/components/Article';
+import Layout from '~/components/Layout';
 
-import { getPosts, readFile } from '~/app/cms';
+import { getPages, getPosts, profile, readFile } from '~/app/cms';
 
 interface BlogPostPageProps {
   params: Promise<{ post: string }>;
@@ -18,14 +19,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const content = readFile(`/posts/${post}`);
 
   return (
-    <>
+    <Layout repository={profile.repository.url} author={profile.author} pages={[...getPosts(), ...getPages()]}>
       <Divisor />
       <Container>
         <Title>{content?.title}</Title>
         <Attributes {...content} />
         <Article>{content?.content}</Article>
       </Container>
-    </>
+    </Layout>
   );
 }
 
