@@ -6581,10 +6581,10 @@ stylelint@^17.11.0:
     table "^6.9.0"
     write-file-atomic "^7.0.1"
 
-sugar-high@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/sugar-high/-/sugar-high-1.1.0.tgz#a7b2b36aae0cfb4b46e0a8942100dfe3ea0986ff"
-  integrity sha512-pL68G9H5VgK5z5aRAp8Yl4+obwbfEpr4BCCdO9V9JrWTFQiPMuN2GKxl9Vn/oxzkcS8TOTFFNti3LXe0UWX2Yw==
+sugar-high@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/sugar-high/-/sugar-high-1.2.0.tgz#3b4f043c4930fdc26df8a0f48eefaa975955b012"
+  integrity sha512-tDChykLsm/+arY5Fb3cOiptiW75WQMkm/J/zQFuOaU0eB6tTVg/C5ANwh9bFw/3JrYaLK2mMm0F9VdXHbNtOhQ==
 
 supports-color@^10.2.2:
   version "10.2.2"
