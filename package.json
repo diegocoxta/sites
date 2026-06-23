@@ -51,7 +51,7 @@
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "lint-staged": "^17.0.4",
-    "prettier": "^3.8.3",
+    "prettier": "^3.8.4",
     "stylelint": "^17.13.0",
     "stylelint-config-css-modules": "^4.5.1",
     "stylelint-config-standard": "^40.0.0",
