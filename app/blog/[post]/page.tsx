@@ -19,7 +19,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const content = readFile(`/posts/${post}`);
 
   return (
-    <Layout repository={profile.repository.url} author={profile.author} pages={[...getPosts(), ...getPages()]}>
+    <Layout repository={profile.repository.url} author={profile.author} posts={getPosts()} pages={getPages()}>
       <Divisor />
       <Container>
         <Title>{content?.title}</Title>

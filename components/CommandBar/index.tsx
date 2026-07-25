@@ -19,10 +19,11 @@ import _CommandBar from './CommandBar';
 
 interface CommandBarProps {
   pages: Array<BlogContentAttributes>;
+  posts: Array<BlogContentAttributes>;
   repository: string;
 }
 
-export default function CommandBar({ pages, repository }: CommandBarProps): React.ReactElement {
+export default function CommandBar({ pages, posts, repository }: CommandBarProps): React.ReactElement {
   const { setTheme } = useTheme();
 
   const actions: Array<Action> = [
@@ -44,15 +45,29 @@ export default function CommandBar({ pages, repository }: CommandBarProps): Reac
     ...pages.map((p) => ({
       id: `page-${p.slug}`,
       name: p.title,
-      perform: () => redirect(p.date ? `/p/${p.slug}` : `/${p.slug}`),
+      section: 'Páginas',
+      perform: () => redirect(`/${p.slug}`),
       icon: <BsFillFileEarmarkFill />,
-      parent: p.date ? 'blog' : undefined,
+    })),
+    {
+      id: 'post-list',
+      name: 'Todas as publicações',
+      parent: 'blog',
+      icon: <BsNewspaper />,
+      perform: () => redirect('/blog'),
+    },
+    ...posts.map((p) => ({
+      id: `post-${p.slug}`,
+      name: p.title + p.title + p.title,
+      perform: () => redirect(`/blog/${p.slug}`),
+      icon: <BsFillFileEarmarkFill />,
+      parent: 'blog',
     })),
     {
       id: 'theme',
       name: 'Tema',
       shortcut: ['g', 't'],
-      section: 'Preferences',
+      section: 'Preferências',
       icon: <BsBrushFill />,
     },
     {

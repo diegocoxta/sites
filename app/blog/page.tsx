@@ -11,13 +11,13 @@ import { getPages, getPosts, profile } from '~/app/cms';
 
 export default function HomePage() {
   return (
-    <Layout repository={profile.repository.url} author={profile.author} pages={[...getPosts(), ...getPages()]}>
+    <Layout repository={profile.repository.url} author={profile.author} posts={getPosts()} pages={getPages()}>
       <Divisor />
       <Container>
         {getPosts().map((post, index: number) => (
           <article key={`article-${index}`}>
             <Title>
-              <Link href={`/p/${post.slug}`}>{post.title}</Link>
+              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
             </Title>
             <Attributes {...post} />
             <Article>{post.expanded ? post.content : post.summary!}</Article>

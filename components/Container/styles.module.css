@@ -2,4 +2,8 @@
   max-width: 960px;
   margin: 0 auto;
   padding: 0 20px;
+
+  @media (width >= 1000px) {
+    padding: 0;
+  }
 }

@@ -22,21 +22,23 @@
 }
 
 .groupName {
-  padding: 8px 0;
-  font-size: 12px;
+  padding: 8px 16px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--main-text-color);
+  box-sizing: border-box;
+  min-height: 52px;
+  display: flex;
+  align-items: flex-end;
 }
 
 .label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  svg {
-    flex-shrink: 0;
-  }
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: block;
+  overflow: hidden;
 }
 
 .shortcut {
@@ -55,7 +57,6 @@
 }
 
 .item {
-  padding: 12px 16px;
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -63,6 +64,14 @@
   margin: 0;
   cursor: pointer;
   border-radius: 5px;
+  box-sizing: border-box;
+  height: 52px;
+  padding: 12px 16px;
+  gap: 8px;
+
+  svg {
+    flex-shrink: 0;
+  }
 
   &[data-active='true'] {
     background-color: rgb(from var(--main-text-color) r g b / 10%);

@@ -33,10 +33,8 @@ export default function CommandBar(): React.ReactElement {
 
                 return (
                   <div className={styles.item} data-active={active}>
-                    <div className={styles.label}>
-                      {item.icon}
-                      {item.name}
-                    </div>
+                    {item.icon}
+                    <div className={styles.label}>{item.name}</div>
 
                     {item.shortcut && (
                       <div className={styles.shortcut} aria-hidden>
