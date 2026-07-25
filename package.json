@@ -1,12 +1,12 @@
 {
-  "name": "diegocosta.me",
+  "name": "diegocosta.com.br",
   "version": "2.0.0",
   "type": "module",
   "private": true,
-  "author": "Diego Costa <diego@diegocosta.me>",
+  "author": "Diego Costa <contato@diegocosta.com.br>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/diegocosta/diegocosta.me.git"
+    "url": "https://github.com/diegocosta/diegocosta.com.br.git"
   },
   "scripts": {
     "dev": "next dev --turbopack",

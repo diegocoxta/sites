@@ -1,4 +1,4 @@
-# 👨🏿‍💻 diegocosta.me
+# 👨🏿‍💻 diegocosta.com.br
 
 My personal blog powered by next, typescript and CSS modules.
 
@@ -16,7 +16,7 @@ This project requires [Node.js 22](https://nodejs.org/en/) or higher and [yarn](
 ## :keyboard: Developing
 
 1. [Clone this repo](https://help.github.com/en/articles/cloning-a-repository) with git.
-2. Install dependencies by running `yarn install` within the directory that you cloned (probably `diegocosta.me`).
+2. Install dependencies by running `yarn install` within the directory that you cloned (probably `diegocosta.com.br`).
 3. Start the development server with `yarn dev`.
 4. Open development site by going to [`http://localhost:3000`](http://localhost:3000) in your browser.
 
@@ -26,4 +26,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## :coffee: Get in touch
 
-Say hello on [twitter](https://twitter.com/diegocoxta) or [email](mailto:diego@diegocosta.me)
+Say hello on [twitter](https://twitter.com/diegocoxta) or [email](mailto:contato@diegocosta.com.br)
