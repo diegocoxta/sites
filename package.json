@@ -6,7 +6,7 @@
   "author": "Diego Costa <contato@diegocosta.com.br>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/diegocosta/diegocosta.com.br.git"
+    "url": "https://github.com/diegocoxta/diegocosta.com.br.git"
   },
   "scripts": {
     "dev": "next dev --turbopack",
