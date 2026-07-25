@@ -5,13 +5,13 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: 'npm' # See documentation for possible values
+    directory: '/' # Location of package manifests
     schedule:
-      interval: "daily"
+      interval: 'daily'
     cooldown:
       default-days: 7
       semver-minor-days: 3
       semver-patch-days: 3
     assignees:
-      - "diegocoxta"
+      - 'diegocoxta'
