@@ -3,15 +3,15 @@
   --main-subtitle-color: #38485d;
   --main-text-color: #2f3d4f;
   --main-background-color: #fdfdfd;
-  --main-accent-color: #e55242;
+  --main-accent-color: #1913d1;
 }
 
 [data-theme='dark'] {
-  --main-title-color: #edf0f1;
+  --main-title-color: #e2e9e9;
   --main-subtitle-color: #bec3c7;
-  --main-text-color: #edf0f1;
-  --main-background-color: #2a1c1e;
-  --main-accent-color: #e55242;
+  --main-text-color: #c5c6cd;
+  --main-background-color: #0c1013;
+  --main-accent-color: #1913d1;
 }
 
 body {

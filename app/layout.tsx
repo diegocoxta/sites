@@ -17,9 +17,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${sourceSans.variable}`}>
-        <ThemeProvider enableSystem={false} defaultTheme="dark">
-          {children}
-        </ThemeProvider>
+        <ThemeProvider enableSystem={false}>{children}</ThemeProvider>
       </body>
     </html>
   );

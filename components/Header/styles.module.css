@@ -35,15 +35,6 @@
 
 .lastName {
   color: var(--main-accent-color);
-  position: relative;
-}
-
-.dot {
-  margin-top: 1px;
-  margin-left: -10px;
-  display: inline-block;
-  position: absolute;
-  font-size: 90px;
 }
 
 .navBar {

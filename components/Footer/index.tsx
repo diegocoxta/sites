@@ -20,7 +20,7 @@ export default function Footer(props: FooterProps): React.ReactElement {
             target="__blank"
             rel="noopener"
           >
-            source code
+            código fonte
           </a>
         )}
       </p>

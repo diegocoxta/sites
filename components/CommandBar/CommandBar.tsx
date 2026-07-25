@@ -19,7 +19,7 @@ export default function CommandBar(): React.ReactElement {
           <KBarAnimator className={styles.animator}>
             <div className={styles.item}>
               <BsSearch />
-              <KBarSearch className={styles.search} defaultPlaceholder="Type a command or search…" />
+              <KBarSearch className={styles.search} defaultPlaceholder="Escreva um comando ou uma busca." />
               <div className={styles.shortcut} aria-hidden>
                 <kbd className={styles.shortcutIcon}>esc</kbd>
               </div>

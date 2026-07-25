@@ -8,10 +8,12 @@ export type MetaAttributesProps = Partial<Pick<BlogContentAttributes, 'date' | '
 
 export default function MetaAttributes(props: MetaAttributesProps): React.ReactElement {
   const readingTime =
-    props.readingTime! < 1 ? 'Less than 1 minute of reading' : `${props.readingTime!.toFixed()} minutes of reading`;
+    props.readingTime! < 1 ? 'Menos de 1 minuto de leitura' : `${props.readingTime!.toFixed()} minutos de leitura`;
   return (
     <>
-      <p className={styles.container}>{`${props.date} · ${readingTime} · In ${props.language}`}</p>
+      <p
+        className={styles.container}
+      >{`${props.date && new Date(props.date).toLocaleDateString('pt-br')} · ${readingTime} · Em ${props.language}`}</p>
       <ul className={styles.tagList} data-testid="taglist-list">
         {props.tags?.map((tag: string, index: number) => (
           <li className={styles.tagItem} key={`${index}-${tag}`} data-testid="taglist-item">
