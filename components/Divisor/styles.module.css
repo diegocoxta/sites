@@ -8,4 +8,5 @@
   height: 120px;
   margin: 40px auto;
   width: 100%;
+  box-sizing: border-box;
 }
