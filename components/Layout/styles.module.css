@@ -1,5 +1,5 @@
 .centered {
-  @media (height >= 890px) {
+  @media (height >= 800px) {
     display: flex;
     width: 100vw;
     height: 100vh;
