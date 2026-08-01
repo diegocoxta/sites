@@ -1,6 +1,7 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import Links from '~/components/Links';
 import Container from '~/components/Container';
 import Divisor from '~/components/Divisor';
 import Title from '~/components/Title';
@@ -19,11 +20,12 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <Layout repository={profile.repository.url} author={profile.author} posts={getPosts()} pages={getPages()}>
-      <Divisor />
       <Container>
         <Title>{content?.title}</Title>
         <Article>{content?.content}</Article>
       </Container>
+      <Divisor />
+      <Links links={profile.links} />
     </Layout>
   );
 }

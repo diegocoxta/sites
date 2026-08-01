@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import Divisor from '~/components/Divisor';
+import Links from '~/components/Links';
 import Container from '~/components/Container';
 import Title from '~/components/Title';
 import Attributes from '~/components/Attributes';
@@ -12,7 +13,6 @@ import { getPages, getPosts, profile } from '~/app/cms';
 export default function HomePage() {
   return (
     <Layout repository={profile.repository.url} author={profile.author} posts={getPosts()} pages={getPages()}>
-      <Divisor />
       <Container>
         {getPosts().map((post, index: number) => (
           <article key={`article-${index}`}>
@@ -24,6 +24,8 @@ export default function HomePage() {
           </article>
         ))}
       </Container>
+      <Divisor />
+      <Links links={profile.links} />
     </Layout>
   );
 }

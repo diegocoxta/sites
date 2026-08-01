@@ -2,6 +2,7 @@ import { type Metadata } from 'next';
 import Link from 'next/link';
 
 import Divisor from '~/components/Divisor';
+import Links from '~/components/Links';
 import Container from '~/components/Container';
 import TagName from '~/components/TagName';
 import Title from '~/components/Title';
@@ -20,7 +21,6 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
 
   return (
     <Layout repository={profile.repository.url} author={profile.author} posts={getPosts()} pages={getPages()}>
-      <Divisor />
       <Container>
         <TagName>#{tag}</TagName>
         {getPosts()
@@ -35,6 +35,8 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
             </article>
           ))}
       </Container>
+      <Divisor />
+      <Links links={profile.links} />
     </Layout>
   );
 }
