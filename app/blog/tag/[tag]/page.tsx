@@ -10,7 +10,7 @@ import Attributes from '~/components/Attributes';
 import Article from '~/components/Article';
 import Layout from '~/components/Layout';
 
-import { getPages, getPosts, getTags, profile } from '~/app/cms';
+import { getPages, getPosts, getTags, profile } from '~/lib/cms';
 
 interface TagsSinglePageProps {
   params: Promise<{ tag: string }>;

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { BlogContentAttributes } from '~/app/cms';
+import { BlogContentAttributes } from '~/lib/cms';
 
 import styles from './styles.module.css';
 

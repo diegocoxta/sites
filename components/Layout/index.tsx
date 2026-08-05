@@ -3,7 +3,7 @@ import ThemeSwitcher from '~/components/ThemeSwitcher';
 import CommandBar from '~/components/CommandBar';
 import Footer from '~/components/Footer';
 
-import { BlogContentAttributes } from '~/app/cms';
+import { BlogContentAttributes } from '~/lib/cms';
 
 import styles from './styles.module.css';
 

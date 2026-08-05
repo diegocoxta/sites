@@ -9,7 +9,7 @@ import Attributes from '~/components/Attributes';
 import Article from '~/components/Article';
 import Layout from '~/components/Layout';
 
-import { getPages, getPosts, profile } from '~/app/cms';
+import { getPages, getPosts, profile } from '~/lib/cms';
 
 export default function HomePage() {
   return (

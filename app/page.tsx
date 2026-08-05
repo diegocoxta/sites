@@ -2,7 +2,7 @@ import Layout from '~/components/Layout';
 import AboutMe from '~/components/AboutMe';
 import Links from '~/components/Links';
 
-import { getPages, getPosts, profile } from '~/app/cms';
+import { getPages, getPosts, profile } from '~/lib/cms';
 
 export default function HomePage() {
   return (

@@ -13,7 +13,7 @@ import {
 } from 'react-icons/bs';
 import { redirect } from 'next/navigation';
 
-import type { BlogContentAttributes } from '~/app/cms';
+import type { BlogContentAttributes } from '~/lib/cms';
 
 import _CommandBar from './CommandBar';
 

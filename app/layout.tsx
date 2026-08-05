@@ -3,7 +3,7 @@ import { type Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import { Source_Sans_3 } from 'next/font/google';
 
-import { profile } from '~/app/cms';
+import { profile } from '~/lib/cms';
 
 import './globals.css';
 

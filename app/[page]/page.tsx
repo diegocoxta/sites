@@ -8,7 +8,7 @@ import Title from '~/components/Title';
 import Article from '~/components/Article';
 import Layout from '~/components/Layout';
 
-import { getPages, getPosts, profile, readFile } from '~/app/cms';
+import { getPages, getPosts, profile, readFile } from '~/lib/cms';
 
 interface PageProps {
   params: Promise<{ page: string }>;
