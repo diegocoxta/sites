@@ -1,5 +1,4 @@
-import { type Metadata } from 'next';
-
+import type { Viewport, Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import { Source_Sans_3 } from 'next/font/google';
 
@@ -22,6 +21,13 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
     </html>
   );
 }
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export const metadata: Metadata = {
   title: {
