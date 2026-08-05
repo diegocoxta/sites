@@ -5,7 +5,6 @@ My personal blog powered by next, typescript and CSS modules.
 ## 🖥️ Tech Stack
 
 - Build with Next 15 w/ TypeScript.
-- Testing with Jest and Testing Library.
 - With ESLint, Prettier, stylelint, Husky, lint-staged and [much more](package.json).
 - Dark mode using next-themes.
 
