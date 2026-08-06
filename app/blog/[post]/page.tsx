@@ -8,6 +8,7 @@ import Attributes from '~/components/Attributes';
 import Title from '~/components/Title';
 import Article from '~/components/Article';
 import Layout from '~/components/Layout';
+import PageName from '~/components/TagName';
 
 import { getPages, getPosts, profile, readFile } from '~/lib/cms';
 
@@ -22,6 +23,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <Layout repository={profile.repository.url} author={profile.author} posts={getPosts()} pages={getPages()}>
       <Container>
+        <PageName>blog</PageName>
         <Title>{content?.title}</Title>
         <Attributes {...content} />
         <Article>{content?.content}</Article>
