@@ -45,6 +45,12 @@ export const readFile = cache(function readFile<T extends ContentAttributes>(fil
 });
 
 function getFileList<T extends ContentAttributes>(dir: string): Array<T> {
+  const fileDir = path.join(process.cwd(), 'public', 'content', dir);
+
+  if (!fs.existsSync(fileDir)) {
+    return [];
+  }
+
   return fs.readdirSync(path.join(process.cwd(), 'public', 'content', dir)).map((slug) => ({
     ...readFile<T>(`${dir}/${slug}`)!,
     slug,
