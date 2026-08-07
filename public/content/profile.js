@@ -10,7 +10,7 @@ const profile = {
     { label: 'Linkedin', url: 'https://linkedin.com/in/diegocoxta' },
     { label: 'Github', url: 'https://github.com/diegocoxta' },
     { label: 'Blog', url: '/blog' },
-    { label: 'E-mail', url: 'mailto:contato@diegocosta.com.br' }
+    { label: 'E-mail', url: 'mailto:diego@diegocosta.com.br' }
   ],
   repository: npmPackage.repository,
 };
