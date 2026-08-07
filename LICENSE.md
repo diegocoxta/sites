@@ -5,7 +5,7 @@ But all the source code is distributed as...
 
 MIT License
 
-Copyright (c) 2020-2025 Diego Costa
+Copyright (c) 2020-2026 Diego Costa
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

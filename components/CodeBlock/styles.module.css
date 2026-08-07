@@ -4,6 +4,10 @@
   border-radius: 10px;
   font-family: monospace;
   font-size: 16px;
+
+  a {
+    color: #fff;
+  }
 }
 
 .codeblock {
@@ -24,6 +28,10 @@
   font-size: 16px;
   overflow: scroll;
   color: #efefef;
+
+  a {
+    color: #fff;
+  }
 }
 
 .carbon {

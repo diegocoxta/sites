@@ -1,16 +1,15 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 
-import Divisor from '~/components/Divisor';
-import Links from '~/components/Links';
 import Container from '~/components/Container';
-import TagName from '~/components/TagName';
+import PageName from '~/components/PageName';
 import Title from '~/components/Title';
 import Attributes from '~/components/Attributes';
 import Article from '~/components/Article';
-import Layout from '~/components/Layout';
+import Divisor from '~/components/Divisor';
+import Links from '~/components/Links';
 
-import { getPages, getPosts, getTags, profile } from '~/lib/cms';
+import { getPosts, getTags, profile } from '~/lib/cms';
 
 interface TagsSinglePageProps {
   params: Promise<{ tag: string }>;
@@ -20,9 +19,9 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
   const { tag } = await params;
 
   return (
-    <Layout repository={profile.repository.url} author={profile.author} posts={getPosts()} pages={getPages()}>
+    <>
       <Container>
-        <TagName>#{tag}</TagName>
+        <PageName>#{tag}</PageName>
         {getPosts()
           .filter((post) => post.tags?.includes(tag))
           .map((post, index: number) => (
@@ -37,15 +36,14 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
       </Container>
       <Divisor />
       <Links links={profile.links} />
-    </Layout>
+    </>
   );
 }
 
-export function generateStaticParams() {
-  return getTags().map((tag) => ({
+export const generateStaticParams = () =>
+  getTags().map((tag) => ({
     tag,
   }));
-}
 
 export async function generateMetadata({ params }: TagsSinglePageProps): Promise<Metadata> {
   const { tag } = await params;

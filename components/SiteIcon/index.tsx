@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { ImageResponse } from 'next/og';
 
-import { SITE_ACCENT_COLOR, SITE_TEXT_COLOR } from './consts';
+import { SITE_ACCENT_COLOR, SITE_TEXT_COLOR } from '~/lib/consts';
 
 export type ScreenSizesType = {
   logicalWidth: number;
@@ -40,7 +40,7 @@ export interface IconType {
   fontSize: number;
 }
 
-export async function icon(config: IconType) {
+export default async function SiteIcon(config: IconType) {
   const styles: { [key: string]: React.CSSProperties } = {
     container: {
       background: 'transparent',

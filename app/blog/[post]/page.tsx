@@ -3,14 +3,13 @@ import { notFound } from 'next/navigation';
 
 import Links from '~/components/Links';
 import Container from '~/components/Container';
-import Divisor from '~/components/Divisor';
-import Attributes from '~/components/Attributes';
+import PageName from '~/components/PageName';
 import Title from '~/components/Title';
+import Attributes from '~/components/Attributes';
 import Article from '~/components/Article';
-import Layout from '~/components/Layout';
-import PageName from '~/components/TagName';
+import Divisor from '~/components/Divisor';
 
-import { getPages, getPosts, profile, readFile } from '~/lib/cms';
+import { getPosts, profile, readFile } from '~/lib/cms';
 
 interface BlogPostPageProps {
   params: Promise<{ post: string }>;
@@ -21,7 +20,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const content = readFile(`/posts/${post}`);
 
   return (
-    <Layout repository={profile.repository.url} author={profile.author} posts={getPosts()} pages={getPages()}>
+    <>
       <Container>
         <PageName>blog</PageName>
         <Title>{content?.title}</Title>
@@ -30,15 +29,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </Container>
       <Divisor />
       <Links links={profile.links} />
-    </Layout>
+    </>
   );
 }
 
-export function generateStaticParams() {
-  return getPosts().map(({ slug }) => ({
-    post: slug,
-  }));
-}
+export const generateStaticParams = () => getPosts().map(({ slug: post }) => ({ post }));
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { post } = await params;

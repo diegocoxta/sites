@@ -1,14 +1,13 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import Links from '~/components/Links';
 import Container from '~/components/Container';
-import Divisor from '~/components/Divisor';
 import Title from '~/components/Title';
 import Article from '~/components/Article';
-import Layout from '~/components/Layout';
+import Divisor from '~/components/Divisor';
+import Links from '~/components/Links';
 
-import { getPages, getPosts, profile, readFile } from '~/lib/cms';
+import { getPages, profile, readFile } from '~/lib/cms';
 
 interface PageProps {
   params: Promise<{ page: string }>;
@@ -19,22 +18,18 @@ export default async function Page({ params }: PageProps) {
   const content = readFile(`/pages/${page}`);
 
   return (
-    <Layout repository={profile.repository.url} author={profile.author} posts={getPosts()} pages={getPages()}>
+    <>
       <Container>
         <Title>{content?.title}</Title>
         <Article>{content?.content}</Article>
       </Container>
       <Divisor />
       <Links links={profile.links} />
-    </Layout>
+    </>
   );
 }
 
-export function generateStaticParams() {
-  return getPages().map(({ slug }) => ({
-    page: slug,
-  }));
-}
+export const generateStaticParams = () => getPages().map(({ slug: page }) => ({ page }));
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { page } = await params;

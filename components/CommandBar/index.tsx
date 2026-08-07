@@ -1,17 +1,9 @@
 'use client';
 
 import { KBarProvider, type Action } from 'kbar';
+import { useRouter } from 'next/navigation';
+import { Home, Moon, Newspaper, NotepadText, Palette, Sun, CodeXml } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import {
-  BsFillHouseFill,
-  BsNewspaper,
-  BsBrushFill,
-  BsSun,
-  BsMoon,
-  BsCodeSlash,
-  BsFillFileEarmarkFill,
-} from 'react-icons/bs';
-import { redirect } from 'next/navigation';
 
 import type { BlogContentAttributes } from '~/lib/cms';
 
@@ -25,6 +17,7 @@ interface CommandBarProps {
 
 export default function CommandBar({ pages, posts, repository }: CommandBarProps): React.ReactElement {
   const { setTheme } = useTheme();
+  const router = useRouter();
 
   const actions: Array<Action> = [
     {
@@ -32,35 +25,28 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       name: 'Página Inicial',
       shortcut: ['g', 'h'],
       section: 'Páginas',
-      perform: () => window.location.replace('/'),
-      icon: <BsFillHouseFill />,
+      perform: () => router.push('/'),
+      icon: <Home size={18} />,
     },
     {
       id: 'blog',
       name: 'Blog',
       shortcut: ['g', 'a'],
       section: 'Páginas',
-      icon: <BsNewspaper />,
+      icon: <Newspaper size={18} />,
     },
     ...pages.map((p) => ({
       id: `page-${p.slug}`,
       name: p.title,
       section: 'Páginas',
-      perform: () => redirect(`/${p.slug}`),
-      icon: <BsFillFileEarmarkFill />,
+      perform: () => router.push(`/${p.slug}`),
+      icon: <NotepadText size={18} />,
     })),
-    {
-      id: 'post-list',
-      name: 'Todas as publicações',
-      parent: 'blog',
-      icon: <BsNewspaper />,
-      perform: () => redirect('/blog'),
-    },
     ...posts.map((p) => ({
       id: `post-${p.slug}`,
       name: p.title + p.title + p.title,
-      perform: () => redirect(`/blog/${p.slug}`),
-      icon: <BsFillFileEarmarkFill />,
+      perform: () => router.push(`/blog/${p.slug}`),
+      icon: <Newspaper size={18} />,
       parent: 'blog',
     })),
     {
@@ -68,7 +54,7 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       name: 'Tema',
       shortcut: ['g', 't'],
       section: 'Preferências',
-      icon: <BsBrushFill />,
+      icon: <Palette size={18} />,
     },
     {
       id: 'theme-light',
@@ -77,7 +63,7 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       section: 'Tema',
       parent: 'theme',
       perform: () => setTheme('default'),
-      icon: <BsSun />,
+      icon: <Sun size={18} />,
     },
     {
       id: 'theme-dark',
@@ -86,7 +72,7 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       section: 'Tema',
       parent: 'theme',
       perform: () => setTheme('dark'),
-      icon: <BsMoon />,
+      icon: <Moon size={18} />,
     },
     {
       id: 'source',
@@ -94,7 +80,7 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       shortcut: ['g', 's'],
       section: 'Ferramentas',
       perform: () => window.open(repository, '_blank'),
-      icon: <BsCodeSlash />,
+      icon: <CodeXml />,
     },
   ];
 

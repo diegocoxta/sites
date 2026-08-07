@@ -1,7 +1,8 @@
 'use client';
 
+import React from 'react';
 import { KBarAnimator, KBarPortal, useMatches, KBarPositioner, KBarSearch, KBarResults, useKBar } from 'kbar';
-import { BsCommand, BsSearch } from 'react-icons/bs';
+import { Command, Search } from 'lucide-react';
 
 import styles from './styles.module.css';
 
@@ -12,13 +13,13 @@ export default function CommandBar(): React.ReactElement {
   return (
     <>
       <button className={styles.button} onClick={() => query.toggle()}>
-        <BsCommand size={28} />
+        <Command size={22} />
       </button>
       <KBarPortal>
         <KBarPositioner className={styles.positioner}>
           <KBarAnimator className={styles.animator}>
             <div className={styles.item}>
-              <BsSearch />
+              <Search size={22} />
               <KBarSearch className={styles.search} defaultPlaceholder="Escreva um comando ou uma busca." />
               <div className={styles.shortcut} aria-hidden>
                 <kbd className={styles.shortcutIcon}>esc</kbd>

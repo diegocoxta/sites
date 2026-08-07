@@ -1,10 +1,10 @@
-import { icon } from '~/lib/icon';
+import SiteIcon from '~/components/SiteIcon';
 
 export const size = { width: 180, height: 180 };
 export const contentType = 'image/png';
 
 export default async function Icon() {
-  const response = await icon({
+  const response = await SiteIcon({
     ...size,
     fontSize: 60,
   });

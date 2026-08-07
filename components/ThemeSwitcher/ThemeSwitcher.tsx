@@ -1,4 +1,4 @@
-import { BsMoon, BsSun } from 'react-icons/bs';
+import { Moon, Sun } from 'lucide-react';
 
 import styles from './styles.module.css';
 
@@ -17,7 +17,11 @@ export default function ThemeSwitcher({ isDarkMode, onClick }: ThemeSwitcherProp
       data-testid="themeswitcher--button"
     >
       <div className={styles.indicator}>
-        {isDarkMode ? <BsMoon data-testid="react-icon-bsmoon" /> : <BsSun data-testid="react-icon-bssun" />}
+        {isDarkMode ? (
+          <Moon data-testid="react-icon-bsmoon" size={16} />
+        ) : (
+          <Sun data-testid="react-icon-bssun" size={16} />
+        )}
       </div>
     </button>
   );

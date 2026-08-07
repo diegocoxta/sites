@@ -9,6 +9,7 @@ export type MetaAttributesProps = Partial<Pick<BlogContentAttributes, 'date' | '
 export default function MetaAttributes(props: MetaAttributesProps): React.ReactElement {
   const readingTime =
     props.readingTime! < 1 ? 'Menos de 1 minuto de leitura' : `${props.readingTime!.toFixed()} minutos de leitura`;
+
   return (
     <>
       <p
