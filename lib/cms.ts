@@ -4,7 +4,12 @@ import matter from 'gray-matter';
 import readingTime from 'reading-time';
 import { cache } from 'react';
 
-export { default as profile } from '~/public/content/profile';
+export const getProfile = cache(function getProfile(site: string) {
+  const content = fs.readFileSync(`./public/${site}/profile.js`, 'utf-8');
+  const profile = JSON.parse(content);
+
+  return profile;
+});
 
 export type ContentAttributes = {
   title: string;
@@ -22,8 +27,11 @@ export type BlogContentAttributes = ContentAttributes & {
   expanded?: string;
 };
 
-export const readFile = cache(function readFile<T extends ContentAttributes>(filename: string): T | undefined {
-  const file = path.join(process.cwd(), 'public', 'content', filename, 'index.mdx');
+export const readFile = cache(function readFile<T extends ContentAttributes>(
+  site: string,
+  filename: string
+): T | undefined {
+  const file = path.join(process.cwd(), 'public', site, filename, 'index.mdx');
 
   if (!fs.existsSync(file)) {
     return undefined;
@@ -41,40 +49,40 @@ export const readFile = cache(function readFile<T extends ContentAttributes>(fil
 
   data.readingTime = readingTime(content).minutes;
 
-  return { ...data, content: updateContentImagePaths(content, filename) } as T;
+  return { ...data, content: updateContentImagePaths(content, site, filename) } as T;
 });
 
-function getFileList<T extends ContentAttributes>(dir: string): Array<T> {
-  const fileDir = path.join(process.cwd(), 'public', 'content', dir);
+function getFileList<T extends ContentAttributes>(site: string, dir: string): Array<T> {
+  const fileDir = path.join(process.cwd(), 'public', site, dir);
 
   if (!fs.existsSync(fileDir)) {
     return [];
   }
 
-  return fs.readdirSync(path.join(process.cwd(), 'public', 'content', dir)).map((slug) => ({
-    ...readFile<T>(`${dir}/${slug}`)!,
+  return fs.readdirSync(fileDir).map((slug) => ({
+    ...readFile<T>(site, `${dir}/${slug}`)!,
     slug,
   }));
 }
 
-function updateContentImagePaths(bodyContent: string, dirname: string) {
+function updateContentImagePaths(bodyContent: string, site: string, dirname: string) {
   return bodyContent.replace(/!\[(.*?)\]\(\.\/([^)]+)\)/g, (_, altText, fileName) => {
-    return `![${altText}](/content${dirname}/${fileName})`;
+    return `![${altText}](/${site}${dirname}/${fileName})`;
   });
 }
 
-export const getPages = cache(function getPages() {
-  return getFileList('pages').filter((post) => post.status !== 'draft');
+export const getPages = cache(function getPages(site: string) {
+  return getFileList(site, `/pages`).filter((post) => post.status !== 'draft');
 });
 
-export const getPosts = cache(function getPosts() {
-  return getFileList<BlogContentAttributes>('posts')
+export const getPosts = cache(function getPosts(site: string) {
+  return getFileList<BlogContentAttributes>(site, `/posts`)
     .filter((post) => post.status !== 'draft')
     .sort((a, b) => new Date(b.date!).getTime() - new Date(a.date!).getTime());
 });
 
-export const getTags = cache(function getTags() {
-  return getFileList<BlogContentAttributes>('posts')
+export const getTags = cache(function getTags(site: string) {
+  return getFileList<BlogContentAttributes>(site, `/posts`)
     .filter((post) => post.status !== 'draft')
     .map((post) => post.tags)
     .flat(Infinity);

@@ -7,9 +7,10 @@ import Title from '~/components/Title';
 import Attributes from '~/components/Attributes';
 import Article from '~/components/Article';
 import Divisor from '~/components/Divisor';
-import Links from '~/components/Links';
 
-import { getPosts, getTags, profile } from '~/lib/cms';
+import { getPosts, getTags } from '~/lib/cms';
+
+import config from '~/app/diegocosta.com.br/config';
 
 interface TagsSinglePageProps {
   params: Promise<{ tag: string }>;
@@ -22,7 +23,7 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
     <>
       <Container>
         <PageName>#{tag}</PageName>
-        {getPosts()
+        {getPosts(config.domain)
           .filter((post) => post.tags?.includes(tag))
           .map((post, index: number) => (
             <article key={`article-${index}`}>
@@ -35,13 +36,12 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
           ))}
       </Container>
       <Divisor />
-      <Links links={profile.links} />
     </>
   );
 }
 
 export const generateStaticParams = () =>
-  getTags().map((tag) => ({
+  getTags(config.domain).map((tag) => ({
     tag,
   }));
 

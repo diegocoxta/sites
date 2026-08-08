@@ -9,7 +9,9 @@
     "url": "https://github.com/diegocoxta/diegocosta.com.br.git"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev:diegocosta.com.br": "DEV_SITE=diegocosta.com.br next dev --turbopack",
+    "dev:diegocosta.me": "DEV_SITE=diegocosta.me next dev --turbopack",
+    "dev:diegocoxta.com": "DEV_SITE=diegocoxta.com next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

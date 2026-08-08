@@ -4,10 +4,10 @@ import { notFound } from 'next/navigation';
 import Container from '~/components/Container';
 import Title from '~/components/Title';
 import Article from '~/components/Article';
-import Divisor from '~/components/Divisor';
-import Links from '~/components/Links';
 
-import { getPages, profile, readFile } from '~/lib/cms';
+import { getPages, readFile } from '~/lib/cms';
+
+import config from '~/app/diegocoxta.com/config';
 
 interface PageProps {
   params: Promise<{ page: string }>;
@@ -15,25 +15,21 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const { page } = await params;
-  const content = readFile(`/pages/${page}`);
+  const content = readFile(config.domain, `/pages/${page}`);
 
   return (
-    <>
-      <Container>
-        <Title>{content?.title}</Title>
-        <Article>{content?.content}</Article>
-      </Container>
-      <Divisor />
-      <Links links={profile.links} />
-    </>
+    <Container>
+      <Title>{content?.title}</Title>
+      <Article>{content?.content}</Article>
+    </Container>
   );
 }
 
-export const generateStaticParams = () => getPages().map(({ slug: page }) => ({ page }));
+export const generateStaticParams = () => getPages(config.domain).map(({ slug: page }) => ({ page }));
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { page } = await params;
-  const content = readFile(`/pages/${page}`);
+  const content = readFile(config.domain, `/pages/${page}`);
 
   if (!content) {
     return notFound();
