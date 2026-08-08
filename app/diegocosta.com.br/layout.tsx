@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 
+import { getPages, getPosts } from '~/lib/cms';
+
 import Header from '~/components/Header';
 import ThemeSwitcher from '~/components/ThemeSwitcher';
 import CommandBar from '~/components/CommandBar';
 import Footer from '~/components/Footer';
 
-import { getPages, getPosts } from '~/lib/cms';
 import config from '~/app/diegocosta.com.br/config';
 
 import './globals.css';

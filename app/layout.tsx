@@ -1,8 +1,10 @@
 import type { Viewport } from 'next';
 import { Source_Sans_3 } from 'next/font/google';
 
+import { SITE_ACCENT_COLOR } from '~/lib/envs';
+
 const sourceSans = Source_Sans_3({
-  variable: '--main-primary-font',
+  variable: '--main-font',
   subsets: ['latin'],
   weight: ['400', '700'],
 });
@@ -10,7 +12,16 @@ const sourceSans = Source_Sans_3({
 export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${sourceSans.variable}`}>{children}</body>
+      <body
+        className={`${sourceSans.variable}`}
+        style={
+          {
+            '--main-accent-color': SITE_ACCENT_COLOR,
+          } as React.CSSProperties
+        }
+      >
+        {children}
+      </body>
     </html>
   );
 }

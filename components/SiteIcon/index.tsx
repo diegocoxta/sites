@@ -2,7 +2,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { ImageResponse } from 'next/og';
 
-import { SITE_ACCENT_COLOR, SITE_TEXT_COLOR } from '~/lib/consts';
+import { SITE_ACCENT_COLOR, SITE_TEXT_COLOR } from '~/lib/envs';
 
 export type ScreenSizesType = {
   logicalWidth: number;

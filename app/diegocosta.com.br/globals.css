@@ -3,7 +3,6 @@
   --main-subtitle-color: #38485d;
   --main-text-color: #2f3d4f;
   --main-background-color: #fdfdfd;
-  --main-accent-color: #6c4236;
 }
 
 [data-theme='dark'] {
@@ -11,7 +10,6 @@
   --main-subtitle-color: #bec3c7;
   --main-text-color: #c5c6cd;
   --main-background-color: #0e0807;
-  --main-accent-color: #6c4236;
 }
 
 body {
@@ -19,5 +17,5 @@ body {
   padding: 0;
   color: var(--main-text-color);
   background: var(--main-background-color);
-  font-family: var(--main-primary-font);
+  font-family: var(--main-font);
 }
