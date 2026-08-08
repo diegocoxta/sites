@@ -7,8 +7,8 @@ import _ThemeSwitcher from './ThemeSwitcher';
 
 export default function ThemeSwitcher(): React.ReactElement {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const isDarkMode = theme === 'dark';
+  const { setTheme, resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === 'dark';
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect

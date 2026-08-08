@@ -17,8 +17,8 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   const posts = getPosts(config.domain);
 
   return (
-    <ThemeProvider enableSystem={false}>
-      <Header name={config.author}>
+    <ThemeProvider>
+      <Header name={config.author} avatar={config.avatar}>
         <ThemeSwitcher />
         <CommandBar pages={pages} posts={posts} repository={config.repository.url} />
       </Header>
