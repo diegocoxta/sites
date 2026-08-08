@@ -18,7 +18,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
 
   return (
     <ThemeProvider>
-      <Header name={config.author} avatar={config.avatar}>
+      <Header name={config.author}>
         <ThemeSwitcher />
         <CommandBar pages={pages} posts={posts} repository={config.repository.url} />
       </Header>
