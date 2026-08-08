@@ -67,7 +67,7 @@ function getFileList<T extends ContentAttributes>(site: string, dir: string): Ar
 
 function updateContentImagePaths(bodyContent: string, site: string, dirname: string) {
   return bodyContent.replace(/!\[(.*?)\]\(\.\/([^)]+)\)/g, (_, altText, fileName) => {
-    return `![${altText}](/${site}${dirname}/${fileName})`;
+    return `![${altText}](${dirname}/${fileName})`;
   });
 }
 
