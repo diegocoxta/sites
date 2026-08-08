@@ -2,7 +2,8 @@
 
 import { KBarProvider, type Action } from 'kbar';
 import { useRouter } from 'next/navigation';
-import { Home, Moon, Newspaper, NotepadText, Palette, Sun, CodeXml } from 'lucide-react';
+import { LuHouse, LuMoon, LuNewspaper, LuNotepadText, LuPalette, LuSun, LuCodeXml, LuSunMoon } from 'react-icons/lu';
+
 import { useTheme } from 'next-themes';
 
 import type { BlogContentAttributes } from '~/lib/cms';
@@ -26,27 +27,27 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       shortcut: ['g', 'h'],
       section: 'Páginas',
       perform: () => router.push('/'),
-      icon: <Home size={18} />,
+      icon: <LuHouse size={18} />,
     },
     {
       id: 'blog',
       name: 'Blog',
       shortcut: ['g', 'a'],
       section: 'Páginas',
-      icon: <Newspaper size={18} />,
+      icon: <LuNewspaper size={18} />,
     },
     ...pages.map((p) => ({
       id: `page-${p.slug}`,
       name: p.title,
       section: 'Páginas',
       perform: () => router.push(`/${p.slug}`),
-      icon: <NotepadText size={18} />,
+      icon: <LuNotepadText size={18} />,
     })),
     ...posts.map((p) => ({
       id: `post-${p.slug}`,
       name: p.title + p.title + p.title,
       perform: () => router.push(`/blog/${p.slug}`),
-      icon: <Newspaper size={18} />,
+      icon: <LuNewspaper size={18} />,
       parent: 'blog',
     })),
     {
@@ -54,7 +55,16 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       name: 'Tema',
       shortcut: ['g', 't'],
       section: 'Preferências',
-      icon: <Palette size={18} />,
+      icon: <LuPalette size={18} />,
+    },
+    {
+      id: 'theme-system',
+      name: 'Acompanhar o sistema',
+      shortcut: ['g', 't', 's'],
+      section: 'Tema',
+      parent: 'theme',
+      perform: () => setTheme('system'),
+      icon: <LuSunMoon size={18} />,
     },
     {
       id: 'theme-light',
@@ -63,7 +73,7 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       section: 'Tema',
       parent: 'theme',
       perform: () => setTheme('default'),
-      icon: <Sun size={18} />,
+      icon: <LuSun size={18} />,
     },
     {
       id: 'theme-dark',
@@ -72,7 +82,7 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       section: 'Tema',
       parent: 'theme',
       perform: () => setTheme('dark'),
-      icon: <Moon size={18} />,
+      icon: <LuMoon size={18} />,
     },
     {
       id: 'source',
@@ -80,7 +90,7 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       shortcut: ['g', 's'],
       section: 'Ferramentas',
       perform: () => window.open(repository, '_blank'),
-      icon: <CodeXml />,
+      icon: <LuCodeXml />,
     },
   ];
 

@@ -1,8 +1,12 @@
 import styles from './styles.module.css';
 
-export default function Title({ children }: React.PropsWithChildren): React.ReactElement {
+interface TitleProps extends React.PropsWithChildren {
+  fontSize?: number;
+}
+
+export default function Title({ children, fontSize }: TitleProps): React.ReactElement {
   return (
-    <h2 className={styles.container} data-testid="title">
+    <h2 className={styles.container} data-testid="title" style={{ fontSize }}>
       {children}
     </h2>
   );

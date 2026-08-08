@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import Container from '~/components/Container';
 import Title from '~/components/Title';
 import Article from '~/components/Article';
-import Divisor from '~/components/Divisor';
 
 import { getPages, readFile } from '~/lib/cms';
 
@@ -19,13 +18,10 @@ export default async function Page({ params }: PageProps) {
   const content = readFile(config.domain, `/pages/${page}`);
 
   return (
-    <>
-      <Container>
-        <Title>{content?.title}</Title>
-        <Article>{content?.content}</Article>
-      </Container>
-      <Divisor />
-    </>
+    <Container>
+      <Title>{content?.title}</Title>
+      <Article>{content?.content}</Article>
+    </Container>
   );
 }
 

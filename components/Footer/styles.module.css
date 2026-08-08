@@ -1,8 +1,6 @@
 .container {
-  max-width: 960px;
+  composes: container from '~/components/Container/styles.module.css';
   margin: 50px auto;
-  width: 100%;
-  box-sizing: border-box;
   font-size: 14px;
 }
 

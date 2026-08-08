@@ -36,7 +36,7 @@ export default function Footer(props: FooterProps): React.ReactElement {
         CC-BY {year} <span>{props.author}</span>
         {props.sourceCode && (
           <>
-            •{' '}
+            {' • '}
             <a
               className={styles.link}
               href={props.sourceCode}

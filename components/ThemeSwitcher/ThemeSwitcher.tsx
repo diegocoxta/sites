@@ -1,4 +1,4 @@
-import { Moon, Sun } from 'lucide-react';
+import { FiSun, FiMoon } from 'react-icons/fi';
 
 import styles from './styles.module.css';
 
@@ -18,9 +18,9 @@ export default function ThemeSwitcher({ isDarkMode, onClick }: ThemeSwitcherProp
     >
       <div className={styles.indicator}>
         {isDarkMode ? (
-          <Moon data-testid="react-icon-bsmoon" size={16} />
+          <FiMoon data-testid="react-icon-bsmoon" size={16} />
         ) : (
-          <Sun data-testid="react-icon-bssun" size={16} />
+          <FiSun data-testid="react-icon-bssun" size={16} />
         )}
       </div>
     </button>

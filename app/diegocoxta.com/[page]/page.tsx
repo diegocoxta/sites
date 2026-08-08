@@ -2,8 +2,12 @@ import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import Container from '~/components/Container';
+import Header from '~/components/Header';
+import ThemeSwitcher from '~/components/ThemeSwitcher';
+import Divisor from '~/components/Divisor';
 import Title from '~/components/Title';
 import Article from '~/components/Article';
+import Footer from '~/components/Footer';
 
 import { getPages, readFile } from '~/lib/cms';
 
@@ -18,10 +22,17 @@ export default async function Page({ params }: PageProps) {
   const content = readFile(config.domain, `/pages/${page}`);
 
   return (
-    <Container>
-      <Title>{content?.title}</Title>
-      <Article>{content?.content}</Article>
-    </Container>
+    <>
+      <Header name={config.title} size={28} avatar={config.avatar}>
+        <ThemeSwitcher />
+      </Header>
+      <Container>
+        <Title>{content?.title}</Title>
+        <Article>{content?.content}</Article>
+      </Container>
+      <Divisor />
+      <Footer author={config.title} />
+    </>
   );
 }
 

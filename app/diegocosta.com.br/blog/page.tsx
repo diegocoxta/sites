@@ -1,6 +1,5 @@
 import Link from 'next/link';
 
-import Divisor from '~/components/Divisor';
 import Container from '~/components/Container';
 import PageName from '~/components/PageName';
 import Title from '~/components/Title';
@@ -13,20 +12,17 @@ import config from '~/app/diegocosta.com.br/config';
 
 export default function HomePage() {
   return (
-    <>
-      <Container>
-        <PageName>blog</PageName>
-        {getPosts(config.domain).map((post, index: number) => (
-          <article key={`blog-article-${index}`}>
-            <Title>
-              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-            </Title>
-            <Attributes {...post} />
-            <Article>{post.expanded ? post.content : post.summary!}</Article>
-          </article>
-        ))}
-      </Container>
-      <Divisor />
-    </>
+    <Container>
+      <PageName>blog</PageName>
+      {getPosts(config.domain).map((post, index: number) => (
+        <article key={`blog-article-${index}`}>
+          <Title>
+            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+          </Title>
+          <Attributes {...post} />
+          <Article>{post.expanded ? post.content : post.summary!}</Article>
+        </article>
+      ))}
+    </Container>
   );
 }

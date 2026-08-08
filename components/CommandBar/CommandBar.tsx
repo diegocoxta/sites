@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { KBarAnimator, KBarPortal, useMatches, KBarPositioner, KBarSearch, KBarResults, useKBar } from 'kbar';
-import { Command, Search } from 'lucide-react';
+import { LuCommand, LuSearch } from 'react-icons/lu';
 
 import styles from './styles.module.css';
 
@@ -13,13 +13,13 @@ export default function CommandBar(): React.ReactElement {
   return (
     <>
       <button className={styles.button} onClick={() => query.toggle()}>
-        <Command size={22} />
+        <LuCommand size={22} />
       </button>
       <KBarPortal>
         <KBarPositioner className={styles.positioner}>
           <KBarAnimator className={styles.animator}>
             <div className={styles.item}>
-              <Search size={22} />
+              <LuSearch size={22} />
               <KBarSearch className={styles.search} defaultPlaceholder="Escreva um comando ou uma busca." />
               <div className={styles.shortcut} aria-hidden>
                 <kbd className={styles.shortcutIcon}>esc</kbd>

@@ -1,0 +1,20 @@
+.container {
+  display: block;
+  margin: 16px 0;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--main-border-color);
+  text-decoration: none;
+  color: var(--main-text-color);
+}
+
+.title {
+  display: block;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.description {
+  font-size: 19px;
+  color: var(--main-subtitle-color);
+  margin: 10px 0 0;
+}

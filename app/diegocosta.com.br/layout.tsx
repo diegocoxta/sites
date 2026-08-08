@@ -11,6 +11,7 @@ import Footer from '~/components/Footer';
 import config from '~/app/diegocosta.com.br/config';
 
 import './globals.css';
+import Divisor from '~/components/Divisor';
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   const pages = getPages(config.domain);
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <CommandBar pages={pages} posts={posts} repository={config.repository.url} />
       </Header>
       {children}
+      <Divisor />
       <Footer sourceCode={config.repository.url} author={config.author} links={config.links} />
     </ThemeProvider>
   );

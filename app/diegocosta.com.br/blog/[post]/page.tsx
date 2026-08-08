@@ -6,7 +6,6 @@ import PageName from '~/components/PageName';
 import Title from '~/components/Title';
 import Attributes from '~/components/Attributes';
 import Article from '~/components/Article';
-import Divisor from '~/components/Divisor';
 
 import { getPosts, readFile } from '~/lib/cms';
 
@@ -21,15 +20,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const content = readFile(config.domain, `/posts/${post}`);
 
   return (
-    <>
-      <Container>
-        <PageName>blog</PageName>
-        <Title>{content?.title}</Title>
-        <Attributes {...content} />
-        <Article>{content?.content}</Article>
-      </Container>
-      <Divisor />
-    </>
+    <Container>
+      <PageName>blog</PageName>
+      <Title>{content?.title}</Title>
+      <Attributes {...content} />
+      <Article>{content?.content}</Article>
+    </Container>
   );
 }
 
