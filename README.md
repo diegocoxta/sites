@@ -1,6 +1,10 @@
-# 👨🏿‍💻 diegocoxta/pages
+# 👨🏿‍💻 @diegocoxta/pages
 
 My personal webpages powered by next, typescript and CSS modules.
+
+- https://diegocosta.com.br
+- https://diegocosta.me
+- https://diegocoxta.com
 
 ## 🖥️ Tech Stack
 
