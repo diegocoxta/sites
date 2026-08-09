@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin: 96px 0 30px;
+
+  &.horizontal {
+    margin: 0;
+    flex-direction: row;
+  }
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--main-subtitle-color);
+    text-align: center;
+  }
+}

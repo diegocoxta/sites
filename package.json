@@ -10,8 +10,11 @@
   },
   "scripts": {
     "dev:diegocosta.com.br": "DEV_SITE=diegocosta.com.br next dev --turbopack",
+    "dev:br": "yarn dev:diegocosta.com.br",
     "dev:diegocosta.me": "DEV_SITE=diegocosta.me next dev --turbopack",
+    "dev:me": "yarn dev:diegocosta.me",
     "dev:diegocoxta.com": "DEV_SITE=diegocoxta.com next dev --turbopack",
+    "dev:com": "yarn dev:diegocoxta.com",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

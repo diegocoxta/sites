@@ -1,11 +1,11 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { getPages, readFile } from '~/lib/cms';
+
 import Container from '~/components/Container';
 import Title from '~/components/Title';
 import Article from '~/components/Article';
-
-import { getPages, readFile } from '~/lib/cms';
 
 import config from '~/app/diegocosta.com.br/config';
 

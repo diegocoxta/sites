@@ -4,13 +4,6 @@ import matter from 'gray-matter';
 import readingTime from 'reading-time';
 import { cache } from 'react';
 
-export const getProfile = cache(function getProfile(site: string) {
-  const content = fs.readFileSync(`./public/${site}/profile.js`, 'utf-8');
-  const profile = JSON.parse(content);
-
-  return profile;
-});
-
 export type ContentAttributes = {
   title: string;
   slug: string;

@@ -1,13 +1,13 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 
+import { getPosts, getTags } from '~/lib/cms';
+
 import Container from '~/components/Container';
-import PageName from '~/components/PageName';
 import Title from '~/components/Title';
+import PageName from '~/components/PageName';
 import Attributes from '~/components/Attributes';
 import Article from '~/components/Article';
-
-import { getPosts, getTags } from '~/lib/cms';
 
 import config from '~/app/diegocosta.com.br/config';
 
