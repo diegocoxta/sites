@@ -14,7 +14,7 @@ const profile = {
   ],
   pages: [
     {
-      title: '/uses',
+      title: 'uses',
       href: '/uses',
       description: 'The page where I share the tools that make my life easier and happier.',
     },
