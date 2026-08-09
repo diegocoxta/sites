@@ -1,18 +1,3 @@
-:root {
-  --main-title-color: #2f3d4f;
-  --main-subtitle-color: #38485d;
-  --main-text-color: #2f3d4f;
-  --main-background-color: #fdfdfd;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  color: var(--main-text-color);
-  background: var(--main-background-color);
-  font-family: var(--main-font);
-}
-
 .sectionPreview {
   width: 100%;
   height: 300px;
@@ -85,4 +70,10 @@ body {
   width: auto;
   height: 32px;
   color: var(--main-text-color);
+  transition: 0.2s all linear;
+
+  &:hover {
+    transform: scale(1.3);
+    color: var(--main-accent-color);
+  }
 }

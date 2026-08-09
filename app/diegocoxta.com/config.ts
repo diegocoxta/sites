@@ -4,13 +4,13 @@ const profile = {
   bio: '📍🇧🇷 Que rico es ser latino.',
   domain: 'diegocoxta.com',
   avatar: 'https://avatars.githubusercontent.com/u/3134422?v=4',
-  socialLinks: [
-    { icon: 'instagram', title: 'Instagram', href: 'https://instagram.com/diegocoxta' },
-    { icon: 'tiktok', title: 'Tiktok', href: 'https://tiktok.com/@diegocoxta' },
-    { icon: 'youtube', title: 'YouTube', href: 'https://youtube.com/@diegocoxta' },
-    { icon: 'mastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
-    { icon: 'bluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.bsky.social' },
-    { icon: 'threads', title: 'Threads', href: 'https://www.threads.com/@diegocoxta' },
+  social: [
+    { icon: 'FaInstagram', title: 'Instagram', href: 'https://instagram.com/diegocoxta' },
+    { icon: 'FaTiktok', title: 'Tiktok', href: 'https://tiktok.com/@diegocoxta' },
+    { icon: 'FaYoutube', title: 'YouTube', href: 'https://youtube.com/@diegocoxta' },
+    { icon: 'FaMastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
+    { icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.bsky.social' },
+    { icon: 'FaThreads', title: 'Threads', href: 'https://www.threads.com/@diegocoxta' },
   ],
   pages: [
     {

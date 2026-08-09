@@ -1,17 +1,15 @@
 import { type Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { getPages, readFile } from '~/lib/cms';
 
 import Container from '~/components/Container';
 import Divisor from '~/components/Divisor';
-import Title from '~/components/Title';
-import Footer from '~/components/Footer';
-import Article from '~/components/Article';
-import MiniHeader from '~/components/MiniHeader';
-import Username from '~/components/Username';
+import Header from '~/components/Header';
 import Avatar from '~/components/Avatar';
+import Username from '~/components/Username';
+import Title from '~/components/Title';
+import Article from '~/components/Article';
 
 import config from '~/app/diegocoxta.com/config';
 
@@ -25,18 +23,19 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <MiniHeader>
-        <Avatar src={config.avatar} size={32} alt={config.title} />
-        <Link href="/">
-          <Username username={config.title} />
-        </Link>
-      </MiniHeader>
+      <Header
+        left={
+          <>
+            <Avatar src={config.avatar} size={32} alt={config.title} />
+            <Username username={config.title} href="/" />
+          </>
+        }
+      />
       <Divisor />
       <Container>
         <Title>{content?.title}</Title>
         <Article>{content?.content}</Article>
       </Container>
-      <Footer author={config.title} />
     </>
   );
 }

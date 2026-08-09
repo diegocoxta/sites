@@ -1,34 +1,15 @@
-import Link from 'next/link';
-
 import styles from './styles.module.css';
 
-export interface HeaderProps {
-  name: string;
-  href?: string;
-  size?: number;
+interface HeaderProps {
+  left?: React.ReactNode;
+  right?: React.ReactNode;
 }
 
-export default function Header({
-  href = '/',
-  name,
-  size = 70,
-  children,
-}: React.PropsWithChildren<HeaderProps>): React.ReactElement {
-  const [firstName, lastName] = name.split(' ');
-
+export default function Header(props: HeaderProps): React.ReactElement {
   return (
     <header className={styles.container}>
-      <Link className={styles.link} href={href} data-testid="logo-link">
-        <h1 className={styles.name} style={{ fontSize: size }}>
-          {firstName}
-          {lastName && (
-            <span className={styles.lastName} data-testid="logo-lastname">
-              {lastName[0]}.
-            </span>
-          )}
-        </h1>
-      </Link>
-      <div className={styles.navBar}>{children}</div>
+      {props.left && <div className={styles.left}>{props.left}</div>}
+      {props.right && <div className={styles.right}>{props.right}</div>}
     </header>
   );
 }

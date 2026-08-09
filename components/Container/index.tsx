@@ -1,13 +1,5 @@
 import styles from './styles.module.css';
 
-interface ContainerProps extends React.PropsWithChildren {
-  maxWidth?: number;
-}
-
-export default function Container({ children, maxWidth }: ContainerProps): React.ReactElement {
-  return (
-    <section className={styles.container} style={{ maxWidth }}>
-      {children}
-    </section>
-  );
+export default function Container({ children }: React.PropsWithChildren): React.ReactElement {
+  return <section className={styles.container}>{children}</section>;
 }

@@ -1,0 +1,26 @@
+.link {
+  text-decoration: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.name {
+  color: var(--main-title-color);
+  font-weight: 700;
+  text-transform: lowercase;
+  margin: 0;
+  font-size: 15vw;
+
+  @media (width >= 760px) {
+    font-size: 70px;
+  }
+}
+
+.lastName {
+  color: var(--main-accent-color);
+}

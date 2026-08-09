@@ -1,0 +1,27 @@
+import Link from 'next/link';
+
+import styles from './styles.module.css';
+
+export interface BrandingProps {
+  name: string;
+  href?: string;
+  size?: number;
+}
+
+export default function Branding(props: BrandingProps) {
+  const { name, href = '/', size = 70 } = props;
+  const [firstName, lastName] = name.split(' ');
+
+  return (
+    <Link className={styles.link} href={href} data-testid="logo-link">
+      <h1 className={styles.name} style={{ fontSize: size }}>
+        {firstName}
+        {lastName && (
+          <span className={styles.lastName} data-testid="logo-lastname">
+            {lastName[0]}.
+          </span>
+        )}
+      </h1>
+    </Link>
+  );
+}

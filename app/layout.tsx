@@ -1,7 +1,10 @@
 import type { Viewport } from 'next';
 import { Source_Sans_3 } from 'next/font/google';
+import { ThemeProvider } from 'next-themes';
 
 import { SITE_ACCENT_COLOR } from '~/lib/envs';
+
+import './globals.css';
 
 const sourceSans = Source_Sans_3({
   variable: '--main-font',
@@ -20,7 +23,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
           } as React.CSSProperties
         }
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

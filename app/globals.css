@@ -1,13 +1,15 @@
 :root {
   --main-title-color: #2f3d4f;
   --main-subtitle-color: #38485d;
+  --main-border-color: #eaeaea;
   --main-text-color: #2f3d4f;
   --main-background-color: #fdfdfd;
 }
 
 [data-theme='dark'] {
   --main-title-color: #e2e9e9;
-  --main-subtitle-color: #bec3c7;
+  --main-subtitle-color: #858585;
+  --main-border-color: #161616;
   --main-text-color: #c5c6cd;
   --main-background-color: #0e0807;
 }

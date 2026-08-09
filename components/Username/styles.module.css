@@ -6,6 +6,10 @@
   font-size: 32px;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .handler {
   color: var(--main-accent-color);
 }

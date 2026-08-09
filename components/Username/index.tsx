@@ -1,17 +1,29 @@
+import Link from 'next/link';
 import styles from './styles.module.css';
 
 interface UsernameProps {
   username: string;
   size?: number;
+  href?: string;
 }
 
-export default function Username({ username, size }: UsernameProps) {
-  const isHandler = username.startsWith('@');
+export default function Username(props: UsernameProps) {
+  const isHandler = props.username.startsWith('@');
 
-  return (
-    <h1 className={styles.username} style={{ fontSize: size }}>
+  const children = (
+    <h1 className={styles.username} style={{ fontSize: props.size }}>
       <span className={styles.handler}>@</span>
-      <span>{isHandler ? username.slice(1) : username}</span>
+      <span>{isHandler ? props.username.slice(1) : props.username}</span>
     </h1>
   );
+
+  if (props.href) {
+    return (
+      <Link href={props.href} className={styles.link}>
+        {children}
+      </Link>
+    );
+  }
+
+  return children;
 }
