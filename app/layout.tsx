@@ -9,7 +9,7 @@ import './globals.css';
 const sourceSans = Source_Sans_3({
   variable: '--main-font',
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '700', '900'],
 });
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
