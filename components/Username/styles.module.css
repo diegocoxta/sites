@@ -12,4 +12,5 @@
 
 .handler {
   color: var(--main-accent-color);
+  font-weight: 900;
 }
