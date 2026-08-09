@@ -1,12 +1,12 @@
 {
-  "name": "diegocosta.com.br",
-  "version": "2.0.0",
+  "name": "@diegocoxta/pages",
+  "version": "3.0.0",
   "type": "module",
   "private": true,
-  "author": "Diego Costa <contato@diegocosta.com.br>",
+  "author": "Diego Costa <diego@diegocosta.com.br>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/diegocoxta/diegocosta.com.br.git"
+    "url": "https://github.com/diegocoxta/pages.git"
   },
   "scripts": {
     "dev:diegocosta.com.br": "DEV_SITE=diegocosta.com.br next dev --turbopack",
@@ -20,7 +20,7 @@
     "lint": "eslint",
     "lint-staged": "lint-staged",
     "prettier": "prettier --write .",
-    "stylelint": "npx stylelint --fix '{components,app}/**/*.css'",
+    "stylelint": "npx stylelint --fix '{components,app,lib}/**/*.css'",
     "prepare": "husky",
     "upgrade-latest": "yarn upgrade-interactive --latest"
   },
@@ -38,8 +38,6 @@
     "sugar-high": "^1.2.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^21.2.1",
-    "@commitlint/config-conventional": "^21.2.0",
     "@eslint/eslintrc": "^3.3.6",
     "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
