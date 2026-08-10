@@ -59,7 +59,7 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
     },
     {
       id: 'theme-system',
-      name: 'Acompanhar o sistema',
+      name: 'Automático',
       shortcut: ['g', 't', 's'],
       section: 'Tema',
       parent: 'theme',
