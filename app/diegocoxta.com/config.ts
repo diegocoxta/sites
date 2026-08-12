@@ -14,12 +14,6 @@ const profile = {
   ],
   pages: [
     {
-      title: 'uses',
-      href: '/uses',
-      description: 'The page where I share the tools that make my life easier and happier.',
-      icon: 'FaToolbox',
-    },
-    {
       title: 'unsplash',
       href: 'https://unsplash.com/diegocoxta',
       description: 'Exploring the world through glass. A collection of my favorite captures.',
@@ -46,6 +40,12 @@ const profile = {
       description: 'Tracking down the physical releases that make up my library.',
       recentActivity: 'HardcoverRecentActivity',
       icon: 'FaBookBookmark',
+    },
+    {
+      title: 'uses',
+      href: '/uses',
+      description: 'The page where I share the tools that make my life easier and happier.',
+      icon: 'FaToolbox',
     },
   ],
 };
