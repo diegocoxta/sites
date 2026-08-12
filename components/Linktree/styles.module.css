@@ -35,7 +35,7 @@
 .pagesList {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 30px;
 }
 
 .pagesLink {
@@ -55,10 +55,16 @@
 }
 
 .pagesTitle {
-  display: block;
+  display: flex;
   font-weight: 600;
   font-size: 16px;
   margin: 0;
+  align-items: center;
+  gap: 6px;
+}
+
+.pageIcon {
+  font-size: 16px;
 }
 
 .pagesDescription {

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { getPages, getPosts } from '~/lib/cms';
+import { getPages, getPosts } from '~/lib/mdcms';
 
 import Header from '~/components/Header';
 import Branding from '~/components/Branding';

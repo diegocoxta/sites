@@ -6,7 +6,7 @@ import { LuHouse, LuMoon, LuNewspaper, LuNotepadText, LuPalette, LuSun, LuCodeXm
 
 import { useTheme } from 'next-themes';
 
-import type { BlogContentAttributes } from '~/lib/cms';
+import type { BlogContentAttributes } from '~/lib/mdcms';
 
 import _CommandBar from './CommandBar';
 

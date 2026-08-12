@@ -17,6 +17,7 @@ export default function Avatar(props: AvatarProps) {
       width={props.size}
       height={props.size}
       alt={props.alt}
+      loading="eager"
     />
   );
 }
