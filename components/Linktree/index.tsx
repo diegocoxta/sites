@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import * as Fa6 from 'react-icons/fa6';
+import { FiExternalLink } from 'react-icons/fi';
 
 import * as RecentActivity from '~/components/RecentActivity';
 
@@ -48,19 +49,28 @@ export default function Linktree(props: LinktreeProps) {
         {props.pages.map((page) => {
           const RecentActivityWidget = page.recentActivity && RecentActivity[page.recentActivity];
           const Icon = page.icon && Fa6[page.icon];
+          const isExternalLink = page.href.startsWith('http');
 
           return (
             <Link
               key={page.href}
               href={page.href}
-              className={styles.pagesLink}
-              target={page.href.startsWith('http') ? '_blank' : '_self'}
+              className={styles.pagesItemLink}
+              target={isExternalLink ? '_blank' : '_self'}
             >
-              <p className={styles.pagesTitle}>
-                {Icon && <Icon className={styles.pageIcon} />} {page.title}
-              </p>
-              {page.description && <p className={styles.pagesDescription}>{page.description}</p>}
-              {RecentActivityWidget && <RecentActivityWidget />}
+              <div className={styles.pagesItemDetails}>
+                <p className={styles.pagesItemTitle}>
+                  {Icon && <Icon className={styles.pageItemIcon} />} {page.title}
+                </p>
+                {isExternalLink && <FiExternalLink className={styles.pagesItemExternalLinkIcon} />}
+              </div>
+              {page.description && <p className={styles.pagesItemDescription}>{page.description}</p>}
+
+              {RecentActivityWidget && (
+                <div className={styles.pagesItemRecentActivity}>
+                  <RecentActivityWidget />
+                </div>
+              )}
             </Link>
           );
         })}

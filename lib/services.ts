@@ -104,22 +104,19 @@ interface GetUnsplashPhotosType {
     created_at: string;
     alt_description: string;
     urls: {
-      thumb: string;
+      small: string;
     };
   }>;
 }
 
 export async function getUnsplashActivity(length: number): Promise<GetUnsplashPhotosType> {
   try {
-    const request = await fetch(
-      `https://api.unsplash.com/users/${envs.UNSPLASH_USERNAME}/photos?per_page=${length}&orientation=landscape`,
-      {
-        headers: {
-          Authorization: `Client-ID ${envs.UNSPLASH_ACCESS_KEY}`,
-        },
-        next: { revalidate: 3600, tags: ['unsplash'] },
-      }
-    );
+    const request = await fetch(`https://api.unsplash.com/users/${envs.UNSPLASH_USERNAME}/photos?per_page=${length}`, {
+      headers: {
+        Authorization: `Client-ID ${envs.UNSPLASH_ACCESS_KEY}`,
+      },
+      next: { revalidate: 3600, tags: ['unsplash'] },
+    });
 
     const data = await request.json();
 

@@ -1,7 +1,8 @@
 :root {
   --main-title-color: #2f3d4f;
-  --main-subtitle-color: #38485d;
-  --main-border-color: #eaeaea;
+  --main-subtitle-color: #5c6c7f;
+  --main-box-color: #eaeaea;
+  --main-border-color: #cdcdcd;
   --main-text-color: #2f3d4f;
   --main-background-color: #fdfdfd;
 }
@@ -9,7 +10,8 @@
 [data-theme='dark'] {
   --main-title-color: #e2e9e9;
   --main-subtitle-color: #858585;
-  --main-border-color: #161616;
+  --main-box-color: #161616;
+  --main-border-color: #505050;
   --main-text-color: #c5c6cd;
   --main-background-color: #0e0807;
 }

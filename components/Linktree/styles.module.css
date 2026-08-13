@@ -38,11 +38,16 @@
   gap: 30px;
 }
 
-.pagesLink {
+.pagesItemDetails {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagesItemLink {
   display: block;
   width: 100%;
   padding: 16px;
-  background-color: var(--main-border-color);
+  background-color: var(--main-box-color);
   text-decoration: none;
   color: var(--main-text-color);
   border-radius: 20px;
@@ -54,7 +59,7 @@
   }
 }
 
-.pagesTitle {
+.pagesItemTitle {
   display: flex;
   font-weight: 600;
   font-size: 16px;
@@ -63,11 +68,15 @@
   gap: 6px;
 }
 
-.pageIcon {
+.pageItemIcon {
   font-size: 16px;
 }
 
-.pagesDescription {
+.pagesItemExternalLinkIcon {
+  font-size: 18px;
+}
+
+.pagesItemDescription {
   font-size: 14px;
   color: var(--main-subtitle-color);
   margin: 2px 0 0;

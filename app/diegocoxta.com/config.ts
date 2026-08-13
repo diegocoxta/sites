@@ -1,7 +1,7 @@
 const profile = {
   title: '@diegocoxta',
   description: 'Where you can find my social networks',
-  bio: '📍🇧🇷 Que rico es ser latino.',
+  bio: '📍🇧🇷 Vivo por ti América Latina\nTrabajar menos, trabajar todos, producir lo necesario, redistribuir todo',
   domain: 'diegocoxta.com',
   avatar: 'https://avatars.githubusercontent.com/u/3134422?v=4',
   social: [
