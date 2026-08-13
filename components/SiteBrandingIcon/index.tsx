@@ -40,7 +40,7 @@ export interface IconType {
   fontSize: number;
 }
 
-export default async function SiteIcon(config: IconType) {
+export default async function SiteBrandingIcon(config: IconType) {
   const styles: { [key: string]: React.CSSProperties } = {
     container: {
       background: 'transparent',
