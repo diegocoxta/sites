@@ -56,6 +56,12 @@ const profile = {
       description: 'Updated less frequently than a legacy codebase.',
       icon: 'FaFloppyDisk',
     },
+    {
+      title: 'Like this page?',
+      href: 'https://github.com/diegocoxta/pages',
+      description: 'The source code is 100% free and open on my GitHub.',
+      icon: 'FaHeart' 
+    }
   ],
 };
 
