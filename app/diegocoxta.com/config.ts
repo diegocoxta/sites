@@ -12,8 +12,7 @@ const profile = {
     { icon: 'FaMastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
     { icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.bsky.social' },
     { icon: 'FaThreads', title: 'Threads', href: 'https://www.threads.com/@diegocoxta' },
-    { icon: 'FaGithubAlt', title: 'Github', href: 'https://github.com/diegocoxta' },
-    { icon: 'FaLinkedinIn', title: 'Linkedin', href: 'https://www.linkedin.com/in/diegocoxta/' }
+    { icon: 'FaEnvelope', title: 'Contact me', href: 'x@diegocosta.me' } 
   ],
   pages: [
     {
