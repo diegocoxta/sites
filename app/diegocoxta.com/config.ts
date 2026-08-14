@@ -45,7 +45,7 @@ const profile = {
       icon: 'FaBookBookmark',
     },
     {
-      title: 'uses',
+      title: 'tools I use',
       href: '/uses',
       description: 'The page where I share the tools that make my life easier and happier.',
       icon: 'FaToolbox',
