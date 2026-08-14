@@ -1,4 +1,4 @@
-import type { Viewport } from 'next';
+import type { Viewport, Metadata } from 'next';
 import { Source_Sans_3 } from 'next/font/google';
 import { ThemeProvider } from 'next-themes';
 
@@ -34,4 +34,11 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+};
+
+export const metadata: Metadata = {
+  icons: {
+    icon: '/icon?v=1',
+    apple: '/icon?v=1',
+  },
 };
