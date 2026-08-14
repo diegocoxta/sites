@@ -1,7 +1,7 @@
 const profile = {
   title: '@diegocoxta',
   description: 'Where you can find my social networks',
-  bio: '📍🇧🇷 Vivo por ti América Latina\nTrabajar menos, trabajar todos, producir lo necesario, redistribuir todo',
+  bio: '📍🇧🇷 My daily life, photography, and travels!',
   domain: 'diegocoxta.com',
   avatar: 'https://avatars.githubusercontent.com/u/3134422?v=4',
   social: [
@@ -46,6 +46,12 @@ const profile = {
       href: '/uses',
       description: 'The page where I share the tools that make my life easier and happier.',
       icon: 'FaToolbox',
+    },
+    {
+      title: 'my tech blog',
+      href: 'https://diegocosta.com.br',
+      description: 'Updated less frequently than a legacy codebase.',
+      icon: 'FaFloppyDisk',
     },
   ],
 };

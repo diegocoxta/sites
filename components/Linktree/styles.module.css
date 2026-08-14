@@ -1,19 +1,52 @@
 .container {
-  max-width: 520px;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 156px 16px 26px;
+  box-sizing: border-box;
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+
+  @media (width >= 600px) {
+    margin: 30px auto;
+    border-radius: 20px;
+    box-shadow: 1px 12px 20px -5px rgb(0 0 0 / 57%);
+  }
+
+  &::before {
+    display: block;
+    width: 100%;
+    height: 350px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: ' ';
+    background: linear-gradient(0deg, var(--main-background-color) 26%, rgb(255 255 255 / 0%) 100%);
+    z-index: 1;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 16px;
-  margin: 96px auto 30px;
-  padding: 16px;
-  box-sizing: border-box;
+  gap: 5px;
+
+  & > p[class='bio'] {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .socialList {
   display: flex;
   gap: 30px;
-  margin: 16px 0;
+  margin: 26px 0;
   width: 100%;
   justify-content: center;
 }
@@ -35,7 +68,7 @@
 .pagesList {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 16px;
 }
 
 .pagesItemDetails {

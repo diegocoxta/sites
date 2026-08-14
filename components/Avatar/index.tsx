@@ -10,14 +10,18 @@ interface AvatarProps {
 }
 
 export default function Avatar(props: AvatarProps) {
+  const { src, size, alt, animated } = props;
+
   return (
-    <Image
-      src={props.src}
-      className={`${styles.avatar} ${props.animated ? styles.animated : ''}`}
-      width={props.size}
-      height={props.size}
-      alt={props.alt}
-      loading="eager"
-    />
+    <div className={styles.container} style={{ width: size, height: size }}>
+      <Image
+        src={src}
+        className={`${styles.avatar} ${animated ? styles.animated : ''}`}
+        width={size}
+        height={size}
+        alt={alt}
+        loading="eager"
+      />
+    </div>
   );
 }

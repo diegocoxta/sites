@@ -38,8 +38,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  filter: grayscale(100%);
-  opacity: 0.7;
   transition: all linear 0.5s;
 
   &.empty {
@@ -49,11 +47,6 @@
     align-items: center;
     justify-content: center;
     color: var(--main-border-color);
-  }
-
-  a:hover & {
-    filter: grayscale(0);
-    opacity: 1;
   }
 }
 
