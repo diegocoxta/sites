@@ -4,6 +4,7 @@ const profile = {
   bio: '📍🇧🇷 My daily life, photography, and travels!',
   domain: 'diegocoxta.com',
   avatar: 'https://avatars.githubusercontent.com/u/3134422?v=4',
+  background: '/background_v2.jpg',
   social: [
     { icon: 'FaInstagram', title: 'Instagram', href: 'https://instagram.com/diegocoxta' },
     { icon: 'FaTiktok', title: 'Tiktok', href: 'https://tiktok.com/@diegocoxta' },

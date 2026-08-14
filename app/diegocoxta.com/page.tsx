@@ -9,7 +9,7 @@ export const revalidate = 3600;
 export default function HomePage() {
   return (
     <Linktree
-      background="/background.jpg"
+      background={config.background}
       social={config.social as LinktreeProps['social']}
       pages={config.pages as LinktreeProps['pages']}
     >
