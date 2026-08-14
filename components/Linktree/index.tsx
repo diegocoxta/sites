@@ -36,7 +36,7 @@ export default function Linktree(props: LinktreeProps) {
               <a
                 key={social.href}
                 href={social.href}
-                title={`${social.title}${social.description && `- ${social.description}`}`}
+                title={`Find me on ${social.title}`}
                 target="_blank"
                 rel="noreferrer"
                 className={styles.socialItem}
