@@ -12,55 +12,77 @@ const profile = {
     { icon: 'FaMastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
     { icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.bsky.social' },
     { icon: 'FaThreads', title: 'Threads', href: 'https://www.threads.com/@diegocoxta' },
-    { icon: 'FaEnvelope', title: 'Contact me', href: 'x@diegocosta.me' } 
+    { icon: 'FaEnvelope', title: 'Mail me', href: 'x@diegocosta.me' },
   ],
   pages: [
     {
-      title: 'unsplash',
+      title: 'Unsplash',
+      icon: 'FaCameraRetro',
       href: 'https://unsplash.com/diegocoxta',
       description: 'The world through my lenses.',
-      recentActivity: 'UnsplashRecentActivity',
-      icon: 'FaCameraRetro',
+      recentActivity: {
+        widget: 'UnsplashRecentActivity',
+        variables: {
+          username: process.env.UNSPLASH_USERNAME,
+          authorization: process.env.UNSPLASH_ACCESS_KEY,
+        },
+      },
     },
     {
-      title: 'discogs',
+      title: 'Discogs',
+      icon: 'FaRecordVinyl',
       href: 'https://www.discogs.com/user/diegocoxta',
       description: 'The records currently on my shelf.',
-      recentActivity: 'DiscogsRecentActivity',
-      icon: 'FaRecordVinyl',
+      recentActivity: {
+        widget: 'DiscogsRecentActivity',
+        variables: {
+          username: process.env.DISCOGS_USERNAME,
+          authorization: process.env.DISCOGS_TOKEN,
+        },
+      },
     },
     {
-      title: 'letterboxd',
+      title: 'Letterboxd',
+      icon: 'FaTv',
       href: 'https://letterboxd.com/diegocoxta/',
       description: 'Logging the movies I watch.',
-      recentActivity: 'LetterboxdRecentActivity',
-      icon: 'FaTv',
+      recentActivity: {
+        widget: 'LetterboxdRecentActivity',
+        variables: {
+          username: process.env.LETTERBOXD_USERNAME,
+        },
+      },
     },
     {
-      title: 'hardcover',
+      title: 'Hardcover',
+      icon: 'FaBookBookmark',
       href: 'https://hardcover.app/@diegocoxta',
       description: 'Keeping track of pages and stories.',
-      recentActivity: 'HardcoverRecentActivity',
-      icon: 'FaBookBookmark',
+      recentActivity: {
+        widget: 'HardcoverRecentActivity',
+        variables: {
+          authorization: process.env.HARDCOVER_TOKEN,
+        },
+      },
     },
     {
-      title: 'tools I use',
+      title: 'Tools I use',
+      icon: 'FaToolbox',
       href: '/uses',
       description: 'The page where I share the tools that make my life easier and happier.',
-      icon: 'FaToolbox',
     },
     {
-      title: 'my tech blog',
+      title: 'My Tech Blog',
+      icon: 'FaFloppyDisk',
       href: 'https://diegocosta.com.br',
       description: 'Updated less frequently than a legacy codebase.',
-      icon: 'FaFloppyDisk',
     },
     {
       title: 'Like this page?',
+      icon: 'FaHeart',
       href: 'https://github.com/diegocoxta/pages',
       description: 'The source code is 100% free and open on my GitHub.',
-      icon: 'FaHeart' 
-    }
+    },
   ],
 };
 

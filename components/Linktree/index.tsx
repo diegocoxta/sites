@@ -19,7 +19,13 @@ export interface LinktreeProps extends React.PropsWithChildren {
     icon?: keyof typeof Fa6;
     href: string;
     description?: string;
-    recentActivity?: keyof typeof RecentActivity;
+    recentActivity?: {
+      widget: keyof typeof RecentActivity;
+      variables?: {
+        username?: string;
+        authorization?: string;
+      };
+    };
   }>;
 }
 
@@ -49,7 +55,7 @@ export default function Linktree(props: LinktreeProps) {
 
         <div className={styles.pagesList}>
           {props.pages.map((page) => {
-            const RecentActivityWidget = page.recentActivity && RecentActivity[page.recentActivity];
+            const RecentActivityWidget = page.recentActivity && RecentActivity[page.recentActivity.widget];
             const Icon = page.icon && Fa6[page.icon];
             const isExternalLink = page.href.startsWith('http');
 
@@ -70,7 +76,7 @@ export default function Linktree(props: LinktreeProps) {
 
                 {RecentActivityWidget && (
                   <div className={styles.pagesItemRecentActivity}>
-                    <RecentActivityWidget />
+                    <RecentActivityWidget {...page.recentActivity?.variables} />
                   </div>
                 )}
               </Link>
