@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import { getPages, readFile } from '~/lib/mdcms';
 
 import Container from '~/components/Container';
-import Title from '~/components/Title';
 import Article from '~/components/Article';
 
 import config from '~/app/diegocosta.com.br/config';
@@ -19,7 +18,6 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <Container>
-      <Title>{content?.title}</Title>
       <Article>{content?.content}</Article>
     </Container>
   );
