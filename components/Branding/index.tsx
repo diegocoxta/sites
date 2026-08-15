@@ -18,7 +18,8 @@ export default function Branding(props: BrandingProps) {
         {firstName}
         {lastName && (
           <span className={styles.lastName} data-testid="logo-lastname">
-            {lastName}.
+            {lastName[0]}
+            <span className={styles.lastNameHidden}>{lastName.slice(1)}</span>.
           </span>
         )}
       </h1>

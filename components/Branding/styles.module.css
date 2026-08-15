@@ -17,7 +17,7 @@
   font-size: 15vw;
 
   @media (width >= 760px) {
-    font-size: 56px;
+    font-size: 70px;
   }
 
   @media print {
@@ -27,4 +27,16 @@
 
 .lastName {
   color: var(--main-accent-color);
+
+  .lastNameHidden {
+    display: none;
+  }
+
+  @media print {
+    margin-left: 5px;
+
+    .lastNameHidden {
+      display: inline-block;
+    }
+  }
 }
