@@ -12,6 +12,10 @@
   transition: background 0.3s linear;
   cursor: pointer;
 
+  @media print {
+    display: none;
+  }
+
   &:focus {
     outline: none;
   }
@@ -47,13 +51,19 @@
   gap: 4px;
 }
 
-.shortcutIcon {
+.shortcutIcon,
+.flag {
   background-color: rgb(from var(--main-text-color) r g b / 10%);
   color: var(--main-text-color);
   padding: 4px 8px;
   text-transform: uppercase;
   border-radius: 5px;
   font-size: 14px;
+}
+
+.flag {
+  font-size: 10px;
+  margin: 0 0 0 10px;
 }
 
 .item {

@@ -7,4 +7,8 @@
   height: 120px;
   margin: 40px 0;
   width: 100%;
+
+  @media print {
+    display: none;
+  }
 }

@@ -22,4 +22,9 @@ body {
   color: var(--main-text-color);
   background: var(--main-background-color);
   font-family: var(--main-font);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
 }

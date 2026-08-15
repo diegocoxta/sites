@@ -4,6 +4,10 @@
   margin: 0 auto 60px;
   font-weight: 400;
 
+  @media print {
+    font-size: 14px;
+  }
+
   :global(.responsive) {
     position: relative;
     padding-bottom: 56.25%;
@@ -53,5 +57,10 @@
 
   h3 {
     font-size: 28px;
+
+    @media print {
+      font-size: 22px;
+      margin: 5px 0;
+    }
   }
 }

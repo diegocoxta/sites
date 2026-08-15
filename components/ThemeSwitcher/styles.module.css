@@ -9,6 +9,10 @@
   justify-content: flex-end;
   cursor: pointer;
 
+  @media print {
+    display: none;
+  }
+
   &:focus {
     outline: none;
   }

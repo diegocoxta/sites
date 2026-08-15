@@ -2,9 +2,8 @@
 
 import { KBarProvider, type Action } from 'kbar';
 import { useRouter } from 'next/navigation';
-import { LuHouse, LuMoon, LuNewspaper, LuNotepadText, LuPalette, LuSun, LuCodeXml, LuSunMoon } from 'react-icons/lu';
-
 import { useTheme } from 'next-themes';
+import { LuHouse, LuMoon, LuNewspaper, LuNotepadText, LuPalette, LuSun, LuCodeXml, LuSunMoon } from 'react-icons/lu';
 
 import type { BlogContentAttributes } from '~/lib/mdcms';
 
@@ -16,11 +15,13 @@ interface CommandBarProps {
   repository: string;
 }
 
+export type ExtendedAction = Action & Partial<BlogContentAttributes>;
+
 export default function CommandBar({ pages, posts, repository }: CommandBarProps): React.ReactElement {
   const { setTheme } = useTheme();
   const router = useRouter();
 
-  const actions: Array<Action> = [
+  const actions: Array<ExtendedAction> = [
     {
       id: 'home',
       name: 'Página Inicial',
@@ -42,6 +43,8 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       section: 'Páginas',
       perform: () => router.push(`/${p.slug}`),
       icon: <LuNotepadText size={18} />,
+      language: p.language,
+      shortcut: p.shortcuts?.split(','),
     })),
     ...posts.map((p) => ({
       id: `post-${p.slug}`,
@@ -49,6 +52,7 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       perform: () => router.push(`/blog/${p.slug}`),
       icon: <LuNewspaper size={18} />,
       parent: 'blog',
+      language: p.language,
     })),
     {
       id: 'theme',

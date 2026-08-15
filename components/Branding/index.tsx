@@ -9,7 +9,7 @@ export interface BrandingProps {
 }
 
 export default function Branding(props: BrandingProps) {
-  const { name, href = '/', size = 70 } = props;
+  const { name, href = '/', size } = props;
   const [firstName, lastName] = name.split(' ');
 
   return (
@@ -18,7 +18,7 @@ export default function Branding(props: BrandingProps) {
         {firstName}
         {lastName && (
           <span className={styles.lastName} data-testid="logo-lastname">
-            {lastName[0]}.
+            {lastName}.
           </span>
         )}
       </h1>

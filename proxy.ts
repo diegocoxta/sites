@@ -15,6 +15,14 @@ export function proxy(request: NextRequest) {
     hostname = process.env.DEV_SITE || 'diegocosta.com.br';
   }
 
+  if (url.pathname.endsWith('.pdf')) {
+    const pageSlug = url.pathname.replace('.pdf', '');
+
+    url.pathname = `/${hostname}/api/pdf${pageSlug}`;
+
+    return NextResponse.rewrite(url);
+  }
+
   url.pathname = `/${hostname}${url.pathname}`;
 
   return NextResponse.rewrite(url);

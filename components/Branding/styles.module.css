@@ -17,7 +17,11 @@
   font-size: 15vw;
 
   @media (width >= 760px) {
-    font-size: 70px;
+    font-size: 56px;
+  }
+
+  @media print {
+    font-size: 46px;
   }
 }
 

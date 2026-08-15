@@ -4,6 +4,8 @@ import React from 'react';
 import { KBarAnimator, KBarPortal, useMatches, KBarPositioner, KBarSearch, KBarResults, useKBar } from 'kbar';
 import { LuCommand, LuSearch } from 'react-icons/lu';
 
+import type { ExtendedAction } from './index';
+
 import styles from './styles.module.css';
 
 export default function CommandBar(): React.ReactElement {
@@ -27,7 +29,9 @@ export default function CommandBar(): React.ReactElement {
             </div>
             <KBarResults
               items={results}
-              onRender={({ item, active }) => {
+              onRender={({ active, ...render }) => {
+                const item = render.item as ExtendedAction;
+
                 if (typeof item === 'string') {
                   return <div className={styles.groupName}>{item}</div>;
                 }
@@ -37,6 +41,7 @@ export default function CommandBar(): React.ReactElement {
                     {item.icon}
                     <div className={styles.label}>{item.name}</div>
 
+                    {item.language && <span className={styles.flag}>{item.language}</span>}
                     {item.shortcut && (
                       <div className={styles.shortcut} aria-hidden>
                         {item.shortcut.map((shortcut: string) => (

@@ -2,6 +2,10 @@
   composes: container from '~/components/Container/styles.module.css';
   margin: 50px auto;
   font-size: 14px;
+
+  @media print {
+    display: none;
+  }
 }
 
 .links {

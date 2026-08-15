@@ -10,6 +10,10 @@
   @media (width >= 760px) {
     margin: 40px auto;
   }
+
+  @media print {
+    margin: 0 auto !important;
+  }
 }
 
 .right,
