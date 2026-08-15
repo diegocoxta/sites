@@ -12,7 +12,7 @@ const profile = {
     { icon: 'FaMastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
     { icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.bsky.social' },
     { icon: 'FaThreads', title: 'Threads', href: 'https://www.threads.com/@diegocoxta' },
-    { icon: 'FaEnvelope', title: 'Mail me', href: 'x@diegocosta.me' },
+    { icon: 'FaEnvelope', title: 'Mail me', href: 'mailto:x@diegocosta.me' },
   ],
   pages: [
     {
