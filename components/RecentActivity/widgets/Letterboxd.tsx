@@ -13,6 +13,7 @@ interface LetterboxdResponseType {
     memberLike: string;
     cover: string;
     pubDate: string;
+    stars: number;
   }>;
 }
 
@@ -50,6 +51,7 @@ export async function getActivity(username: string): Promise<LetterboxdResponseT
         memberLike: item['letterboxd:memberLike'] || 'No',
         cover: coverUrl,
         pubDate: item['pubDate'] || '',
+        stars: item.title.split('★').length - 1,
       };
     });
 
@@ -84,6 +86,7 @@ export default async function LetterboxdWidget(props: RecentActivityProps) {
             <p className={styles.itemTitle}>
               {movie.memberLike === 'Yes' && <FaHeart className={styles.itemLike} />} {movie.title}
             </p>
+            {movie.stars > 0 && <p className={styles.itemDescription}>{'★'.repeat(movie.stars)}</p>}
             <p className={styles.itemDate}>
               Watched in{' '}
               {new Date(movie.watchedDate).toLocaleDateString('en', {

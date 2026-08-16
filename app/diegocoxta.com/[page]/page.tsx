@@ -6,7 +6,6 @@ import { getPages, readFile } from '~/lib/mdcms';
 import Container from '~/components/Container';
 import Divisor from '~/components/Divisor';
 import Header from '~/components/Header';
-import Avatar from '~/components/Avatar';
 import Username from '~/components/Username';
 import Title from '~/components/Title';
 import Article from '~/components/Article';
@@ -23,14 +22,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <Header
-        left={
-          <>
-            <Avatar src={config.avatar} size={32} alt={config.title} />
-            <Username username={config.title} href="/" />
-          </>
-        }
-      />
+      <Header left={<Username username={config.title} href="/" />} />
       <Divisor />
       <Container>
         <Title>{content?.title}</Title>

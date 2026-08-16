@@ -57,6 +57,12 @@
   font-size: 14px;
 }
 
+.itemDescription {
+  margin: 5px 0 0;
+  color: var(--main-subtitle-color);
+  font-size: 12px;
+}
+
 .itemLike {
   font-size: 10px;
 }
