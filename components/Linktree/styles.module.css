@@ -21,7 +21,7 @@
     top: 0;
     left: 0;
     content: ' ';
-    background: linear-gradient(0deg, var(--main-background-color) 30%, rgb(255 255 255 / 0%) 50%);
+    background: linear-gradient(0deg, var(--main-background-color) 25%, rgb(255 255 255 / 0%) 60%);
     z-index: 1;
   }
 }
