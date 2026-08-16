@@ -35,7 +35,7 @@ export default function Linktree(props: LinktreeProps) {
       <main className={styles.content}>
         {props.children}
         <nav aria-label="Principais Redes sociais">
-          <ul className={styles.socialList}>
+          <ul className={styles.iconsList}>
             {props.icons.map((icon) => {
               const Icon = Fa6[icon.icon];
 
@@ -47,7 +47,7 @@ export default function Linktree(props: LinktreeProps) {
                     aria-label={icon.title}
                     target="_blank"
                     rel="me noreferrer noopener"
-                    className={styles.socialItem}
+                    className={styles.iconsItem}
                   >
                     <Icon />
                   </a>
@@ -57,7 +57,7 @@ export default function Linktree(props: LinktreeProps) {
           </ul>
         </nav>
 
-        <div className={styles.pagesList} aria-label="Outras redes sociais">
+        <div className={styles.cardsList} aria-label="Outras redes sociais">
           {props.cards.map((card) => {
             const RecentActivityWidget = card.recentActivity && RecentActivity[card.recentActivity.widget];
             const Icon = card.icon && Fa6[card.icon];
@@ -67,20 +67,20 @@ export default function Linktree(props: LinktreeProps) {
               <section key={card.href} aria-labelledby={`${card.title}-title`}>
                 <Link
                   href={card.href}
-                  className={styles.pagesItemLink}
+                  className={styles.cardsItemLink}
                   target={isExternalLink ? '_blank' : '_self'}
                   rel={isExternalLink ? 'me noreferrer noopener' : undefined}
                 >
-                  <header className={styles.pagesItemDetails}>
-                    <h2 className={styles.pagesItemTitle} id={`${card.title}-title`}>
+                  <header className={styles.cardsItemDetails}>
+                    <h2 className={styles.cardsItemTitle} id={`${card.title}-title`}>
                       {Icon && <Icon className={styles.pageItemIcon} aria-hidden />} {card.title}
                     </h2>
-                    {isExternalLink && <FiExternalLink className={styles.pagesItemExternalLinkIcon} aria-hidden />}
+                    {isExternalLink && <FiExternalLink className={styles.cardsItemExternalLinkIcon} aria-hidden />}
                   </header>
-                  {card.description && <p className={styles.pagesItemDescription}>{card.description}</p>}
+                  {card.description && <p className={styles.cardsItemDescription}>{card.description}</p>}
 
                   {RecentActivityWidget && (
-                    <div className={styles.pagesItemRecentActivity}>
+                    <div className={styles.cardsItemRecentActivity}>
                       <RecentActivityWidget {...card.recentActivity?.variables} />
                     </div>
                   )}
