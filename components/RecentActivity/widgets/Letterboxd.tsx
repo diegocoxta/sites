@@ -71,10 +71,10 @@ export default async function LetterboxdWidget(props: RecentActivityProps) {
 
   return (
     <>
-      <p className={styles.title}>Recently Watched Movies</p>
-      <div className={styles.container}>
+      <h3 className={styles.title}>Recently Watched Movies</h3>
+      <ul className={styles.container}>
         {data.items.slice(0, 3).map((movie) => (
-          <div className={styles.item} key={movie.pubDate}>
+          <li className={styles.item} key={movie.pubDate}>
             <Image
               src={movie.cover}
               width={190}
@@ -83,21 +83,21 @@ export default async function LetterboxdWidget(props: RecentActivityProps) {
               className={styles.itemCover}
               loading="eager"
             />
-            <p className={styles.itemTitle}>
+            <h4 className={styles.itemTitle}>
               {movie.memberLike === 'Yes' && <FaHeart className={styles.itemLike} />} {movie.title}
-            </p>
+            </h4>
             {movie.stars > 0 && <p className={styles.itemDescription}>{'★'.repeat(movie.stars)}</p>}
-            <p className={styles.itemDate}>
+            <time dateTime={movie.watchedDate} className={styles.itemDate}>
               Watched in{' '}
               {new Date(movie.watchedDate).toLocaleDateString('en', {
                 timeZone: 'UTC',
                 month: 'long',
                 year: 'numeric',
               })}
-            </p>
-          </div>
+            </time>
+          </li>
         ))}
-      </div>
+      </ul>
     </>
   );
 }

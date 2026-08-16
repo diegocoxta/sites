@@ -1,5 +1,3 @@
-import Container from '~/components/Container';
-
 import styles from './styles.module.css';
 
 interface AboutMeProps {
@@ -8,10 +6,10 @@ interface AboutMeProps {
 
 export default function AboutMe(props: AboutMeProps) {
   return (
-    <Container>
+    <main aria-label="Sobre mim" className={styles.container}>
       {props.bio.split('\n').map((p: string) => (
         <p className={styles.paragraph} data-testid="about-me-bio" key={p} dangerouslySetInnerHTML={{ __html: p }} />
       ))}
-    </Container>
+    </main>
   );
 }

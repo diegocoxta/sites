@@ -3,6 +3,7 @@
   box-shadow: none;
   display: flex;
   align-items: center;
+  color: var(--main-title-color);
 
   &:focus {
     outline: none;

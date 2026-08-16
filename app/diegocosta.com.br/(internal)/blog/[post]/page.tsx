@@ -22,9 +22,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <Container>
       <PageName>blog</PageName>
-      <Title>{content?.title}</Title>
-      <Attributes {...content} />
-      <Article>{content?.content}</Article>
+      <article>
+        <header>
+          <Title>{content?.title}</Title>
+          <Attributes {...content} />
+        </header>
+        <Article>{content?.content}</Article>
+      </article>
     </Container>
   );
 }

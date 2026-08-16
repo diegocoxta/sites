@@ -14,14 +14,19 @@ export default function CommandBar(): React.ReactElement {
 
   return (
     <>
-      <button className={styles.button} onClick={() => query.toggle()}>
-        <LuCommand size={22} />
+      <button
+        aria-label="Abrir menu de comandos"
+        aria-haspopup="dialog"
+        className={styles.button}
+        onClick={() => query.toggle()}
+      >
+        <LuCommand size={22} aria-hidden />
       </button>
       <KBarPortal>
         <KBarPositioner className={styles.positioner}>
           <KBarAnimator className={styles.animator}>
             <div className={styles.item}>
-              <LuSearch size={22} />
+              <LuSearch size={22} aria-hidden />
               <KBarSearch className={styles.search} defaultPlaceholder="Escreva um comando ou uma busca." />
               <div className={styles.shortcut} aria-hidden>
                 <kbd className={styles.shortcutIcon}>esc</kbd>
@@ -33,13 +38,17 @@ export default function CommandBar(): React.ReactElement {
                 const item = render.item as ExtendedAction;
 
                 if (typeof item === 'string') {
-                  return <div className={styles.groupName}>{item}</div>;
+                  return (
+                    <div className={styles.groupName} role="heading" aria-level={3}>
+                      {item}
+                    </div>
+                  );
                 }
 
                 return (
                   <div className={styles.item} data-active={active}>
-                    {item.icon}
-                    <div className={styles.label}>{item.name}</div>
+                    <span aria-hidden>{item.icon}</span>
+                    <span className={styles.label}>{item.name}</span>
 
                     {item.language && <span className={styles.flag}>{item.language}</span>}
                     {item.shortcut && (

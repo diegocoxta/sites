@@ -12,17 +12,19 @@ export default function ThemeSwitcher({ isDarkMode, onClick }: ThemeSwitcherProp
     <button
       className={styles.container}
       data-isdarkmode={`${isDarkMode}`}
+      aria-checked={isDarkMode}
       aria-label="Trocar a cor do tema."
       onClick={onClick}
       data-testid="themeswitcher--button"
+      role="switch"
     >
-      <div className={styles.indicator}>
+      <span className={styles.indicator} aria-hidden>
         {isDarkMode ? (
           <FiMoon data-testid="react-icon-bsmoon" size={16} />
         ) : (
           <FiSun data-testid="react-icon-bssun" size={16} />
         )}
-      </div>
+      </span>
     </button>
   );
 }

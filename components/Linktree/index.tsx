@@ -32,58 +32,59 @@ export interface LinktreeProps extends React.PropsWithChildren {
 export default function Linktree(props: LinktreeProps) {
   return (
     <div className={styles.container} style={{ backgroundImage: `url(${props.background})` }}>
-      <div className={styles.content}>
+      <main className={styles.content}>
         {props.children}
-        <div className={styles.socialList}>
-          {props.social.map((social) => {
-            const Icon = Fa6[social.icon];
+        <nav aria-label="Principais Redes sociais">
+          <ul className={styles.socialList}>
+            {props.social.map((social) => {
+              const Icon = Fa6[social.icon];
 
-            return (
-              <a
-                key={social.href}
-                href={social.href}
-                title={`Find me on ${social.title}`}
-                target="_blank"
-                rel="noreferrer"
-                className={styles.socialItem}
-              >
-                <Icon />
-              </a>
-            );
-          })}
-        </div>
+              return (
+                <li key={social.href}>
+                  <a
+                    href={social.href}
+                    title={`Find me on ${social.title}`}
+                    aria-label={social.title}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className={styles.socialItem}
+                  >
+                    <Icon />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
-        <div className={styles.pagesList}>
+        <div className={styles.pagesList} aria-label="Outras redes sociais">
           {props.pages.map((page) => {
             const RecentActivityWidget = page.recentActivity && RecentActivity[page.recentActivity.widget];
             const Icon = page.icon && Fa6[page.icon];
             const isExternalLink = page.href.startsWith('http');
 
             return (
-              <Link
-                key={page.href}
-                href={page.href}
-                className={styles.pagesItemLink}
-                target={isExternalLink ? '_blank' : '_self'}
-              >
-                <div className={styles.pagesItemDetails}>
-                  <p className={styles.pagesItemTitle}>
-                    {Icon && <Icon className={styles.pageItemIcon} />} {page.title}
-                  </p>
-                  {isExternalLink && <FiExternalLink className={styles.pagesItemExternalLinkIcon} />}
-                </div>
-                {page.description && <p className={styles.pagesItemDescription}>{page.description}</p>}
+              <section key={page.href} aria-labelledby={`${page.title}-title`}>
+                <Link href={page.href} className={styles.pagesItemLink} target={isExternalLink ? '_blank' : '_self'}>
+                  <header className={styles.pagesItemDetails}>
+                    <h2 className={styles.pagesItemTitle} id={`${page.title}-title`}>
+                      {Icon && <Icon className={styles.pageItemIcon} aria-hidden />} {page.title}
+                    </h2>
+                    {isExternalLink && <FiExternalLink className={styles.pagesItemExternalLinkIcon} aria-hidden />}
+                  </header>
+                  {page.description && <p className={styles.pagesItemDescription}>{page.description}</p>}
 
-                {RecentActivityWidget && (
-                  <div className={styles.pagesItemRecentActivity}>
-                    <RecentActivityWidget {...page.recentActivity?.variables} />
-                  </div>
-                )}
-              </Link>
+                  {RecentActivityWidget && (
+                    <div className={styles.pagesItemRecentActivity}>
+                      <RecentActivityWidget {...page.recentActivity?.variables} />
+                    </div>
+                  )}
+                </Link>
+              </section>
             );
           })}
         </div>
-      </div>
+      </main>
     </div>
   );
 }

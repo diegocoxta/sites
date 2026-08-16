@@ -25,7 +25,6 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
     {
       id: 'home',
       name: 'Página Inicial',
-      shortcut: ['g', 'h'],
       section: 'Páginas',
       perform: () => router.push('/'),
       icon: <LuHouse size={18} />,
@@ -33,7 +32,6 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
     {
       id: 'blog',
       name: 'Blog',
-      shortcut: ['g', 'a'],
       section: 'Páginas',
       icon: <LuNewspaper size={18} />,
     },
@@ -44,7 +42,6 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       perform: () => router.push(`/${p.slug}`),
       icon: <LuNotepadText size={18} />,
       language: p.language,
-      shortcut: p.shortcuts?.split(','),
     })),
     ...posts.map((p) => ({
       id: `post-${p.slug}`,
@@ -57,14 +54,12 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
     {
       id: 'theme',
       name: 'Tema',
-      shortcut: ['g', 't'],
       section: 'Preferências',
       icon: <LuPalette size={18} />,
     },
     {
       id: 'theme-system',
       name: 'Automático',
-      shortcut: ['g', 't', 's'],
       section: 'Tema',
       parent: 'theme',
       perform: () => setTheme('system'),
@@ -73,7 +68,6 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
     {
       id: 'theme-light',
       name: 'Claro',
-      shortcut: ['g', 't', 'l'],
       section: 'Tema',
       parent: 'theme',
       perform: () => setTheme('default'),
@@ -82,7 +76,6 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
     {
       id: 'theme-dark',
       name: 'Escuro',
-      shortcut: ['g', 't', 'd'],
       section: 'Tema',
       parent: 'theme',
       perform: () => setTheme('dark'),
@@ -91,7 +84,6 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
     {
       id: 'source',
       name: 'Código Fonte',
-      shortcut: ['g', 's'],
       section: 'Ferramentas',
       perform: () => window.open(repository, '_blank'),
       icon: <LuCodeXml />,

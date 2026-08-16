@@ -13,8 +13,8 @@ export default function Branding(props: BrandingProps) {
   const [firstName, lastName] = name.split(' ');
 
   return (
-    <Link className={styles.link} href={href} data-testid="logo-link">
-      <h1 className={styles.name} style={{ fontSize: size }}>
+    <h1 className={styles.name} style={{ fontSize: size }}>
+      <Link className={styles.link} href={href} data-testid="logo-link">
         {firstName}
         {lastName && (
           <span className={styles.lastName} data-testid="logo-lastname">
@@ -22,7 +22,7 @@ export default function Branding(props: BrandingProps) {
             <span className={styles.lastNameHidden}>{lastName.slice(1)}</span>.
           </span>
         )}
-      </h1>
-    </Link>
+      </Link>
+    </h1>
   );
 }

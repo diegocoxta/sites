@@ -16,10 +16,12 @@ export default function HomePage() {
       <PageName>blog</PageName>
       {getPosts(config.domain).map((post, index: number) => (
         <article key={`blog-article-${index}`}>
-          <Title>
-            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-          </Title>
-          <Attributes {...post} />
+          <header>
+            <Title>
+              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+            </Title>
+            <Attributes {...post} />
+          </header>
           <Article>{post.expanded ? post.content : post.summary!}</Article>
         </article>
       ))}

@@ -16,22 +16,24 @@ export default function Footer(props: FooterProps): React.ReactElement {
 
   return (
     <footer className={styles.container}>
-      {props.links && (
-        <ul className={styles.links} data-testid="about-me-links">
-          {props.links.map((nav, index) => (
-            <li className={styles.linksItem} key={`nav-${index}`} data-testid="about-me-links-item">
-              <Link
-                className={styles.linksLink}
-                href={nav.url}
-                rel="me"
-                target={nav.url.startsWith('http') ? '_blank' : undefined}
-              >
-                {nav.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <nav aria-label="Links profissionais e contato">
+        {props.links && (
+          <ul className={styles.links} data-testid="about-me-links">
+            {props.links.map((nav, index) => (
+              <li className={styles.linksItem} key={`nav-${index}`} data-testid="about-me-links-item">
+                <Link
+                  className={styles.linksLink}
+                  href={nav.url}
+                  rel="noopener noreferrer"
+                  target={nav.url.startsWith('http') ? '_blank' : undefined}
+                >
+                  {nav.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </nav>
       <p className={styles.label}>
         CC-BY {year} <span>{props.author}</span>
         {props.sourceCode && (
@@ -42,7 +44,7 @@ export default function Footer(props: FooterProps): React.ReactElement {
               href={props.sourceCode}
               data-testid="footer-source-code"
               target="__blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             >
               código fonte
             </a>

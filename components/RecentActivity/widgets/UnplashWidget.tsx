@@ -40,20 +40,21 @@ export default async function UnsplashWidget(props: RecentActivityProps) {
 
   return (
     <>
-      <p className={styles.title}>Recent Photos</p>
-      <div className={styles.container}>
+      <h3 className={styles.title}>Recent Photos</h3>
+      <ul className={styles.container}>
         {data.photos.map((photo) => (
-          <div className={styles.item} key={photo.id}>
+          <li className={styles.item} key={photo.id}>
             <div
               className={styles.itemCover}
+              title={photo.alt_description}
               style={{
                 backgroundImage: `url(${photo.urls.small})`,
                 height: 190,
               }}
             ></div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </>
   );
 }

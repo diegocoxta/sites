@@ -1,3 +1,7 @@
+.container {
+  composes: container from '~/components/Container/styles.module.css';
+}
+
 .paragraph {
   font-size: 20px;
   line-height: 1.4;

@@ -6,8 +6,8 @@ interface TitleProps extends React.PropsWithChildren {
 
 export default function Title({ children, fontSize }: TitleProps): React.ReactElement {
   return (
-    <h2 className={styles.container} data-testid="title" style={{ fontSize }}>
+    <h3 className={styles.container} data-testid="title" style={{ fontSize }}>
       {children}
-    </h2>
+    </h3>
   );
 }

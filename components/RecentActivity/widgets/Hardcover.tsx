@@ -86,11 +86,11 @@ export default async function HardcoverWidget(props: RecentActivityProps) {
 
   return (
     <>
-      <p className={styles.title}>Currently Reading</p>
-      <div className={styles.container}>
+      <h3 className={styles.title}>Currently Reading</h3>
+      <ul className={styles.container}>
         {books && books?.length > 0
           ? books?.slice(0, 3).map((book) => (
-              <div className={styles.item} key={book.id}>
+              <li className={styles.item} key={book.id}>
                 {book.book.image ? (
                   <div
                     className={styles.itemCover}
@@ -98,18 +98,21 @@ export default async function HardcoverWidget(props: RecentActivityProps) {
                       backgroundImage: `url(${book.book.image.url})`,
                       height: 190,
                     }}
+                    aria-hidden
                   ></div>
                 ) : (
-                  <div className={`${styles.itemCover} ${styles.empty}`}>Without cover</div>
+                  <p className={`${styles.itemCover} ${styles.empty}`} aria-hidden>
+                    Without cover
+                  </p>
                 )}
-                <p className={styles.itemTitle}>{book.book.title}</p>
+                <h4 className={styles.itemTitle}>{book.book.title}</h4>
                 <p className={styles.itemDate}>
                   Page {book.user_book_reads[0].progress_pages || '0'} / {book.book.pages}
                 </p>
-              </div>
+              </li>
             ))
           : "I'm not reading anything at the moment."}
-      </div>
+      </ul>
     </>
   );
 }

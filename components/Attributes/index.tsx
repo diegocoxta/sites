@@ -12,10 +12,14 @@ export default function MetaAttributes(props: MetaAttributesProps): React.ReactE
 
   return (
     <>
-      <p
-        className={styles.container}
-      >{`${props.date && new Date(props.date).toLocaleDateString('pt-br')} · ${readingTime} · Em ${props.language}`}</p>
-      <ul className={styles.tagList} data-testid="taglist-list">
+      <div className={styles.container}>
+        {props.date && <time dateTime={props.date}>{new Date(props.date).toLocaleDateString('pt-br')}</time>}
+        <span aria-hidden="true">{' · '}</span>
+        <span>{readingTime}</span>
+        <span aria-hidden="true">{' · '}</span>
+        <span>Em {props.language}</span>
+      </div>
+      <ul className={styles.tagList} data-testid="taglist-list" aria-label="Tags">
         {props.tags?.map((tag: string, index: number) => (
           <li className={styles.tagItem} key={`${index}-${tag}`} data-testid="taglist-item">
             <Link className={styles.tagLink} href={`/blog/tag/${tag}`}>{`#${tag}`}</Link>

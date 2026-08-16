@@ -25,10 +25,12 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
         .filter((post) => post.tags?.includes(tag))
         .map((post, index: number) => (
           <article key={`article-${index}`}>
-            <Title>
-              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-            </Title>
-            <Attributes {...post} />
+            <header>
+              <Title>
+                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+              </Title>
+              <Attributes {...post} />
+            </header>
             <Article>{post.expanded ? post.content : post.summary!}</Article>
           </article>
         ))}

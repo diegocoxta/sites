@@ -48,10 +48,10 @@ export default async function DiscogsWidget(props: RecentActivityProps) {
 
   return (
     <>
-      <p className={styles.title}>Last Records Purchased</p>
-      <div className={styles.container}>
+      <h3 className={styles.title}>Last Records Purchased</h3>
+      <ul className={styles.container}>
         {data.releases.slice(0, 3).map((release) => (
-          <div className={styles.item} key={release.id}>
+          <li className={styles.item} key={release.id}>
             <Image
               src={release.basic_information.cover_image}
               width={190}
@@ -63,17 +63,17 @@ export default async function DiscogsWidget(props: RecentActivityProps) {
             <p className={styles.itemTitle}>
               {release.basic_information.title} - {release.basic_information.artists[0].name}
             </p>
-            <p className={styles.itemDate}>
+            <time dateTime={release.date_added} className={styles.itemDate}>
               Purchased in{' '}
               {new Date(release.date_added).toLocaleDateString('en', {
                 timeZone: 'UTC',
                 month: 'long',
                 year: 'numeric',
               })}
-            </p>
-          </div>
+            </time>
+          </li>
         ))}
-      </div>
+      </ul>
     </>
   );
 }
