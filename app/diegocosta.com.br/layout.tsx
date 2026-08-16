@@ -32,9 +32,13 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
 }
 
 export const metadata: Metadata = {
+  metadataBase: `https://${config.domain}`,
   title: {
     template: `%s | ${config.title}`,
     default: config.title,
   },
   description: config.description,
+  alternates: {
+    canonical: '/',
+  },
 };

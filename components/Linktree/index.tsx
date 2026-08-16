@@ -46,7 +46,7 @@ export default function Linktree(props: LinktreeProps) {
                     title={`Find me on ${social.title}`}
                     aria-label={social.title}
                     target="_blank"
-                    rel="noreferrer noopener"
+                    rel="me noreferrer noopener"
                     className={styles.socialItem}
                   >
                     <Icon />
@@ -65,7 +65,12 @@ export default function Linktree(props: LinktreeProps) {
 
             return (
               <section key={page.href} aria-labelledby={`${page.title}-title`}>
-                <Link href={page.href} className={styles.pagesItemLink} target={isExternalLink ? '_blank' : '_self'}>
+                <Link
+                  href={page.href}
+                  className={styles.pagesItemLink}
+                  target={isExternalLink ? '_blank' : '_self'}
+                  rel={isExternalLink ? 'me noreferrer noopener' : undefined}
+                >
                   <header className={styles.pagesItemDetails}>
                     <h2 className={styles.pagesItemTitle} id={`${page.title}-title`}>
                       {Icon && <Icon className={styles.pageItemIcon} aria-hidden />} {page.title}
