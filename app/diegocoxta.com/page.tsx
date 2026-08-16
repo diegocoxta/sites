@@ -9,11 +9,11 @@ export default function HomePage() {
   return (
     <Linktree
       background={config.background}
-      social={config.social as LinktreeProps['social']}
-      pages={config.pages as LinktreeProps['pages']}
+      icons={config.icons as LinktreeProps['icons']}
+      cards={config.cards as LinktreeProps['cards']}
     >
-      <Username username={config.title} size={32} />
-      <p className="bio">{config.bio}</p>
+      <Username username={config.username} size={32} />
+      <p className="bio">{config.description}</p>
     </Linktree>
   );
 }

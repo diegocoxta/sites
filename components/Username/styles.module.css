@@ -4,6 +4,10 @@
   text-transform: lowercase;
   margin: 0;
   font-size: 32px;
+
+  a {
+    color: var(--main-text-color);
+  }
 }
 
 .link {

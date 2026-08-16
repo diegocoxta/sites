@@ -8,13 +8,13 @@ import styles from './styles.module.css';
 
 export interface LinktreeProps extends React.PropsWithChildren {
   background?: string;
-  social: Array<{
+  icons: Array<{
     title: string;
     icon: keyof typeof Fa6;
     href: string;
     description?: string;
   }>;
-  pages: Array<{
+  cards: Array<{
     title: string;
     icon?: keyof typeof Fa6;
     href: string;
@@ -36,15 +36,15 @@ export default function Linktree(props: LinktreeProps) {
         {props.children}
         <nav aria-label="Principais Redes sociais">
           <ul className={styles.socialList}>
-            {props.social.map((social) => {
-              const Icon = Fa6[social.icon];
+            {props.icons.map((icon) => {
+              const Icon = Fa6[icon.icon];
 
               return (
-                <li key={social.href}>
+                <li key={icon.href}>
                   <a
-                    href={social.href}
-                    title={`Find me on ${social.title}`}
-                    aria-label={social.title}
+                    href={icon.href}
+                    title={`Find me on ${icon.title}`}
+                    aria-label={icon.title}
                     target="_blank"
                     rel="me noreferrer noopener"
                     className={styles.socialItem}
@@ -58,30 +58,30 @@ export default function Linktree(props: LinktreeProps) {
         </nav>
 
         <div className={styles.pagesList} aria-label="Outras redes sociais">
-          {props.pages.map((page) => {
-            const RecentActivityWidget = page.recentActivity && RecentActivity[page.recentActivity.widget];
-            const Icon = page.icon && Fa6[page.icon];
-            const isExternalLink = page.href.startsWith('http');
+          {props.cards.map((card) => {
+            const RecentActivityWidget = card.recentActivity && RecentActivity[card.recentActivity.widget];
+            const Icon = card.icon && Fa6[card.icon];
+            const isExternalLink = card.href.startsWith('http');
 
             return (
-              <section key={page.href} aria-labelledby={`${page.title}-title`}>
+              <section key={card.href} aria-labelledby={`${card.title}-title`}>
                 <Link
-                  href={page.href}
+                  href={card.href}
                   className={styles.pagesItemLink}
                   target={isExternalLink ? '_blank' : '_self'}
                   rel={isExternalLink ? 'me noreferrer noopener' : undefined}
                 >
                   <header className={styles.pagesItemDetails}>
-                    <h2 className={styles.pagesItemTitle} id={`${page.title}-title`}>
-                      {Icon && <Icon className={styles.pageItemIcon} aria-hidden />} {page.title}
+                    <h2 className={styles.pagesItemTitle} id={`${card.title}-title`}>
+                      {Icon && <Icon className={styles.pageItemIcon} aria-hidden />} {card.title}
                     </h2>
                     {isExternalLink && <FiExternalLink className={styles.pagesItemExternalLinkIcon} aria-hidden />}
                   </header>
-                  {page.description && <p className={styles.pagesItemDescription}>{page.description}</p>}
+                  {card.description && <p className={styles.pagesItemDescription}>{card.description}</p>}
 
                   {RecentActivityWidget && (
                     <div className={styles.pagesItemRecentActivity}>
-                      <RecentActivityWidget {...page.recentActivity?.variables} />
+                      <RecentActivityWidget {...card.recentActivity?.variables} />
                     </div>
                   )}
                 </Link>

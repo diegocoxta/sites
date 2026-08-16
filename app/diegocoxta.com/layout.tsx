@@ -9,8 +9,8 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
 export const metadata: Metadata = {
   metadataBase: `https://${config.domain}`,
   title: {
-    template: `%s | ${config.title}`,
-    default: config.title,
+    template: `%s | ${config.title} (${config.username})`,
+    default: `${config.title} (${config.username})`,
   },
   description: config.description,
   alternates: {

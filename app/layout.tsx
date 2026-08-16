@@ -37,6 +37,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  manifest: '/manifest.json',
   icons: {
     icon: '/icon?v=1',
     apple: '/icon?v=1',

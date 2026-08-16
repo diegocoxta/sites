@@ -1,11 +1,11 @@
 const profile = {
-  title: '@diegocoxta',
-  description: 'Where you can find my social networks',
-  bio: '📍🇧🇷 My daily life, photography, and travels!',
+  title: 'Diego Costa',
+  username: '@diegocoxta',
+  description: 'My daily life, photography, and travels!',
   domain: 'diegocoxta.com',
   avatar: 'https://avatars.githubusercontent.com/u/3134422?v=4',
   background: '/background_v3.jpg',
-  social: [
+  icons: [
     { icon: 'FaInstagram', title: 'Instagram', href: 'https://instagram.com/diegocoxta' },
     { icon: 'FaTiktok', title: 'Tiktok', href: 'https://tiktok.com/@diegocoxta' },
     { icon: 'FaYoutube', title: 'YouTube', href: 'https://youtube.com/@diegocoxta' },
@@ -14,7 +14,7 @@ const profile = {
     { icon: 'FaThreads', title: 'Threads', href: 'https://www.threads.com/@diegocoxta' },
     { icon: 'FaEnvelope', title: 'Mail me', href: 'mailto:diego@diegocoxta.com' },
   ],
-  pages: [
+  cards: [
     {
       title: 'Unsplash',
       icon: 'FaUnsplash',

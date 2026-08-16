@@ -21,7 +21,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <Header left={<Username username={config.title} href="/" />} />
+      <Header left={<Username username={config.username} href="/" />} />
       <Container>
         <Title>{content?.title}</Title>
         <Article>{content?.content}</Article>
