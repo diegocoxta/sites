@@ -1,5 +1,4 @@
 import Linktree, { LinktreeProps } from '~/components/Linktree';
-import Avatar from '~/components/Avatar';
 import Username from '~/components/Username';
 
 import config from '~/app/diegocoxta.com/config';
