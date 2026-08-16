@@ -10,7 +10,7 @@ const profile = {
     { icon: 'FaTiktok', title: 'Tiktok', href: 'https://tiktok.com/@diegocoxta' },
     { icon: 'FaYoutube', title: 'YouTube', href: 'https://youtube.com/@diegocoxta' },
     { icon: 'FaMastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
-    { icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.bsky.social' },
+    { icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.com' },
     { icon: 'FaThreads', title: 'Threads', href: 'https://www.threads.com/@diegocoxta' },
     { icon: 'FaEnvelope', title: 'Mail me', href: 'mailto:diego@diegocoxta.com' },
   ],
