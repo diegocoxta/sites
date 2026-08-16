@@ -23,19 +23,41 @@ interface LastfmResponseType {
   };
 }
 
+interface DeezerResponseType {
+  data: Array<{
+    id: number;
+    name: string;
+    link: string;
+    picture: string;
+    picture_small: string;
+    picture_medium: string;
+    picture_big: string;
+    picture_xl: string;
+    nb_album: number;
+    nb_fan: number;
+    radio: boolean;
+    tracklist: string;
+    type: string;
+  }>;
+  total: number;
+}
+
 async function getArtistPhoto(artist: string) {
   try {
     const url = new URL('https://api.deezer.com/search/artist');
-    url.searchParams.append('q', artist);
+    url.searchParams.append('q', `artist:"${artist}"`);
+    url.searchParams.append('limit', '50');
 
     const response = await fetch(url.toString(), {
       next: { revalidate: 604800, tags: [`deezer-${artist}`] },
     });
 
-    const data = await response.json();
+    const data: DeezerResponseType = await response.json();
 
     if (data.data && data.data.length > 0) {
-      return data.data[0].picture_medium;
+      const artistaMaisPopular = data.data.sort((a, b) => b.nb_fan - a.nb_fan)[0];
+
+      return artistaMaisPopular.picture_medium;
     }
 
     return null;
@@ -80,7 +102,7 @@ export default async function LastfmWidget(props: RecentActivityProps) {
           return (
             <li className={styles.item} key={artist.mbid}>
               <Image
-                src={imageSrc}
+                src={imageSrc || artist.image[2]['#text']}
                 width={190}
                 height={190}
                 alt={artist.name}
