@@ -13,7 +13,6 @@ export default function HomePage() {
       social={config.social as LinktreeProps['social']}
       pages={config.pages as LinktreeProps['pages']}
     >
-      <Avatar src={config.avatar} alt={config.title} size={96} />
       <Username username={config.title} size={32} />
       <p className="bio">{config.bio}</p>
     </Linktree>

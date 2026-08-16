@@ -1,7 +1,7 @@
 .container {
   max-width: 580px;
   margin: 0 auto;
-  padding: 156px 16px 26px;
+  padding: 400px 16px 26px;
   box-sizing: border-box;
   background-position: top center;
   background-repeat: no-repeat;
@@ -16,12 +16,12 @@
   &::before {
     display: block;
     width: 100%;
-    height: 350px;
+    height: 550px;
     position: absolute;
     top: 0;
     left: 0;
     content: ' ';
-    background: linear-gradient(0deg, var(--main-background-color) 20%, rgb(255 255 255 / 0%) 70%);
+    background: linear-gradient(0deg, var(--main-background-color) 20%, rgb(255 255 255 / 0%) 50%);
     z-index: 1;
   }
 }
@@ -68,7 +68,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-top: 30px;
 }
 
 .pagesItemDetails {
