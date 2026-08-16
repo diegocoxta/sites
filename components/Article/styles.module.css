@@ -36,6 +36,17 @@
       border-bottom: 1px solid var(--main-accent-color);
       outline: none;
     }
+
+    @media print {
+      &[href^='http'] {
+        font-size: 0;
+      }
+
+      &[href^='http']::after {
+        content: attr(href);
+        font-size: 14px;
+      }
+    }
   }
 
   iframe {
