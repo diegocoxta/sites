@@ -17,7 +17,7 @@ const profile = {
   pages: [
     {
       title: 'Unsplash',
-      icon: 'FaCameraRetro',
+      icon: 'FaUnsplash',
       href: 'https://unsplash.com/diegocoxta',
       description: 'The world through my lenses.',
       recentActivity: {
@@ -43,7 +43,7 @@ const profile = {
     },
     {
       title: 'Letterboxd',
-      icon: 'FaTv',
+      icon: 'FaLetterboxd',
       href: 'https://letterboxd.com/diegocoxta/',
       description: 'Logging the movies I watch.',
       recentActivity: {
@@ -62,6 +62,19 @@ const profile = {
         widget: 'HardcoverRecentActivity',
         variables: {
           authorization: process.env.HARDCOVER_TOKEN,
+        },
+      },
+    },
+    {
+      title: 'Last.fm',
+      icon: 'FaLastfm',
+      href: 'https://www.last.fm/user/diego_coxta',
+      description: 'The real-time soundtrack of my daily life.',
+      recentActivity: {
+        widget: 'LastfmRecentActivity',
+        variables: {
+          username: process.env.LASTFM_USERNAME,
+          authorization: process.env.LASTFM_API_KEY,
         },
       },
     },

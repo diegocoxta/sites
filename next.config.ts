@@ -23,6 +23,14 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'assets.hardcover.app',
       },
+      {
+        protocol: 'https',
+        hostname: 'lastfm-img.freetls.fastly.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn-images.dzcdn.net',
+      },
     ],
   },
 };
