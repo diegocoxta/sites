@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation';
 import { getPages, readFile } from '~/lib/mdcms';
 
 import Container from '~/components/Container';
-import Divisor from '~/components/Divisor';
 import Header from '~/components/Header';
 import Username from '~/components/Username';
 import Title from '~/components/Title';
@@ -23,7 +22,6 @@ export default async function Page({ params }: PageProps) {
   return (
     <>
       <Header left={<Username username={config.title} href="/" />} />
-      <Divisor />
       <Container>
         <Title>{content?.title}</Title>
         <Article>{content?.content}</Article>
