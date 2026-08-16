@@ -1,4 +1,4 @@
-import { createManifest } from '~/app/metadata';
+import { createManifest } from '~/lib/metadata';
 
 import config from '~/app/diegocoxta.com/config';
 

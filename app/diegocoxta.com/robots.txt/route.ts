@@ -1,4 +1,4 @@
-import { createRobots } from '~/app/metadata';
+import { createRobots } from '~/lib/metadata';
 
 import config from '~/app/diegocoxta.com/config';
 

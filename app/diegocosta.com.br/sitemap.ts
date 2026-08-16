@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-import { createSitemap } from '~/app/metadata';
+import { createSitemap } from '~/lib/metadata';
 
 import config from '~/app/diegocosta.com.br/config';
 
