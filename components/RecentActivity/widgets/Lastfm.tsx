@@ -49,7 +49,7 @@ async function getArtistPhoto(artist: string) {
     url.searchParams.append('limit', '50');
 
     const response = await fetch(url.toString(), {
-      next: { revalidate: 3600 * 24, tags: [`deezer-${artist}`] },
+      next: { revalidate: 3600 * 24 },
     });
 
     const data: DeezerResponseType = await response.json();
@@ -72,7 +72,7 @@ async function getActivity(username: string, token: string): Promise<LastfmRespo
     const request = await fetch(
       `https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${username}&api_key=${token}&format=json&period=1month&limit=3`,
       {
-        next: { revalidate: 3600, tags: ['lastfm'] },
+        next: { revalidate: 3600 },
       }
     );
 
