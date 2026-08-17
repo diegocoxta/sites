@@ -26,7 +26,7 @@ async function getActivity(username: string, token: string): Promise<DiscogsResp
         headers: {
           Authorization: `Discogs token=${token}`,
         },
-        next: { revalidate: 3600, tags: ['discogs'] },
+        next: { revalidate: 3600 },
       }
     );
 
