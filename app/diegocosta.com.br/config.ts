@@ -13,6 +13,7 @@ const profile = {
     { label: 'Blog', url: '/blog' },
     { label: 'Currículo', url: '/cv' },
     { label: 'E-mail', url: 'mailto:diego@diegocosta.com.br' },
+    { label: 'Mais', url: 'https://diegocoxta.com' },
   ],
   repository: npmPackage.repository,
 };
