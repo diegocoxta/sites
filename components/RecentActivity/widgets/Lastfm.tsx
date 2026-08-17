@@ -49,7 +49,7 @@ async function getArtistPhoto(artist: string) {
     url.searchParams.append('limit', '50');
 
     const response = await fetch(url.toString(), {
-      next: { revalidate: 604800, tags: [`deezer-${artist}`] },
+      next: { revalidate: 3600 * 24, tags: [`deezer-${artist}`] },
     });
 
     const data: DeezerResponseType = await response.json();
