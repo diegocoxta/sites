@@ -75,14 +75,7 @@ export default async function LetterboxdWidget(props: RecentActivityProps) {
       <ul className={styles.container}>
         {data.items.slice(0, 3).map((movie) => (
           <li className={styles.item} key={movie.pubDate}>
-            <Image
-              src={movie.cover}
-              width={190}
-              height={190}
-              alt={movie.title}
-              className={styles.itemCover}
-              loading="eager"
-            />
+            <Image src={movie.cover} width={190} height={190} alt={movie.title} className={styles.itemCover} />
             <h4 className={styles.itemTitle}>
               {movie.memberLike === 'Yes' && <FaHeart className={styles.itemLike} />} {movie.title}
             </h4>

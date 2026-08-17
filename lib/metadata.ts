@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 import * as envs from '~/lib/envs';
 
-import { getPages, getPosts, getTags } from '~/lib/mdcms';
+import { getPages, getPosts, getTags } from '~/lib/md';
 
 export function createSitemap(domain: string): MetadataRoute.Sitemap {
   return [

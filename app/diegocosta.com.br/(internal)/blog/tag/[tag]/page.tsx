@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import Link from 'next/link';
 
-import { getPosts, getTags } from '~/lib/mdcms';
+import { getPosts, getTags } from '~/lib/md';
 
 import Container from '~/components/Container';
 import Title from '~/components/Title';

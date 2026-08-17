@@ -20,7 +20,6 @@ export default function Avatar(props: AvatarProps) {
         width={size}
         height={size}
         alt={alt}
-        loading="eager"
       />
     </div>
   );

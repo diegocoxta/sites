@@ -35,21 +35,7 @@ export default function Footer(props: FooterProps): React.ReactElement {
         )}
       </nav>
       <p className={styles.label}>
-        CC-BY {year} <span>{props.author}</span>
-        {props.sourceCode && (
-          <>
-            {' • '}
-            <a
-              className={styles.link}
-              href={props.sourceCode}
-              data-testid="footer-source-code"
-              target="__blank"
-              rel="noopener noreferrer"
-            >
-              código fonte
-            </a>
-          </>
-        )}
+        CC-BY {year} {props.author}
       </p>
     </footer>
   );

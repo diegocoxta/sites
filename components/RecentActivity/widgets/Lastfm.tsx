@@ -107,7 +107,6 @@ export default async function LastfmWidget(props: RecentActivityProps) {
                 height={190}
                 alt={artist.name}
                 className={styles.itemCover}
-                loading="eager"
               />
               <p className={styles.itemTitle}>{artist.name}</p>
               <p className={styles.itemDescription}>{artist.playcount} plays</p>

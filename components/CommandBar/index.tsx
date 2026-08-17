@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { LuHouse, LuMoon, LuNewspaper, LuNotepadText, LuPalette, LuSun, LuCodeXml, LuSunMoon } from 'react-icons/lu';
 
-import type { BlogContentAttributes } from '~/lib/mdcms';
+import type { BlogContentAttributes } from '~/lib/md';
 
 import _CommandBar from './CommandBar';
 

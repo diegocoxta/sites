@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { getPosts } from '~/lib/mdcms';
+import { getPosts } from '~/lib/md';
 
 import Container from '~/components/Container';
 import Title from '~/components/Title';

@@ -56,15 +56,3 @@
   padding: 0;
   text-align: left;
 }
-
-.link {
-  color: var(--main-accent-color);
-  text-decoration: none;
-  box-shadow: none;
-
-  &:hover,
-  &:focus {
-    border-bottom: 1px solid var(--main-accent-color);
-    outline: none;
-  }
-}

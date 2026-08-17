@@ -58,7 +58,6 @@ export default async function DiscogsWidget(props: RecentActivityProps) {
               height={190}
               alt={release.basic_information.title}
               className={styles.itemCover}
-              loading="eager"
             />
             <p className={styles.itemTitle}>
               {release.basic_information.title} - {release.basic_information.artists[0].name}

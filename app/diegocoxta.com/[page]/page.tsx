@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { getPages, readFile } from '~/lib/mdcms';
+import { getPages, readFile } from '~/lib/md';
 
 import Container from '~/components/Container';
 import Header from '~/components/Header';
