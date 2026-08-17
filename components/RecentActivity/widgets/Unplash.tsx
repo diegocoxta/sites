@@ -19,7 +19,7 @@ export async function getActivity(username: string, authorization: string): Prom
       headers: {
         Authorization: `Client-ID ${authorization}`,
       },
-      next: { revalidate: 3600, tags: ['unsplash'] },
+      next: { revalidate: 3600 },
     });
 
     const data = await request.json();
