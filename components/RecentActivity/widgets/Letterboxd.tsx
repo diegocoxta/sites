@@ -19,7 +19,9 @@ interface LetterboxdResponseType {
 
 export async function getActivity(username: string): Promise<LetterboxdResponseType> {
   try {
-    const response = await fetch(`https://letterboxd.com/${username}/rss/`);
+    const response = await fetch(`https://letterboxd.com/${username}/rss/`, {
+      next: { revalidate: 3600 },
+    });
 
     if (!response.ok) {
       throw new Error(`Erro ao buscar o RSS: ${response.statusText}`);
