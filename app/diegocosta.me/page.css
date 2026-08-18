@@ -19,7 +19,7 @@
   flex-direction: column;
   text-align: center;
   background: #fff;
-  background: linear-gradient(0deg, rgb(255 255 255 / 100%) 0%, rgb(255 255 255 / 0%) 100%);
+  background: linear-gradient(0deg, var(--main-background-color) 0%, rgb(255 255 255 / 0%) 100%);
 }
 
 @media (width >= 768px) {
@@ -45,7 +45,6 @@
   font-weight: bold;
   margin-left: 6px;
   border-bottom: 1px dotted transparent;
-  transition: 0.2s all linear;
 }
 
 .sectionPreview .link:hover {

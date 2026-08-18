@@ -1,17 +1,12 @@
+import './page.css';
+
 import { FaUnsplash, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
 
 import Container from '~/components/Container';
-import Header from '~/components/Header';
-import Branding from '~/components/Branding';
-import Title from '~/components/Title';
 
 export default function HomePage() {
   return (
     <Container>
-      <Header
-        left={<Branding name="Diego Costa" size={30} />}
-        right={<Title fontSize={18}>Aspiring photographer</Title>}
-      />
       <section className="sectionPreview">
         <div className="text">
           <p>This page is currently under construction.</p>

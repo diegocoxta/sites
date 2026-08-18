@@ -40,18 +40,13 @@ export async function getRecentUserPhotos(
 ): Promise<GetRecentUserPhotosResponseType> {
   try {
     const { per_page = 3, page = 1, username, authorization } = params;
-    const photos = [];
 
-    for (let i = 1; photos.length < per_page; i++) {
-      const response = await getResource<GetRecentUserPhotosResponseType['photos']>(
-        `/users/${username}/photos?per_page=${per_page}&page=${page}`,
-        {
-          authorization,
-        }
-      );
-
-      photos.push(...response);
-    }
+    const photos = await getResource<GetRecentUserPhotosResponseType['photos']>(
+      `/users/${username}/photos?per_page=${per_page}&page=${page}`,
+      {
+        authorization,
+      }
+    );
 
     return { photos };
   } catch (error) {
@@ -114,18 +109,13 @@ export async function getUserCollections(
 ): Promise<GetUserCollectionsResponseType> {
   try {
     const { per_page = 10, page = 1, username, authorization } = params;
-    const collections = [];
 
-    for (let i = 1; collections.length < per_page; i++) {
-      const response = await getResource<GetUserCollectionsResponseType['collections']>(
-        `/users/${username}/collections?per_page=${per_page}&page=${page}`,
-        {
-          authorization,
-        }
-      );
-
-      collections.push(...response);
-    }
+    const collections = await getResource<GetUserCollectionsResponseType['collections']>(
+      `/users/${username}/collections?per_page=${per_page}&page=${page}`,
+      {
+        authorization,
+      }
+    );
 
     return { collections };
   } catch (error) {

@@ -1,0 +1,99 @@
+.scrollContainer {
+  flex: 1;
+  width: 100%;
+  overflow: auto hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.carouselTrack {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+  padding: 0 calc(50vw - 480px);
+}
+
+.card {
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+  width: 600px;
+  height: 600px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 8%);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgb(0 0 0 / 12%);
+  }
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 1.2s ease;
+}
+
+.cardInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  color: #888;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+  transition: opacity 0.5s ease;
+}
+
+.metaInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+}
+
+.title {
+  font-weight: 500;
+  color: #222;
+}
+
+.description {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.progress {
+  composes: container from '~/components/Container/styles.module.css';
+  margin-top: 50px;
+  width: 100%;
+  height: 2px;
+  background-color: #ddd;
+  position: relative;
+  overflow: hidden;
+}
+
+.progressBar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #333;
+  transition: width 0.1s linear;
+}
