@@ -3,7 +3,6 @@ import Link from 'next/link';
 import styles from './styles.module.css';
 
 interface FooterProps {
-  sourceCode?: string;
   author: string;
   links?: Array<{
     url: string;

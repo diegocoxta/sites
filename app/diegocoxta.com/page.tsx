@@ -12,7 +12,7 @@ export default function HomePage() {
       icons={config.icons as LinktreeProps['icons']}
       cards={config.cards as LinktreeProps['cards']}
     >
-      <Username username={config.username} size={32} />
+      <Username username={config.author} size={32} />
       <p className="bio">{config.description}</p>
     </Linktree>
   );

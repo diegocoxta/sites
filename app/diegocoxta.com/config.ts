@@ -1,9 +1,8 @@
 const profile = {
   title: 'Diego Costa',
-  username: '@diegocoxta',
   description: 'My daily life, photography, and travels!',
   domain: 'diegocoxta.com',
-  avatar: 'https://avatars.githubusercontent.com/u/3134422?v=4',
+  author: '@diegocoxta',
   background: '/background_v3.jpg',
   icons: [
     { icon: 'FaInstagram', title: 'Instagram', href: 'https://instagram.com/diegocoxta' },

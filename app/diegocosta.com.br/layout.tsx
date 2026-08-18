@@ -26,7 +26,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         }
       />
       {children}
-      <Footer sourceCode={config.repository.url} author={config.author} links={config.links} />
+      <Footer author={config.author} links={config.links} />
     </>
   );
 }

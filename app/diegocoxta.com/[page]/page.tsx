@@ -8,6 +8,7 @@ import Header from '~/components/Header';
 import Username from '~/components/Username';
 import Title from '~/components/Title';
 import Article from '~/components/Article';
+import Footer from '~/components/Footer';
 
 import config from '~/app/diegocoxta.com/config';
 
@@ -21,11 +22,12 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <Header left={<Username username={config.username} href="/" />} />
+      <Header left={<Username username={config.author} href="/" />} />
       <Container>
         <Title>{content?.title}</Title>
         <Article>{content?.content}</Article>
       </Container>
+      <Footer author={config.author} />
     </>
   );
 }
