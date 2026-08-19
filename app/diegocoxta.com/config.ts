@@ -11,6 +11,7 @@ const profile = {
     { icon: 'FaMastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
     { icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.com' },
     { icon: 'FaThreads', title: 'Threads', href: 'https://www.threads.com/@diegocoxta' },
+    { icon: 'FaGithub', title: 'Github', href: 'https://github.com/diegocoxta' },
     { icon: 'FaEnvelope', title: 'Mail me', href: 'mailto:diego@diegocoxta.com' },
   ],
   cards: [
