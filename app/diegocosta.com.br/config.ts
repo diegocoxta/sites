@@ -11,7 +11,6 @@ const profile = {
     { label: 'Currículo', url: '/cv' },
     { label: 'E-mail', url: 'mailto:diego@diegocosta.com.br' },
     { label: 'Linkedin', url: 'https://linkedin.com/in/diegocoxta' },
-    { label: 'Github', url: 'https://github.com/diegocoxta' },
     { label: 'Mais', url: 'https://diegocoxta.com' },
   ],
   repository: npmPackage.repository,
