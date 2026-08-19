@@ -11,6 +11,7 @@ const profile = {
     { icon: 'FaMastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
     { icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.com' },
     { icon: 'FaThreads', title: 'Threads', href: 'https://threads.com/@diegocoxta' },
+    { icon: 'FaEnvelope', title: 'Drop me a line', href: 'mailto:diego@diegocoxta.com' },
   ],
   cards: [
     {
@@ -106,12 +107,6 @@ const profile = {
       icon: 'FaHeart',
       href: 'https://github.com/diegocoxta/pages',
       description: 'The source code is 100% free and open on my GitHub.',
-    },
-    {
-      title: 'Drop me a line',
-      icon: 'FaEnvelope',
-      href: 'mailto:diego@diegocoxta.com',
-      description: 'Are you old school? Send me an email.',
     },
   ],
 };

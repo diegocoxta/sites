@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import { getContributionsCalendar } from '~/lib/services/github';
 
 import type { RecentActivityProps } from '../index';
