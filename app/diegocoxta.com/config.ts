@@ -10,7 +10,7 @@ const profile = {
     { icon: 'FaYoutube', title: 'YouTube', href: 'https://youtube.com/@diegocoxta' },
     { icon: 'FaMastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
     { icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.com' },
-    { icon: 'FaGithub', title: 'Github', href: 'https://github.com/diegocoxta' },
+    { icon: 'FaThreads', title: 'Threads', href: 'https://threads.com/@diegocoxta' },
   ],
   cards: [
     {
@@ -23,6 +23,19 @@ const profile = {
         variables: {
           username: process.env.UNSPLASH_USERNAME,
           authorization: process.env.UNSPLASH_ACCESS_KEY,
+        },
+      },
+    },
+    {
+      title: 'Github',
+      icon: 'FaGithub',
+      href: 'https://github.com/diegocoxta',
+      description: 'Where my personal apps live, thrive, and occasionally get abandoned.',
+      recentActivity: {
+        widget: 'GithubRecentActivity',
+        variables: {
+          username: process.env.GITHUB_USERNAME,
+          authorization: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
         },
       },
     },
