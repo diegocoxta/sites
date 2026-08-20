@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { GetUserCollectionsResponseType } from '~/lib/services/unsplash';
 
 import styles from './styles.module.css';
+import PhotoCollection from '../PhotoCollection';
 
 type PhotoCollectionListProps = GetUserCollectionsResponseType;
 
@@ -45,15 +46,7 @@ export default function PhotoCollectionList(props: PhotoCollectionListProps) {
                   }
                 }}
               >
-                <div className={styles.imageWrapper}>
-                  <Image
-                    src={collection.preview_photos[1].urls.regular}
-                    alt={collection.title}
-                    className={styles.image}
-                    fill
-                  />
-                </div>
-
+                <PhotoCollection photos={collection.preview_photos} />
                 <div className={styles.cardInfo}>
                   <div className={styles.metaInfo}>
                     <span className={styles.title}>{collection.title}</span>

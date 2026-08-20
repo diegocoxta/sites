@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  width: 600px;
+  gap: 6px;
+}
+
+.featuredPhoto {
+  width: 400px;
+  height: 600px;
+  background-size: cover;
+  background-position: top center;
+}
+
+.additional {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 6px;
+  flex-direction: column;
+}
+
+.photo {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 200px;
+  height: 297px;
+  background-size: cover;
+  background-position: top center;
+}
