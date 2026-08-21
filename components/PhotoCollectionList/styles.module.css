@@ -6,9 +6,22 @@
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  position: relative;
 
   &::-webkit-scrollbar {
     display: none;
+  }
+
+  &::before {
+    content: ' ';
+    display: block;
+    position: fixed;
+    width: 200px;
+    background: linear-gradient(90deg, transparent 0%, rgb(255 255 255 / 100%) 100%);
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 99;
   }
 }
 

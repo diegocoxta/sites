@@ -1,9 +1,16 @@
 import type { Metadata } from 'next';
 
+import PersonSchema from '~/components/PersonSchema';
+
 import config from '~/app/diegocoxta.com/config';
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
-  return children;
+  return (
+    <>
+      <PersonSchema data={config} />
+      {children}
+    </>
+  );
 }
 
 export const metadata: Metadata = {

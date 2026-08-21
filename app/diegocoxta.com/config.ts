@@ -1,20 +1,22 @@
-const profile = {
-  title: 'Diego Costa',
+import type { ConfigProps } from '~/lib/config';
+
+const profile: ConfigProps = {
+  title: '@diegocoxta',
   description: 'My daily life, photography, and travels!',
+  jobTitle: ['Engineering Manager', 'Senior Software Engineer', 'Photographer'],
   domain: 'diegocoxta.com',
-  author: '@diegocoxta',
-  background: '/background_v3.jpg',
-  icons: [
-    { icon: 'FaInstagram', title: 'Instagram', href: 'https://instagram.com/diegocoxta' },
-    { icon: 'FaTiktok', title: 'Tiktok', href: 'https://tiktok.com/@diegocoxta' },
-    { icon: 'FaYoutube', title: 'YouTube', href: 'https://youtube.com/@diegocoxta' },
-    { icon: 'FaMastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
-    { icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.com' },
-    { icon: 'FaThreads', title: 'Threads', href: 'https://threads.com/@diegocoxta' },
-    { icon: 'FaEnvelope', title: 'Drop me a line', href: 'mailto:diego@diegocoxta.com' },
-  ],
-  cards: [
+  author: 'Diego Costa',
+  avatar: '/background_v3.jpg',
+  links: [
+    { type: 'icon', icon: 'FaInstagram', title: 'Instagram', href: 'https://instagram.com/diegocoxta' },
+    { type: 'icon', icon: 'FaTiktok', title: 'Tiktok', href: 'https://tiktok.com/@diegocoxta' },
+    { type: 'icon', icon: 'FaYoutube', title: 'YouTube', href: 'https://youtube.com/@diegocoxta' },
+    { type: 'icon', icon: 'FaMastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
+    { type: 'icon', icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.com' },
+    { type: 'icon', icon: 'FaThreads', title: 'Threads', href: 'https://threads.com/@diegocoxta' },
+    { type: 'icon', icon: 'FaEnvelope', title: 'Drop me a line', href: 'mailto:diego@diegocoxta.com' },
     {
+      type: 'card',
       title: 'Unsplash',
       icon: 'FaUnsplash',
       href: 'https://unsplash.com/diegocoxta',
@@ -28,6 +30,7 @@ const profile = {
       },
     },
     {
+      type: 'card',
       title: 'Github',
       icon: 'FaGithub',
       href: 'https://github.com/diegocoxta',
@@ -41,6 +44,7 @@ const profile = {
       },
     },
     {
+      type: 'card',
       title: 'Discogs',
       icon: 'FaRecordVinyl',
       href: 'https://www.discogs.com/user/diegocoxta',
@@ -54,6 +58,7 @@ const profile = {
       },
     },
     {
+      type: 'card',
       title: 'Letterboxd',
       icon: 'FaLetterboxd',
       href: 'https://letterboxd.com/diegocoxta/',
@@ -66,6 +71,7 @@ const profile = {
       },
     },
     {
+      type: 'card',
       title: 'Hardcover',
       icon: 'FaBookBookmark',
       href: 'https://hardcover.app/@diegocoxta',
@@ -78,6 +84,7 @@ const profile = {
       },
     },
     {
+      type: 'card',
       title: 'Last.fm',
       icon: 'FaLastfm',
       href: 'https://www.last.fm/user/diego_coxta',
@@ -91,18 +98,21 @@ const profile = {
       },
     },
     {
+      type: 'card',
       title: 'Tools I use',
       icon: 'FaToolbox',
       href: '/uses',
       description: 'The page where I share the tools that make my life easier and happier.',
     },
     {
+      type: 'card',
       title: 'My Tech Blog',
       icon: 'FaFloppyDisk',
       href: 'https://diegocosta.com.br',
       description: 'Updated less frequently than a legacy codebase.',
     },
     {
+      type: 'card',
       title: 'Like this page?',
       icon: 'FaHeart',
       href: 'https://github.com/diegocoxta/pages',

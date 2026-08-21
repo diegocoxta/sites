@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { getPages, getPosts } from '~/lib/md';
 
+import PersonSchema from '~/components/PersonSchema';
 import Header from '~/components/Header';
 import Branding from '~/components/Branding';
 import ThemeSwitcher from '~/components/ThemeSwitcher';
@@ -16,12 +17,13 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
 
   return (
     <>
+      <PersonSchema data={config} />
       <Header
         left={<Branding name={config.author} />}
         right={
           <>
             <ThemeSwitcher />
-            <CommandBar pages={pages} posts={posts} repository={config.repository.url} />
+            <CommandBar pages={pages} posts={posts} repository={config.repository} />
           </>
         }
       />

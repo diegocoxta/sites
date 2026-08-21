@@ -1,13 +1,12 @@
 import Link from 'next/link';
 
+import type { ConfigProps } from '~/lib/config';
+
 import styles from './styles.module.css';
 
 interface FooterProps {
   author: string;
-  links?: Array<{
-    url: string;
-    label: string;
-  }>;
+  links?: ConfigProps['links'];
 }
 
 export default function Footer(props: FooterProps): React.ReactElement {
@@ -18,15 +17,15 @@ export default function Footer(props: FooterProps): React.ReactElement {
       <nav aria-label="Links profissionais e contato">
         {props.links && (
           <ul className={styles.links} data-testid="about-me-links">
-            {props.links.map((nav, index) => (
+            {props.links.map((link, index) => (
               <li className={styles.linksItem} key={`nav-${index}`} data-testid="about-me-links-item">
                 <Link
                   className={styles.linksLink}
-                  href={nav.url}
+                  href={link.href}
                   rel="noopener noreferrer"
-                  target={nav.url.startsWith('http') ? '_blank' : undefined}
+                  target={link.href.startsWith('http') ? '_blank' : undefined}
                 >
-                  {nav.label}
+                  {link.title}
                 </Link>
               </li>
             ))}

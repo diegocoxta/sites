@@ -1,8 +1,10 @@
 import './page.css';
 
-import { FaUnsplash, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa';
+import * as Fa from 'react-icons/fa6';
 
 import Container from '~/components/Container';
+
+import config from '~/app/diegocosta.me/config';
 
 export default function HomePage() {
   return (
@@ -13,33 +15,25 @@ export default function HomePage() {
           <p>
             In the meantime, you can check out some of my photos on
             <a target="_blank" href="https://unsplash.com/diegocoxta" className="link">
-              <FaUnsplash /> Unsplash
+              <Fa.FaUnsplash /> Unsplash
             </a>
           </p>
         </div>
       </section>
       <section className="social">
         <ul className="socialLinks">
-          <li>
-            <a target="_blank" href="https://unsplash.com/diegocoxta">
-              <FaUnsplash />
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://instagram.com/diegocoxta">
-              <FaInstagram />
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://www.tiktok.com/@diegocoxta">
-              <FaTiktok />
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href="https://www.youtube.com/@diegocoxta">
-              <FaYoutube />
-            </a>
-          </li>
+          {config.links
+            ?.filter((link) => link.type === 'icon')
+            .map((link) => {
+              const Icon = Fa[link.icon as keyof typeof Fa];
+              return (
+                <li key={link.href}>
+                  <a target="_blank" href={link.href} rel="me noreferrer noopener">
+                    <Icon />
+                  </a>
+                </li>
+              );
+            })}
         </ul>
       </section>
     </Container>
