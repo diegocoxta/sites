@@ -101,7 +101,7 @@ const profile: ConfigProps = {
       type: 'card',
       title: 'Tools I use',
       icon: 'FaToolbox',
-      href: '/uses',
+      href: 'https://diegocosta.com.br/uses',
       description: 'The page where I share the tools that make my life easier and happier.',
     },
     {
