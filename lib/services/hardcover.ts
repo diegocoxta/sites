@@ -31,6 +31,30 @@ export async function getUserCurrentReads(
 ): Promise<GetUserCurrentReadsResponseType> {
   try {
     const { authorization, limit = 3 } = params;
+
+    const query = `
+      query ($limit: Int) {
+        me {
+          user_books(where: {status_id: {_eq: 2}}, limit: $limit, order_by: {updated_at: desc}) {
+            id
+            updated_at
+            user_book_reads {
+              progress_pages
+              progress
+            }
+            book {
+              id
+              title
+              pages
+              image {
+                url
+              }
+            }
+          }
+        }
+      }
+`;
+
     const response = await fetch('https://api.hardcover.app/v1/graphql', {
       method: 'POST',
       headers: {
@@ -38,27 +62,8 @@ export async function getUserCurrentReads(
         Authorization: `Bearer ${authorization}`,
       },
       body: JSON.stringify({
-        query: `
-    query Me {
-      me {
-        user_books(where: {status_id: {_eq: 2}}, limit: ${limit}) {
-          id
-          user_book_reads {
-            progress_pages
-            progress
-          }
-          book {
-            id
-            title
-            pages
-            image {
-              url
-            }
-          }
-        }
-      }
-    }
-  `,
+        query,
+        variables: { limit },
       }),
       next: {
         revalidate: 3600,
