@@ -69,7 +69,7 @@ export default function Linktree(props: LinktreeProps) {
                   href={card.href}
                   className={styles.cardsItemLink}
                   target={isExternalLink ? '_blank' : '_self'}
-                  rel={isExternalLink ? 'me noreferrer noopener' : undefined}
+                  rel={isExternalLink ? 'me noopener' : undefined}
                 >
                   <header className={styles.cardsItemDetails}>
                     <h2 className={styles.cardsItemTitle} id={`${card.title}-title`}>

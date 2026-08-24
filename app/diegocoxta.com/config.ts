@@ -113,6 +113,20 @@ const profile: ConfigProps = {
     },
     {
       type: 'card',
+      title: 'Setlist.fm',
+      icon: 'FaTicket',
+      href: 'https://www.setlist.fm/user/diegocoxta',
+      description: 'Tracking the concerts I survive.',
+      recentActivity: {
+        widget: 'SetlistRecentActivity',
+        variables: {
+          username: process.env.SETLIST_USERNAME,
+          authorization: process.env.SETLIST_API_KEY,
+        },
+      },
+    },
+    {
+      type: 'card',
       title: 'Like this page?',
       icon: 'FaHeart',
       href: 'https://github.com/diegocoxta/pages',

@@ -4,6 +4,7 @@ export { default as LetterboxdRecentActivity } from './widgets/Letterboxd';
 export { default as UnsplashRecentActivity } from './widgets/Unplash';
 export { default as LastfmRecentActivity } from './widgets/Lastfm';
 export { default as GithubRecentActivity } from './widgets/Github';
+export { default as SetlistRecentActivity } from './widgets/Setlist';
 
 export interface RecentActivityProps {
   username?: string;
