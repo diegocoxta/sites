@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import * as Fa6 from 'react-icons/fa6';
 import { FiExternalLink } from 'react-icons/fi';
 
@@ -64,7 +65,7 @@ export default function Linktree(props: LinktreeProps) {
             const isExternalLink = card.href.startsWith('http');
 
             return (
-              <section key={card.href} aria-labelledby={`${card.title}-title`}>
+              <section className={styles.cardsItem} key={card.href} aria-labelledby={`${card.title}-title`}>
                 <Link
                   href={card.href}
                   className={styles.cardsItemLink}
@@ -90,6 +91,10 @@ export default function Linktree(props: LinktreeProps) {
           })}
         </div>
       </main>
+      <div className={styles.qrCode}>
+        <Image src="/qr-code.png" alt="QR Code" width={150} height={150} className={styles.qrCodeImage} unoptimized />
+        <p className={styles.qrCodeDescription}>Scan to view on your phone</p>
+      </div>
     </div>
   );
 }

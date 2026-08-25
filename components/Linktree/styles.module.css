@@ -1,5 +1,5 @@
 .container {
-  max-width: 580px;
+  max-width: 1024px;
   margin: 0 auto;
   padding: 420px 16px 26px;
   box-sizing: border-box;
@@ -10,7 +10,6 @@
   @media (width >= 600px) {
     margin: 30px auto;
     border-radius: 20px;
-    box-shadow: 1px 12px 20px -5px rgb(0 0 0 / 57%);
   }
 
   &::before {
@@ -73,10 +72,20 @@
 }
 
 .cardsList {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 100%;
+  column-count: 1;
+  column-gap: 16px;
+  column-fill: balance;
+
+  @media (width >= 768px) {
+    column-count: 2;
+  }
+}
+
+.cardsItem {
+  margin-bottom: 16px;
+  break-inside: avoid;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
 }
 
 .cardsItemDetails {
@@ -121,4 +130,36 @@
   font-size: 14px;
   color: var(--main-subtitle-color);
   margin: 2px 0 0;
+}
+
+.qrCode {
+  display: none;
+  padding: 16px;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 90px;
+  background-color: var(--main-background-color);
+  z-index: 5;
+  zoom: 0.7;
+  transition: all linear 0.3s;
+
+  @media (width >= 1600px) and (pointer: fine) {
+    display: block;
+  }
+
+  &:hover {
+    zoom: 1.5;
+  }
+}
+
+.qrCodeDescription {
+  font-size: 14px;
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.qrCodeImage {
+  width: 100%;
+  height: auto;
 }

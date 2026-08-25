@@ -6,7 +6,7 @@ const profile: ConfigProps = {
   jobTitle: ['Engineering Manager', 'Senior Software Engineer', 'Photographer'],
   domain: 'diegocoxta.com',
   author: 'Diego Costa',
-  avatar: '/background_v3.jpg',
+  avatar: '/background_v2.jpg',
   links: [
     { type: 'icon', icon: 'FaInstagram', title: 'Instagram', href: 'https://instagram.com/diegocoxta' },
     { type: 'icon', icon: 'FaTiktok', title: 'Tiktok', href: 'https://tiktok.com/@diegocoxta' },
@@ -96,13 +96,6 @@ const profile: ConfigProps = {
           authorization: process.env.LASTFM_API_KEY,
         },
       },
-    },
-    {
-      type: 'card',
-      title: 'Tools I use',
-      icon: 'FaToolbox',
-      href: 'https://diegocosta.com.br/uses',
-      description: 'The page where I share the tools that make my life easier and happier.',
     },
     {
       type: 'card',
