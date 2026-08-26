@@ -42,5 +42,8 @@ export const metadata: Metadata = {
   description: config.description,
   alternates: {
     canonical: '/',
+    types: {
+      'application/rss+xml': `https://${config.domain}/blog/feed`,
+    },
   },
 };
