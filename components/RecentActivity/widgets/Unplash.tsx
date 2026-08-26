@@ -19,11 +19,10 @@ export default async function UnsplashWidget(props: RecentActivityProps) {
             <li className={styles.item} key={photo.id}>
               <div
                 className={styles.itemCover}
-                title={photo.alt_description}
                 style={{
                   backgroundImage: `url(${photo.urls.small})`,
-                  height: 190,
                 }}
+                aria-hidden
               ></div>
             </li>
           ))}

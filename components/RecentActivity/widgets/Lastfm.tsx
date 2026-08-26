@@ -26,13 +26,13 @@ export default async function LastfmWidget(props: RecentActivityProps) {
 
             return (
               <li className={styles.item} key={artist.mbid}>
-                <Image
-                  src={imageSrc || artist.image[2]['#text']}
-                  width={190}
-                  height={190}
-                  alt={artist.name}
+                <div
                   className={styles.itemCover}
-                />
+                  style={{
+                    backgroundImage: `url(${imageSrc || artist.image[2]['#text']})`,
+                  }}
+                  aria-hidden
+                ></div>
                 <p className={styles.itemTitle}>{artist.name}</p>
                 <p className={styles.itemDescription}>{artist.playcount} plays</p>
               </li>

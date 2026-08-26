@@ -22,13 +22,13 @@ export default async function DiscogsWidget(props: RecentActivityProps) {
         <ul className={styles.container}>
           {data.releases.map((release) => (
             <li className={styles.item} key={release.id}>
-              <Image
-                src={release.basic_information.cover_image}
-                width={190}
-                height={190}
-                alt={release.basic_information.title}
+              <div
                 className={styles.itemCover}
-              />
+                style={{
+                  backgroundImage: `url(${release.basic_information.cover_image})`,
+                }}
+                aria-hidden
+              ></div>
               <p className={styles.itemTitle}>
                 {release.basic_information.title} - {release.basic_information.artists[0].name}
               </p>

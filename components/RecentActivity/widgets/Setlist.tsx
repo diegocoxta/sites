@@ -26,13 +26,13 @@ export default async function SetlistWidget(props: RecentActivityProps) {
 
             return (
               <li className={styles.item} key={setlist.id}>
-                <Image
-                  src={imageSrc || ''}
-                  width={190}
-                  height={190}
-                  alt={setlist.artist.name}
+                <div
                   className={styles.itemCover}
-                />
+                  style={{
+                    backgroundImage: `url(${imageSrc || ''})`,
+                  }}
+                  aria-hidden
+                ></div>
                 <p className={styles.itemTitle}>{setlist.artist.name}</p>
                 <p className={styles.itemDescription}>{setlist.tour.name}</p>
                 <p className={styles.itemDescription}>

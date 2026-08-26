@@ -15,7 +15,7 @@ export default async function GithubWidget(props: RecentActivityProps) {
 
   return (
     data && (
-      <>
+      <div aria-hidden>
         <h3 className={styles.title}>Contribution Activity</h3>
         <div className={styles.githubRecentActivity}>
           <div className={styles.scrollWrapper}>
@@ -36,7 +36,7 @@ export default async function GithubWidget(props: RecentActivityProps) {
             </div>
           </div>
         </div>
-      </>
+      </div>
     )
   );
 }

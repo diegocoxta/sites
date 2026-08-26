@@ -37,12 +37,12 @@
 
 .itemCover {
   width: 100%;
-  height: auto;
   border-radius: 20px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   transition: all linear 0.5s;
+  height: 146px;
 
   &.empty {
     background-color: var(--main-title-color);
