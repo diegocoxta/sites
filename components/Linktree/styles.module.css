@@ -84,7 +84,6 @@
 .cardsItem {
   margin-bottom: 16px;
   break-inside: avoid;
-  break-inside: avoid;
   -webkit-column-break-inside: avoid;
 }
 
