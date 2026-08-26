@@ -1,6 +1,6 @@
-import type { ConfigProps } from '~/lib/config';
+import type { ConfigType } from '~/lib/config';
 
-const profile: ConfigProps = {
+const profile: ConfigType = {
   title: '@diegocoxta',
   description: 'My daily life, photography, and travels!',
   jobTitle: ['Engineering Manager', 'Senior Software Engineer', 'Photographer'],
@@ -23,23 +23,10 @@ const profile: ConfigProps = {
       description: 'The world through my lenses.',
       recentActivity: {
         widget: 'UnsplashRecentActivity',
-        variables: {
+        props: {
+          title: 'Recent Photos',
           username: process.env.UNSPLASH_USERNAME,
           authorization: process.env.UNSPLASH_ACCESS_KEY,
-        },
-      },
-    },
-    {
-      type: 'card',
-      title: 'Github',
-      icon: 'FaGithub',
-      href: 'https://github.com/diegocoxta',
-      description: 'Where my personal apps live, thrive, and occasionally get abandoned.',
-      recentActivity: {
-        widget: 'GithubRecentActivity',
-        variables: {
-          username: process.env.GITHUB_USERNAME,
-          authorization: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
         },
       },
     },
@@ -51,22 +38,10 @@ const profile: ConfigProps = {
       description: 'The records currently on my shelf.',
       recentActivity: {
         widget: 'DiscogsRecentActivity',
-        variables: {
+        props: {
+          title: 'Last Records Purchased',
           username: process.env.DISCOGS_USERNAME,
           authorization: process.env.DISCOGS_TOKEN,
-        },
-      },
-    },
-    {
-      type: 'card',
-      title: 'Letterboxd',
-      icon: 'FaLetterboxd',
-      href: 'https://letterboxd.com/diegocoxta/',
-      description: 'Logging the movies I watch.',
-      recentActivity: {
-        widget: 'LetterboxdRecentActivity',
-        variables: {
-          username: process.env.LETTERBOXD_USERNAME,
         },
       },
     },
@@ -78,8 +53,52 @@ const profile: ConfigProps = {
       description: 'Keeping track of pages and stories.',
       recentActivity: {
         widget: 'HardcoverRecentActivity',
-        variables: {
+        props: {
+          title: 'Currently Reading',
           authorization: process.env.HARDCOVER_TOKEN,
+        },
+      },
+    },
+    {
+      type: 'card',
+      title: 'Letterboxd',
+      icon: 'FaLetterboxd',
+      href: 'https://letterboxd.com/diegocoxta/',
+      description: 'Logging the movies I watch.',
+      recentActivity: {
+        widget: 'LetterboxdRecentActivity',
+        props: {
+          title: 'Recently Watched Movies',
+          username: process.env.LETTERBOXD_USERNAME,
+        },
+      },
+    },
+    {
+      type: 'card',
+      title: 'Github',
+      icon: 'FaGithub',
+      href: 'https://github.com/diegocoxta',
+      description: 'Where my personal apps live, thrive, and occasionally get abandoned.',
+      recentActivity: {
+        widget: 'GithubRecentActivity',
+        props: {
+          title: 'Contribution Activity',
+          username: process.env.GITHUB_USERNAME,
+          authorization: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
+        },
+      },
+    },
+    {
+      type: 'card',
+      title: 'My Tech Blog',
+      icon: 'FaFloppyDisk',
+      href: 'https://diegocosta.com.br/blog',
+      description: 'Updated less frequently than a legacy codebase.',
+      recentActivity: {
+        widget: 'FeedListingRecentActivity',
+        props: {
+          title: 'Latest blog posts',
+          feed: 'https://diegocosta.com.br/blog/feed',
         },
       },
     },
@@ -91,18 +110,12 @@ const profile: ConfigProps = {
       description: 'The real-time soundtrack of my daily life.',
       recentActivity: {
         widget: 'LastfmRecentActivity',
-        variables: {
+        props: {
+          title: 'Monthly Top Artists',
           username: process.env.LASTFM_USERNAME,
           authorization: process.env.LASTFM_API_KEY,
         },
       },
-    },
-    {
-      type: 'card',
-      title: 'My Tech Blog',
-      icon: 'FaFloppyDisk',
-      href: 'https://diegocosta.com.br',
-      description: 'Updated less frequently than a legacy codebase.',
     },
     {
       type: 'card',
@@ -112,7 +125,8 @@ const profile: ConfigProps = {
       description: 'Tracking the concerts I survive.',
       recentActivity: {
         widget: 'SetlistRecentActivity',
-        variables: {
+        props: {
+          title: 'Latest attended concerts',
           username: process.env.SETLIST_USERNAME,
           authorization: process.env.SETLIST_API_KEY,
         },

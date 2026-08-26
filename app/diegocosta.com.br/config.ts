@@ -1,12 +1,12 @@
 import npmPackage from '~/package.json';
-import type { ConfigProps } from '~/lib/config';
+import type { ConfigType } from '~/lib/config';
 
-type LocalConfigProps = ConfigProps & {
+type LocalConfigType = ConfigType & {
   bio: string;
   repository: string;
 };
 
-const profile: LocalConfigProps = {
+const profile: LocalConfigType = {
   title: 'Diego Costa',
   jobTitle: ['Engineering Manager', 'Senior Software Engineer'],
   description: 'Engineering Manager apaixonado por criar produtos que impactam a vida das pessoas.',

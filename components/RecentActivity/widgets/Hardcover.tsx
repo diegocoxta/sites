@@ -1,9 +1,9 @@
 import { getUserCurrentReads } from '~/lib/services/hardcover';
-import type { RecentActivityProps } from '../index';
+import type { RecentActivityType } from '~/lib/config';
 
 import styles from '../styles.module.css';
 
-export default async function HardcoverWidget(props: RecentActivityProps) {
+export default async function HardcoverWidget(props: RecentActivityType['props']) {
   if (!props.authorization) {
     return <></>;
   }
@@ -16,8 +16,8 @@ export default async function HardcoverWidget(props: RecentActivityProps) {
 
   return (
     <>
-      <h3 className={styles.title}>Currently Reading</h3>
-      <ul className={styles.container}>
+      {props.title && <h3 className={styles.title}>{props.title}</h3>}
+      <ul className={styles.grid}>
         {books && books?.length > 0
           ? books?.map((book) => (
               <li className={styles.item} key={book.id}>

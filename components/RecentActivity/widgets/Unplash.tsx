@@ -1,9 +1,9 @@
 import { getRecentUserPhotos } from '~/lib/services/unsplash';
+import type { RecentActivityType } from '~/lib/config';
 
-import type { RecentActivityProps } from '../index';
 import styles from '../styles.module.css';
 
-export default async function UnsplashWidget(props: RecentActivityProps) {
+export default async function UnsplashWidget(props: RecentActivityType['props']) {
   if (!props.username || !props.authorization) {
     return <></>;
   }
@@ -13,8 +13,8 @@ export default async function UnsplashWidget(props: RecentActivityProps) {
   return (
     data.photos.length > 0 && (
       <>
-        <h3 className={styles.title}>Recent Photos</h3>
-        <ul className={styles.container}>
+        {props.title && <h3 className={styles.title}>{props.title}</h3>}
+        <ul className={styles.grid}>
           {data.photos.map((photo) => (
             <li className={styles.item} key={photo.id}>
               <div

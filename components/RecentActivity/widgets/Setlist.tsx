@@ -1,12 +1,10 @@
-import Image from 'next/image';
-
 import { getUserConcertsAttendance } from '~/lib/services/setlist';
 import { findArtistPhoto } from '~/lib/services/deezer';
+import type { RecentActivityType } from '~/lib/config';
 
-import type { RecentActivityProps } from '../index';
 import styles from '../styles.module.css';
 
-export default async function SetlistWidget(props: RecentActivityProps) {
+export default async function SetlistWidget(props: RecentActivityType['props']) {
   if (!props.username || !props.authorization) {
     return <></>;
   }
@@ -19,8 +17,8 @@ export default async function SetlistWidget(props: RecentActivityProps) {
   return (
     data.setlist.length > 0 && (
       <>
-        <h3 className={styles.title}>Latest attended concerts</h3>
-        <ul className={styles.container}>
+        {props.title && <h3 className={styles.title}>{props.title}</h3>}
+        <ul className={styles.grid}>
           {data.setlist.slice(0, 3).map(async (setlist) => {
             const imageSrc = await findArtistPhoto({ name: setlist.artist.name });
 

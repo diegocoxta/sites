@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
-import type { ConfigProps } from '~/lib/config';
+import type { ConfigType } from '~/lib/config';
 
 import styles from './styles.module.css';
 
 interface FooterProps {
   author: string;
-  links?: ConfigProps['links'];
+  links?: ConfigType['links'];
 }
 
 export default function Footer(props: FooterProps): React.ReactElement {

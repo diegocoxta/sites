@@ -1,37 +1,39 @@
-export type ConfigProps = {
+export type ConfigType = {
   title: string;
   description: string;
   domain: string;
   author: string;
   avatar?: string;
-  links?: Array<IconLinkProps | CardLinkProps | TextLinkProps>;
+  links?: Array<IconLinkType | CardLinkType | TextLinkType>;
   jobTitle?: Array<string>;
 };
 
-type ConfigLinkProps = {
+export type ConfigLinkType = {
   title: string;
   href: string;
   description?: string;
   order?: number;
 };
 
-type TextLinkProps = ConfigLinkProps & {
+export type TextLinkType = ConfigLinkType & {
   type: 'text';
   icon?: never;
   recentActivity?: never;
 };
 
-type IconLinkProps = ConfigLinkProps & {
+export type IconLinkType = ConfigLinkType & {
   type: 'icon';
   icon: string;
   recentActivity?: never;
 };
 
-type CardLinkProps = ConfigLinkProps & {
+export type CardLinkType = ConfigLinkType & {
   type: 'card';
   icon: string;
-  recentActivity?: {
-    widget: string;
-    variables: Record<string, string | undefined>;
-  };
+  recentActivity?: RecentActivityType;
+};
+
+export type RecentActivityType = {
+  widget: string;
+  props: Record<string, string | undefined>;
 };

@@ -1,12 +1,11 @@
-import Image from 'next/image';
 import { FaHeart } from 'react-icons/fa6';
 
 import { getRecentlyWatchedMovies } from '~/lib/services/letterboxd';
+import type { RecentActivityType } from '~/lib/config';
 
-import type { RecentActivityProps } from '../index';
 import styles from '../styles.module.css';
 
-export default async function LetterboxdWidget(props: RecentActivityProps) {
+export default async function LetterboxdWidget(props: RecentActivityType['props']) {
   if (!props.username) {
     return <></>;
   }
@@ -16,8 +15,8 @@ export default async function LetterboxdWidget(props: RecentActivityProps) {
   return (
     data.movies.length > 0 && (
       <>
-        <h3 className={styles.title}>Recently Watched Movies</h3>
-        <ul className={styles.container}>
+        {props.title && <h3 className={styles.title}>{props.title}</h3>}
+        <ul className={styles.grid}>
           {data.movies.map((movie) => (
             <li className={styles.item} key={movie.pubDate}>
               <div

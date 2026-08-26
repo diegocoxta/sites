@@ -1,9 +1,24 @@
 import type { MetadataRoute } from 'next';
 
-import { createSitemap } from '~/lib/metadata';
+import { getPages } from '~/lib/md';
 
 import config from '~/app/diegocoxta.com/config';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return createSitemap(config.domain);
+  const { domain } = config;
+
+  const pages = getPages(domain);
+
+  return [
+    {
+      url: `https://${domain}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 1.0,
+    },
+    ...pages.map(({ slug }) => ({
+      url: `https://${domain}/${slug}`,
+      priority: 0.8,
+    })),
+  ];
 }

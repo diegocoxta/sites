@@ -1,9 +1,9 @@
 import { getContributionsCalendar } from '~/lib/services/github';
+import type { RecentActivityType } from '~/lib/config';
 
-import type { RecentActivityProps } from '../index';
 import styles from '../styles.module.css';
 
-export default async function GithubWidget(props: RecentActivityProps) {
+export default async function GithubWidget(props: RecentActivityType['props']) {
   if (!props.username || !props.authorization) {
     return <></>;
   }
@@ -16,7 +16,7 @@ export default async function GithubWidget(props: RecentActivityProps) {
   return (
     data && (
       <div aria-hidden>
-        <h3 className={styles.title}>Contribution Activity</h3>
+        {props.title && <h3 className={styles.title}>{props.title}</h3>}
         <div className={styles.githubRecentActivity}>
           <div className={styles.scrollWrapper}>
             <div className={styles.graph}>

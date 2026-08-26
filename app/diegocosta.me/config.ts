@@ -1,13 +1,13 @@
-import type { ConfigProps } from '~/lib/config';
+import type { ConfigType } from '~/lib/config';
 
-type LocalConfigProps = ConfigProps & {
+type LocalConfigType = ConfigType & {
   unsplash: {
     username?: string;
     authorization?: string;
   };
 };
 
-const profile: LocalConfigProps = {
+const profile: LocalConfigType = {
   title: 'Diego Costa',
   description: '',
   domain: 'diegocosta.me',

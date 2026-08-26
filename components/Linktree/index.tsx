@@ -3,31 +3,27 @@ import Image from 'next/image';
 import * as Fa6 from 'react-icons/fa6';
 import { FiExternalLink } from 'react-icons/fi';
 
+import { CardLinkType, IconLinkType } from '~/lib/config';
+
 import * as RecentActivity from '~/components/RecentActivity';
 
 import styles from './styles.module.css';
 
 export interface LinktreeProps extends React.PropsWithChildren {
   background?: string;
-  icons: Array<{
-    title: string;
-    icon: keyof typeof Fa6;
-    href: string;
-    description?: string;
-  }>;
-  cards: Array<{
-    title: string;
-    icon?: keyof typeof Fa6;
-    href: string;
-    description?: string;
-    recentActivity?: {
-      widget: keyof typeof RecentActivity;
-      variables?: {
-        username?: string;
-        authorization?: string;
+  icons: Array<
+    IconLinkType & {
+      icon: keyof typeof Fa6;
+    }
+  >;
+  cards: Array<
+    CardLinkType & {
+      icon?: keyof typeof Fa6;
+      recentActivity?: {
+        widget: keyof typeof RecentActivity;
       };
-    };
-  }>;
+    }
+  >;
 }
 
 export default function Linktree(props: LinktreeProps) {
@@ -82,7 +78,7 @@ export default function Linktree(props: LinktreeProps) {
 
                   {RecentActivityWidget && (
                     <div className={styles.cardsItemRecentActivity}>
-                      <RecentActivityWidget {...card.recentActivity?.variables} />
+                      <RecentActivityWidget {...card.recentActivity?.props} />
                     </div>
                   )}
                 </Link>

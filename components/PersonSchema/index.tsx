@@ -1,9 +1,9 @@
 import { Person, WithContext } from 'schema-dts';
 
-import type { ConfigProps } from '~/lib/config';
+import type { ConfigType } from '~/lib/config';
 
 interface PersonSchemaProps {
-  data: ConfigProps;
+  data: ConfigType;
 }
 
 export default function PersonSchema({ data }: PersonSchemaProps) {
