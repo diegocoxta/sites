@@ -1,6 +1,11 @@
+export const SUPPORTED_LANGUAGES = ['en', 'es', 'pt'] as const;
+
+type SupportedLanguageKey = (typeof SUPPORTED_LANGUAGES)[number];
+type MultiLanguageString = string | Record<SupportedLanguageKey, string>;
+
 export type ConfigType = {
-  title: string;
-  description: string;
+  title: MultiLanguageString;
+  description: MultiLanguageString;
   domain: string;
   author: string;
   avatar?: string;
@@ -9,9 +14,9 @@ export type ConfigType = {
 };
 
 export type ConfigLinkType = {
-  title: string;
+  title: MultiLanguageString;
   href: string;
-  description?: string;
+  description?: MultiLanguageString;
   order?: number;
 };
 
@@ -35,5 +40,5 @@ export type CardLinkType = ConfigLinkType & {
 
 export type RecentActivityType = {
   widget: string;
-  props: Record<string, string | undefined>;
+  props: Record<string, MultiLanguageString | undefined>;
 };
