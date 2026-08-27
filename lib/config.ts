@@ -30,6 +30,7 @@ export type IconLinkType = ConfigLinkType & {
 export type CardLinkType = ConfigLinkType & {
   type: 'card';
   icon: string;
+  highlight?: boolean;
   recentActivity?: RecentActivityType;
 };
 

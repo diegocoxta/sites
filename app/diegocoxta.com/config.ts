@@ -17,6 +17,13 @@ const profile: ConfigType = {
     { type: 'icon', icon: 'FaEnvelope', title: 'Drop me a line', href: 'mailto:diego@diegocoxta.com' },
     {
       type: 'card',
+      title: 'Lojinha do Diego',
+      icon: 'FaCartShopping',
+      href: 'https://lista.mercadolivre.com.br/_CustId_126689975?',
+      description: 'Fizeram minha alegria, mas já não fazem sentido no meu inventário.',
+    },
+    {
+      type: 'card',
       title: 'Unsplash',
       icon: 'FaUnsplash',
       href: 'https://unsplash.com/diegocoxta',
