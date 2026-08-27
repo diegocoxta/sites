@@ -1,4 +1,4 @@
-.scrollContainer {
+.container {
   flex: 1;
   width: 100%;
   overflow: auto hidden;
@@ -12,72 +12,67 @@
     display: none;
   }
 
-  &::before {
-    content: ' ';
-    display: block;
-    position: fixed;
-    width: 200px;
-    background: linear-gradient(90deg, transparent 0%, rgb(255 255 255 / 100%) 100%);
-    height: 100%;
-    top: 0;
-    right: 0;
-    z-index: 99;
+  @media (width >= 1024px) {
+    &::before,
+    &::after {
+      content: ' ';
+      display: block;
+      position: fixed;
+      width: 200px;
+      background: linear-gradient(90deg, transparent 0%, var(--main-background-color) 100%);
+      height: 100%;
+      top: 0;
+      right: 0;
+      z-index: 99;
+    }
+
+    &::after {
+      left: 0;
+      right: auto;
+      background: linear-gradient(270deg, transparent 0%, var(--main-background-color) 100%);
+    }
   }
 }
 
-.carouselTrack {
+.track {
   display: inline-flex;
   align-items: flex-start;
-  gap: 20px;
+  gap: 60px;
   height: 100%;
   padding: 0 calc(50vw - 480px);
 }
 
-.card {
+.item {
   scroll-snap-align: center;
-  flex: 0 0 auto;
-  width: 600px;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-  display: flex;
-  flex-direction: column;
 }
 
-.cardInfo {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1.5rem;
-  color: #888;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  opacity: 0.5;
-  transition: opacity 0.5s ease;
-}
-
-.metaInfo {
+.details {
+  margin-top: 10px;
+  width: 70%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 0.3rem;
+  gap: 6px;
 }
 
 .title {
-  font-weight: 500;
-  color: #222;
+  font-weight: 700;
+  color: var(--main-title-color);
+  font-size: 22px;
+  margin: 0;
 }
 
 .description {
-  font-size: 0.75rem;
-  color: #999;
+  font-size: 16px;
+  color: var(--main-subtitle-color);
+  margin: 0;
 }
 
 .progress {
   composes: container from '~/components/Container/styles.module.css';
   margin-top: 50px;
   width: 100%;
-  height: 2px;
-  background-color: #ddd;
+  height: 5px;
+  background-color: var(--main-border-color);
   position: relative;
   overflow: hidden;
 }
@@ -87,6 +82,6 @@
   left: 0;
   top: 0;
   height: 100%;
-  background-color: #333;
+  background-color: var(--main-accent-color);
   transition: width 0.1s linear;
 }

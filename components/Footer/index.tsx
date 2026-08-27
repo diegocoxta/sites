@@ -22,7 +22,7 @@ export default function Footer(props: FooterProps): React.ReactElement {
                 <Link
                   className={styles.linksLink}
                   href={link.href}
-                  rel="noopener noreferrer"
+                  rel="me noopener"
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                 >
                   {link.title}

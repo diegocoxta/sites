@@ -75,6 +75,20 @@ const profile: ConfigType = {
     },
     {
       type: 'card',
+      title: 'My Tech Blog',
+      icon: 'FaFloppyDisk',
+      href: 'https://diegocosta.com.br/blog',
+      description: 'Updated less frequently than a legacy codebase.',
+      recentActivity: {
+        widget: 'FeedListingRecentActivity',
+        props: {
+          title: 'Latest blog posts',
+          feed: 'https://diegocosta.com.br/blog/feed',
+        },
+      },
+    },
+    {
+      type: 'card',
       title: 'Github',
       icon: 'FaGithub',
       href: 'https://github.com/diegocoxta',
@@ -85,20 +99,6 @@ const profile: ConfigType = {
           title: 'Contribution Activity',
           username: process.env.GITHUB_USERNAME,
           authorization: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
-        },
-      },
-    },
-    {
-      type: 'card',
-      title: 'My Tech Blog',
-      icon: 'FaFloppyDisk',
-      href: 'https://diegocosta.com.br/blog',
-      description: 'Updated less frequently than a legacy codebase.',
-      recentActivity: {
-        widget: 'FeedListingRecentActivity',
-        props: {
-          title: 'Latest blog posts',
-          feed: 'https://diegocosta.com.br/blog/feed',
         },
       },
     },

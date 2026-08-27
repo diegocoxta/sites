@@ -1,12 +1,12 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import Image from 'next/image';
 
 import { GetUserCollectionsResponseType } from '~/lib/services/unsplash';
 
+import PhotoCollection from '~/components/PhotoCollection';
+
 import styles from './styles.module.css';
-import PhotoCollection from '../PhotoCollection';
 
 type PhotoCollectionListProps = GetUserCollectionsResponseType;
 
@@ -26,15 +26,15 @@ export default function PhotoCollectionList(props: PhotoCollectionListProps) {
   };
 
   return (
-    <div className={styles.mainWrapper}>
-      <div className={styles.scrollContainer} ref={scrollRef} onScroll={handleScroll}>
-        <div className={styles.carouselTrack}>
+    <>
+      <div className={styles.container} ref={scrollRef} onScroll={handleScroll}>
+        <div className={styles.track}>
           {props.collections.map((collection, index) => {
             return (
               <div
                 key={collection.id}
                 data-index={index}
-                className={styles.card}
+                className={styles.item}
                 onClick={() => {
                   const container = scrollRef.current;
                   const cardElement = container?.children[0].children[index] as HTMLElement;
@@ -47,11 +47,9 @@ export default function PhotoCollectionList(props: PhotoCollectionListProps) {
                 }}
               >
                 <PhotoCollection photos={collection.preview_photos} />
-                <div className={styles.cardInfo}>
-                  <div className={styles.metaInfo}>
-                    <span className={styles.title}>{collection.title}</span>
-                    <span className={styles.description}>{collection.description}</span>
-                  </div>
+                <div className={styles.details}>
+                  <p className={styles.title}>{collection.title}</p>
+                  <p className={styles.description}>{collection.description}</p>
                 </div>
               </div>
             );
@@ -62,6 +60,6 @@ export default function PhotoCollectionList(props: PhotoCollectionListProps) {
       <div className={styles.progress}>
         <div className={styles.progressBar} style={{ width: `${scrollProgress}%` }} />
       </div>
-    </div>
+    </>
   );
 }

@@ -5,8 +5,7 @@
 }
 
 .featuredPhoto {
-  width: 400px;
-  height: 600px;
+  width: 70%;
   background-size: cover;
   background-position: top center;
 }
@@ -17,13 +16,14 @@
   padding: 0;
   gap: 6px;
   flex-direction: column;
+  width: 30%;
 }
 
 .photo {
   margin: 0;
   padding: 0;
   list-style: none;
-  width: 200px;
+  width: 100%;
   height: 297px;
   background-size: cover;
   background-position: top center;
