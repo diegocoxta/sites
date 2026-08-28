@@ -84,7 +84,11 @@ const profile: ConfigType = {
     },
     {
       type: 'card',
-      title: 'Lojinha do Diego',
+      title: {
+        pt: 'Lojinha do Diego',
+        es: 'La Tienda de Diego',
+        en: "Diego's Shop",
+      },
       icon: 'FaCartShopping',
       href: 'https://lista.mercadolivre.com.br/_CustId_126689975?',
       description: {
