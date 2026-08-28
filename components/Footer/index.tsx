@@ -25,7 +25,7 @@ export default function Footer(props: FooterProps): React.ReactElement {
                   rel="me noopener"
                   target={link.href.startsWith('http') ? '_blank' : undefined}
                 >
-                  {link.title}
+                  {`${link.title}`}
                 </Link>
               </li>
             ))}
