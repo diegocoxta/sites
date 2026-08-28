@@ -66,7 +66,7 @@ export default function Linktree(props: LinktreeProps) {
               <section className={styles.cardsItem} key={card.href} aria-labelledby={`${card.title}-title`}>
                 <Link
                   href={card.href}
-                  className={styles.cardsItemLink}
+                  className={`${styles.cardsItemLink} ${card.highlight ? styles.highlight : ''}`}
                   target={isExternalLink ? '_blank' : '_self'}
                   rel={isExternalLink ? 'me noopener' : undefined}
                 >
@@ -75,7 +75,7 @@ export default function Linktree(props: LinktreeProps) {
                       {Icon && <Icon className={styles.pageItemIcon} aria-hidden />}{' '}
                       {getLocatedString(card.title, props.lang)}
                     </h2>
-                    {isExternalLink && <FiExternalLink className={styles.cardsItemExternalLinkIcon} aria-hidden />}
+                    <FiExternalLink className={styles.cardsItemExternalLinkIcon} aria-hidden />
                   </header>
                   {card.description && (
                     <p className={styles.cardsItemDescription}>{getLocatedString(card.description, props.lang)}</p>
