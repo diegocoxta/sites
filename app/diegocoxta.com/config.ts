@@ -87,7 +87,11 @@ const profile: ConfigType = {
       title: 'Lojinha do Diego',
       icon: 'FaCartShopping',
       href: 'https://lista.mercadolivre.com.br/_CustId_126689975?',
-      description: 'Fizeram minha alegria, mas já não fazem sentido no meu inventário.',
+      description: {
+        pt: 'Fizeram minha alegria, mas já não fazem sentido no meu inventário.',
+        en: 'They brought me joy, but they no longer make sense in my inventory.',
+        es: 'Me dieron muchas alegrías, pero ya no tienen sentido en mi inventario.',
+      },
     },
     {
       type: 'card',
