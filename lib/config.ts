@@ -1,7 +1,4 @@
-export const SUPPORTED_LANGUAGES = ['en', 'es', 'pt'] as const;
-
-type SupportedLanguageKey = (typeof SUPPORTED_LANGUAGES)[number];
-type MultiLanguageString = string | Record<SupportedLanguageKey, string>;
+import type { SupportedLanguageKey, MultiLanguageString } from '~/lib/lang';
 
 export type ConfigType = {
   title: MultiLanguageString;
@@ -40,5 +37,6 @@ export type CardLinkType = ConfigLinkType & {
 
 export type RecentActivityType = {
   widget: string;
-  props: Record<string, MultiLanguageString | undefined>;
+  config: Record<string, MultiLanguageString | undefined>;
+  lang?: SupportedLanguageKey;
 };

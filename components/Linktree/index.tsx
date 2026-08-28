@@ -3,7 +3,8 @@ import Image from 'next/image';
 import * as Fa6 from 'react-icons/fa6';
 import { FiExternalLink } from 'react-icons/fi';
 
-import { CardLinkType, IconLinkType } from '~/lib/config';
+import { getLocatedString, type SupportedLanguageKey } from '~/lib/lang';
+import type { CardLinkType, IconLinkType } from '~/lib/config';
 
 import * as RecentActivity from '~/components/RecentActivity';
 
@@ -11,6 +12,7 @@ import styles from './styles.module.css';
 
 export interface LinktreeProps extends React.PropsWithChildren {
   background?: string;
+  lang?: SupportedLanguageKey;
   icons: Array<
     IconLinkType & {
       icon: keyof typeof Fa6;
@@ -31,7 +33,7 @@ export default function Linktree(props: LinktreeProps) {
     <div className={styles.container} style={{ backgroundImage: `url(${props.background})` }}>
       <main className={styles.content}>
         {props.children}
-        <nav aria-label="Principais Redes sociais">
+        <nav>
           <ul className={styles.iconsList}>
             {props.icons.map((icon) => {
               const Icon = Fa6[icon.icon];
@@ -40,8 +42,8 @@ export default function Linktree(props: LinktreeProps) {
                 <li key={icon.href}>
                   <a
                     href={icon.href}
-                    title={`Find me on ${icon.title}`}
-                    aria-label={icon.title}
+                    title={getLocatedString(icon.title, props.lang)}
+                    aria-label={getLocatedString(icon.title, props.lang)}
                     target="_blank"
                     rel="me noreferrer noopener"
                     className={styles.iconsItem}
@@ -54,7 +56,7 @@ export default function Linktree(props: LinktreeProps) {
           </ul>
         </nav>
 
-        <div className={styles.cardsList} aria-label="Outras redes sociais">
+        <div className={styles.cardsList}>
           {props.cards.map((card) => {
             const RecentActivityWidget = card.recentActivity && RecentActivity[card.recentActivity.widget];
             const Icon = card.icon && Fa6[card.icon];
@@ -70,15 +72,18 @@ export default function Linktree(props: LinktreeProps) {
                 >
                   <header className={styles.cardsItemDetails}>
                     <h2 className={styles.cardsItemTitle} id={`${card.title}-title`}>
-                      {Icon && <Icon className={styles.pageItemIcon} aria-hidden />} {card.title}
+                      {Icon && <Icon className={styles.pageItemIcon} aria-hidden />}{' '}
+                      {getLocatedString(card.title, props.lang)}
                     </h2>
                     {isExternalLink && <FiExternalLink className={styles.cardsItemExternalLinkIcon} aria-hidden />}
                   </header>
-                  {card.description && <p className={styles.cardsItemDescription}>{card.description}</p>}
+                  {card.description && (
+                    <p className={styles.cardsItemDescription}>{getLocatedString(card.description, props.lang)}</p>
+                  )}
 
-                  {RecentActivityWidget && (
+                  {RecentActivityWidget && card.recentActivity?.config && (
                     <div className={styles.cardsItemRecentActivity}>
-                      <RecentActivityWidget {...card.recentActivity?.props} />
+                      <RecentActivityWidget config={card.recentActivity?.config} lang={props.lang} />
                     </div>
                   )}
                 </Link>

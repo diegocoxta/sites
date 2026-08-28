@@ -12,12 +12,66 @@ const profile: ConfigType = {
   author: 'Diego Costa',
   avatar: '/background_v2.jpg',
   links: [
-    { type: 'icon', icon: 'FaInstagram', title: 'Instagram', href: 'https://instagram.com/diegocoxta' },
-    { type: 'icon', icon: 'FaTiktok', title: 'Tiktok', href: 'https://tiktok.com/@diegocoxta' },
-    { type: 'icon', icon: 'FaYoutube', title: 'YouTube', href: 'https://youtube.com/@diegocoxta' },
-    { type: 'icon', icon: 'FaMastodon', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
-    { type: 'icon', icon: 'FaBluesky', title: 'Bluesky', href: 'https://bsky.app/profile/diegocoxta.com' },
-    { type: 'icon', icon: 'FaThreads', title: 'Threads', href: 'https://threads.com/@diegocoxta' },
+    {
+      type: 'icon',
+      icon: 'FaInstagram',
+      title: {
+        en: 'Find me on Instagram',
+        es: 'Encuéntrame en Instagram',
+        pt: 'Siga-me no Instagram',
+      },
+      href: 'https://instagram.com/diegocoxta',
+    },
+    {
+      type: 'icon',
+      icon: 'FaTiktok',
+      title: {
+        en: 'Find me on Tiktok',
+        es: 'Encuéntrame en Tiktok',
+        pt: 'Siga-me no Tiktok',
+      },
+      href: 'https://tiktok.com/@diegocoxta',
+    },
+    {
+      type: 'icon',
+      icon: 'FaYoutube',
+      title: {
+        en: 'Find me on YouTube',
+        es: 'Encuéntrame en YouTube',
+        pt: 'Siga-me no YouTube',
+      },
+      href: 'https://youtube.com/@diegocoxta',
+    },
+    {
+      type: 'icon',
+      icon: 'FaMastodon',
+      title: {
+        en: 'Find me on Mastodon',
+        es: 'Encuéntrame en Mastodon',
+        pt: 'Siga-me no Mastodon',
+      },
+      href: 'https://mastodon.social/@diegocoxta',
+    },
+    {
+      type: 'icon',
+      icon: 'FaBluesky',
+      title: {
+        en: 'Find me on Bluesky',
+        es: 'Encuéntrame en Bluesky',
+        pt: 'Siga-me no Bluesky',
+      },
+      href: 'https://bsky.app/profile/diegocoxta.com',
+    },
+    {
+      type: 'icon',
+      icon: 'FaThreads',
+      title: {
+        en: 'Find me on Threads',
+        es: 'Encuéntrame en Threads',
+        pt: 'Siga-me no Threads',
+      },
+      href: 'https://threads.com/@diegocoxta',
+    },
     {
       type: 'icon',
       icon: 'FaEnvelope',
@@ -40,7 +94,7 @@ const profile: ConfigType = {
       },
       recentActivity: {
         widget: 'UnsplashRecentActivity',
-        props: {
+        config: {
           title: {
             en: 'Recent Photos',
             pt: 'Fotos Recentes',
@@ -63,7 +117,7 @@ const profile: ConfigType = {
       },
       recentActivity: {
         widget: 'DiscogsRecentActivity',
-        props: {
+        config: {
           title: {
             en: 'Last Records Purchased',
             pt: 'Últimos Discos Comprados',
@@ -86,7 +140,7 @@ const profile: ConfigType = {
       },
       recentActivity: {
         widget: 'HardcoverRecentActivity',
-        props: {
+        config: {
           title: {
             en: 'Currently Reading',
             pt: 'Lendo Atualmente',
@@ -108,7 +162,7 @@ const profile: ConfigType = {
       },
       recentActivity: {
         widget: 'LetterboxdRecentActivity',
-        props: {
+        config: {
           title: {
             en: 'Recently Watched Movies',
             pt: 'Filmes Assistidos Recentemente',
@@ -130,7 +184,7 @@ const profile: ConfigType = {
       },
       recentActivity: {
         widget: 'FeedListingRecentActivity',
-        props: {
+        config: {
           title: {
             en: 'Latest blog posts',
             pt: 'Últimos posts do blog',
@@ -152,7 +206,7 @@ const profile: ConfigType = {
       },
       recentActivity: {
         widget: 'GithubRecentActivity',
-        props: {
+        config: {
           title: {
             en: 'Contribution Activity',
             pt: 'Atividade de Contribuição',
@@ -175,7 +229,7 @@ const profile: ConfigType = {
       },
       recentActivity: {
         widget: 'LastfmRecentActivity',
-        props: {
+        config: {
           title: {
             en: 'Monthly Top Artists',
             pt: 'Artistas Mais Tocados Mensalmente',
@@ -198,7 +252,7 @@ const profile: ConfigType = {
       },
       recentActivity: {
         widget: 'SetlistRecentActivity',
-        props: {
+        config: {
           title: {
             en: 'Latest attended concerts',
             pt: 'Últimos concertos assistidos',
