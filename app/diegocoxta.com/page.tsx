@@ -1,22 +1,9 @@
-import Linktree, { LinktreeProps } from '~/components/Linktree';
-import Username from '~/components/Username';
+import { redirect } from 'next/navigation';
 
-import config from '~/app/diegocoxta.com/config';
+import { SUPPORTED_LANGUAGES } from '~/lib/lang';
 
 export const revalidate = 3600;
 
 export default function HomePage() {
-  const icons = config.links?.filter((l) => l.type === 'icon');
-  const cards = config.links?.filter((l) => l.type === 'card');
-
-  return (
-    <Linktree
-      background={config.avatar}
-      icons={icons as LinktreeProps['icons']}
-      cards={cards as LinktreeProps['cards']}
-    >
-      <Username username={config.title} size={32} />
-      <p className="bio">{config.description}</p>
-    </Linktree>
-  );
+  redirect(SUPPORTED_LANGUAGES[0]);
 }

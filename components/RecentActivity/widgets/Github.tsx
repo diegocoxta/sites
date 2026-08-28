@@ -1,22 +1,25 @@
 import { getContributionsCalendar } from '~/lib/services/github';
 import type { RecentActivityType } from '~/lib/config';
+import { getLocatedString } from '~/lib/lang';
 
 import styles from '../styles.module.css';
 
-export default async function GithubWidget(props: RecentActivityType['props']) {
-  if (!props.username || !props.authorization) {
+export default async function GithubWidget(props: Pick<RecentActivityType, 'config' | 'lang'>) {
+  const { config, lang } = props;
+
+  if (!config.username || !config.authorization) {
     return <></>;
   }
 
   const data = await getContributionsCalendar({
-    username: props.username,
-    authorization: props.authorization,
+    username: config.username.toString(),
+    authorization: config.authorization.toString(),
   });
 
   return (
     data && (
       <div aria-hidden>
-        {props.title && <h3 className={styles.title}>{props.title}</h3>}
+        {config.title && <h3 className={styles.title}>{getLocatedString(config.title, lang)}</h3>}
         <div className={styles.githubRecentActivity}>
           <div className={styles.scrollWrapper}>
             <div className={styles.graph}>

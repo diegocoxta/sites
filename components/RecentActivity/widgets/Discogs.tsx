@@ -1,22 +1,25 @@
 import { getUserCollection } from '~/lib/services/discogs';
 import type { RecentActivityType } from '~/lib/config';
+import { getLocatedString } from '~/lib/lang';
 
 import styles from '../styles.module.css';
 
-export default async function DiscogsWidget(props: RecentActivityType['props']) {
-  if (!props.username || !props.authorization) {
+export default async function DiscogsWidget(props: Pick<RecentActivityType, 'config' | 'lang'>) {
+  const { config, lang } = props;
+
+  if (!config.username || !config.authorization) {
     return <></>;
   }
 
   const data = await getUserCollection({
-    username: props.username,
-    authorization: props.authorization,
+    username: config.username.toString(),
+    authorization: config.authorization.toString(),
   });
 
   return (
     data.releases.length && (
       <>
-        {props.title && <h3 className={styles.title}>{props.title}</h3>}
+        {config.title && <h3 className={styles.title}>{getLocatedString(config.title, lang)}</h3>}
         <ul className={styles.grid}>
           {data.releases.map((release) => (
             <li className={styles.item} key={release.id}>
@@ -31,8 +34,7 @@ export default async function DiscogsWidget(props: RecentActivityType['props']) 
                 {release.basic_information.title} - {release.basic_information.artists[0].name}
               </p>
               <time dateTime={release.date_added} className={styles.itemDate}>
-                Purchased in{' '}
-                {new Date(release.date_added).toLocaleDateString('en', {
+                {new Date(release.date_added).toLocaleDateString(lang, {
                   timeZone: 'UTC',
                   month: 'long',
                   year: 'numeric',

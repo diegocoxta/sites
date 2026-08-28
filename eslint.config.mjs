@@ -11,6 +11,16 @@ const eslintConfig = defineConfig([
         version: '19',
       },
     },
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'warn', // or "error"
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
+    },
   },
   // Override default ignores of eslint-config-next.
   globalIgnores([

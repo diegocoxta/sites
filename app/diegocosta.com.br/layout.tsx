@@ -37,9 +37,9 @@ export const metadata: Metadata = {
   metadataBase: `https://${config.domain}`,
   title: {
     template: `%s | ${config.title}`,
-    default: config.title,
+    default: `${config.title}`,
   },
-  description: config.description,
+  description: `${config.description}`,
   alternates: {
     canonical: '/',
     types: {

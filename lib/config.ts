@@ -1,6 +1,8 @@
+import type { SupportedLanguageKey, MultiLanguageString } from '~/lib/lang';
+
 export type ConfigType = {
-  title: string;
-  description: string;
+  title: MultiLanguageString;
+  description: MultiLanguageString;
   domain: string;
   author: string;
   avatar?: string;
@@ -9,9 +11,9 @@ export type ConfigType = {
 };
 
 export type ConfigLinkType = {
-  title: string;
+  title: MultiLanguageString;
   href: string;
-  description?: string;
+  description?: MultiLanguageString;
   order?: number;
 };
 
@@ -30,10 +32,12 @@ export type IconLinkType = ConfigLinkType & {
 export type CardLinkType = ConfigLinkType & {
   type: 'card';
   icon: string;
+  highlight?: boolean;
   recentActivity?: RecentActivityType;
 };
 
 export type RecentActivityType = {
   widget: string;
-  props: Record<string, string | undefined>;
+  config: Record<string, MultiLanguageString | undefined>;
+  lang?: SupportedLanguageKey;
 };

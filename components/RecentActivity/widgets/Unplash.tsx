@@ -1,19 +1,25 @@
 import { getRecentUserPhotos } from '~/lib/services/unsplash';
 import type { RecentActivityType } from '~/lib/config';
+import { getLocatedString } from '~/lib/lang';
 
 import styles from '../styles.module.css';
 
-export default async function UnsplashWidget(props: RecentActivityType['props']) {
-  if (!props.username || !props.authorization) {
+export default async function UnsplashWidget(props: Pick<RecentActivityType, 'config' | 'lang'>) {
+  const { config, lang } = props;
+
+  if (!config.username || !config.authorization) {
     return <></>;
   }
 
-  const data = await getRecentUserPhotos({ username: props.username, authorization: props.authorization });
+  const data = await getRecentUserPhotos({
+    username: config.username.toString(),
+    authorization: config.authorization.toString(),
+  });
 
   return (
     data.photos.length > 0 && (
       <>
-        {props.title && <h3 className={styles.title}>{props.title}</h3>}
+        {config.title && <h3 className={styles.title}>{getLocatedString(config.title, lang)}</h3>}
         <ul className={styles.grid}>
           {data.photos.map((photo) => (
             <li className={styles.item} key={photo.id}>

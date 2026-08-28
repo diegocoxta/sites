@@ -63,12 +63,13 @@
   height: 146px;
 
   &.empty {
-    background-color: var(--main-title-color);
+    background-color: var(--main-accent-color);
     height: 190px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--main-border-color);
+    color: var(--main-box-color);
+    font-size: 36px;
   }
 }
 
