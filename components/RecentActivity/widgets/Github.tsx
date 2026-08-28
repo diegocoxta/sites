@@ -19,7 +19,7 @@ export default async function GithubWidget(props: Pick<RecentActivityType, 'conf
   return (
     data && (
       <div aria-hidden>
-        {config.title && <h3 className={styles.title}>{getLocatedString(config.title)}</h3>}
+        {config.title && <h3 className={styles.title}>{getLocatedString(config.title, lang)}</h3>}
         <div className={styles.githubRecentActivity}>
           <div className={styles.scrollWrapper}>
             <div className={styles.graph}>
