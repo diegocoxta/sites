@@ -1,4 +1,4 @@
-# 👨🏿‍💻 @diegocoxta/pages
+# 👨🏿‍💻 @diegocoxta/sites
 
 My personal webpages powered by next, typescript and CSS modules.
 
