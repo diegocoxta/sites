@@ -1,12 +1,12 @@
 {
-  "name": "@diegocoxta/pages",
+  "name": "@diegocoxta/sites",
   "version": "3.0.0",
   "type": "module",
   "private": true,
   "author": "Diego Costa <diego@diegocosta.com.br>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/diegocoxta/pages.git"
+    "url": "https://github.com/diegocoxta/sites.git"
   },
   "scripts": {
     "dev:diegocosta.com.br": "DEV_SITE=diegocosta.com.br next dev --turbopack",
