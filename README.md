@@ -29,7 +29,7 @@ app/
   <domain>/           route tree for one domain (e.g. diegocosta.com.br)
     config.ts         per-domain config (title, links, locales, theme)
     [locale]/         localized routes (multi-locale domains only)
-  config.ts           shared config defaults (theme, client message prefixes)
+  config.ts           shared config defaults (theme)
 components/            React components (one folder each, co-located CSS Modules)
 lib/
   config.ts           shared types for the per-domain config
@@ -37,7 +37,7 @@ lib/
   public-path.ts      helper for building public/<domain>/… paths
   i18n/
     locale.ts         locale list + Accept-Language / cookie negotiation (edge-safe)
-    translator.ts     createTranslator: lookup, {param} interpolation, plurals, dates
+    translator.ts     createTranslator: lookup, {param} interpolation, dates
     messages.ts       loads public/<domain>/translations/<locale>.json (server-only)
   services/            third-party integrations for the activity widgets
 proxy.ts              host-based rewrite + locale negotiation (Next middleware)
@@ -90,9 +90,10 @@ read time.
 UI strings are flat-key JSON dictionaries at
 `public/<domain>/translations/<locale>.json`. A requested locale is merged over
 the default-locale dictionary, so partial translations are fine. Keys prefixed
-`config.` / `components.` / `page.` go through the translator; anything else is
-treated as a literal (brand and proper names). `clientMessagePrefixes` in the
-domain config selects the subset shipped to Client Components.
+`client.` / `config.` / `components.` / `page.` go through the translator;
+anything else is treated as a literal (brand and proper names). Keys prefixed
+`client.` are the subset shipped to Client Components, via `getClientMessages`
+in [`lib/i18n/messages.ts`](lib/i18n/messages.ts).
 
 `diegocoxta.com` ships in `pt`, `en` and `es`; the other domains are
 single-locale (and skip the `/<locale>` path prefix entirely).

@@ -12,6 +12,6 @@ If you want to contribute to the repository, follow these steps:
 
 - Fork the repo and develop.
 - Check if your code follow my linter rules: `yarn prettier && yarn lint`
-- Test your code changes (`yarn test`) and create/change the test suite if necessary.
+- Test your code changes manually and make sure the project builds (`yarn build`).
 - Commit your changes.
 - Push to your fork and submit a pull request.
