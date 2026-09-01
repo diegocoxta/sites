@@ -4,7 +4,7 @@ Before starting, you may need to know how to contribute in a good way. You can f
 
 ## Issues
 
-If you encounter an issue with the project, you are welcome to submit a [bug report](https://github.com/diegocoxta/pages/issues/new). Before that, please search for similar issues. It's possible somebody has already encountered this issue.
+If you encounter an issue with the project, you are welcome to submit a [bug report](https://github.com/diegocoxta/sites/issues/new). Before that, please search for similar issues. It's possible somebody has already encountered this issue.
 
 ## Pull Requests
 

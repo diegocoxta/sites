@@ -1,13 +1,33 @@
 import { getMonthlyTopArtists } from '~/lib/services/lastfm';
 import { findArtistPhoto } from '~/lib/services/deezer';
-import type { RecentActivityType } from '~/lib/config';
-import { getLocatedString } from '~/lib/lang';
+
+import type { RecentActivityProps } from '../index';
 
 import styles from '../styles.module.css';
 
-export default async function LastfmWidget(props: Pick<RecentActivityType, 'config' | 'lang'>) {
-  const { config, lang } = props;
+type Artist = Awaited<ReturnType<typeof getMonthlyTopArtists>>['topartists']['artist'][number];
 
+async function ArtistItem({ artist, t }: { artist: Artist; t: RecentActivityProps['t'] }) {
+  const imageSrc = await findArtistPhoto({ name: artist.name });
+
+  return (
+    <li className={styles.item}>
+      <div
+        className={styles.itemCover}
+        style={{
+          backgroundImage: `url(${imageSrc || artist.image?.[2]?.['#text'] || undefined})`,
+        }}
+        aria-hidden
+      ></div>
+      <p className={styles.itemTitle}>{artist.name}</p>
+      <p className={styles.itemDescription}>
+        {t('components.recentActivity.lastfm.plays', { count: artist.playcount })}
+      </p>
+    </li>
+  );
+}
+
+export default async function LastfmWidget({ config, t }: RecentActivityProps) {
   if (!config.username || !config.authorization) {
     return <></>;
   }
@@ -18,27 +38,13 @@ export default async function LastfmWidget(props: Pick<RecentActivityType, 'conf
   });
 
   return (
-    data.topartists.artist.length > 0 && (
+    data.topartists?.artist?.length > 0 && (
       <>
-        {config.title && <h3 className={styles.title}>{getLocatedString(config.title, lang)}</h3>}
+        {config.title && <h3 className={styles.title}>{t(config.title)}</h3>}
         <ul className={styles.grid}>
-          {data.topartists.artist.map(async (artist) => {
-            const imageSrc = await findArtistPhoto({ name: artist.name });
-
-            return (
-              <li className={styles.item} key={artist.mbid}>
-                <div
-                  className={styles.itemCover}
-                  style={{
-                    backgroundImage: `url(${imageSrc || artist.image[2]['#text']})`,
-                  }}
-                  aria-hidden
-                ></div>
-                <p className={styles.itemTitle}>{artist.name}</p>
-                <p className={styles.itemDescription}>{artist.playcount} plays</p>
-              </li>
-            );
-          })}
+          {data.topartists.artist.map((artist, index) => (
+            <ArtistItem key={index} artist={artist} t={t} />
+          ))}
         </ul>
       </>
     )

@@ -1,20 +1,27 @@
 import { NextResponse } from 'next/server';
 import Rss from 'rss';
 
-import { getPosts } from '~/lib/md';
+import { contentFor } from '~/lib/content';
+import { getTranslations } from '~/lib/i18n/messages';
 
 import config from '~/app/diegocosta.com.br/config';
 
-export async function GET() {
+const content = contentFor(config);
+
+export const revalidate = 3600;
+
+export function GET() {
+  const t = getTranslations(config);
+
   const feed = new Rss({
-    title: `${config.title}`,
-    description: `${config.description}`,
+    title: config.title,
+    description: t(config.description),
     feed_url: `https://${config.domain}/blog/feed`,
     site_url: `https://${config.domain}`,
     pubDate: new Date(),
   });
 
-  getPosts(config.domain).map((post) => {
+  content.getPosts().forEach((post) => {
     feed.item({
       title: post.title,
       url: `https://${config.domain}/blog/${post.slug}`,

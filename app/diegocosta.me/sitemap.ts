@@ -1,13 +1,17 @@
 import type { MetadataRoute } from 'next';
 
-import { getPages } from '~/lib/md';
+import { contentFor } from '~/lib/content';
 
 import config from '~/app/diegocosta.me/config';
+
+const content = contentFor(config);
+
+export const revalidate = 76800;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const { domain } = config;
 
-  const pages = getPages(domain);
+  const pages = content.getPages();
 
   return [
     {

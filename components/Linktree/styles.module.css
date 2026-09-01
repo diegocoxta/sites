@@ -1,7 +1,7 @@
 .container {
   max-width: 1024px;
   margin: 0 auto;
-  padding: 420px 16px 26px;
+  padding: 380px 16px 26px;
   box-sizing: border-box;
   background-position: top center;
   background-repeat: no-repeat;
@@ -43,7 +43,7 @@
 
 .iconsList {
   display: flex;
-  gap: 30px;
+  gap: 5px;
   margin: 26px 0;
   padding: 0;
   width: 100%;
@@ -57,13 +57,18 @@
 }
 
 .iconsItem {
-  color: var(--main-text-color);
+  color: var(--main-accent-color);
   transition: 0.2s all linear;
-  display: block;
+  border-radius: 100%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     transform: scale(1.3);
-    color: var(--main-accent-color);
+    background-color: var(--main-box-color);
   }
 
   svg {
@@ -124,6 +129,7 @@
 
 .pageItemIcon {
   font-size: 16px;
+  color: var(--main-accent-color);
 }
 
 .cardsItemExternalLinkIcon {
@@ -170,4 +176,6 @@
 .qrCodeImage {
   width: 100%;
   height: auto;
+  filter: saturate(0);
+  opacity: 0.8;
 }

@@ -1,12 +1,10 @@
 import { getUserCollection } from '~/lib/services/discogs';
-import type { RecentActivityType } from '~/lib/config';
-import { getLocatedString } from '~/lib/lang';
+
+import type { RecentActivityProps } from '../index';
 
 import styles from '../styles.module.css';
 
-export default async function DiscogsWidget(props: Pick<RecentActivityType, 'config' | 'lang'>) {
-  const { config, lang } = props;
-
+export default async function DiscogsWidget({ config, t }: RecentActivityProps) {
   if (!config.username || !config.authorization) {
     return <></>;
   }
@@ -17,9 +15,9 @@ export default async function DiscogsWidget(props: Pick<RecentActivityType, 'con
   });
 
   return (
-    data.releases.length && (
+    data.releases?.length > 0 && (
       <>
-        {config.title && <h3 className={styles.title}>{getLocatedString(config.title, lang)}</h3>}
+        {config.title && <h3 className={styles.title}>{t(config.title)}</h3>}
         <ul className={styles.grid}>
           {data.releases.map((release) => (
             <li className={styles.item} key={release.id}>
@@ -31,14 +29,10 @@ export default async function DiscogsWidget(props: Pick<RecentActivityType, 'con
                 aria-hidden
               ></div>
               <p className={styles.itemTitle}>
-                {release.basic_information.title} - {release.basic_information.artists[0].name}
+                {release.basic_information.title} - {release.basic_information.artists?.[0]?.name}
               </p>
               <time dateTime={release.date_added} className={styles.itemDate}>
-                {new Date(release.date_added).toLocaleDateString(lang, {
-                  timeZone: 'UTC',
-                  month: 'long',
-                  year: 'numeric',
-                })}
+                {t.date(release.date_added, { month: 'long', year: 'numeric' })}
               </time>
             </li>
           ))}

@@ -1,6 +1,6 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
 
-import type { BlogContentAttributes } from '~/lib/md';
+import type { BlogContentAttributes } from '~/lib/content';
 
 import CodeBlock from '~/components/CodeBlock';
 

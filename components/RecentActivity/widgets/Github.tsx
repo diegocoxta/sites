@@ -1,12 +1,10 @@
 import { getContributionsCalendar } from '~/lib/services/github';
-import type { RecentActivityType } from '~/lib/config';
-import { getLocatedString } from '~/lib/lang';
+
+import type { RecentActivityProps } from '../index';
 
 import styles from '../styles.module.css';
 
-export default async function GithubWidget(props: Pick<RecentActivityType, 'config' | 'lang'>) {
-  const { config, lang } = props;
-
+export default async function GithubWidget({ config, t }: RecentActivityProps) {
   if (!config.username || !config.authorization) {
     return <></>;
   }
@@ -19,7 +17,7 @@ export default async function GithubWidget(props: Pick<RecentActivityType, 'conf
   return (
     data && (
       <div aria-hidden>
-        {config.title && <h3 className={styles.title}>{getLocatedString(config.title, lang)}</h3>}
+        {config.title && <h3 className={styles.title}>{t(config.title)}</h3>}
         <div className={styles.githubRecentActivity}>
           <div className={styles.scrollWrapper}>
             <div className={styles.graph}>
@@ -31,7 +29,6 @@ export default async function GithubWidget(props: Pick<RecentActivityType, 'conf
                       className={styles.day}
                       style={{ backgroundColor: day.contributionCount > 0 ? day.color : undefined }}
                       data-count={day.contributionCount}
-                      title={`${day.contributionCount} contribuições em ${day.date}`}
                     />
                   ))}
                 </div>

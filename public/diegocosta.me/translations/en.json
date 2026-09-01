@@ -1,0 +1,12 @@
+{
+  "config.title": "Diego Costa",
+  "config.description": "My photography portfolio",
+  "config.links.unsplash.title": "Find me on Unsplash",
+  "config.links.instagram.title": "Find me on Instagram",
+  "config.links.tiktok.title": "Find me on Tiktok",
+  "config.links.youtube.title": "Find me on YouTube",
+  "page.home.underConstruction": "This page is currently under construction.",
+  "page.home.checkPhotos": "In the meantime, you can check out some of my photos on",
+  "components.footer.ariaLabel": "Professional and contact links",
+  "client.components.themeSwitcher.ariaLabel": "Toggle theme color."
+}

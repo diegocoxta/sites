@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 
-import { getPages, getPosts } from '~/lib/md';
+import { contentFor } from '~/lib/content';
+import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
 
+import TranslationProvider from '~/components/TranslationProvider';
 import PersonSchema from '~/components/PersonSchema';
 import Header from '~/components/Header';
 import Branding from '~/components/Branding';
@@ -11,12 +13,17 @@ import Footer from '~/components/Footer';
 
 import config from '~/app/diegocosta.com.br/config';
 
+const content = contentFor(config);
+
 export default function RootLayout({ children }: React.PropsWithChildren) {
-  const pages = getPages(config.domain);
-  const posts = getPosts(config.domain);
+  const t = getTranslations(config);
+  const messages = getClientMessages(config);
+
+  const pages = content.getPages();
+  const posts = content.getPosts();
 
   return (
-    <>
+    <TranslationProvider messages={messages} locale={t.locale}>
       <PersonSchema data={config} />
       <Header
         left={<Branding name={config.author} />}
@@ -28,22 +35,26 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         }
       />
       {children}
-      <Footer author={config.author} links={config.links} />
-    </>
+      <Footer author={config.author} links={config.links} t={t} />
+    </TranslationProvider>
   );
 }
 
-export const metadata: Metadata = {
-  metadataBase: `https://${config.domain}`,
-  title: {
-    template: `%s | ${config.title}`,
-    default: `${config.title}`,
-  },
-  description: `${config.description}`,
-  alternates: {
-    canonical: '/',
-    types: {
-      'application/rss+xml': `https://${config.domain}/blog/feed`,
+export function generateMetadata(): Metadata {
+  const t = getTranslations(config);
+
+  return {
+    metadataBase: new URL(`https://${config.domain}`),
+    title: {
+      template: `%s | ${config.title}`,
+      default: config.title,
     },
-  },
-};
+    description: t(config.description),
+    alternates: {
+      canonical: '/',
+      types: {
+        'application/rss+xml': `https://${config.domain}/blog/feed`,
+      },
+    },
+  };
+}

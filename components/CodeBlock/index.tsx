@@ -12,9 +12,7 @@ export default function CodeBlock({ children, ...props }: CodeBlockProps): React
     return <code className={styles.codeInline}>{children}</code>;
   }
 
-  if (props.className !== 'language-plain') {
-    children = highlight(children);
-  }
+  const isPlain = props.className === 'language-plain';
 
   return (
     <div className={styles.codeblock}>
@@ -23,7 +21,11 @@ export default function CodeBlock({ children, ...props }: CodeBlockProps): React
         <div className={styles.carbonButton} data-yellow />
         <div className={styles.carbonButton} data-green />
       </div>
-      <code dangerouslySetInnerHTML={{ __html: children }} {...props} />
+      {isPlain ? (
+        <code {...props}>{children}</code>
+      ) : (
+        <code dangerouslySetInnerHTML={{ __html: highlight(children) }} {...props} />
+      )}
     </div>
   );
 }

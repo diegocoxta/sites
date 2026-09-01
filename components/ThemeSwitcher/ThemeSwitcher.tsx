@@ -1,4 +1,8 @@
+'use client';
+
 import { FiSun, FiMoon } from 'react-icons/fi';
+
+import { useTranslator } from '~/components/TranslationProvider';
 
 import styles from './styles.module.css';
 
@@ -8,22 +12,19 @@ interface ThemeSwitcherProps {
 }
 
 export default function ThemeSwitcher({ isDarkMode, onClick }: ThemeSwitcherProps): React.ReactElement {
+  const t = useTranslator();
+
   return (
     <button
       className={styles.container}
       data-isdarkmode={`${isDarkMode}`}
       aria-checked={isDarkMode}
-      aria-label="Trocar a cor do tema."
+      aria-label={t('client.components.themeSwitcher.ariaLabel')}
       onClick={onClick}
-      data-testid="themeswitcher--button"
       role="switch"
     >
       <span className={styles.indicator} aria-hidden>
-        {isDarkMode ? (
-          <FiMoon data-testid="react-icon-bsmoon" size={16} />
-        ) : (
-          <FiSun data-testid="react-icon-bssun" size={16} />
-        )}
+        {isDarkMode ? <FiMoon size={16} /> : <FiSun size={16} />}
       </span>
     </button>
   );

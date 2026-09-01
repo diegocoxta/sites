@@ -1,9 +1,9 @@
 import { redirect } from 'next/navigation';
 
-import { SUPPORTED_LANGUAGES } from '~/lib/lang';
+import config from '~/app/diegocoxta.com/config';
 
-export const revalidate = 3600;
+export const revalidate = 43200;
 
 export default function HomePage() {
-  redirect(SUPPORTED_LANGUAGES[0]);
+  redirect(`/${config.locales[0]}`);
 }

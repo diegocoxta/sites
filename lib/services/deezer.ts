@@ -22,7 +22,7 @@ type FindArtistResponseType = {
   total: number;
 };
 
-export async function findArtists(params: FindArtistParamsType): Promise<FindArtistResponseType> {
+async function findArtists(params: FindArtistParamsType): Promise<FindArtistResponseType> {
   try {
     const { name, limit = 50 } = params;
 

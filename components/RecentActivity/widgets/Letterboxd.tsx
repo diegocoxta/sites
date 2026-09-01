@@ -1,14 +1,12 @@
 import { FaHeart } from 'react-icons/fa6';
 
 import { getRecentlyWatchedMovies } from '~/lib/services/letterboxd';
-import type { RecentActivityType } from '~/lib/config';
-import { getLocatedString } from '~/lib/lang';
+
+import type { RecentActivityProps } from '../index';
 
 import styles from '../styles.module.css';
 
-export default async function LetterboxdWidget(props: Pick<RecentActivityType, 'config' | 'lang'>) {
-  const { config, lang } = props;
-
+export default async function LetterboxdWidget({ config, t }: RecentActivityProps) {
   if (!config.username) {
     return <></>;
   }
@@ -18,7 +16,7 @@ export default async function LetterboxdWidget(props: Pick<RecentActivityType, '
   return (
     data.movies.length > 0 && (
       <>
-        {config.title && <h3 className={styles.title}>{getLocatedString(config.title, lang)}</h3>}
+        {config.title && <h3 className={styles.title}>{t(config.title)}</h3>}
         <ul className={styles.grid}>
           {data.movies.map((movie) => (
             <li className={styles.item} key={movie.pubDate}>
@@ -35,12 +33,7 @@ export default async function LetterboxdWidget(props: Pick<RecentActivityType, '
               </h4>
               {movie.stars > 0 && <p className={styles.itemDescription}>{'★'.repeat(movie.stars)}</p>}
               <time dateTime={movie.watchedDate} className={styles.itemDate}>
-                {new Date(movie.watchedDate).toLocaleDateString(lang, {
-                  timeZone: 'UTC',
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric',
-                })}
+                {t.date(movie.watchedDate, { day: 'numeric', month: 'long', year: 'numeric' })}
               </time>
             </li>
           ))}

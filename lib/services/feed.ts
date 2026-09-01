@@ -37,9 +37,11 @@ export async function getFeedListing(
 
     const items = parsedData.rss?.channel?.item as GetRecentlFeedListingResponseType['items'];
 
-    return { items: items.slice(0, limit) };
+    const itemsArray = Array.isArray(items) ? items : items ? [items] : [];
+
+    return { items: itemsArray.slice(0, limit) };
   } catch (error) {
-    console.error('Erro ao processar o feed do Letterboxd:', error);
+    console.error('Erro ao processar o feed:', error);
     return { items: [] } as GetRecentlFeedListingResponseType;
   }
 }

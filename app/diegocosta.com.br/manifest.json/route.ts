@@ -1,18 +1,22 @@
 import { NextResponse } from 'next/server';
 
-import * as envs from '~/lib/envs';
+import { getTranslations } from '~/lib/i18n/messages';
 
 import config from '~/app/diegocosta.com.br/config';
 
+export const revalidate = 76800;
+
 export const GET = () => {
+  const t = getTranslations(config);
+
   return NextResponse.json(
     {
       name: config.title,
       short_name: config.title,
-      description: config.description,
+      description: t(config.description),
       start_url: '/',
       display: 'standalone',
-      theme_color: envs.SITE_ACCENT_COLOR,
+      theme_color: config.theme.accentColor,
       icons: [
         {
           src: '/icon',

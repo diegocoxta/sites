@@ -44,11 +44,11 @@ Welcome to my `/uses` page that list all my tools, hardware, and software! As a 
 
 - **Body**: Canon EOS R50.
 - **Lenses**:
-  - Canon RF-S 10-18mm f/4.5-6.3 IS STM. [(Disponível para compra no Mercado Livre)](https://www.mercadolivre.com.br/lente-canon-rfs-1018mm-f4563-is-stm/up/MLBU4991636506)
+  - Canon RF-S 10-18mm f/4.5-6.3 IS STM. [(Available on Mercado Livre)](https://www.mercadolivre.com.br/lente-canon-rfs-1018mm-f4563-is-stm/up/MLBU4991636506)
   - Canon RF 28mm f/2.8mm STM (for street photography/everyday carry due to its small size).
-  - Canon RF-S 18-45mm f/4.5-6.3 IS STM (kit lens). [(Disponível para compra no Mercado Livre)](https://www.mercadolivre.com.br/lente-canon-rfs-1845mm-f4563-is-stm-black-cor-preto/up/MLBU4991370416)
+  - Canon RF-S 18-45mm f/4.5-6.3 IS STM (kit lens). [(Available on Mercado Livre)](https://www.mercadolivre.com.br/lente-canon-rfs-1845mm-f4563-is-stm-black-cor-preto/up/MLBU4991370416)
   - Canon RF 50mm f/1.8mm STM (for portraits and general photography).
-  - Canon RF-S 55-210mm f/5-7.1 IS STM. [(Disponível para compra no Mercado Livre)](https://www.mercadolivre.com.br/lente-canon-rf-55210mm-f571-estabilizada/up/MLBU4991696062)
+  - Canon RF-S 55-210mm f/5-7.1 IS STM. [(Available on Mercado Livre)](https://www.mercadolivre.com.br/lente-canon-rf-55210mm-f571-estabilizada/up/MLBU4991696062)
   - Tamron 18-300mm f/3.5-6.3 Di III-A VC VXD (for landscape and travel photography).
 
 ### 🎸 Jam

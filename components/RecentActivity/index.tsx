@@ -1,3 +1,8 @@
+import type { RecentActivityType } from '~/lib/config';
+import type { ComponentWithTranslator } from '~/lib/i18n';
+
+export type RecentActivityProps = ComponentWithTranslator<Pick<RecentActivityType, 'config'>>;
+
 export { default as DiscogsRecentActivity } from './widgets/Discogs';
 export { default as HardcoverRecentActivity } from './widgets/Hardcover';
 export { default as LetterboxdRecentActivity } from './widgets/Letterboxd';

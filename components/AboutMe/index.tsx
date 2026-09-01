@@ -1,15 +1,15 @@
+import type { ComponentWithTranslator } from '~/lib/i18n';
+
 import styles from './styles.module.css';
 
-interface AboutMeProps {
-  bio: string;
-}
-
-export default function AboutMe(props: AboutMeProps) {
+export default function AboutMe({ t }: ComponentWithTranslator) {
   return (
-    <main aria-label="Sobre mim" className={styles.container}>
-      {props.bio.split('\n').map((p: string) => (
-        <p className={styles.paragraph} data-testid="about-me-bio" key={p} dangerouslySetInnerHTML={{ __html: p }} />
-      ))}
+    <main aria-label={t('components.aboutme.ariaLabel')} className={styles.container}>
+      {t('components.aboutme.bio')
+        .split('\n')
+        .map((p: string) => (
+          <p className={styles.paragraph} key={p} dangerouslySetInnerHTML={{ __html: p }} />
+        ))}
     </main>
   );
 }

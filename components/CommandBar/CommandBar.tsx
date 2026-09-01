@@ -4,18 +4,21 @@ import React from 'react';
 import { KBarAnimator, KBarPortal, useMatches, KBarPositioner, KBarSearch, KBarResults, useKBar } from 'kbar';
 import { LuCommand, LuSearch } from 'react-icons/lu';
 
-import type { ExtendedAction } from './index';
+import { useTranslator } from '~/components/TranslationProvider';
 
 import styles from './styles.module.css';
 
+import type { ExtendedAction } from './index';
+
 export default function CommandBar(): React.ReactElement {
+  const t = useTranslator();
   const { query } = useKBar();
   const { results } = useMatches();
 
   return (
     <>
       <button
-        aria-label="Abrir menu de comandos"
+        aria-label={t('client.components.commandBar.openMenu')}
         aria-haspopup="dialog"
         className={styles.button}
         onClick={() => query.toggle()}
@@ -27,7 +30,10 @@ export default function CommandBar(): React.ReactElement {
           <KBarAnimator className={styles.animator}>
             <div className={styles.item}>
               <LuSearch size={22} aria-hidden />
-              <KBarSearch className={styles.search} defaultPlaceholder="Escreva um comando ou uma busca." />
+              <KBarSearch
+                className={styles.search}
+                defaultPlaceholder={t('client.components.commandBar.searchPlaceholder')}
+              />
               <div className={styles.shortcut} aria-hidden>
                 <kbd className={styles.shortcutIcon}>esc</kbd>
               </div>
