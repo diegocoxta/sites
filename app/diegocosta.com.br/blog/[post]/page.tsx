@@ -22,7 +22,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { post } = await params;
 
   const t = getTranslations(config);
-  const doc = content.readFile(`/posts/${post}`);
+  const doc = content.readFile(`/blog/${post}`);
 
   if (!doc) {
     notFound();
@@ -46,7 +46,7 @@ export const generateStaticParams = () => content.getPosts().map(({ slug: post }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { post } = await params;
-  const doc = content.readFile(`/posts/${post}`);
+  const doc = content.readFile(`/blog/${post}`);
 
   if (!doc) {
     notFound();

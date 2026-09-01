@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { contentFor } from '~/lib/content';
+import { type ContentAttributes, contentFor } from '~/lib/content';
 import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
 
 import TranslationProvider from '~/components/TranslationProvider';
@@ -22,6 +22,8 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   const pages = content.getPages();
   const posts = content.getPosts();
 
+  const toCommandAction = (p: ContentAttributes) => ({ href: p.href, title: p.title, language: p.language });
+
   return (
     <TranslationProvider messages={messages} locale={t.locale}>
       <PersonSchema data={config} />
@@ -30,7 +32,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         right={
           <>
             <ThemeSwitcher />
-            <CommandBar pages={pages} posts={posts} repository={config.repository} />
+            <CommandBar content={[...posts, ...pages].map(toCommandAction)} repository={config.repository} />
           </>
         }
       />

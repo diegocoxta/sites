@@ -32,19 +32,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: 0.9,
     },
-    ...pages.map(({ slug }) => ({
-      url: `https://${domain}/${slug}`,
+    ...[...posts, ...pages].map(({ href }) => ({
+      url: `https://${domain}${href}`,
       priority: 0.8,
     })),
     ...tags.map((tag) => ({
       url: `https://${domain}/blog/tag/${tag}`,
       changeFrequency: 'weekly',
       priority: 0.6,
-    })),
-    ...posts.map(({ slug }) => ({
-      url: `https://${domain}/blog/${slug}`,
-      changeFrequency: 'monthly',
-      priority: 0.8,
     })),
   ];
 }

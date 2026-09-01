@@ -23,7 +23,7 @@ export default function HomePage() {
         <article key={`blog-article-${index}`}>
           <header>
             <Title>
-              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+              <Link href={post.href}>{post.title}</Link>
             </Title>
             <Attributes {...post} t={t} />
           </header>

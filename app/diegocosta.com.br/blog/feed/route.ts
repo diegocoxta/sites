@@ -24,7 +24,7 @@ export function GET() {
   content.getPosts().forEach((post) => {
     feed.item({
       title: post.title,
-      url: `https://${config.domain}/blog/${post.slug}`,
+      url: `https://${config.domain}${post.href}`,
       date: post.date!,
       description: post.summary ?? '',
     });

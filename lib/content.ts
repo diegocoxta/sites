@@ -12,11 +12,9 @@ export type ContentAttributes = {
   slug: string;
   content: string;
   readingTime: number;
+  href?: string;
   summary?: string;
   status?: string;
-};
-
-export type BlogContentAttributes = ContentAttributes & {
   date?: string;
   language?: string;
   tags?: Array<string>;
@@ -25,7 +23,7 @@ export type BlogContentAttributes = ContentAttributes & {
 
 const isPublished = (entry: ContentAttributes): boolean => entry.status !== 'draft';
 
-const byDateDesc = (a: BlogContentAttributes, b: BlogContentAttributes): number =>
+const byDateDesc = (a: ContentAttributes, b: ContentAttributes): number =>
   new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime();
 
 function rewriteRelativeImages(content: string, dir: string): string {
@@ -104,12 +102,17 @@ const listContent = cache(function listContent<T extends ContentAttributes>(
     .filter((entry): entry is T => entry !== undefined);
 });
 
-const getPosts = cache((domain: string, defaultLocale: string, locale?: string): Array<BlogContentAttributes> =>
-  listContent<BlogContentAttributes>(domain, '/posts', locale, defaultLocale).filter(isPublished).sort(byDateDesc)
+const getPosts = cache((domain: string, defaultLocale: string, locale?: string): Array<ContentAttributes> =>
+  listContent<ContentAttributes>(domain, '/blog', locale, defaultLocale)
+    .filter(isPublished)
+    .sort(byDateDesc)
+    .map((p) => ({ ...p, href: `/blog/${p.slug}` }))
 );
 
 const getPages = cache((domain: string, defaultLocale: string, locale?: string): Array<ContentAttributes> =>
-  listContent(domain, '/pages', locale, defaultLocale).filter(isPublished)
+  listContent<ContentAttributes>(domain, '/pages', locale, defaultLocale)
+    .filter(isPublished)
+    .map((p) => ({ ...p, href: `/${p.slug}` }))
 );
 
 const getTags = cache((domain: string, defaultLocale: string, locale?: string): Array<string> => [

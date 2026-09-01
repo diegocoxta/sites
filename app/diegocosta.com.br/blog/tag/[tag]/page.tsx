@@ -33,7 +33,7 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
           <article key={`article-${index}`}>
             <header>
               <Title>
-                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                <Link href={post.href}>{post.title}</Link>
               </Title>
               <Attributes {...post} t={t} />
             </header>

@@ -5,20 +5,21 @@ import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { LuHouse, LuMoon, LuNewspaper, LuNotepadText, LuPalette, LuSun, LuCodeXml, LuSunMoon } from 'react-icons/lu';
 
-import type { BlogContentAttributes } from '~/lib/content';
+import type { ContentAttributes } from '~/lib/content';
 import { useTranslator } from '~/components/TranslationProvider';
 
 import _CommandBar from './CommandBar';
 
+type ContentAction = Pick<ContentAttributes, 'href' | 'title' | 'language'>;
+
 interface CommandBarProps {
-  pages: Array<BlogContentAttributes>;
-  posts: Array<BlogContentAttributes>;
+  content: Array<ContentAction>;
   repository: string;
 }
 
-export type ExtendedAction = Action & Partial<BlogContentAttributes>;
+export type ExtendedAction = Action & Partial<ContentAction>;
 
-export default function CommandBar({ pages, posts, repository }: CommandBarProps): React.ReactElement {
+export default function CommandBar({ content, repository }: CommandBarProps): React.ReactElement {
   const t = useTranslator();
   const { setTheme } = useTheme();
   const router = useRouter();
@@ -37,22 +38,19 @@ export default function CommandBar({ pages, posts, repository }: CommandBarProps
       section: t('client.components.commandBar.section.pages'),
       icon: <LuNewspaper size={18} />,
     },
-    ...pages.map((p) => ({
-      id: `page-${p.slug}`,
-      name: p.title,
-      section: t('client.components.commandBar.section.pages'),
-      perform: () => router.push(`/${p.slug}`),
-      icon: <LuNotepadText size={18} />,
-      language: p.language,
-    })),
-    ...posts.map((p) => ({
-      id: `post-${p.slug}`,
-      name: p.title,
-      perform: () => router.push(`/blog/${p.slug}`),
-      icon: <LuNewspaper size={18} />,
-      parent: 'blog',
-      language: p.language,
-    })),
+    ...content.map((p) => {
+      const isPost = p.href.startsWith('/blog/');
+
+      return {
+        id: `item-${p.href}`,
+        name: p.title,
+        section: isPost ? undefined : t('client.components.commandBar.section.pages'),
+        perform: () => router.push(p.href),
+        icon: isPost ? <LuNewspaper size={18} /> : <LuNotepadText size={18} />,
+        parent: isPost ? 'blog' : undefined,
+        language: p.language,
+      };
+    }),
     {
       id: 'theme',
       name: t('client.components.commandBar.action.theme'),

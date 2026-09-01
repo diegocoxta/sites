@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
-import type { BlogContentAttributes } from '~/lib/content';
+import type { ContentAttributes } from '~/lib/content';
 import type { ComponentWithTranslator } from '~/lib/i18n';
 
 import styles from './styles.module.css';
 
 type MetaAttributesProps = ComponentWithTranslator<
-  Partial<Pick<BlogContentAttributes, 'date' | 'readingTime' | 'language' | 'tags'>>
+  Partial<Pick<ContentAttributes, 'date' | 'readingTime' | 'language' | 'tags'>>
 >;
 
 export default function MetaAttributes({ t, ...props }: MetaAttributesProps): React.ReactElement {
