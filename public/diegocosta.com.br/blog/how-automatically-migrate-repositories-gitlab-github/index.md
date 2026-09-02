@@ -2,7 +2,6 @@
 title: How to automatically migrate all your repositories from Gitlab to Github.
 date: 2023-02-11T09:12:03.284Z
 summary: After postponing for a long time I decided to migrate all my repositories from Gitlab to Github. How easy should this task be?
-language: English
 tags:
   - gitlab
   - github

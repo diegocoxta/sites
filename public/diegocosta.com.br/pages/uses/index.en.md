@@ -1,10 +1,12 @@
 ---
 title: Tools I Use
 summary: The page where I share the tools that make my life easier and happier.
-language: English
 ---
 
+
 # Tools I Use
+
+> Also available in [Português](/uses) and [Español](/uses/es)
 
 Welcome to my `/uses` page that list all my tools, hardware, and software! As a tech enthusiast and professional, I'm constantly on the lookout for the best gear and apps to make my life easier and more productive. This page is my curated collection of the tools I use on a daily basis, sorted by category for easy browsing.
 

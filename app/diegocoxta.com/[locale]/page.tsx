@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 
 import { getTranslations } from '~/lib/i18n/messages';
 
-import Linktree, { type LinktreeProps } from '~/components/Linktree';
+import type { CardLinkType, IconLinkType } from '~/lib/config';
+
+import Linktree from '~/components/Linktree';
 import Username from '~/components/Username';
 
 import config from '~/app/diegocoxta.com/config';
@@ -18,16 +20,11 @@ export default async function HomePage({ params }: HomePageProps) {
 
   const t = getTranslations(config, locale);
 
-  const icons = config.links?.filter((link) => link.type === 'icon');
-  const cards = config.links?.filter((link) => link.type === 'card');
+  const icons = config.links?.filter((link): link is IconLinkType => link.type === 'icon') ?? [];
+  const cards = config.links?.filter((link): link is CardLinkType => link.type === 'card') ?? [];
 
   return (
-    <Linktree
-      background={config.avatar}
-      t={t}
-      icons={icons as LinktreeProps['icons']}
-      cards={cards as LinktreeProps['cards']}
-    >
+    <Linktree background={config.avatar} t={t} icons={icons} cards={cards}>
       <Username username={config.title} size={32} />
       <p className="bio">{t(config.description)}</p>
     </Linktree>

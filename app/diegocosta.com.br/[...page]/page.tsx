@@ -11,12 +11,12 @@ import config from '~/app/diegocosta.com.br/config';
 const content = contentFor(config);
 
 interface PageProps {
-  params: Promise<{ page: string }>;
+  params: Promise<{ page: string[] }>;
 }
 
 export default async function Page({ params }: PageProps) {
   const { page } = await params;
-  const doc = content.readFile(`/pages/${page}`);
+  const doc = content.readFile(`/pages/${page[0]}`, page[1] || config.locales[0]);
 
   if (!doc) {
     notFound();
@@ -29,11 +29,14 @@ export default async function Page({ params }: PageProps) {
   );
 }
 
-export const generateStaticParams = () => content.getPages().map(({ slug: page }) => ({ page }));
+export const generateStaticParams = () =>
+  content
+    .getPages()
+    .flatMap(({ slug }) => [{ page: [slug] }, ...config.locales.map((locale) => ({ page: [slug, locale] }))]);
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { page } = await params;
-  const doc = content.readFile(`/pages/${page}`);
+  const doc = content.readFile(`/pages/${page[0]}`, page[1] || config.locales[0]);
 
   if (!doc) {
     notFound();

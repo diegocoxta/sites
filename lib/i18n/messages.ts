@@ -15,7 +15,7 @@ const loadDictionary = cache((domain: string, locale: Locale): Record<string, st
     return JSON.parse(raw) as Record<string, string>;
   } catch {
     if (process.env.NODE_ENV !== 'production') {
-      console.warn(`[i18n] dicionário ausente: ${domain}/translations/${locale}.json`);
+      console.warn(`[i18n] missing dictionary: ${domain}/translations/${locale}.json`);
     }
 
     return {};

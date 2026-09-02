@@ -1,3 +1,5 @@
+import { fetchJson } from '~/lib/http';
+
 type GetUserCollectionParamsType = {
   username: string;
   authorization: string;
@@ -5,7 +7,7 @@ type GetUserCollectionParamsType = {
   page?: number;
 };
 
-interface GetUserCollectionResponseType {
+type GetUserCollectionResponseType = null | {
   releases: Array<{
     id: string;
     date_added: string;
@@ -17,26 +19,20 @@ interface GetUserCollectionResponseType {
       }>;
     };
   }>;
-}
+};
 
 export async function getUserCollection(params: GetUserCollectionParamsType): Promise<GetUserCollectionResponseType> {
-  try {
-    const { username, authorization, per_page = 3, page = 1 } = params;
-    const request = await fetch(
-      `https://api.discogs.com/users/${username}/collection/folders/0/releases?sort=added&sort_order=desc&page=${page}&per_page=${per_page}`,
-      {
-        headers: {
-          Authorization: `Discogs token=${authorization}`,
-        },
-        next: { revalidate: 3600 },
-      }
-    );
+  const { username, authorization, per_page = 3, page = 1 } = params;
 
-    const data: GetUserCollectionResponseType = await request.json();
+  const response = await fetchJson<GetUserCollectionResponseType>(
+    `https://api.discogs.com/users/${username}/collection/folders/0/releases?sort=added&sort_order=desc&page=${page}&per_page=${per_page}`,
+    {
+      headers: {
+        Authorization: `Discogs token=${authorization}`,
+      },
+      id: 'discogs',
+    }
+  );
 
-    return data;
-  } catch (error) {
-    console.error(error);
-    return {} as GetUserCollectionResponseType;
-  }
+  return response;
 }

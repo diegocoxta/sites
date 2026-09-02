@@ -1,10 +1,12 @@
+import { fetchJson } from '~/lib/http';
+
 type GetUserConcertsAttendanceParamsType = {
   username: string;
   authorization: string;
   page?: number;
 };
 
-interface GetUserConcertsAttendanceResponseType {
+type GetUserConcertsAttendanceResponseType = null | {
   type: string;
   itemsPerPage: number;
   page: number;
@@ -71,26 +73,23 @@ interface GetUserConcertsAttendanceResponseType {
     info?: string;
     url: string;
   }>;
-}
+};
 
 export async function getUserConcertsAttendance(
   params: GetUserConcertsAttendanceParamsType
 ): Promise<GetUserConcertsAttendanceResponseType> {
-  try {
-    const { username, authorization, page = 1 } = params;
-    const request = await fetch(`https://api.setlist.fm/rest/1.0/user/${username}/attended?p=${page}`, {
+  const { username, authorization, page = 1 } = params;
+
+  const data = await fetchJson<GetUserConcertsAttendanceResponseType>(
+    `https://api.setlist.fm/rest/1.0/user/${username}/attended?p=${page}`,
+    {
       headers: {
         'x-api-key': authorization,
         accept: 'application/json',
       },
-      next: { revalidate: 3600 },
-    });
+      id: 'setlist',
+    }
+  );
 
-    const data: GetUserConcertsAttendanceResponseType = await request.json();
-
-    return data;
-  } catch (error) {
-    console.error(error);
-    return {} as GetUserConcertsAttendanceResponseType;
-  }
+  return data;
 }

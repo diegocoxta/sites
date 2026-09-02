@@ -2,6 +2,7 @@ import './page.css';
 
 import * as Fa from 'react-icons/fa6';
 
+import type { IconLinkType } from '~/lib/config';
 import { getTranslations } from '~/lib/i18n/messages';
 
 import Container from '~/components/Container';
@@ -32,7 +33,7 @@ export default function HomePage() {
       <section className="social">
         <ul className="socialLinks">
           {config.links
-            ?.filter((link) => link.type === 'icon')
+            ?.filter((link): link is IconLinkType => link.type === 'icon')
             .map((link) => {
               const Icon = Fa[link.icon as keyof typeof Fa];
               return (

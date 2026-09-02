@@ -12,7 +12,7 @@ export type ContentAttributes = {
   slug: string;
   content: string;
   readingTime: number;
-  href?: string;
+  href: string;
   summary?: string;
   status?: string;
   date?: string;
@@ -65,7 +65,20 @@ const readContentFile = cache(function readContentFile<T extends ContentAttribut
     return undefined;
   }
 
-  const { data, content } = matter(fs.readFileSync(file, 'utf-8'));
+  let data: Record<string, unknown>;
+  let content: string;
+
+  try {
+    ({ data, content } = matter(fs.readFileSync(file, 'utf-8')));
+  } catch (error) {
+    console.error(`[content] failed to parse ${file}`, error);
+    return undefined;
+  }
+
+  if (typeof data.title !== 'string' || data.title.length === 0) {
+    console.warn(`[content] skipping ${file}: missing "title" in front matter`);
+    return undefined;
+  }
 
   const attributes: Record<string, unknown> = {
     ...data,
@@ -74,7 +87,7 @@ const readContentFile = cache(function readContentFile<T extends ContentAttribut
   };
 
   if (data.date) {
-    attributes.date = new Date(data.date).toISOString().slice(0, 10);
+    attributes.date = new Date(data.date as string).toISOString().slice(0, 10);
   }
 
   return attributes as T;
@@ -106,13 +119,13 @@ const getPosts = cache((domain: string, defaultLocale: string, locale?: string):
   listContent<ContentAttributes>(domain, '/blog', locale, defaultLocale)
     .filter(isPublished)
     .sort(byDateDesc)
-    .map((p) => ({ ...p, href: `/blog/${p.slug}` }))
+    .map((post) => ({ ...post, href: `/blog/${post.slug}` }))
 );
 
 const getPages = cache((domain: string, defaultLocale: string, locale?: string): Array<ContentAttributes> =>
   listContent<ContentAttributes>(domain, '/pages', locale, defaultLocale)
     .filter(isPublished)
-    .map((p) => ({ ...p, href: `/${p.slug}` }))
+    .map((page) => ({ ...page, href: `/${page.slug}` }))
 );
 
 const getTags = cache((domain: string, defaultLocale: string, locale?: string): Array<string> => [

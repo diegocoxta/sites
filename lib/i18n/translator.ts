@@ -11,22 +11,12 @@ export type ComponentWithTranslator<P = unknown> = P & { t: Translator };
 const TRANSLATABLE_KEY = /^(client|config|components|page)\./;
 
 export function createTranslator(messages: Record<string, string>, locale: Locale): Translator {
-  const lookup = (key: string): string | undefined => {
-    const direct = messages[key];
-
-    if (typeof direct === 'string') {
-      return direct;
-    }
-
-    return undefined;
-  };
-
   const t = ((key: string, params?: Record<string, string | number>): string => {
-    const value = lookup(key);
+    const value = messages[key];
 
     if (value === undefined) {
       if (process.env.NODE_ENV !== 'production' && TRANSLATABLE_KEY.test(key)) {
-        console.warn(`[i18n] chave ausente: "${key}" (${locale})`);
+        console.warn(`[i18n] missing key: "${key}" (${locale})`);
       }
 
       return key;

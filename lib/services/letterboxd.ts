@@ -1,68 +1,59 @@
 import { XMLParser } from 'fast-xml-parser';
 
+import { fetchText } from '~/lib/http';
+
 type GetRecentlyWatchedMoviesParamsType = {
   username: string;
   limit?: number;
 };
 
-type GetRecentlyWatchedMoviesResponseType = {
-  movies: Array<{
-    title: string;
-    watchedDate: string;
-    memberLike: string;
-    cover: string;
-    pubDate: string;
-    stars: number;
-  }>;
-};
+type GetRecentlyWatchedMoviesResponseType = null | Array<{
+  title: string;
+  watchedDate: string;
+  memberLike: string;
+  cover: string;
+  pubDate: string;
+  stars: number;
+}>;
 
 export async function getRecentlyWatchedMovies(
   params: GetRecentlyWatchedMoviesParamsType
 ): Promise<GetRecentlyWatchedMoviesResponseType> {
+  const { username, limit = 3 } = params;
+
+  const response = await fetchText(`https://letterboxd.com/${username}/rss/`, { id: 'letterboxd' });
+
+  if (!response) {
+    return null;
+  }
+
   try {
-    const { username, limit = 3 } = params;
-
-    const response = await fetch(`https://letterboxd.com/${username}/rss/`, {
-      next: { revalidate: 3600 },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Erro ao buscar o RSS: ${response.statusText}`);
-    }
-
-    const xmlData = await response.text();
-
-    const parser = new XMLParser({
-      ignoreAttributes: false,
-    });
-    const parsedData = parser.parse(xmlData);
-
-    const items = parsedData.rss?.channel?.item;
+    const parsed = new XMLParser({ ignoreAttributes: false }).parse(response);
+    const items = parsed.rss?.channel?.item;
 
     if (!items) {
-      return { movies: [] } as GetRecentlyWatchedMoviesResponseType;
+      return null;
     }
 
-    const moviesArray = Array.isArray(items) ? items : [items];
+    const itemsArray = Array.isArray(items) ? items : [items];
 
-    const movies: GetRecentlyWatchedMoviesResponseType['movies'] = moviesArray.slice(0, limit).map((item) => {
+    const data: GetRecentlyWatchedMoviesResponseType = itemsArray.slice(0, limit).map((item) => {
       const description = item.description || '';
       const imgMatch = description.match(/src="([^"]+)"/);
-      const coverUrl = imgMatch ? imgMatch[1] : '';
 
       return {
         title: item['letterboxd:filmTitle'] || item.title,
         watchedDate: item['letterboxd:watchedDate'] || '',
         memberLike: item['letterboxd:memberLike'] || 'No',
-        cover: coverUrl,
+        cover: imgMatch ? imgMatch[1] : '',
         pubDate: item['pubDate'] || '',
         stars: item.title.split('★').length - 1,
       };
     });
 
-    return { movies };
+    return data;
   } catch (error) {
-    console.error('Erro ao processar o feed do Letterboxd:', error);
-    return { movies: [] } as GetRecentlyWatchedMoviesResponseType;
+    console.error(`[letterboxd] failed to parse feed — ${username}`, error);
+    return null;
   }
 }

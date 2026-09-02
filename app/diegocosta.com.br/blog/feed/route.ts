@@ -8,7 +8,7 @@ import config from '~/app/diegocosta.com.br/config';
 
 const content = contentFor(config);
 
-export const revalidate = 3600;
+export const revalidate = 76800;
 
 export function GET() {
   const t = getTranslations(config);

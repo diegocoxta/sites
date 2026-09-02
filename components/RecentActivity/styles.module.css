@@ -14,6 +14,30 @@
   padding: 0;
 }
 
+.skeleton {
+  height: 146px;
+  margin-top: 16px;
+  border-radius: 20px;
+  background: linear-gradient(
+    90deg,
+    var(--main-border-color) 25%,
+    var(--main-box-color) 50%,
+    var(--main-border-color) 75%
+  );
+  background-size: 200% 100%;
+  animation: recent-activity-shimmer 1.4s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes recent-activity-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
 .title {
   text-transform: uppercase;
   font-size: 12px;
@@ -54,17 +78,23 @@
 }
 
 .itemCover {
+  position: relative;
+  overflow: hidden;
   width: 100%;
   border-radius: 20px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
   transition: all linear 0.5s;
   height: 146px;
 
+  & img {
+    object-fit: cover;
+  }
+
+  &.tall {
+    height: 190px;
+  }
+
   &.empty {
     background-color: var(--main-accent-color);
-    height: 190px;
     display: flex;
     align-items: center;
     justify-content: center;

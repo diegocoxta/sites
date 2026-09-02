@@ -1,7 +1,6 @@
 ---
 title: Currículo
 summary: Um resumo da minha jornada, destacando os desafios que encarei, as soluções que entreguei e os times que ajudei a formar.
-language: Português
 ---
 
 [diego@diegocosta.com.br](mailto:diego@diegocosta.com.br) • [in/diegocoxta](https://www.linkedin.com/in/diegocoxta) • 🇧🇷 [\+55 11 9 9392-6493](https://wa.me/5511993926493)

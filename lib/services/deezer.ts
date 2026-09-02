@@ -1,9 +1,11 @@
+import { fetchJson } from '~/lib/http';
+
 type FindArtistParamsType = {
   name: string;
   limit?: number;
 };
 
-type FindArtistResponseType = {
+type FindArtistResponseType = null | {
   data: Array<{
     id: number;
     name: string;
@@ -22,43 +24,23 @@ type FindArtistResponseType = {
   total: number;
 };
 
-async function findArtists(params: FindArtistParamsType): Promise<FindArtistResponseType> {
-  try {
-    const { name, limit = 50 } = params;
+export async function findArtistPhoto(params: FindArtistParamsType): Promise<string | null> {
+  const { name, limit = 50 } = params;
 
-    const url = new URL('https://api.deezer.com/search/artist');
-    url.searchParams.append('q', `artist:"${name}"`);
-    url.searchParams.append('limit', limit.toString());
+  const url = new URL('https://api.deezer.com/search/artist');
+  url.searchParams.set('q', `artist:"${name}"`);
+  url.searchParams.set('limit', String(limit));
 
-    const response = await fetch(url.toString(), {
-      next: { revalidate: 3600 * 24 },
-    });
+  const response = await fetchJson<FindArtistResponseType>(url.toString(), {
+    id: 'deezer',
+    timeoutMs: 10000,
+  });
 
-    const data: FindArtistResponseType = await response.json();
-
-    return data;
-  } catch (error) {
-    console.error(error);
-    return {} as FindArtistResponseType;
-  }
-}
-
-type FindArtistPhotoParamsType = Pick<FindArtistParamsType, 'name'>;
-type FindArtistPhotoResponseTye = string | null;
-
-export async function findArtistPhoto(params: FindArtistPhotoParamsType): Promise<FindArtistPhotoResponseTye> {
-  try {
-    const data: FindArtistResponseType = await findArtists(params);
-
-    if (data.data && data.data.length > 0) {
-      const artistaMaisPopular = data.data.sort((a, b) => b.nb_fan - a.nb_fan)[0];
-
-      return artistaMaisPopular.picture_medium;
-    }
-
-    return null;
-  } catch (error) {
-    console.error(error);
+  if (response?.data.length === 0) {
     return null;
   }
+
+  const mostPopular = response?.data.reduce((best, artist) => (artist.nb_fan > best.nb_fan ? artist : best));
+
+  return mostPopular?.picture_medium || null;
 }

@@ -22,7 +22,7 @@ export function useTranslator(): Translator {
   const t = useContext(TranslatorContext);
 
   if (!t) {
-    throw new Error('useTranslator() precisa estar dentro de <TranslationProvider>.');
+    throw new Error('useTranslator() must be used within <TranslationProvider>.');
   }
 
   return t;

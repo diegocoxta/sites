@@ -87,26 +87,16 @@
 }
 
 .cardsItem {
-  padding-bottom: 16px;
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-}
-
-.cardsItemDetails {
-  display: flex;
-  justify-content: space-between;
-}
-
-.cardsItemLink {
-  display: block;
-  width: 100%;
+  position: relative;
+  margin-bottom: 16px;
   padding: 16px;
   background-color: var(--main-box-color);
-  text-decoration: none;
   color: var(--main-text-color);
   border-radius: 20px;
   transition: 0.2s all linear;
   box-sizing: border-box;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
 
   &:hover {
     transform: scale(1.02);
@@ -115,6 +105,25 @@
   &.highlight {
     background-color: var(--main-accent-color);
     color: #fff;
+  }
+}
+
+.cardsItemDetails {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Title link, stretched to cover the whole card so the card stays clickable
+   without wrapping headings and lists inside an <a>. */
+.cardsItemLink {
+  text-decoration: none;
+  color: inherit;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
   }
 }
 

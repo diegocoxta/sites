@@ -1,10 +1,11 @@
 ---
 title: Herramientas que Uso
 summary: La página donde comparto las herramientas que hacen mi vida más fácil y feliz.
-language: Español
 ---
 
 # Herramientas que Uso
+
+> Also available in [Português](/uses) and [English](/uses/en)
 
 ¡Bienvenido a mi página `/uses`, que enumera todas mis herramientas, hardware y software! Como entusiasta y profesional de la tecnología, siempre estoy buscando los mejores equipos y aplicaciones para hacer mi vida más fácil y productiva. Esta página es mi colección seleccionada de las herramientas que uso a diario, organizada por categoría para facilitar la navegación.
 

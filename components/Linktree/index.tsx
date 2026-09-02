@@ -7,27 +7,19 @@ import type { ComponentWithTranslator } from '~/lib/i18n';
 import type { CardLinkType, IconLinkType } from '~/lib/config';
 
 import * as RecentActivity from '~/components/RecentActivity';
+import RecentActivityWidgetBoundary from '~/components/RecentActivity/WidgetBoundary';
 
 import styles from './styles.module.css';
 
 export type LinktreeProps = ComponentWithTranslator<
   React.PropsWithChildren<{
     background?: string;
-    icons: Array<
-      IconLinkType & {
-        icon: keyof typeof Fa6;
-      }
-    >;
-    cards: Array<
-      CardLinkType & {
-        icon?: keyof typeof Fa6;
-        recentActivity?: {
-          widget: keyof typeof RecentActivity;
-        };
-      }
-    >;
+    icons: IconLinkType[];
+    cards: CardLinkType[];
   }>
 >;
+
+const faIcon = (name?: string) => (name ? Fa6[name as keyof typeof Fa6] : undefined);
 
 export default function Linktree({ t, background, icons, cards, children }: LinktreeProps) {
   return (
@@ -37,7 +29,7 @@ export default function Linktree({ t, background, icons, cards, children }: Link
         <nav>
           <ul className={styles.iconsList}>
             {icons.map((icon) => {
-              const Icon = Fa6[icon.icon];
+              const Icon = faIcon(icon.icon);
               const label = t(icon.title);
 
               return (
@@ -50,7 +42,7 @@ export default function Linktree({ t, background, icons, cards, children }: Link
                     rel="me noopener"
                     className={styles.iconsItem}
                   >
-                    <Icon />
+                    {Icon && <Icon />}
                   </a>
                 </li>
               );
@@ -60,32 +52,42 @@ export default function Linktree({ t, background, icons, cards, children }: Link
 
         <div className={styles.cardsList}>
           {cards.map((card) => {
-            const RecentActivityWidget = card.recentActivity && RecentActivity[card.recentActivity.widget];
-            const Icon = card.icon && Fa6[card.icon];
+            const RecentActivityWidget = card.recentActivity
+              ? RecentActivity[card.recentActivity.widget as keyof typeof RecentActivity]
+              : undefined;
+            const Icon = faIcon(card.icon);
             const isExternalLink = card.href.startsWith('http');
 
             return (
-              <section className={styles.cardsItem} key={card.href} aria-labelledby={`${card.href}-title`}>
-                <Link
-                  href={card.href}
-                  className={`${styles.cardsItemLink} ${card.highlight ? styles.highlight : ''}`}
-                  target={isExternalLink ? '_blank' : '_self'}
-                  rel={isExternalLink ? 'me noopener' : undefined}
-                >
-                  <header className={styles.cardsItemDetails}>
-                    <h2 className={styles.cardsItemTitle} id={`${card.href}-title`}>
-                      {Icon && <Icon className={styles.pageItemIcon} aria-hidden />} {t(card.title)}
-                    </h2>
-                    <FiExternalLink className={styles.cardsItemExternalLinkIcon} aria-hidden />
-                  </header>
-                  {card.description && <p className={styles.cardsItemDescription}>{t(card.description)}</p>}
+              <section
+                className={`${styles.cardsItem} ${card.highlight ? styles.highlight : ''}`}
+                key={card.href}
+                aria-labelledby={`${card.href}-title`}
+              >
+                <header className={styles.cardsItemDetails}>
+                  <h2 className={styles.cardsItemTitle} id={`${card.href}-title`}>
+                    {Icon && <Icon className={styles.pageItemIcon} aria-hidden />}
+                    <Link
+                      href={card.href}
+                      className={styles.cardsItemLink}
+                      target={isExternalLink ? '_blank' : undefined}
+                      rel={isExternalLink ? 'me noopener' : undefined}
+                    >
+                      {t(card.title)}
+                    </Link>
+                  </h2>
+                  <FiExternalLink className={styles.cardsItemExternalLinkIcon} aria-hidden />
+                </header>
 
-                  {RecentActivityWidget && card.recentActivity?.config && (
-                    <div className={styles.cardsItemRecentActivity}>
+                {card.description && <p className={styles.cardsItemDescription}>{t(card.description)}</p>}
+
+                {RecentActivityWidget && card.recentActivity?.config && (
+                  <div className={styles.cardsItemRecentActivity}>
+                    <RecentActivityWidgetBoundary>
                       <RecentActivityWidget config={card.recentActivity.config} t={t} />
-                    </div>
-                  )}
-                </Link>
+                    </RecentActivityWidgetBoundary>
+                  </div>
+                )}
               </section>
             );
           })}

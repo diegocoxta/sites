@@ -1,23 +1,33 @@
-interface GetContributionsCalendarParamsType {
+import { fetchJson } from '~/lib/http';
+
+type GetContributionsCalendarParamsType = {
   username: string;
   authorization: string;
   months?: number;
-}
+};
 
-interface GetContributionsCalendarResponseType {
-  totalContributions: number;
-  weeks: Array<{
-    contributionDays: Array<{
-      contributionCount: number;
-      date: string;
-      color: string;
-    }>;
-  }>;
-}
+type GetContributionsCalendarResponseType = null | {
+  data: {
+    user?: {
+      contributionsCollection?: {
+        contributionCalendar?: {
+          totalContributions: number;
+          weeks?: Array<{
+            contributionDays?: Array<{
+              contributionCount: number;
+              date: string;
+              color: string;
+            }>;
+          }>;
+        };
+      };
+    };
+  };
+};
 
 export async function getContributionsCalendar(
   params: GetContributionsCalendarParamsType
-): Promise<GetContributionsCalendarResponseType | null> {
+): Promise<GetContributionsCalendarResponseType> {
   const { username, authorization, months = 6 } = params;
 
   const toDate = new Date();
@@ -43,28 +53,22 @@ export async function getContributionsCalendar(
     }
   `;
 
-  try {
-    const response = await fetch('https://api.github.com/graphql', {
-      method: 'POST',
-      headers: {
-        Authorization: `bearer ${authorization}`,
-        'Content-Type': 'application/json',
+  const response = await fetchJson<GetContributionsCalendarResponseType>('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      Authorization: `bearer ${authorization}`,
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        userName: username,
+        fromDate: fromDate.toISOString(),
+        toDate: toDate.toISOString(),
       },
-      body: JSON.stringify({
-        query,
-        variables: {
-          userName: username,
-          fromDate: fromDate.toISOString(),
-          toDate: toDate.toISOString(),
-        },
-      }),
-      next: { revalidate: 3600 },
-    });
+    }),
+    id: 'github',
+    timeoutMs: 10000, // 10 seconds
+  });
 
-    const data = await response.json();
-    return data?.data?.user?.contributionsCollection?.contributionCalendar || null;
-  } catch (error) {
-    console.error('Erro ao buscar dados:', error);
-    return null;
-  }
+  return response;
 }
