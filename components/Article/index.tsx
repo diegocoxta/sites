@@ -1,4 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import Link from 'next/link';
 
 import type { ContentAttributes } from '~/lib/content';
 
@@ -14,6 +15,13 @@ export default function Article(props: { children: ContentAttributes['content'] 
           source={props.children}
           components={{
             code: CodeBlock,
+            a: (props) => {
+              const isExternal = props.href?.startsWith('http');
+
+              return (
+                <Link {...props} target={isExternal ? '_blank' : undefined} rel={isExternal ? 'noopener' : undefined} />
+              );
+            },
           }}
         />
       )}
