@@ -9,7 +9,6 @@
   "components.footer.ariaLabel": "Links profissionais e contato",
   "components.attributes.readingTimeUnderMinute": "Menos de 1 minuto de leitura",
   "components.attributes.readingTime": "{count} minutos de leitura",
-  "components.attributes.inLanguage": "Em {language}",
   "components.attributes.tagsLabel": "Tags",
   "client.components.commandBar.openMenu": "Abrir menu de comandos",
   "client.components.commandBar.searchPlaceholder": "Escreva um comando ou uma busca.",
