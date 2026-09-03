@@ -47,7 +47,6 @@ summary: La página donde comparto las herramientas que hacen mi vida más fáci
 - **Lentes**:
   - Canon RF-S 10-18mm f/4.5-6.3 IS STM. [(Disponible en Mercado Livre)](https://www.mercadolivre.com.br/lente-canon-rfs-1018mm-f4563-is-stm/up/MLBU4991636506)
   - Canon RF 28mm f/2.8mm STM (para fotografía callejera/uso diario por su tamaño reducido).
-  - Canon RF-S 18-45mm f/4.5-6.3 IS STM (lente del kit). [(Disponible en Mercado Livre)](https://www.mercadolivre.com.br/lente-canon-rfs-1845mm-f4563-is-stm-black-cor-preto/up/MLBU4991370416)
   - Canon RF 50mm f/1.8mm STM (para retratos y fotografía en general).
   - Tamron 18-300mm f/3.5-6.3 Di III-A VC VXD (para fotografía de paisaje y viajes).
 
