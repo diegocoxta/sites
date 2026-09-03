@@ -2,6 +2,7 @@ import { type Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { contentFor } from '~/lib/content';
+import { getTranslations } from '~/lib/i18n/messages';
 
 import Container from '~/components/Container';
 import Article from '~/components/Article';
@@ -16,6 +17,8 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const { page } = await params;
+
+  const t = getTranslations(config);
   const doc = content.readFile(`/pages/${page[0]}`, page[1] || config.locales[0]);
 
   if (!doc) {
@@ -24,7 +27,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <Container>
-      <Article>{doc.content}</Article>
+      <Article t={t} renderHeader={false} {...doc} />
     </Container>
   );
 }

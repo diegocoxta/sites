@@ -5,9 +5,7 @@ import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 
 import Container from '~/components/Container';
-import Title from '~/components/Title';
-import PageName from '~/components/PageName';
-import Attributes from '~/components/Attributes';
+import PageTitle from '~/components/PageTitle';
 import Article from '~/components/Article';
 
 import config from '~/app/diegocosta.com.br/config';
@@ -30,14 +28,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <Container>
-      <PageName>blog</PageName>
-      <article>
-        <header>
-          <Title>{doc.title}</Title>
-          <Attributes {...doc} t={t} />
-        </header>
-        <Article>{doc.content}</Article>
-      </article>
+      <PageTitle>blog</PageTitle>
+      <Article t={t} {...doc} />
     </Container>
   );
 }

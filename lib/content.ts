@@ -18,7 +18,7 @@ export type ContentAttributes = {
   date?: string;
   language?: string;
   tags?: Array<string>;
-  expanded?: string;
+  expanded?: boolean;
 };
 
 const isPublished = (entry: ContentAttributes): boolean => entry.status !== 'draft';
