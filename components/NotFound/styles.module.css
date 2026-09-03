@@ -1,7 +1,11 @@
 .container {
   composes: container from '~/components/Container/styles.module.css';
   text-align: center;
-  padding: 80px 0;
+  height: 60vh;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .code {
