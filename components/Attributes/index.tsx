@@ -6,7 +6,7 @@ import type { ComponentWithTranslator } from '~/lib/i18n';
 import styles from './styles.module.css';
 
 type MetaAttributesProps = ComponentWithTranslator<
-  Partial<Pick<ContentAttributes, 'date' | 'readingTime' | 'language' | 'tags'>>
+  Partial<Pick<ContentAttributes, 'date' | 'readingTime' | 'tags'>>
 >;
 
 export default function MetaAttributes({ t, ...props }: MetaAttributesProps): React.ReactElement {
@@ -21,8 +21,6 @@ export default function MetaAttributes({ t, ...props }: MetaAttributesProps): Re
         {props.date && <time dateTime={props.date}>{t.date(props.date)}</time>}
         <span aria-hidden="true">{' · '}</span>
         <span>{readingTime}</span>
-        <span aria-hidden="true">{' · '}</span>
-        <span>{t('components.attributes.inLanguage', { language: props.language ?? '' })}</span>
       </div>
       <ul className={styles.tagList} aria-label={t('components.attributes.tagsLabel')}>
         {props.tags?.map((tag: string, index: number) => (
