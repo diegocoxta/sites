@@ -28,5 +28,7 @@
   "config.links.like_page.description": "The source code is 100% free and open on my GitHub.",
   "components.linktree.qrHint": "Scan to view on your phone",
   "components.recentActivity.hardcover.pageProgress": "Page {current} of {total}",
-  "components.recentActivity.lastfm.plays": "{count} plays"
+  "components.recentActivity.lastfm.plays": "{count} plays",
+  "components.notFound.message": "The page you are looking for was not found. \nPlease go back to <a href=\"https://{domain}\">{domain}</a> and try again.",
+  "client.components.themeSwitcher.ariaLabel": "Toggle theme color."
 }

@@ -1,0 +1,33 @@
+.container {
+  composes: container from '~/components/Container/styles.module.css';
+  text-align: center;
+  padding: 80px 0;
+}
+
+.code {
+  color: var(--main-accent-color);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0;
+  font-size: 30vw;
+
+  @media (width >= 760px) {
+    font-size: 180px;
+  }
+}
+
+.message {
+  color: var(--main-text-color);
+  font-size: 20px;
+  line-height: 1.4;
+  margin: 12px 0 0;
+
+  @media (width >= 760px) {
+    font-size: 24px;
+  }
+
+  a {
+    color: var(--main-accent-color);
+  }
+}

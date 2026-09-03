@@ -4,14 +4,15 @@ import styles from './styles.module.css';
 
 interface BrandingProps {
   name: string;
+  size?: number;
 }
 
 export default function Branding(props: BrandingProps) {
-  const { name } = props;
+  const { name, size } = props;
   const [firstName, lastName] = name.split(' ');
 
   return (
-    <h1 className={styles.name}>
+    <h1 className={styles.name} style={{ fontSize: `${size}px` }}>
       <Link className={styles.link} href="/">
         {firstName}
         {lastName && (

@@ -28,5 +28,7 @@
   "config.links.like_page.description": "O código-fonte é 100% gratuito e aberto no meu GitHub.",
   "components.linktree.qrHint": "Escaneie para ver no celular",
   "components.recentActivity.hardcover.pageProgress": "Página {current} de {total}",
-  "components.recentActivity.lastfm.plays": "{count} reproduções"
+  "components.recentActivity.lastfm.plays": "{count} reproduções",
+  "components.notFound.message": "Sinto muito, mas a página que você está buscando não foi encontrada.\nVolte para <a href=\"https://{domain}\">{domain}</a> e tente novamente.",
+  "client.components.themeSwitcher.ariaLabel": "Trocar a cor do tema."
 }
