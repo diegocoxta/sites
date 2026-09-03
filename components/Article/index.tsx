@@ -1,10 +1,9 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
+import { highlight } from 'sugar-high';
 
 import type { ContentAttributes } from '~/lib/content';
 import type { ComponentWithTranslator } from '~/lib/i18n';
-
-import CodeBlock from '~/components/CodeBlock';
 
 import styles from './styles.module.css';
 
@@ -54,7 +53,28 @@ export default function Article({ t, ...props }: ArticleProps): React.ReactEleme
           <MDXRemote
             source={expanded ? props.content : props.summary!}
             components={{
-              code: CodeBlock,
+              code: ({ children, ...props }) => {
+                if (!props.className) {
+                  return <code className={styles.codeInline}>{children}</code>;
+                }
+
+                const isPlain = props.className === 'language-plain';
+
+                return (
+                  <div className={styles.codeblock}>
+                    <div className={styles.carbon}>
+                      <div className={styles.carbonButton} data-red />
+                      <div className={styles.carbonButton} data-yellow />
+                      <div className={styles.carbonButton} data-green />
+                    </div>
+                    {isPlain ? (
+                      <code {...props}>{children}</code>
+                    ) : (
+                      <code dangerouslySetInnerHTML={{ __html: highlight(children) }} {...props} />
+                    )}
+                  </div>
+                );
+              },
               a: (props) => {
                 const isExternal = props.href?.startsWith('http');
 
