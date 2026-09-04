@@ -1,6 +1,8 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // AGENTS.md is hand-maintained (CLAUDE.md symlinks to it); don't auto-generate.
+  agentRules: false,
   images: {
     remotePatterns: [
       {

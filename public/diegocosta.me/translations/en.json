@@ -7,7 +7,7 @@
   "config.links.youtube.title": "Find me on YouTube",
   "page.home.underConstruction": "This page is currently under construction.",
   "page.home.checkPhotos": "In the meantime, you can check out some of my photos on",
-  "components.notFound.message": "The page you are looking for was not found. \nPlease go back to <a href=\"https://{domain}\">{domain}</a> and try again.",
+  "client.components.notFound.message": "The page you are looking for was not found. \nPlease go back to <a href=\"https://{domain}\">{domain}</a> and try again.",
   "components.footer.ariaLabel": "Professional and contact links",
   "client.components.themeSwitcher.ariaLabel": "Toggle theme color."
 }

@@ -28,7 +28,10 @@ links, locales, theme) live in `app/<domain>/config.ts`.
 app/
   <domain>/           route tree for one domain (e.g. diegocosta.com.br)
     config.ts         per-domain config (title, links, locales, theme)
+    [...page]/        catch-all for Markdown pages; notFound() when missing
+    not-found.tsx     404 boundary (single-locale domains)
     [locale]/         localized routes (multi-locale domains only)
+      not-found.tsx   localized 404 boundary (diegocoxta.com)
   config.ts           shared config defaults (theme)
 components/            React components (one folder each, co-located CSS Modules)
 lib/
@@ -97,6 +100,23 @@ in [`lib/i18n/messages.ts`](lib/i18n/messages.ts).
 
 `diegocoxta.com` ships in `pt`, `en` and `es`; the other domains are
 single-locale (and skip the `/<locale>` path prefix entirely).
+
+### 404s
+
+Unmatched URLs are funneled through each domain's catch-all `[...page]` route,
+which calls `notFound()`. There is no root `app/not-found.tsx` — it would need the
+request host to choose a domain, forcing every catch-all to render dynamically —
+so each domain carries its own boundary:
+
+- Single-locale domains render `app/<domain>/not-found.tsx` (a Server Component).
+- `diegocoxta.com` places the boundary at
+  `app/diegocoxta.com/[locale]/not-found.tsx` so it renders inside the `[locale]`
+  layout and can localize: a Client Component that reads the translator context.
+  Its copy is stored under a `client.` key
+  (`client.components.notFound.message`) so `getClientMessages` ships it.
+
+The catch-all routes are dynamic, so the styled body streams in on hydration; the
+response status is `404` either way.
 
 ## :rocket: Deployment
 
