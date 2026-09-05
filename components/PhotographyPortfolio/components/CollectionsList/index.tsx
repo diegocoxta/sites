@@ -4,12 +4,11 @@ import Link from 'next/link';
 import type { Translator } from '~/lib/i18n';
 
 import type { CollectionSummary } from '../../types';
-import Masonry from '../Masonry';
 import styles from './styles.module.css';
 
 interface CollectionsListProps {
   collections: CollectionSummary[];
-  /** Rendered as the first masonry cell — the profile + collections tiles, same as every gallery page. */
+  /** The profile + collections card — pinned to its own column so no cover tile ever wraps under it. */
   leading?: React.ReactElement;
   t: Translator;
 }
@@ -32,12 +31,13 @@ function CoverCard({ collection, t }: { collection: CollectionSummary; t: Transl
 
 export default function CollectionsList({ collections, leading, t }: CollectionsListProps): React.ReactElement {
   return (
-    <Masonry
-      leading={leading}
-      items={collections.map((collection) => ({
-        id: collection.id,
-        node: <CoverCard collection={collection} t={t} />,
-      }))}
-    />
+    <div className={styles.layout}>
+      {leading && <div className={styles.sidebar}>{leading}</div>}
+      <div className={styles.grid}>
+        {collections.map((collection) => (
+          <CoverCard key={collection.id} collection={collection} t={t} />
+        ))}
+      </div>
+    </div>
   );
 }
