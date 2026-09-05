@@ -1,0 +1,133 @@
+.hero {
+  background: var(--main-accent-color);
+  color: #201e1d;
+  margin: 0 -20px;
+  padding: 44px 20px 40px;
+}
+
+@media (width >= 1000px) {
+  .hero {
+    margin: 0;
+    padding: 44px 32px 40px;
+  }
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 900px;
+}
+
+@media (width >= 700px) {
+  .heroTitle {
+    font-size: 48px;
+  }
+}
+
+.layout {
+  display: grid;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+@media (width >= 900px) {
+  .layout {
+    grid-template-columns: 1fr 380px;
+  }
+}
+
+.copy {
+  padding: 36px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 640px;
+}
+
+.copy p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--main-subtitle-color);
+}
+
+.copyTitle {
+  margin: 0;
+  font-size: 20px;
+}
+
+.stats {
+  display: flex;
+  gap: 2px;
+  margin-top: 12px;
+}
+
+.stat {
+  flex: 1;
+  border-top: 2px solid var(--main-accent-color);
+  padding-top: 12px;
+}
+
+.statNumber {
+  display: block;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--main-subtitle-color);
+}
+
+.cta {
+  align-self: flex-start;
+  margin-top: 12px;
+  padding: 14px 18px;
+  background: var(--main-accent-color);
+  color: #fff;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cta:hover {
+  background: var(--photo-accent-strong-color);
+}
+
+.portraits {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.portraitLarge,
+.portraitSmall {
+  position: relative;
+  width: 100%;
+  background: var(--main-border-color);
+}
+
+.portraitLarge :global(img),
+.portraitSmall :global(img) {
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+}
+
+.portraitLarge {
+  height: 320px;
+}
+
+.portraitSmall {
+  height: 220px;
+}

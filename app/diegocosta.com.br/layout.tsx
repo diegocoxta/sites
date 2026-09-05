@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ThemeProvider } from 'next-themes';
 
 import { type ContentAttributes, contentFor } from '~/lib/content';
 import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
@@ -25,20 +26,22 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   const toCommandAction = (p: ContentAttributes) => ({ href: p.href, title: p.title, language: p.language });
 
   return (
-    <TranslationProvider messages={messages} locale={t.locale}>
-      <PersonSchema data={config} />
-      <Header
-        left={<Branding name={config.author} />}
-        right={
-          <>
-            <ThemeSwitcher />
-            <CommandBar content={[...posts, ...pages].map(toCommandAction)} repository={config.repository} />
-          </>
-        }
-      />
-      {children}
-      <Footer author={config.author} links={config.links} t={t} />
-    </TranslationProvider>
+    <ThemeProvider defaultTheme={config.theme.defaultTheme}>
+      <TranslationProvider messages={messages} locale={t.locale}>
+        <PersonSchema data={config} />
+        <Header
+          left={<Branding name={config.author} />}
+          right={
+            <>
+              <ThemeSwitcher />
+              <CommandBar content={[...posts, ...pages].map(toCommandAction)} repository={config.repository} />
+            </>
+          }
+        />
+        {children}
+        <Footer author={config.author} links={config.links} t={t} />
+      </TranslationProvider>
+    </ThemeProvider>
   );
 }
 

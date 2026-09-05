@@ -1,51 +1,50 @@
-import './page.css';
-
-import * as Fa from 'react-icons/fa6';
-
-import type { IconLinkType } from '~/lib/config';
 import { getTranslations } from '~/lib/i18n/messages';
+import Unsplash from '~/lib/unsplash';
 
-import Container from '~/components/Container';
+import PhotoGallery from '~/components/PhotoGallery';
 
 import config from '~/app/diegocosta.me/config';
 
-export default function HomePage() {
-  const t = getTranslations(config);
+import { loadMorePhotos } from './photos/actions';
+import { IconLinkType } from '~/lib/config';
+import PhotoGalleryHeader from '~/components/PhotoGallery/components/Header';
 
-  return (
-    <Container>
-      <section className="sectionPreview">
-        <div className="text">
-          <p>{t('page.home.underConstruction')}</p>
-          <p>
-            {t('page.home.checkPhotos')}{' '}
-            <a
-              target="_blank"
-              href="https://unsplash.com/diegocoxta"
-              className="link"
-              title={t('config.links.unsplash.title')}
-            >
-              <Fa.FaUnsplash /> Unsplash
-            </a>
-          </p>
-        </div>
-      </section>
-      <section className="social">
-        <ul className="socialLinks">
-          {config.links
-            ?.filter((link): link is IconLinkType => link.type === 'icon')
-            .map((link) => {
-              const Icon = Fa[link.icon as keyof typeof Fa];
-              return (
-                <li key={link.href}>
-                  <a target="_blank" href={link.href} rel="me noopener" title={t(link.title)}>
-                    <Icon />
-                  </a>
-                </li>
-              );
-            })}
-        </ul>
-      </section>
-    </Container>
+const unsplash = Unsplash(config.unsplash);
+
+export default async function HomePage() {
+  const t = getTranslations(config);
+  const [{ photos, hasMore }, collections] = await Promise.all([unsplash.getPhotosPage(1), unsplash.getCollections()]);
+
+  const leading = (
+    <PhotoGalleryHeader
+      profile={{
+        name: config.author,
+        bio: t('page.home.bio'),
+        portrait: '/avatar.jpg',
+        socialLinks: config.links?.filter((link): link is IconLinkType => link.type === 'icon'),
+      }}
+      collections={{
+        title: t('page.collections.title'),
+        viewAllLabel: t('page.collections.backToList'),
+        list: collections.map(({ id, title, totalPhotos }) => ({ id, title, totalPhotos })),
+      }}
+    />
+  );
+
+  return photos.length > 0 || hasMore ? (
+    <PhotoGallery
+      initialPhotos={photos}
+      initialHasMore={hasMore}
+      loadMore={loadMorePhotos}
+      hrefBase="/p"
+      leading={leading}
+      labels={{
+        loading: t('page.photos.loading'),
+        loadMore: t('page.photos.loadMore'),
+        retry: t('page.photos.retry'),
+      }}
+    />
+  ) : (
+    <p>{t('page.photos.empty')}</p>
   );
 }
