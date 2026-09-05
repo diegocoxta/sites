@@ -1,7 +1,7 @@
 const SERVICE_TIMEOUT_MS = 5000;
 
 type RequestOptions = Omit<RequestInit, 'signal'> & {
-  revalidate?: number;
+  revalidate?: number | false;
   timeoutMs?: number;
   id?: string;
 };
