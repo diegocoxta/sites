@@ -26,6 +26,11 @@
   }
 }
 
+.handle {
+  color: var(--main-accent-color);
+  font-weight: 900;
+}
+
 .lastName {
   color: var(--main-accent-color);
 

@@ -1,7 +1,8 @@
 import type { ComponentWithTranslator } from '~/lib/i18n';
 import type { CardLinkType, IconLinkType } from '~/lib/config';
 
-import Username from './components/Username';
+import Logo from '~/components/Logo';
+
 import IconLinks from './components/IconLinks';
 import CardLinks from './components/CardLinks';
 import QrCode from './components/QrCode';
@@ -21,7 +22,7 @@ export default function LinkHub({ t, username, description, background, icons, c
     <div className={styles.container} style={{ backgroundImage: `url(${background})` }}>
       <main className={styles.content}>
         <header className={styles.header}>
-          <Username username={username} size={32} />
+          <Logo name={username} size={32} />
           {description && <p className={styles.description}>{t(description)}</p>}
         </header>
         <IconLinks t={t} icons={icons} />

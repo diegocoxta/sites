@@ -3,7 +3,7 @@ import * as Fa from 'react-icons/fa6';
 
 import type { ComponentWithTranslator } from '~/lib/i18n/translator';
 
-import Branding from '~/components/Branding';
+import Logo from '~/components/Logo';
 
 import styles from './styles.module.css';
 
@@ -29,7 +29,7 @@ export default function Profile({ t, name, avatar, socialLinks }: ProfileProps):
         unoptimized
       />
       <div className={styles.overlay}>
-        <Branding name={name} size={56} />
+        <Logo name={name} size={56} />
         <p className={styles.text}>{t('page.home.bio')}</p>
         {socialLinks && socialLinks.length > 0 && (
           <ul className={styles.social}>
