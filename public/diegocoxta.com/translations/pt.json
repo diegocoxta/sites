@@ -26,7 +26,7 @@
   "config.links.setlist.description": "Rastreando os concertos que sobrevivo.",
   "config.links.setlist.recentActivity.title": "Últimos concertos assistidos",
   "config.links.like_page.description": "O código-fonte é 100% gratuito e aberto no meu GitHub.",
-  "components.linktree.qrHint": "Escaneie para ver no celular",
+  "components.linkHub.qrHint": "Escaneie para ver no celular",
   "components.recentActivity.hardcover.pageProgress": "Página {current} de {total}",
   "components.recentActivity.lastfm.plays": "{count} reproduções",
   "client.components.notFound.message": "Sinto muito, mas a página que você está buscando não foi encontrada.\nVolte para <a href=\"https://{domain}\">{domain}</a> e tente novamente.",

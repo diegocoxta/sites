@@ -8,7 +8,7 @@ import QrCode from './components/QrCode';
 
 import styles from './styles.module.css';
 
-export type LinktreeProps = ComponentWithTranslator<{
+export type LinkHubProps = ComponentWithTranslator<{
   username: string;
   description?: string;
   background?: string;
@@ -16,7 +16,7 @@ export type LinktreeProps = ComponentWithTranslator<{
   cards: CardLinkType[];
 }>;
 
-export default function Linktree({ t, username, description, background, icons, cards }: LinktreeProps) {
+export default function LinkHub({ t, username, description, background, icons, cards }: LinkHubProps) {
   return (
     <div className={styles.container} style={{ backgroundImage: `url(${background})` }}>
       <main className={styles.content}>
