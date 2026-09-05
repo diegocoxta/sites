@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { getTranslations } from '~/lib/i18n/messages';
@@ -7,14 +6,13 @@ import Unsplash from '~/lib/unsplash';
 
 import Feed from '~/components/PhotographyPortfolio';
 import Profile from '~/components/PhotographyPortfolio/components/Profile';
+import CollectionDetails from '~/components/PhotographyPortfolio/components/CollectionDetails';
 import CollectionsCard from '~/components/PhotographyPortfolio/components/CollectionsCard';
 
 import config from '~/app/diegocosta.me/config';
 
 import { getCollectionPhotosPage } from '~/app/diegocosta.me/actions';
 import { toCollectionSummary, toGalleryPage } from '~/app/diegocosta.me/portfolio';
-
-import styles from './page.module.css';
 
 const unsplash = Unsplash(config.unsplash);
 
@@ -54,6 +52,7 @@ export default async function CollectionPage({ params }: PageProps) {
   ]);
   const firstPage = toGalleryPage(firstPageRaw);
   const collections = collectionsRaw.map(toCollectionSummary);
+  const collectionIndex = collections.findIndex((entry) => entry.id === id);
 
   if (!collection && firstPage.ok && firstPage.photos.length === 0) {
     notFound();
@@ -67,14 +66,17 @@ export default async function CollectionPage({ params }: PageProps) {
         avatar="/avatar.jpg"
         socialLinks={config.links?.filter((link) => link.type === 'icon')}
       />
-      {collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
-      <div className={styles.intro}>
-        <Link className={styles.back} href="/collections">
-          &larr; {t('page.collections.backToList')}
-        </Link>
-        <h1>{collection?.title ?? t('page.collections.title')}</h1>
-        {collection?.description && <p className={styles.description}>{collection.description}</p>}
-      </div>
+      {collection && (
+        <CollectionDetails
+          t={t}
+          index={collectionIndex >= 0 ? collections.length - collectionIndex : collections.length}
+          title={collection.title}
+          description={collection.description}
+          photoCount={collection.totalPhotos}
+          publishedAt={collection.publishedAt}
+        />
+      )}
+      {collections.length > 0 && <CollectionsCard t={t} collections={collections} activeId={id} />}
     </>
   );
 

@@ -14,6 +14,7 @@
   "page.collections.description": "Photo collections I curate on Unsplash.",
   "page.collections.empty": "No collections yet. Check back soon.",
   "page.collections.photoCount": "{count} photos",
+  "page.collections.number": "Collection {number}",
   "page.collections.backToList": "All collections",
   "client.components.loadMore.label": "Load more",
   "client.components.loadMore.loading": "Loading…",
