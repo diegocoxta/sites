@@ -4,8 +4,6 @@ import { Component, Suspense, type ReactNode } from 'react';
 
 import Skeleton from '~/components/Skeleton';
 
-import styles from './styles.module.css';
-
 class WidgetErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
 
@@ -21,7 +19,15 @@ class WidgetErrorBoundary extends Component<{ children: ReactNode }, { failed: b
 export default function WidgetBoundary({ children }: { children: ReactNode }) {
   return (
     <WidgetErrorBoundary>
-      <Suspense fallback={<Skeleton height={146} borderRadius={20} className={styles.skeleton} />}>{children}</Suspense>
+      <Suspense
+        fallback={
+          <div style={{ marginTop: 16 }}>
+            <Skeleton height={146} borderRadius={20} />
+          </div>
+        }
+      >
+        {children}
+      </Suspense>
     </WidgetErrorBoundary>
   );
 }

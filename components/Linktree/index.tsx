@@ -6,26 +6,30 @@ import { FiExternalLink } from 'react-icons/fi';
 import type { ComponentWithTranslator } from '~/lib/i18n';
 import type { CardLinkType, IconLinkType } from '~/lib/config';
 
-import * as RecentActivity from '~/components/RecentActivity';
-import RecentActivityWidgetBoundary from '~/components/RecentActivity/WidgetBoundary';
+import Username from './components/Username';
+import * as RecentActivity from './components/RecentActivity';
+import WidgetBoundary from './components/WidgetBoundary';
 
 import styles from './styles.module.css';
 
-export type LinktreeProps = ComponentWithTranslator<
-  React.PropsWithChildren<{
-    background?: string;
-    icons: IconLinkType[];
-    cards: CardLinkType[];
-  }>
->;
+export type LinktreeProps = ComponentWithTranslator<{
+  username: string;
+  description?: string;
+  background?: string;
+  icons: IconLinkType[];
+  cards: CardLinkType[];
+}>;
 
 const faIcon = (name?: string) => (name ? Fa6[name as keyof typeof Fa6] : undefined);
 
-export default function Linktree({ t, background, icons, cards, children }: LinktreeProps) {
+export default function Linktree({ t, username, description, background, icons, cards }: LinktreeProps) {
   return (
     <div className={styles.container} style={{ backgroundImage: `url(${background})` }}>
       <main className={styles.content}>
-        {children}
+        <header className={styles.header}>
+          <Username username={username} size={32} />
+          {description && <p className={styles.description}>{t(description)}</p>}
+        </header>
         <nav>
           <ul className={styles.iconsList}>
             {icons.map((icon) => {
@@ -83,9 +87,9 @@ export default function Linktree({ t, background, icons, cards, children }: Link
 
                 {RecentActivityWidget && card.recentActivity?.config && (
                   <div className={styles.cardsItemRecentActivity}>
-                    <RecentActivityWidgetBoundary>
+                    <WidgetBoundary>
                       <RecentActivityWidget config={card.recentActivity.config} t={t} />
-                    </RecentActivityWidgetBoundary>
+                    </WidgetBoundary>
                   </div>
                 )}
               </section>
