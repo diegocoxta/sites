@@ -23,8 +23,6 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   const pages = content.getPages();
   const posts = content.getPosts();
 
-  const toCommandAction = (p: ContentAttributes) => ({ href: p.href, title: p.title, language: p.language });
-
   return (
     <ThemeProvider defaultTheme={config.theme.defaultTheme}>
       <TranslationProvider messages={messages} locale={t.locale}>
@@ -34,7 +32,14 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
           right={
             <>
               <ThemeSwitcher />
-              <CommandBar content={[...posts, ...pages].map(toCommandAction)} repository={config.repository} />
+              <CommandBar
+                content={[...posts, ...pages].map((p: ContentAttributes) => ({
+                  href: p.href,
+                  title: p.title,
+                  language: p.language,
+                }))}
+                repository={config.repository}
+              />
             </>
           }
         />
