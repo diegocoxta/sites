@@ -5,12 +5,14 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from '~/lib/i18n/messages';
 import Unsplash from '~/lib/unsplash';
 
-import Container from '~/components/Container';
-import PhotoGallery from '~/components/PhotoGallery';
+import Feed from '~/components/PhotographyPortfolio';
+import Profile from '~/components/PhotographyPortfolio/components/Profile';
+import CollectionsCard from '~/components/PhotographyPortfolio/components/CollectionsCard';
 
 import config from '~/app/diegocosta.me/config';
 
-import { loadMoreCollectionPhotos } from '../actions';
+import { getCollectionPhotosPage } from '~/app/diegocosta.me/actions';
+import { toCollectionSummary, toGalleryPage } from '~/app/diegocosta.me/portfolio';
 
 import styles from './page.module.css';
 
@@ -45,37 +47,46 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function CollectionPage({ params }: PageProps) {
   const { id } = await params;
   const t = getTranslations(config);
-  const [collection, firstPage] = await Promise.all([
+  const [collection, firstPageRaw, collectionsRaw] = await Promise.all([
     unsplash.getCollection(id),
     unsplash.getCollectionPhotosPage(id, 1),
+    unsplash.getCollections(),
   ]);
+  const firstPage = toGalleryPage(firstPageRaw);
+  const collections = collectionsRaw.map(toCollectionSummary);
 
   if (!collection && firstPage.ok && firstPage.photos.length === 0) {
     notFound();
   }
 
-  return (
-    <Container>
-      <Link className={styles.back} href="/collections">
-        &larr; {t('page.collections.backToList')}
-      </Link>
-      <h1>{collection?.title ?? t('page.collections.title')}</h1>
-      {collection?.description && <p className={styles.description}>{collection.description}</p>}
-      {firstPage.photos.length > 0 || firstPage.hasMore ? (
-        <PhotoGallery
-          initialPhotos={firstPage.photos}
-          initialHasMore={firstPage.hasMore}
-          loadMore={loadMoreCollectionPhotos.bind(null, id)}
-          hrefBase={`/collections/${id}`}
-          labels={{
-            loading: t('page.photos.loading'),
-            loadMore: t('page.photos.loadMore'),
-            retry: t('page.photos.retry'),
-          }}
-        />
-      ) : (
-        <p>{t('page.photos.empty')}</p>
-      )}
-    </Container>
+  const leading = (
+    <>
+      <Profile
+        t={t}
+        name={config.author}
+        avatar="/avatar.jpg"
+        socialLinks={config.links?.filter((link) => link.type === 'icon')}
+      />
+      {collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
+      <div className={styles.intro}>
+        <Link className={styles.back} href="/collections">
+          &larr; {t('page.collections.backToList')}
+        </Link>
+        <h1>{collection?.title ?? t('page.collections.title')}</h1>
+        {collection?.description && <p className={styles.description}>{collection.description}</p>}
+      </div>
+    </>
+  );
+
+  return firstPage.photos.length > 0 || firstPage.hasMore ? (
+    <Feed
+      initialPhotos={firstPage.photos}
+      initialHasMore={firstPage.hasMore}
+      loadMore={getCollectionPhotosPage.bind(null, id)}
+      hrefBase="/p"
+      leading={leading}
+    />
+  ) : (
+    <p>{t('page.photos.empty')}</p>
   );
 }

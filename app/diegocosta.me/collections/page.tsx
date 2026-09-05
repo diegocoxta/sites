@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 
 import { getTranslations } from '~/lib/i18n/messages';
-import Unsplash from '~/lib/unsplash';
 
-import PhotoCollectionList from '~/components/PhotoCollectionList';
+import CollectionsList from '~/components/PhotographyPortfolio/components/CollectionsList';
+import Profile from '~/components/PhotographyPortfolio/components/Profile';
+import CollectionsCard from '~/components/PhotographyPortfolio/components/CollectionsCard';
 
 import config from '~/app/diegocosta.me/config';
 
-const unsplash = Unsplash(config.unsplash);
+import { getCollections } from '~/app/diegocosta.me/actions';
 
 export function generateMetadata(): Metadata {
   const t = getTranslations(config);
@@ -21,15 +22,23 @@ export function generateMetadata(): Metadata {
 
 export default async function CollectionsPage() {
   const t = getTranslations(config);
-  const collections = await unsplash.getCollections();
+  const collections = await getCollections();
 
-  return (
+  const leading = (
     <>
-      {collections.length > 0 ? (
-        <PhotoCollectionList collections={collections} t={t} />
-      ) : (
-        <p>{t('page.collections.empty')}</p>
-      )}
+      <Profile
+        t={t}
+        name={config.author}
+        avatar="/avatar.jpg"
+        socialLinks={config.links?.filter((link) => link.type === 'icon')}
+      />
+      {collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
     </>
+  );
+
+  return collections.length > 0 ? (
+    <CollectionsList collections={collections} leading={leading} t={t} />
+  ) : (
+    <p>{t('page.collections.empty')}</p>
   );
 }

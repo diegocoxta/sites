@@ -1,0 +1,62 @@
+.panel {
+  padding-top: 10px;
+  border-top: 1px solid var(--main-border-color);
+}
+
+.panelInverted {
+  border-top-color: rgb(255 255 255 / 18%);
+}
+
+.description {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--main-text-color);
+}
+
+.descriptionInverted {
+  color: rgb(255 255 255 / 90%);
+}
+
+.grid {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.grid div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.grid dt {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--main-subtitle-color);
+}
+
+.grid dd {
+  margin: 0;
+  font-size: 13px;
+  color: var(--main-text-color);
+}
+
+.gridInverted dt {
+  color: rgb(255 255 255 / 60%);
+}
+
+.gridInverted dd {
+  color: rgb(255 255 255 / 90%);
+}
+
+/* Sizing comes from <Skeleton>'s own width/height props — these two just add the
+   spacing this layout needs, same as the real content they stand in for. */
+.skeletonLabel {
+  margin-bottom: 4px;
+}
+
+.skeletonDescription {
+  margin-bottom: 10px;
+}

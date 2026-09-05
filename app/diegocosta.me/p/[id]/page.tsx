@@ -4,18 +4,18 @@ import { notFound } from 'next/navigation';
 import { getTranslations } from '~/lib/i18n/messages';
 import Unsplash from '~/lib/unsplash';
 
-import Container from '~/components/Container';
-import PhotoLightbox from '~/components/PhotoLightbox';
+import Lightbox from '~/components/PhotographyPortfolio/components/Lightbox';
 
 import config from '~/app/diegocosta.me/config';
 
-import { getPhotoDetails } from '~/app/diegocosta.me/photos/actions';
-import { lightboxLabels } from '~/app/diegocosta.me/photos/labels';
+import { getPhotoDetails } from '~/app/diegocosta.me/actions';
+import { toCollectionRef, toLightboxPhoto } from '~/app/diegocosta.me/portfolio';
 
 const unsplash = Unsplash(config.unsplash);
 
-interface PageProps {
+interface PhotoPreviewProps {
   params: Promise<{ id: string }>;
+  variant?: 'page' | 'modal';
 }
 
 export async function generateStaticParams() {
@@ -24,7 +24,7 @@ export async function generateStaticParams() {
   return photos.map((photo) => ({ id: photo.id }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PhotoPreviewProps): Promise<Metadata> {
   const { id } = await params;
   const context = await unsplash.getPhotoContext(id);
   const t = getTranslations(config);
@@ -43,36 +43,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function PhotoPage({ params }: PageProps) {
+export default async function PhotoPreviewPage({ params, variant = 'page' }: PhotoPreviewProps) {
   const { id } = await params;
   const [context, photoCollections] = await Promise.all([
     unsplash.getPhotoContext(id),
     unsplash.getPhotoCollections(id),
   ]);
-  const t = getTranslations(config);
 
   if (!context) {
     notFound();
   }
 
   return (
-    <Container>
-      <PhotoLightbox
-        variant="page"
-        photo={context.photo}
-        prevId={context.prevId}
-        nextId={context.nextId}
-        index={context.index}
-        total={context.total}
-        hrefBase="/p"
-        closeHref="/"
-        photoCollections={photoCollections}
-        getPhotoDetails={getPhotoDetails}
-        labels={{
-          close: t('page.photos.backToGallery'),
-          ...lightboxLabels(t),
-        }}
-      />
-    </Container>
+    <Lightbox
+      variant={variant}
+      photo={toLightboxPhoto(context.photo)}
+      prevId={context.prevId}
+      nextId={context.nextId}
+      index={context.index}
+      total={context.total}
+      hrefBase="/p"
+      closeHref="/"
+      photoCollections={photoCollections.map(toCollectionRef)}
+      getPhotoDetails={getPhotoDetails}
+    />
   );
 }

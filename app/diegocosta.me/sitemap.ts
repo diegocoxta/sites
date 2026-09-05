@@ -32,14 +32,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `https://${domain}/${slug}`,
       priority: 0.8,
     })),
-    {
-      url: `https://${domain}/about`,
-      priority: 0.5,
-    },
-    {
-      url: `https://${domain}/contact`,
-      priority: 0.3,
-    },
     ...photos.map((photo) => ({
       url: `https://${domain}/p/${photo.id}`,
       priority: 0.5,

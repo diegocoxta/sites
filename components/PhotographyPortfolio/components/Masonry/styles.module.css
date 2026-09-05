@@ -1,0 +1,29 @@
+.masonry {
+  margin: 40px 0 0;
+}
+
+/* Pre-hydration fallback: the same real cells, laid out with CSS columns instead of
+   react-plock's JS-measured columns, so there's no placeholder to swap out — just the
+   real grid settling into the balanced masonry once mounted. */
+.fallbackGrid {
+  margin: 40px 0 0;
+  column-count: 1;
+  column-gap: 3px;
+}
+
+.fallbackItem {
+  margin-bottom: 3px;
+  break-inside: avoid;
+}
+
+@media (width >= 640px) {
+  .fallbackGrid {
+    column-count: 2;
+  }
+}
+
+@media (width >= 1024px) {
+  .fallbackGrid {
+    column-count: 3;
+  }
+}

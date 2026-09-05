@@ -1,0 +1,93 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background: rgb(0 0 0 / 82%);
+  backdrop-filter: blur(4px);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.nav {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 28px;
+  line-height: 1;
+  text-decoration: none;
+  color: var(--main-text-color);
+  background: var(--main-box-color);
+  border: 1px solid var(--main-border-color);
+  transition: transform 0.15s ease;
+}
+
+.overlay .nav {
+  color: #fff;
+  background: rgb(255 255 255 / 12%);
+  border-color: rgb(255 255 255 / 24%);
+}
+
+.nav:hover {
+  transform: scale(1.1);
+}
+
+.navDisabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  color: #fff;
+  background: rgb(255 255 255 / 12%);
+  border: 1px solid rgb(255 255 255 / 24%);
+}
+
+.backLink {
+  color: var(--main-subtitle-color);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.backLink:hover {
+  color: var(--main-title-color);
+}
+
+@media (width <= 640px) {
+  .nav {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+}
