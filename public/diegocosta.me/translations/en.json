@@ -9,6 +9,7 @@
   "page.photos.title": "Photos",
   "page.photos.description": "A selection of my most recent photos on Unsplash.",
   "page.photos.empty": "No photos to show right now. Check back soon.",
+  "page.photos.backToList": "All photos",
   "page.collections.title": "Collections",
   "page.collections.description": "Photo collections I curate on Unsplash.",
   "page.collections.empty": "No collections yet. Check back soon.",

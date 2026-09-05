@@ -3,6 +3,7 @@
   overflow: hidden;
   height: 500px;
   background-color: var(--main-border-color);
+  border-bottom: 3px solid var(--main-background-color);
 }
 
 .image {
