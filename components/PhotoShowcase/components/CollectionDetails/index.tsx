@@ -15,7 +15,7 @@ export default function CollectionDetails({ t, title, description, photoCount, p
   return (
     <section className={styles.card}>
       <h1 className={styles.title}>{title}</h1>
-      {description && <p className={styles.description}>{description}</p>}
+      {<p className={styles.description}>{description || t('page.collections.description')}</p>}
       <p className={styles.meta}>
         <span>{t('components.photoShowcase.collectionDetails.photoCount', { count: photoCount })}</span>
         {publishedAt && <span>{t.date(publishedAt, { year: 'numeric' })}</span>}
