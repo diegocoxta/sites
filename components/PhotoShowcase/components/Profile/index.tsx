@@ -28,7 +28,7 @@ export default function Profile({ t, name, avatar, socialLinks }: ProfileProps) 
         unoptimized
       />
       <div className={styles.overlay}>
-        <Logo name={name} size={56} />
+        <Logo name={name} size={48} />
         <p className={styles.text}>{t('components.photoShowcase.profile.bio')}</p>
         {socialLinks && socialLinks.length > 0 && (
           <ul className={styles.social}>

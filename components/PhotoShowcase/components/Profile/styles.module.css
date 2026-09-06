@@ -33,7 +33,7 @@
 
 .text {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   color: #d7d3d3;
 }
@@ -52,7 +52,7 @@
 
   svg {
     width: auto;
-    height: 18px;
+    height: 20px;
     color: var(--main-text-color);
     transition: 0.2s all linear;
 

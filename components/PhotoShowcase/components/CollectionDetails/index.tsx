@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import type { ComponentWithTranslator } from '~/lib/i18n/translator';
 
@@ -21,7 +22,7 @@ export default function CollectionDetails({ t, title, description, photoCount, p
         {publishedAt && <span>{t.date(publishedAt, { year: 'numeric' })}</span>}
       </p>
       <Link className={styles.cta} href="/">
-        {t('components.photoShowcase.collectionDetails.allPhotos')}
+        <FaArrowLeftLong /> {t('components.photoShowcase.collectionDetails.allPhotos')}
       </Link>
     </section>
   );
