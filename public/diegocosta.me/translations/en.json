@@ -3,8 +3,6 @@
   "config.description": "My photography portfolio",
   "config.links.unsplash.title": "Find me on Unsplash",
   "config.links.instagram.title": "Find me on Instagram",
-  "config.links.tiktok.title": "Find me on Tiktok",
-  "config.links.youtube.title": "Find me on YouTube",
   "config.links.personal.title": "Find me everywhere else",
   "page.photos.title": "Untitled",
   "page.photos.description": "A photo I took and didn't have words for.",
