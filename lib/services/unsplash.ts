@@ -16,7 +16,7 @@ type GetRecentUserPhotosParamsType = {
   authorization: string;
 };
 
-type GetRecentUserPhotosResponseType = null | Array<{
+export type UnsplashPhoto = {
   id: string;
   created_at: string;
   alt_description: string;
@@ -32,7 +32,9 @@ type GetRecentUserPhotosResponseType = null | Array<{
   links: {
     html: string;
   };
-}>;
+};
+
+type GetRecentUserPhotosResponseType = null | UnsplashPhoto[];
 
 export async function getRecentUserPhotos(
   params: GetRecentUserPhotosParamsType
@@ -58,7 +60,7 @@ type GetUserCollectionsParamsType = {
   authorization: string;
 };
 
-type GetUserCollectionsResponseType = null | Array<{
+export type UnsplashCollection = {
   id: string;
   title: string;
   description?: string;
@@ -96,7 +98,9 @@ type GetUserCollectionsResponseType = null | Array<{
       small_s3: string;
     };
   };
-}>;
+};
+
+type GetUserCollectionsResponseType = null | UnsplashCollection[];
 
 export async function getUserCollections(
   params: GetUserCollectionsParamsType
@@ -120,7 +124,7 @@ type GetPhotoParamsType = {
   authorization: string;
 };
 
-type GetPhotoResponseType = null | {
+export type UnsplashPhotoDetails = {
   id: string;
   description: string | null;
   exif: {
@@ -141,6 +145,8 @@ type GetPhotoResponseType = null | {
     } | null;
   } | null;
 };
+
+type GetPhotoResponseType = null | UnsplashPhotoDetails;
 
 export async function getPhoto(params: GetPhotoParamsType): Promise<GetPhotoResponseType> {
   const { id, authorization } = params;
