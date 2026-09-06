@@ -2,15 +2,15 @@
 
 import { useMemo } from 'react';
 
-import type { Gallery, Photo } from './types';
+import type { Gallery, Photo } from '../../types';
 
-import { useInfiniteScrollPhotos } from './hooks/useInfiniteScrollPhotos';
+import { useInfiniteScrollPhotos } from '../../hooks/useInfiniteScrollPhotos';
 
-import Masonry, { type MasonryEntry } from './components/Masonry';
-import Tile from './components/Tile';
-import LoadMore from './components/LoadMore';
+import Masonry, { type MasonryEntry } from '../Masonry';
+import Tile from '../Tile';
+import LoadMore from '../LoadMore';
 
-interface PortfolioProps {
+interface FeedProps {
   initialPhotos: Photo[];
   initialHasMore: boolean;
   loadMore: (page: number) => Promise<Gallery>;
@@ -18,7 +18,7 @@ interface PortfolioProps {
   leading?: React.ReactElement;
 }
 
-export default function Portfolio(props: PortfolioProps) {
+export default function Feed(props: FeedProps) {
   const { photos, hasMore, loading, failed, sentinelRef, handleLoadMore } = useInfiniteScrollPhotos(
     props.initialPhotos,
     props.initialHasMore,

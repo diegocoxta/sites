@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { useTranslator } from '~/components/TranslationProvider';
 
-import type { CollectionRef, LightboxPhoto, PhotoDetails } from '../../types';
+import type { Photo, PhotoDetails } from '../../types';
 import Figure from '../Figure';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 import { useLightboxNavigation } from '../../hooks/useLightboxNavigation';
@@ -12,7 +12,7 @@ import { useSwipeNavigation } from '../../hooks/useSwipeNavigation';
 import styles from './styles.module.css';
 
 interface LightboxProps {
-  photo: LightboxPhoto;
+  photo: Photo;
   prevId: string | null;
   nextId: string | null;
   index: number;
@@ -20,8 +20,6 @@ interface LightboxProps {
   variant: 'modal' | 'page';
   hrefBase: string;
   closeHref: string;
-  /** Collections this photo appears in, for the "also in" cross-links. */
-  photoCollections: CollectionRef[];
   /**
    * Fetched client-side, after this page has already rendered — exif/location live on a
    * per-photo endpoint with no bulk variant, so it's never part of the static build.
@@ -39,7 +37,6 @@ export default function Lightbox({
   variant,
   hrefBase,
   closeHref,
-  photoCollections,
   getPhotoDetails,
 }: LightboxProps): React.ReactElement {
   const t = useTranslator();
@@ -59,7 +56,6 @@ export default function Lightbox({
       index={index}
       total={total}
       inverted={variant === 'modal'}
-      photoCollections={photoCollections}
       getPhotoDetails={getPhotoDetails}
     />
   );
