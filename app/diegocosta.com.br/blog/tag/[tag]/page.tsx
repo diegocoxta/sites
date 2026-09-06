@@ -3,9 +3,7 @@ import type { Metadata } from 'next';
 import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 
-import Container from '~/components/Container';
-import PageTitle from '~/components/PageTitle';
-import Article from '~/components/Article';
+import { Container, PageTitle, Article } from '~/components/Blog';
 
 import config from '~/app/diegocosta.com.br/config';
 

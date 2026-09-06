@@ -6,11 +6,8 @@ import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
 
 import TranslationProvider from '~/components/TranslationProvider';
 import PersonSchema from '~/components/PersonSchema';
-import Header from '~/components/Header';
 import Logo from '~/components/Logo';
-import ThemeSwitcher from '~/components/ThemeSwitcher';
-import CommandBar from '~/components/CommandBar';
-import Footer from '~/components/Footer';
+import { Header, ThemeSwitcher, CommandBar, Footer } from '~/components/Blog';
 
 import config from '~/app/diegocosta.com.br/config';
 
