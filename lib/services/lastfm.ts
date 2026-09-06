@@ -30,10 +30,15 @@ export async function getMonthlyTopArtists(
 ): Promise<GetMonthlyTopArtistsResponseType> {
   const { username, authorization, limit = 3 } = params;
 
-  const response = await fetchJson<GetMonthlyTopArtistsResponseType>(
-    `https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=${username}&api_key=${authorization}&format=json&period=1month&limit=${limit}`,
-    { id: 'lastfm' }
-  );
+  const url = new URL('https://ws.audioscrobbler.com/2.0/');
+  url.searchParams.set('method', 'user.gettopartists');
+  url.searchParams.set('user', username);
+  url.searchParams.set('api_key', authorization);
+  url.searchParams.set('format', 'json');
+  url.searchParams.set('period', '1month');
+  url.searchParams.set('limit', String(limit));
+
+  const response = await fetchJson<GetMonthlyTopArtistsResponseType>(url.toString(), { id: 'lastfm' });
 
   return response;
 }

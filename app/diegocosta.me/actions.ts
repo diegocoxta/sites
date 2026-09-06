@@ -14,6 +14,9 @@ const MAX_PAGES = 20;
 
 const SOURCE_NAME = 'Unsplash';
 
+/** Unsplash photo/collection ids are short URL-safe tokens — reject anything else before it reaches a request URL. */
+const VALID_ID = /^[\w-]{1,64}$/;
+
 const { username, authorization } = config.unsplash;
 
 if (!username || !authorization) {
@@ -146,6 +149,10 @@ export async function getPhotosPage(page: number): Promise<PhotoFeedPage> {
 }
 
 export async function getCollectionPhotosPage(id: string, page: number): Promise<PhotoFeedPage> {
+  if (!VALID_ID.test(id)) {
+    return toPhotoFeedPage([]);
+  }
+
   return toPhotoFeedPage(await fetchCollectionPhotos(id, page));
 }
 
@@ -154,7 +161,7 @@ export async function getAllPhotos(): Promise<Photo[]> {
 }
 
 export async function getPhotoContext(id: string): Promise<PhotoContext | null> {
-  return contextAt(await getAllPhotos(), id);
+  return VALID_ID.test(id) ? contextAt(await getAllPhotos(), id) : null;
 }
 
 export async function getCollections(): Promise<Collection[]> {
@@ -162,12 +169,20 @@ export async function getCollections(): Promise<Collection[]> {
 }
 
 export async function getCollection(id: string): Promise<Collection | null> {
+  if (!VALID_ID.test(id)) {
+    return null;
+  }
+
   const collection = (await allCollections()).find((entry) => entry.id === id);
 
   return collection ? toCollection(collection) : null;
 }
 
 export async function getPhotoDetails(id: string): Promise<PhotoDetails | null> {
+  if (!VALID_ID.test(id)) {
+    return null;
+  }
+
   const photo = await getPhoto({ id, authorization: creds.authorization });
 
   return photo ? toPhotoDetails(photo) : null;

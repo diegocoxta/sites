@@ -21,7 +21,7 @@ export async function getRecentlyWatchedMovies(
 ): Promise<GetRecentlyWatchedMoviesResponseType> {
   const { username, limit = 3 } = params;
 
-  const response = await fetchText(`https://letterboxd.com/${username}/rss/`, { id: 'letterboxd' });
+  const response = await fetchText(`https://letterboxd.com/${encodeURIComponent(username)}/rss/`, { id: 'letterboxd' });
 
   if (!response) {
     return null;
@@ -53,7 +53,7 @@ export async function getRecentlyWatchedMovies(
 
     return data;
   } catch (error) {
-    console.error(`[letterboxd] failed to parse feed — ${username}`, error);
+    console.error('[letterboxd] failed to parse feed — %s', username, error);
     return null;
   }
 }
