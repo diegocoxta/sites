@@ -3,11 +3,11 @@ import { fetchJson } from '~/lib/http';
 /**
  * Unsplash's demo tier allows only 50 requests/hour — far too little to serve every
  * visitor live. All the photo/collection pages are built statically (generateStaticParams
- * walks every page during `yarn build`), so caching indefinitely here just means "reuse
- * what the build already downloaded until the next build/deploy" instead of re-fetching
- * per visit. Nothing time-based revalidates this data; a new build is what refreshes it.
+ * walks every page during `yarn build`); this window then keeps them as ISR, so the first
+ * visit after a day triggers one background refetch per distinct URL (~21 total) instead
+ * of a request per visit — and new photos on Unsplash show up without a redeploy.
  */
-const REVALIDATE = false;
+const REVALIDATE = 60 * 60 * 24; // 1 day
 
 type GetRecentUserPhotosParamsType = {
   per_page?: number;
