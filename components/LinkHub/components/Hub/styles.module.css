@@ -23,10 +23,15 @@
     background: linear-gradient(0deg, var(--main-background-color) 20%, rgb(255 255 255 / 0%) 60%);
     z-index: 1;
   }
+
+  > p {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
 }
 
-.content,
-.header {
+.content {
   position: relative;
   z-index: 2;
   display: flex;
@@ -34,10 +39,4 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-}
-
-.description {
-  text-align: center;
-  margin: 0;
-  padding: 0;
 }

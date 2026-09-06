@@ -4,7 +4,8 @@ import { getTranslations } from '~/lib/i18n/messages';
 
 import type { CardLinkType, IconLinkType } from '~/lib/config';
 
-import LinkHub from '~/components/LinkHub';
+import Logo from '~/components/Logo';
+import { Hub, CardLinks, IconLinks, QrCode } from '~/components/LinkHub';
 
 import config from '~/app/diegocoxta.com/config';
 
@@ -23,14 +24,13 @@ export default async function HomePage({ params }: HomePageProps) {
   const cards = config.links?.filter((link): link is CardLinkType => link.type === 'card') ?? [];
 
   return (
-    <LinkHub
-      t={t}
-      username={config.title}
-      description={config.description}
-      background={config.avatar}
-      icons={icons}
-      cards={cards}
-    />
+    <Hub background={config.avatar}>
+      <Logo name={config.title} size={32} />
+      <p>{t(config.description)}</p>
+      <IconLinks t={t} icons={icons} />
+      <CardLinks t={t} cards={cards} />
+      <QrCode t={t} />
+    </Hub>
   );
 }
 
