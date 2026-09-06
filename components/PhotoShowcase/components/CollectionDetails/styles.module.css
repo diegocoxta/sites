@@ -1,6 +1,6 @@
 .card {
   box-sizing: border-box;
-  padding: 24px 22px;
+  padding: 24px;
   background: var(--main-accent-color);
 }
 
@@ -25,7 +25,7 @@
   display: flex;
   gap: 24px;
   margin: 16px 0 0;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -33,18 +33,19 @@
 }
 
 .cta {
-  display: block;
   padding: 14px 0 0;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--main-background-color);
-
-  &::before {
-    content: '— ';
-  }
+  color: var(--main-title-color);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-top: 1px solid color-mix(in srgb, var(--main-accent-color) 70%, white);
+  margin: 24px 0 0;
+  transition: opacity 0.3s ease-in-out;
 
   &:hover {
     opacity: 0.7;
