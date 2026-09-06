@@ -16,7 +16,7 @@ export function createTranslator(messages: Record<string, string>, locale: Local
 
     if (value === undefined) {
       if (process.env.NODE_ENV !== 'production' && TRANSLATABLE_KEY.test(key)) {
-        console.warn(`[i18n] missing key: "${key}" (${locale})`);
+        console.warn('[i18n] missing key: "%s" (%s)', key, locale);
       }
 
       return key;
