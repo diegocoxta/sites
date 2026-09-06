@@ -1,5 +1,4 @@
 import PhotoPreviewPage from '~/app/diegocosta.me/p/[id]/page';
-
 import { getAllPhotos } from '~/app/diegocosta.me/actions';
 
 interface PageProps {

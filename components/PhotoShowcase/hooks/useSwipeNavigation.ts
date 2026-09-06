@@ -4,7 +4,6 @@ import { useCallback, useRef } from 'react';
 
 const SWIPE_THRESHOLD = 50;
 
-/** Left/right touch swipe -> next/previous, via the same `goTo` the arrows and keyboard use. */
 export function useSwipeNavigation(goTo: (id: string | null) => void, prevId: string | null, nextId: string | null) {
   const touchStartX = useRef<number | null>(null);
 

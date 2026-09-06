@@ -12,17 +12,17 @@ interface LoadMoreProps {
   sentinelRef: React.RefObject<HTMLDivElement | null>;
 }
 
-export default function LoadMore({ loading, failed, onLoadMore, sentinelRef }: LoadMoreProps): React.ReactElement {
+export default function LoadMore({ loading, failed, onLoadMore, sentinelRef }: LoadMoreProps) {
   const t = useTranslator();
 
   return (
     <div className={styles.more}>
       <button className={styles.button} type="button" onClick={onLoadMore} disabled={loading}>
         {loading
-          ? t('client.components.loadMore.loading')
+          ? t('client.components.photoShowcase.loadMore.loading')
           : failed
-            ? t('client.components.loadMore.retry')
-            : t('client.components.loadMore.label')}
+            ? t('client.components.photoShowcase.loadMore.retry')
+            : t('client.components.photoShowcase.loadMore.label')}
       </button>
       <div ref={sentinelRef} className={styles.sentinel} aria-hidden />
     </div>

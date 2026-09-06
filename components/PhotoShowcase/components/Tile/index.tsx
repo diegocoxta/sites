@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import type { Photo } from '../../types';
+
 import styles from './styles.module.css';
 
 interface TileProps {
@@ -12,8 +13,7 @@ interface TileProps {
   hrefBase: string;
 }
 
-/** One photo in the masonry — a dominant-color placeholder that fades to the image on load. */
-export default function Tile({ photo, hrefBase }: TileProps): React.ReactElement {
+export default function Tile({ photo, hrefBase }: TileProps) {
   const [loaded, setLoaded] = useState(false);
 
   return (

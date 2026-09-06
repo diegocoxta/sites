@@ -6,18 +6,16 @@ import Skeleton from '~/components/Skeleton';
 import { useTranslator } from '~/components/TranslationProvider';
 
 import type { PhotoDetails } from '../../types';
+
 import styles from './styles.module.css';
 
-/** "141.0" -> "141mm", "24.5" -> "24.5mm" */
 function formatFocalLength(value: string): string {
   return `${value.replace(/\.0$/, '')}mm`;
 }
 
-// Rough field-count/width guess so the skeleton reserves about the space the real grid
-// will need — it doesn't have to be exact, just close enough that settling in isn't a jump.
 const SKELETON_FIELD_WIDTHS = [64, 56, 46, 58, 34, 84];
 
-function ExifSkeleton({ inverted }: { inverted: boolean }): React.ReactElement {
+function ExifSkeleton({ inverted }: { inverted: boolean }) {
   return (
     <div className={`${styles.panel} ${inverted ? styles.panelInverted : ''}`} aria-hidden>
       <Skeleton colorInverted={inverted} height={13} width="65%" className={styles.skeletonDescription} />
@@ -35,19 +33,11 @@ function ExifSkeleton({ inverted }: { inverted: boolean }): React.ReactElement {
 
 interface ExifProps {
   photoId: string;
-  /**
-   * Fetched client-side after the lightbox has already rendered — exif/location live on a
-   * per-photo endpoint with no bulk variant, so it's never part of the static build.
-   * Resolving to `null` (missing, rate-limited, whatever) just renders nothing.
-   */
   getPhotoDetails: (id: string) => Promise<PhotoDetails | null>;
-  /** Modal variant sits on a permanently-dark background — flips text/border to light. */
   inverted: boolean;
 }
 
-// Its parent Figure is keyed by `photo.id` in Lightbox, so switching photos remounts this
-// and `details`/`loading` start fresh without a manual reset in an effect.
-export default function Exif({ photoId, getPhotoDetails, inverted }: ExifProps): React.ReactElement | null {
+export default function Exif({ photoId, getPhotoDetails, inverted }: ExifProps) {
   const t = useTranslator();
   const [details, setDetails] = useState<PhotoDetails | null>(null);
   const [loading, setLoading] = useState(true);
@@ -89,37 +79,37 @@ export default function Exif({ photoId, getPhotoDetails, inverted }: ExifProps):
       <dl className={`${styles.grid} ${inverted ? styles.gridInverted : ''}`}>
         {details.exif?.camera && (
           <div>
-            <dt>{t('client.components.lightbox.exif.camera')}</dt>
+            <dt>{t('client.components.photoShowcase.exif.camera')}</dt>
             <dd>{details.exif.camera}</dd>
           </div>
         )}
         {details.exif?.focalLength && (
           <div>
-            <dt>{t('client.components.lightbox.exif.focalLength')}</dt>
+            <dt>{t('client.components.photoShowcase.exif.focalLength')}</dt>
             <dd>{formatFocalLength(details.exif.focalLength)}</dd>
           </div>
         )}
         {details.exif?.aperture && (
           <div>
-            <dt>{t('client.components.lightbox.exif.aperture')}</dt>
+            <dt>{t('client.components.photoShowcase.exif.aperture')}</dt>
             <dd>f/{details.exif.aperture}</dd>
           </div>
         )}
         {details.exif?.shutterSpeed && (
           <div>
-            <dt>{t('client.components.lightbox.exif.shutter')}</dt>
+            <dt>{t('client.components.photoShowcase.exif.shutter')}</dt>
             <dd>{details.exif.shutterSpeed}s</dd>
           </div>
         )}
         {details.exif?.iso != null && (
           <div>
-            <dt>{t('client.components.lightbox.exif.iso')}</dt>
+            <dt>{t('client.components.photoShowcase.exif.iso')}</dt>
             <dd>{details.exif.iso}</dd>
           </div>
         )}
         {details.location?.name && (
           <div>
-            <dt>{t('client.components.lightbox.exif.location')}</dt>
+            <dt>{t('client.components.photoShowcase.exif.location')}</dt>
             <dd>{details.location.name}</dd>
           </div>
         )}

@@ -9,21 +9,21 @@
   margin: 40px 0 0;
   column-count: 1;
   column-gap: 3px;
+
+  @media (width >= 640px) {
+    column-count: 2;
+  }
+
+  @media (width >= 1024px) {
+    column-count: 3;
+  }
+
+  @media (width >= 1536px) {
+    column-count: 4;
+  }
 }
 
 .fallbackItem {
   margin-bottom: 3px;
   break-inside: avoid;
-}
-
-@media (width >= 640px) {
-  .fallbackGrid {
-    column-count: 2;
-  }
-}
-
-@media (width >= 1024px) {
-  .fallbackGrid {
-    column-count: 3;
-  }
 }

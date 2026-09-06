@@ -5,10 +5,11 @@ import Link from 'next/link';
 import { useTranslator } from '~/components/TranslationProvider';
 
 import type { Photo, PhotoDetails } from '../../types';
-import Figure from '../Figure';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 import { useLightboxNavigation } from '../../hooks/useLightboxNavigation';
 import { useSwipeNavigation } from '../../hooks/useSwipeNavigation';
+import Figure from '../Figure';
+
 import styles from './styles.module.css';
 
 interface LightboxProps {
@@ -20,34 +21,20 @@ interface LightboxProps {
   variant: 'modal' | 'page';
   hrefBase: string;
   closeHref: string;
-  /**
-   * Fetched client-side, after this page has already rendered — exif/location live on a
-   * per-photo endpoint with no bulk variant, so it's never part of the static build.
-   * Resolving to `null` (missing, rate-limited, whatever) just means the panel stays hidden.
-   */
   getPhotoDetails: (id: string) => Promise<PhotoDetails | null>;
 }
 
-export default function Lightbox({
-  photo,
-  prevId,
-  nextId,
-  index,
-  total,
-  variant,
-  hrefBase,
-  closeHref,
-  getPhotoDetails,
-}: LightboxProps): React.ReactElement {
+export default function Lightbox(props: LightboxProps) {
+  const { photo, prevId, nextId, index, total, variant, hrefBase, closeHref, getPhotoDetails } = props;
   const t = useTranslator();
   const { hrefFor, goTo, close } = useLightboxNavigation({ variant, hrefBase, closeHref, prevId, nextId });
   const { onTouchStart, onTouchEnd } = useSwipeNavigation(goTo, prevId, nextId);
 
   useBodyScrollLock(variant === 'modal');
 
-  const prevLabel = t('client.components.lightbox.previous');
-  const nextLabel = t('client.components.lightbox.next');
-  const backLabel = t('client.components.lightbox.backToGallery');
+  const prevLabel = t('client.components.photoShowcase.lightbox.previous');
+  const nextLabel = t('client.components.photoShowcase.lightbox.next');
+  const backLabel = t('client.components.photoShowcase.lightbox.backToGallery');
 
   const figure = (
     <Figure
