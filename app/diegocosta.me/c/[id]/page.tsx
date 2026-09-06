@@ -20,17 +20,22 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const collection = await getCollection(id);
+  const [collection, firstPage] = await Promise.all([getCollection(id), getCollectionPhotosPage(id, 1)]);
   const t = getTranslations(config);
 
   if (!collection) {
     return {};
   }
 
+  const cover = firstPage.photos[0];
+  const image = cover ? { url: cover.src, width: cover.width, height: cover.height } : (config.avatar ?? '');
+
   return {
     title: collection.title,
     description: collection.description ?? t('page.collections.description'),
     alternates: { canonical: `/c/${id}` },
+    openGraph: { siteName: t(config.title), url: `/c/${id}`, images: [image] },
+    twitter: { card: 'summary_large_image', images: [image] },
   };
 }
 

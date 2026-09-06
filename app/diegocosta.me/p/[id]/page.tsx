@@ -27,10 +27,15 @@ export async function generateMetadata({ params }: PhotoPreviewProps): Promise<M
     return {};
   }
 
+  const { photo } = context;
+  const image = { url: photo.src, width: photo.width, height: photo.height };
+
   return {
-    title: context.photo.alt || t('page.photos.title'),
-    description: context.photo.alt || t('page.photos.description'),
+    title: photo.alt || t('page.photos.title'),
+    description: photo.alt || t('page.photos.description'),
     alternates: { canonical: `/p/${id}` },
+    openGraph: { siteName: t(config.title), url: `/p/${id}`, images: [image] },
+    twitter: { card: 'summary_large_image', images: [image] },
   };
 }
 
