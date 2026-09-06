@@ -2,10 +2,14 @@
   display: grid;
   gap: 3px;
   grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'content'
+    'leading';
 
   @media (width >= 640px) {
     margin: 40px;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: 'leading content';
   }
 
   @media (width >= 1024px) {
@@ -18,10 +22,12 @@
 }
 
 .leading {
+  grid-area: leading;
   align-self: start;
 }
 
 .content {
+  grid-area: content;
   min-width: 0;
   background-color: color-mix(in srgb, var(--main-background-color) 90%, white);
 }
