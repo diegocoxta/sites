@@ -100,6 +100,30 @@ async function walk(fetchPage: (page: number) => Promise<SourcePhoto[] | null>):
   return all;
 }
 
+async function allCollections(): Promise<SourceCollection[]> {
+  if (!creds) {
+    return [];
+  }
+
+  const all: SourceCollection[] = [];
+
+  for (let page = 1; page <= MAX_PAGES; page += 1) {
+    const collections = await getUserCollections({ ...creds, per_page: PAGE_SIZE, page });
+
+    if (collections === null || collections.length === 0) {
+      break;
+    }
+
+    all.push(...collections);
+
+    if (collections.length < PAGE_SIZE) {
+      break;
+    }
+  }
+
+  return all;
+}
+
 function contextAt(photos: Photo[], id: string): PhotoContext | null {
   const index = photos.findIndex((photo) => photo.id === id);
 
@@ -133,22 +157,11 @@ export async function getPhotoContext(id: string): Promise<PhotoContext | null> 
 }
 
 export async function getCollections(): Promise<CollectionSummary[]> {
-  if (!creds) {
-    return [];
-  }
-
-  const collections = await getUserCollections({ ...creds, per_page: PAGE_SIZE });
-
-  return (collections ?? []).map(toCollectionSummary);
+  return (await allCollections()).map(toCollectionSummary);
 }
 
 export async function getCollection(id: string): Promise<CollectionDetail | null> {
-  if (!creds) {
-    return null;
-  }
-
-  const collections = await getUserCollections({ ...creds, per_page: PAGE_SIZE });
-  const collection = (collections ?? []).find((entry) => entry.id === id);
+  const collection = (await allCollections()).find((entry) => entry.id === id);
 
   if (!collection) {
     return null;
