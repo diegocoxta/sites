@@ -17,6 +17,7 @@ const config: LocalConfigType = {
   locales: ['en'],
   author: 'Diego Costa',
   jobTitle: ['Photographer'],
+  avatar: '/avatar.jpg',
   theme: {
     ...globalConfig.theme,
     defaultTheme: 'dark',
@@ -50,6 +51,12 @@ const config: LocalConfigType = {
       icon: 'FaYoutube',
       title: 'config.links.youtube.title',
       href: 'https://youtube.com/@diegocoxta',
+    },
+    {
+      type: 'icon',
+      icon: 'FaIdBadge',
+      title: 'config.links.personal.title',
+      href: 'https://diegocoxta.com',
     },
   ],
 };
