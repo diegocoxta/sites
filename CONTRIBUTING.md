@@ -11,7 +11,7 @@ If you encounter an issue with the project, you are welcome to submit a [bug rep
 If you want to contribute to the repository, follow these steps:
 
 - Fork the repo and develop.
-- Check if your code follow my linter rules: `yarn prettier && yarn lint`
+- Check that your code follows the linter rules: `yarn prettier && yarn lint && yarn stylelint`
 - Test your code changes manually and make sure the project builds (`yarn build`).
 - Commit your changes.
 - Push to your fork and submit a pull request.

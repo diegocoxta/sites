@@ -20,16 +20,23 @@ Run `yarn lint` and `yarn build`. Both must pass.
 
 ## Architecture
 
-- **One Next.js app, three domains.** [`proxy.ts`](proxy.ts) reads the request
-  host and rewrites `/{path}` → `/{domain}/{path}`, so each domain resolves to its
-  own tree under [`app/<domain>/`](app). Per-domain settings in
-  `app/<domain>/config.ts`; shared defaults in `app/config.ts`.
-- **Routing:** `app/<domain>/[...page]/` is a catch-all for Markdown pages that
-  calls `notFound()` when the doc is missing. `diegocoxta.com` is multi-locale
+- **One Next.js app, three domains**, each a different kind of site:
+  diegocosta.com.br a Markdown blog (`pt`), diegocosta.me a photography showcase
+  reading the Unsplash API (`en`), diegocoxta.com a localized link hub
+  (`pt`/`en`/`es`). [`proxy.ts`](proxy.ts) reads the request host and rewrites
+  `/{path}` → `/{domain}/{path}`, so each domain resolves to its own tree under
+  [`app/<domain>/`](app). Per-domain settings in `app/<domain>/config.ts`; shared
+  defaults in `app/config.ts`.
+- **Routing:** `app/<domain>/[...page]/` is a catch-all for `pages/` Markdown that
+  calls `notFound()` when the doc is missing. diegocosta.com.br's blog is its own
+  `blog/` route tree; diegocosta.me is dynamic off the Unsplash API
+  (`app/diegocosta.me/actions.ts` is the only controller — routes `/`, `/c/<id>`,
+  `/p/<id>`, and `@modal` for the lightbox). `diegocoxta.com` is multi-locale
   (`pt`/`en`/`es`) and nests everything under `[locale]/`; the other two domains
   are single-locale with no `/<locale>` prefix.
-- **Content:** Markdown under `public/<domain>/` (`posts/`, `pages/`), read via
-  [`lib/content.ts`](lib/content.ts) (`contentFor(config)`).
+- **Content:** Markdown under `public/<domain>/` (`blog/`, `pages/`; only
+  diegocosta.com.br has any), read via [`lib/content.ts`](lib/content.ts)
+  (`contentFor(config)`).
 - **i18n:** flat-key JSON at `public/<domain>/translations/<locale>.json`. Loader
   in [`lib/i18n/messages.ts`](lib/i18n/messages.ts) (`server-only`); edge-safe
   negotiation in [`lib/i18n/locale.ts`](lib/i18n/locale.ts) (used by `proxy.ts`).
