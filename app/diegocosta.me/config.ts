@@ -42,18 +42,6 @@ const config: LocalConfigType = {
     },
     {
       type: 'icon',
-      icon: 'FaTiktok',
-      title: 'config.links.tiktok.title',
-      href: 'https://tiktok.com/@diegocoxta',
-    },
-    {
-      type: 'icon',
-      icon: 'FaYoutube',
-      title: 'config.links.youtube.title',
-      href: 'https://youtube.com/@diegocoxta',
-    },
-    {
-      type: 'icon',
       icon: 'FaIdBadge',
       title: 'config.links.personal.title',
       href: 'https://diegocoxta.com',
