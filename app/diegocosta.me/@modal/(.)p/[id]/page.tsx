@@ -1,17 +1,13 @@
-import Unsplash from '~/lib/unsplash';
-
-import config from '~/app/diegocosta.me/config';
-
-const unsplash = Unsplash(config.unsplash);
-
 import PhotoPreviewPage from '~/app/diegocosta.me/p/[id]/page';
+
+import { getAllPhotos } from '~/app/diegocosta.me/actions';
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
 export async function generateStaticParams() {
-  const photos = await unsplash.getAllPhotos();
+  const photos = await getAllPhotos();
 
   return photos.map((photo) => ({ id: photo.id }));
 }

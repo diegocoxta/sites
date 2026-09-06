@@ -1,12 +1,9 @@
 import { getTranslations } from '~/lib/i18n/messages';
 
-import Feed from '~/components/PhotographyPortfolio';
-import Profile from '~/components/PhotographyPortfolio/components/Profile';
-import CollectionsCard from '~/components/PhotographyPortfolio/components/CollectionsCard';
+import { CollectionsCard, Feed, Profile } from '~/components/PhotoShowcase';
 
 import config from '~/app/diegocosta.me/config';
-
-import { getCollections, getPhotosPage } from './actions';
+import { getCollections, getPhotosPage } from '~/app/diegocosta.me/actions';
 
 export default async function HomePage() {
   const t = getTranslations(config);

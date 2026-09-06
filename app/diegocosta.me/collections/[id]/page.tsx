@@ -2,33 +2,25 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getTranslations } from '~/lib/i18n/messages';
-import Unsplash from '~/lib/unsplash';
 
-import Feed from '~/components/PhotographyPortfolio';
-import Profile from '~/components/PhotographyPortfolio/components/Profile';
-import CollectionDetails from '~/components/PhotographyPortfolio/components/CollectionDetails';
-import CollectionsCard from '~/components/PhotographyPortfolio/components/CollectionsCard';
+import { CollectionDetails, CollectionsCard, Feed, Profile } from '~/components/PhotoShowcase';
 
 import config from '~/app/diegocosta.me/config';
-
-import { getCollectionPhotosPage } from '~/app/diegocosta.me/actions';
-import { toCollectionSummary, toGalleryPage } from '~/app/diegocosta.me/portfolio';
-
-const unsplash = Unsplash(config.unsplash);
+import { getCollection, getCollectionPhotosPage, getCollections } from '~/app/diegocosta.me/actions';
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
 export async function generateStaticParams() {
-  const collections = await unsplash.getCollections();
+  const collections = await getCollections();
 
   return collections.map((collection) => ({ id: collection.id }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const collection = await unsplash.getCollection(id);
+  const collection = await getCollection(id);
   const t = getTranslations(config);
 
   if (!collection) {
@@ -45,13 +37,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function CollectionPage({ params }: PageProps) {
   const { id } = await params;
   const t = getTranslations(config);
-  const [collection, firstPageRaw, collectionsRaw] = await Promise.all([
-    unsplash.getCollection(id),
-    unsplash.getCollectionPhotosPage(id, 1),
-    unsplash.getCollections(),
+  const [collection, firstPage, collections] = await Promise.all([
+    getCollection(id),
+    getCollectionPhotosPage(id, 1),
+    getCollections(),
   ]);
-  const firstPage = toGalleryPage(firstPageRaw);
-  const collections = collectionsRaw.map(toCollectionSummary);
   const collectionIndex = collections.findIndex((entry) => entry.id === id);
 
   if (!collection && firstPage.ok && firstPage.photos.length === 0) {
@@ -72,7 +62,7 @@ export default async function CollectionPage({ params }: PageProps) {
           index={collectionIndex >= 0 ? collections.length - collectionIndex : collections.length}
           title={collection.title}
           description={collection.description}
-          photoCount={collection.totalPhotos}
+          photoCount={collection.photoCount}
           publishedAt={collection.publishedAt}
         />
       )}
