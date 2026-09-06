@@ -14,7 +14,7 @@ export default function RootLayout({ children, modal }: React.PropsWithChildren<
   const messages = getClientMessages(config);
 
   return (
-    <ThemeProvider defaultTheme={config.theme.defaultTheme}>
+    <ThemeProvider defaultTheme={config.theme.defaultTheme} forcedTheme={config.theme.defaultTheme}>
       <TranslationProvider messages={messages} locale={t.locale}>
         <PersonSchema data={config} />
         <Container maxWidth="1600px">{children}</Container>
