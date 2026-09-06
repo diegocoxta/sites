@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 
 import type { Photo, PhotoFeedPage } from '../../types';
 import { useInfiniteScrollPhotos } from '../../hooks/useInfiniteScrollPhotos';
+import BackToTop from '../BackToTop';
 import Masonry, { type MasonryEntry } from '../Masonry';
 import Tile from '../Tile';
 import LoadMore from '../LoadMore';
@@ -32,6 +33,7 @@ export default function Feed({ initialPhotos, initialHasMore, loadMore, hrefBase
     <>
       <Masonry leading={leading} items={items} />
       {hasMore && <LoadMore loading={loading} failed={failed} onLoadMore={handleLoadMore} sentinelRef={sentinelRef} />}
+      <BackToTop />
     </>
   );
 }
