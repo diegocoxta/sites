@@ -75,9 +75,6 @@ export default function Lightbox(props: LightboxProps) {
           {figure}
           {nextControl}
         </div>
-        <Link className={styles.backLink} href={closeHref}>
-          &larr; {backLabel}
-        </Link>
       </div>
     );
   }

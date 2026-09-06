@@ -4,3 +4,4 @@ export { default as Profile } from './components/Profile';
 export { default as CollectionDetails } from './components/CollectionDetails';
 export { default as CollectionsCard } from './components/CollectionsCard';
 export { default as Lightbox } from './components/Lightbox';
+export { default as Page } from './components/Page';
