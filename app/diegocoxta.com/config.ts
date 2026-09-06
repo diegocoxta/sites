@@ -55,12 +55,6 @@ const config: ConfigType = {
       href: 'https://threads.com/@diegocoxta',
     },
     {
-      type: 'icon',
-      icon: 'FaEnvelope',
-      title: 'config.links.envelope.title',
-      href: 'mailto:diego@diegocoxta.com',
-    },
-    {
       type: 'card',
       title: 'config.links.shop.title',
       icon: 'FaCartShopping',
