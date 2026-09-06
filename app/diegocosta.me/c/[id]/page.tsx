@@ -39,7 +39,7 @@ export default async function CollectionPage({ params }: PageProps) {
   const t = getTranslations(config);
   const [collection, firstPage] = await Promise.all([getCollection(id), getCollectionPhotosPage(id, 1)]);
 
-  if (!collection && firstPage.ok && firstPage.photos.length === 0) {
+  if (!collection && firstPage.photos.length === 0) {
     notFound();
   }
 
