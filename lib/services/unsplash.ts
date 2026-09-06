@@ -3,11 +3,11 @@ import { fetchJson } from '~/lib/http';
 /**
  * Unsplash's demo tier allows only 50 requests/hour — far too little to serve every
  * visitor live. All the photo/collection pages are built statically (generateStaticParams
- * walks every page during `yarn build`), so caching indefinitely here just means "reuse
- * what the build already downloaded until the next build/deploy" instead of re-fetching
- * per visit. Nothing time-based revalidates this data; a new build is what refreshes it.
+ * walks every page during `yarn build`); this window then keeps them as ISR, so the first
+ * visit after a day triggers one background refetch per distinct URL (~21 total) instead
+ * of a request per visit — and new photos on Unsplash show up without a redeploy.
  */
-const REVALIDATE = false;
+const REVALIDATE = 60 * 60 * 24; // 1 day
 
 type GetRecentUserPhotosParamsType = {
   per_page?: number;
@@ -16,7 +16,7 @@ type GetRecentUserPhotosParamsType = {
   authorization: string;
 };
 
-type GetRecentUserPhotosResponseType = null | Array<{
+export type UnsplashPhoto = {
   id: string;
   created_at: string;
   alt_description: string;
@@ -32,7 +32,9 @@ type GetRecentUserPhotosResponseType = null | Array<{
   links: {
     html: string;
   };
-}>;
+};
+
+type GetRecentUserPhotosResponseType = null | UnsplashPhoto[];
 
 export async function getRecentUserPhotos(
   params: GetRecentUserPhotosParamsType
@@ -58,7 +60,7 @@ type GetUserCollectionsParamsType = {
   authorization: string;
 };
 
-type GetUserCollectionsResponseType = null | Array<{
+export type UnsplashCollection = {
   id: string;
   title: string;
   description?: string;
@@ -96,7 +98,9 @@ type GetUserCollectionsResponseType = null | Array<{
       small_s3: string;
     };
   };
-}>;
+};
+
+type GetUserCollectionsResponseType = null | UnsplashCollection[];
 
 export async function getUserCollections(
   params: GetUserCollectionsParamsType
@@ -120,7 +124,7 @@ type GetPhotoParamsType = {
   authorization: string;
 };
 
-type GetPhotoResponseType = null | {
+export type UnsplashPhotoDetails = {
   id: string;
   description: string | null;
   exif: {
@@ -141,6 +145,8 @@ type GetPhotoResponseType = null | {
     } | null;
   } | null;
 };
+
+type GetPhotoResponseType = null | UnsplashPhotoDetails;
 
 export async function getPhoto(params: GetPhotoParamsType): Promise<GetPhotoResponseType> {
   const { id, authorization } = params;

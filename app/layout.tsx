@@ -1,6 +1,5 @@
 import type { Viewport, Metadata } from 'next';
 import { Source_Sans_3 } from 'next/font/google';
-import { ThemeProvider } from 'next-themes';
 
 import './globals.css';
 
@@ -21,7 +20,7 @@ export default async function RootLayout({ children }: React.PropsWithChildren) 
           } as React.CSSProperties
         }
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   );

@@ -8,7 +8,7 @@ interface SkeletonProps {
   className?: string;
 }
 
-export default function Skeleton(props: SkeletonProps): React.ReactElement {
+export default function Skeleton(props: SkeletonProps) {
   return (
     <span
       aria-hidden

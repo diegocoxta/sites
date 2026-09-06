@@ -50,6 +50,8 @@ Run `yarn lint` and `yarn build`. Both must pass.
   `styles.module.css`). No global CSS beyond `app/globals.css`.
 - Match the style of surrounding code; keep diffs minimal.
 - Don't add dependencies without a clear need.
+- **Git commits:** never add a `Co-Authored-By` trailer (or any other AI
+  attribution) to commit messages.
 
 ## Gotchas
 

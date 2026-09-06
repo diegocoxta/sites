@@ -1,0 +1,42 @@
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 380px 16px 26px;
+  box-sizing: border-box;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  @media (width >= 600px) {
+    margin: 30px auto;
+    border-radius: 20px;
+  }
+
+  &::before {
+    display: block;
+    width: 100%;
+    height: 550px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: ' ';
+    background: linear-gradient(0deg, var(--main-background-color) 20%, rgb(255 255 255 / 0%) 60%);
+    z-index: 1;
+  }
+
+  > p {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}

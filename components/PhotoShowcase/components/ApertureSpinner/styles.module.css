@@ -1,0 +1,26 @@
+.spinner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  color: var(--main-accent-color);
+  animation: aperture-spin 1.6s ease-in-out infinite;
+
+  & path {
+    fill: currentcolor;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes aperture-spin {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(0.55);
+  }
+}

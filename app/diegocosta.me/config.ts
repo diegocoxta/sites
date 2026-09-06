@@ -17,11 +17,16 @@ const config: LocalConfigType = {
   locales: ['en'],
   author: 'Diego Costa',
   jobTitle: ['Photographer'],
+  theme: {
+    ...globalConfig.theme,
+    defaultTheme: 'dark',
+  },
   unsplash: {
     username: process.env.UNSPLASH_USERNAME,
     authorization: process.env.UNSPLASH_ACCESS_KEY,
   },
   links: [
+    { type: 'text', title: 'E-mail', href: 'mailto:diego@diegocosta.me' },
     {
       type: 'icon',
       icon: 'FaUnsplash',

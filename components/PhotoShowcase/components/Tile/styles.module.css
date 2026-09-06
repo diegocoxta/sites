@@ -1,0 +1,27 @@
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transition:
+    transform 0.4s ease,
+    opacity 0.3s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.imageLoaded {
+  opacity: 1;
+}
+
+.tile {
+  display: block;
+  overflow: hidden;
+  background-color: var(--main-border-color);
+
+  &:hover .image {
+    transform: scale(1.03);
+  }
+}

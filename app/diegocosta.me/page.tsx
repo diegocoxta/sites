@@ -1,51 +1,29 @@
-import './page.css';
-
-import * as Fa from 'react-icons/fa6';
-
-import type { IconLinkType } from '~/lib/config';
 import { getTranslations } from '~/lib/i18n/messages';
 
-import Container from '~/components/Container';
+import { CollectionsCard, Feed, Profile } from '~/components/PhotoShowcase';
 
 import config from '~/app/diegocosta.me/config';
+import { getCollections, getPhotosPage } from '~/app/diegocosta.me/actions';
 
-export default function HomePage() {
+export default async function HomePage() {
   const t = getTranslations(config);
+  const [{ photos, hasMore }, collections] = await Promise.all([getPhotosPage(1), getCollections()]);
 
-  return (
-    <Container>
-      <section className="sectionPreview">
-        <div className="text">
-          <p>{t('page.home.underConstruction')}</p>
-          <p>
-            {t('page.home.checkPhotos')}{' '}
-            <a
-              target="_blank"
-              href="https://unsplash.com/diegocoxta"
-              className="link"
-              title={t('config.links.unsplash.title')}
-            >
-              <Fa.FaUnsplash /> Unsplash
-            </a>
-          </p>
-        </div>
-      </section>
-      <section className="social">
-        <ul className="socialLinks">
-          {config.links
-            ?.filter((link): link is IconLinkType => link.type === 'icon')
-            .map((link) => {
-              const Icon = Fa[link.icon as keyof typeof Fa];
-              return (
-                <li key={link.href}>
-                  <a target="_blank" href={link.href} rel="me noopener" title={t(link.title)}>
-                    <Icon />
-                  </a>
-                </li>
-              );
-            })}
-        </ul>
-      </section>
-    </Container>
+  const leading = (
+    <>
+      <Profile
+        t={t}
+        name={config.author}
+        avatar="/avatar.jpg"
+        socialLinks={config.links?.filter((link) => link.type === 'icon')}
+      />
+      {collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
+    </>
+  );
+
+  return photos.length > 0 || hasMore ? (
+    <Feed initialPhotos={photos} initialHasMore={hasMore} loadMore={getPhotosPage} hrefBase="/p" leading={leading} />
+  ) : (
+    <p>{t('page.photos.empty')}</p>
   );
 }
