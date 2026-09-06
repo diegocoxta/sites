@@ -1,4 +1,4 @@
-import { type Metadata } from 'next';
+import type { Metadata } from 'next';
 
 import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';

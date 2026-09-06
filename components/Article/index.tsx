@@ -13,7 +13,7 @@ type ArticleProps = ComponentWithTranslator<
   }
 >;
 
-export default function Article({ t, ...props }: ArticleProps): React.ReactElement {
+export default function Article({ t, ...props }: ArticleProps) {
   const { renderHeader = true, expanded = true } = props;
 
   return (

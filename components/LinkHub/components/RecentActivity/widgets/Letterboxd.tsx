@@ -7,7 +7,7 @@ import type { RecentActivityProps } from '../index';
 
 import styles from '../styles.module.css';
 
-export default async function LetterboxdWidget({ config, t }: RecentActivityProps) {
+export default async function LetterboxdWidget({ t, config }: RecentActivityProps) {
   if (!config.username) {
     return null;
   }

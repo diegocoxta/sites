@@ -4,7 +4,7 @@ import type { RecentActivityProps } from '../index';
 
 import styles from '../styles.module.css';
 
-export default async function GithubWidget({ config, t }: RecentActivityProps) {
+export default async function GithubWidget({ t, config }: RecentActivityProps) {
   if (!config.username || !config.authorization) {
     return null;
   }

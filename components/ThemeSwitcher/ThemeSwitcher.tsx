@@ -11,7 +11,7 @@ interface ThemeSwitcherProps {
   isDarkMode: boolean;
 }
 
-export default function ThemeSwitcher({ isDarkMode, onClick }: ThemeSwitcherProps): React.ReactElement {
+export default function ThemeSwitcher({ isDarkMode, onClick }: ThemeSwitcherProps) {
   const t = useTranslator();
 
   return (

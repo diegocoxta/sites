@@ -1,10 +1,10 @@
 'use client';
 
-import { Component, Suspense, type ReactNode } from 'react';
+import { Component, Suspense } from 'react';
 
 import Skeleton from '~/components/Skeleton';
 
-class WidgetErrorBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+class WidgetErrorBoundary extends Component<React.PropsWithChildren, { failed: boolean }> {
   state = { failed: false };
 
   static getDerivedStateFromError() {
@@ -16,7 +16,7 @@ class WidgetErrorBoundary extends Component<{ children: ReactNode }, { failed: b
   }
 }
 
-export default function WidgetBoundary({ children }: { children: ReactNode }) {
+export default function WidgetBoundary({ children }: React.PropsWithChildren) {
   return (
     <WidgetErrorBoundary>
       <Suspense

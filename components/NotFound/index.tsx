@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 type NotFoundProps = ComponentWithTranslator<{ domain: string }>;
 
-export default function NotFound({ t, domain }: NotFoundProps): React.ReactElement {
+export default function NotFound({ t, domain }: NotFoundProps) {
   return (
     <main id="centered-page" className={styles.container}>
       <p className={styles.code} aria-hidden>

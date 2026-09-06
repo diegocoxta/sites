@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 
-import { type ContentAttributes, contentFor } from '~/lib/content';
+import { contentFor, type ContentAttributes } from '~/lib/content';
 import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
 
 import TranslationProvider from '~/components/TranslationProvider';

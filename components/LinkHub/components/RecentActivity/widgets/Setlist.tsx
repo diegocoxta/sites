@@ -7,7 +7,7 @@ import type { RecentActivityProps } from '../index';
 
 import styles from '../styles.module.css';
 
-export default async function SetlistWidget({ config, t }: RecentActivityProps) {
+export default async function SetlistWidget({ t, config }: RecentActivityProps) {
   if (!config.username || !config.authorization) {
     return null;
   }

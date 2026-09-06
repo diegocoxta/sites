@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 
 import { getTranslations } from '~/lib/i18n/messages';
-
 import type { CardLinkType, IconLinkType } from '~/lib/config';
 
 import Logo from '~/components/Logo';
