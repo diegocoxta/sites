@@ -1,18 +1,18 @@
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 import { ImageResponse } from 'next/og';
 
 const fontPath = readFileSync(join(process.cwd(), 'public/fonts/SourceSans3-Bold.ttf'));
 
-interface IconType {
+interface AppIconConfig {
   width: number;
   height: number;
-  fontSize: number;
   accentColor: string;
   textColor: string;
 }
 
-export default async function SiteBrandingIcon(config: IconType) {
+export async function renderAppIcon(config: AppIconConfig) {
   const styles: { [key: string]: React.CSSProperties } = {
     container: {
       background: 'transparent',
