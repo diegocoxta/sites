@@ -5,11 +5,12 @@
   "config.links.instagram.title": "Find me on Instagram",
   "config.links.tiktok.title": "Find me on Tiktok",
   "config.links.youtube.title": "Find me on YouTube",
-  "page.photos.title": "Photo",
-  "page.photos.description": "A photo from my Unsplash feed.",
-  "page.photos.empty": "No photos to show right now. Check back soon.",
-  "page.collections.description": "Photo collections I curate on Unsplash.",
-  "components.photoShowcase.profile.bio": "A running, unedited mirror of what I publish on Unsplash — no separate curation step, no delay. Click into any photo for the story behind it.",
+  "config.links.personal.title": "Find me everywhere else",
+  "page.photos.title": "Untitled",
+  "page.photos.description": "A photo I took and didn't have words for.",
+  "page.photos.empty": "Empty for now. Either I haven't posted or something broke — try again later.",
+  "page.collections.description": "A few photos I kept together for a reason I didn't write down.",
+  "components.photoShowcase.profile.bio": "Amateur photographer and software engineer from Brazil, happiest traveling with a camera — and dreaming of the day that's all I do. This is where the photos end up; the rest of me is on the links below.",
   "components.photoShowcase.collectionsCard.title": "Collections",
   "components.photoShowcase.collectionDetails.photoCount": "{count} photos",
   "components.photoShowcase.collectionDetails.allPhotos": "All photos",
@@ -27,5 +28,5 @@
   "client.components.photoShowcase.exif.shutter": "Shutter speed",
   "client.components.photoShowcase.exif.iso": "ISO",
   "client.components.photoShowcase.exif.location": "Location",
-  "client.components.notFound.message": "The page you are looking for was not found. \nPlease go back to <a href=\"https://{domain}\">{domain}</a> and try again."
+  "client.components.notFound.message": "This page doesn't exist — or it did and I moved it. \nHead back to <a href=\"https://{domain}\">{domain}</a> and start over."
 }
