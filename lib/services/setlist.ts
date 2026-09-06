@@ -81,7 +81,7 @@ export async function getUserConcertsAttendance(
   const { username, authorization, page = 1 } = params;
 
   const data = await fetchJson<GetUserConcertsAttendanceResponseType>(
-    `https://api.setlist.fm/rest/1.0/user/${username}/attended?p=${page}`,
+    `https://api.setlist.fm/rest/1.0/user/${encodeURIComponent(username)}/attended?p=${page}`,
     {
       headers: {
         'x-api-key': authorization,

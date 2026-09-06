@@ -42,7 +42,7 @@ export async function getRecentUserPhotos(
   const { per_page = 3, page = 1, username, authorization } = params;
 
   const photos = await fetchJson<GetRecentUserPhotosResponseType>(
-    `https://api.unsplash.com/users/${username}/photos?per_page=${per_page}&page=${page}`,
+    `https://api.unsplash.com/users/${encodeURIComponent(username)}/photos?per_page=${per_page}&page=${page}`,
     {
       headers: { Authorization: `Client-ID ${authorization}` },
       id: 'unsplash-photos',
@@ -108,7 +108,7 @@ export async function getUserCollections(
   const { per_page = 10, page = 1, username, authorization } = params;
 
   const collections = await fetchJson<GetUserCollectionsResponseType>(
-    `https://api.unsplash.com/users/${username}/collections?per_page=${per_page}&page=${page}`,
+    `https://api.unsplash.com/users/${encodeURIComponent(username)}/collections?per_page=${per_page}&page=${page}`,
     {
       headers: { Authorization: `Client-ID ${authorization}` },
       id: 'unsplash-collections',
@@ -151,7 +151,7 @@ type GetPhotoResponseType = null | UnsplashPhotoDetails;
 export async function getPhoto(params: GetPhotoParamsType): Promise<GetPhotoResponseType> {
   const { id, authorization } = params;
 
-  const photo = await fetchJson<GetPhotoResponseType>(`https://api.unsplash.com/photos/${id}`, {
+  const photo = await fetchJson<GetPhotoResponseType>(`https://api.unsplash.com/photos/${encodeURIComponent(id)}`, {
     headers: { Authorization: `Client-ID ${authorization}` },
     id: 'unsplash-photo',
     revalidate: REVALIDATE,
@@ -173,7 +173,7 @@ export async function getCollectionPhotos(
   const { id, per_page = 3, page = 1, authorization } = params;
 
   const photos = await fetchJson<GetRecentUserPhotosResponseType>(
-    `https://api.unsplash.com/collections/${id}/photos?per_page=${per_page}&page=${page}`,
+    `https://api.unsplash.com/collections/${encodeURIComponent(id)}/photos?per_page=${per_page}&page=${page}`,
     {
       headers: { Authorization: `Client-ID ${authorization}` },
       id: 'unsplash-collection-photos',

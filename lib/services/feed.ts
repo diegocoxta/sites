@@ -33,7 +33,7 @@ export async function getFeedListing(
 
     return itemsArray.slice(0, limit);
   } catch (error) {
-    console.error(`[feed] failed to parse — ${feed}`, error);
+    console.error('[feed] failed to parse — %s', feed, error);
     return null;
   }
 }

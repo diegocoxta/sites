@@ -25,7 +25,7 @@ export async function getUserCollection(params: GetUserCollectionParamsType): Pr
   const { username, authorization, per_page = 3, page = 1 } = params;
 
   const response = await fetchJson<GetUserCollectionResponseType>(
-    `https://api.discogs.com/users/${username}/collection/folders/0/releases?sort=added&sort_order=desc&page=${page}&per_page=${per_page}`,
+    `https://api.discogs.com/users/${encodeURIComponent(username)}/collection/folders/0/releases?sort=added&sort_order=desc&page=${page}&per_page=${per_page}`,
     {
       headers: {
         Authorization: `Discogs token=${authorization}`,
