@@ -27,7 +27,6 @@ const config: LocalConfigType = {
     authorization: process.env.UNSPLASH_ACCESS_KEY,
   },
   links: [
-    { type: 'text', title: 'E-mail', href: 'mailto:diego@diegocosta.me' },
     {
       type: 'icon',
       icon: 'FaUnsplash',
@@ -39,6 +38,12 @@ const config: LocalConfigType = {
       icon: 'FaInstagram',
       title: 'config.links.instagram.title',
       href: 'https://instagram.com/diegocoxta',
+    },
+    {
+      type: 'icon',
+      icon: 'FaEnvelope',
+      title: 'config.links.mail.title',
+      href: 'mailto:diego@diegocosta.me',
     },
     {
       type: 'icon',

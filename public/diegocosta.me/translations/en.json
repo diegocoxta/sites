@@ -3,6 +3,7 @@
   "config.description": "My photography portfolio",
   "config.links.unsplash.title": "Find me on Unsplash",
   "config.links.instagram.title": "Find me on Instagram",
+  "config.links.mail.title": "Drop me a line",
   "config.links.personal.title": "Find me everywhere else",
   "page.photos.title": "Untitled",
   "page.photos.description": "A photo I took and didn't have words for.",
