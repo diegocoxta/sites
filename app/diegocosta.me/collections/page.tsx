@@ -2,12 +2,9 @@ import type { Metadata } from 'next';
 
 import { getTranslations } from '~/lib/i18n/messages';
 
-import CollectionsList from '~/components/PhotographyPortfolio/components/CollectionsList';
-import Profile from '~/components/PhotographyPortfolio/components/Profile';
-import CollectionsCard from '~/components/PhotographyPortfolio/components/CollectionsCard';
+import { CollectionsCard, CollectionsList, Profile } from '~/components/PhotoShowcase';
 
 import config from '~/app/diegocosta.me/config';
-
 import { getCollections } from '~/app/diegocosta.me/actions';
 
 export function generateMetadata(): Metadata {

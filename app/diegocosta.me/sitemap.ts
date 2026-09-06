@@ -1,12 +1,11 @@
 import type { MetadataRoute } from 'next';
 
 import { contentFor } from '~/lib/content';
-import Unsplash from '~/lib/unsplash';
 
 import config from '~/app/diegocosta.me/config';
+import { getAllPhotos, getCollections } from '~/app/diegocosta.me/actions';
 
 const content = contentFor(config);
-const unsplash = Unsplash(config.unsplash);
 
 export const revalidate = false;
 
@@ -15,11 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const pages = content.getPages();
 
-  const [photos, collections, collectionPhotos] = await Promise.all([
-    unsplash.getAllPhotos(),
-    unsplash.getCollections(),
-    unsplash.getAllCollectionPhotoParams(),
-  ]);
+  const [photos, collections] = await Promise.all([getAllPhotos(), getCollections()]);
 
   return [
     {
@@ -44,10 +39,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...collections.map((collection) => ({
       url: `https://${domain}/collections/${collection.id}`,
       priority: 0.6,
-    })),
-    ...collectionPhotos.map(({ id, photo }) => ({
-      url: `https://${domain}/collections/${id}/${photo}`,
-      priority: 0.4,
     })),
   ];
 }
