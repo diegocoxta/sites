@@ -21,7 +21,7 @@
   "client.components.photoShowcase.lightbox.previous": "Previous photo",
   "client.components.photoShowcase.lightbox.next": "Next photo",
   "client.components.photoShowcase.lightbox.backToGallery": "Back to gallery",
-  "client.components.photoShowcase.lightbox.source": "View on {source}",
+  "client.components.photoShowcase.lightbox.credit": "Photo by <a href=\"{authorUrl}?utm_source=diegocosta.me&utm_medium=referral\" target=\"_blank\" rel=\"noopener noreferrer\">{author}</a> on <a href=\"{sourceUrl}?utm_source=diegocosta.me&utm_medium=referral\" target=\"_blank\" rel=\"noopener noreferrer\">{source}</a>",
   "client.components.photoShowcase.exif.camera": "Camera",
   "client.components.photoShowcase.exif.focalLength": "Focal length",
   "client.components.photoShowcase.exif.aperture": "Aperture",
