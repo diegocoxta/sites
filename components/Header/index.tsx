@@ -5,11 +5,11 @@ interface HeaderProps {
   right?: React.ReactNode;
 }
 
-export default function Header(props: HeaderProps): React.ReactElement {
+export default function Header({ left, right }: HeaderProps) {
   return (
     <header className={styles.container}>
-      {props.left && <div className={styles.left}>{props.left}</div>}
-      {props.right && <div className={styles.right}>{props.right}</div>}
+      {left && <div className={styles.left}>{left}</div>}
+      {right && <div className={styles.right}>{right}</div>}
     </header>
   );
 }

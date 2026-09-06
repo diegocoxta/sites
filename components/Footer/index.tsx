@@ -10,7 +10,7 @@ type FooterProps = ComponentWithTranslator<{
   links?: ConfigType['links'];
 }>;
 
-export default function Footer({ t, ...props }: FooterProps): React.ReactElement {
+export default function Footer({ t, ...props }: FooterProps) {
   const year = new Date().getFullYear();
 
   return (

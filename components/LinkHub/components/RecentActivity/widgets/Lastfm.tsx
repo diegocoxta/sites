@@ -7,7 +7,7 @@ import type { RecentActivityProps } from '../index';
 
 import styles from '../styles.module.css';
 
-export default async function LastfmWidget({ config, t }: RecentActivityProps) {
+export default async function LastfmWidget({ t, config }: RecentActivityProps) {
   if (!config.username || !config.authorization) {
     return null;
   }

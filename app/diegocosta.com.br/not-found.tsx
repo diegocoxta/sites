@@ -4,6 +4,6 @@ import NotFound from '~/components/NotFound';
 
 import config from '~/app/diegocosta.com.br/config';
 
-export default function NotFoundPage(): React.ReactElement {
+export default function NotFoundPage() {
   return <NotFound t={getTranslations(config)} domain={config.domain} />;
 }

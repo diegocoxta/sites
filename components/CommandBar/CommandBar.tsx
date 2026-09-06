@@ -1,16 +1,15 @@
 'use client';
 
-import React from 'react';
 import { KBarAnimator, KBarPortal, useMatches, KBarPositioner, KBarSearch, KBarResults, useKBar } from 'kbar';
 import { LuCommand, LuSearch } from 'react-icons/lu';
 
 import { useTranslator } from '~/components/TranslationProvider';
 
-import styles from './styles.module.css';
-
 import type { ExtendedAction } from './index';
 
-export default function CommandBar(): React.ReactElement {
+import styles from './styles.module.css';
+
+export default function CommandBar() {
   const t = useTranslator();
   const { query } = useKBar();
   const { results } = useMatches();
