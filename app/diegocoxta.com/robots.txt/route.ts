@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 import config from '~/app/diegocoxta.com/config';
 
-export const revalidate = 76800;
+export const revalidate = false;
 
 export const GET = () => {
   const { domain } = config;

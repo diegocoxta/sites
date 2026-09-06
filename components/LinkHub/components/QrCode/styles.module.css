@@ -1,0 +1,33 @@
+.qrCode {
+  display: none;
+  padding: 16px;
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 90px;
+  background-color: var(--main-background-color);
+  z-index: 5;
+  zoom: 0.7;
+  transition: all linear 0.3s;
+
+  @media (width >= 1600px) and (pointer: fine) {
+    display: block;
+  }
+
+  &:hover {
+    zoom: 1.5;
+  }
+}
+
+.qrCodeDescription {
+  font-size: 14px;
+  margin: 0 0 8px;
+  text-align: center;
+}
+
+.qrCodeImage {
+  width: 100%;
+  height: auto;
+  filter: saturate(0);
+  opacity: 0.8;
+}

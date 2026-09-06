@@ -4,7 +4,7 @@ import { getTranslations } from '~/lib/i18n/messages';
 
 import config from '~/app/diegocosta.me/config';
 
-export const revalidate = 76800;
+export const revalidate = false;
 
 export const GET = () => {
   const t = getTranslations(config);

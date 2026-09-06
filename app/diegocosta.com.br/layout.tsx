@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
+import { ThemeProvider } from 'next-themes';
 
-import { type ContentAttributes, contentFor } from '~/lib/content';
+import { contentFor, type ContentAttributes } from '~/lib/content';
 import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
 
 import TranslationProvider from '~/components/TranslationProvider';
 import PersonSchema from '~/components/PersonSchema';
 import Header from '~/components/Header';
-import Branding from '~/components/Branding';
+import Logo from '~/components/Logo';
 import ThemeSwitcher from '~/components/ThemeSwitcher';
 import CommandBar from '~/components/CommandBar';
 import Footer from '~/components/Footer';
@@ -22,23 +23,30 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   const pages = content.getPages();
   const posts = content.getPosts();
 
-  const toCommandAction = (p: ContentAttributes) => ({ href: p.href, title: p.title, language: p.language });
-
   return (
-    <TranslationProvider messages={messages} locale={t.locale}>
-      <PersonSchema data={config} />
-      <Header
-        left={<Branding name={config.author} />}
-        right={
-          <>
-            <ThemeSwitcher />
-            <CommandBar content={[...posts, ...pages].map(toCommandAction)} repository={config.repository} />
-          </>
-        }
-      />
-      {children}
-      <Footer author={config.author} links={config.links} t={t} />
-    </TranslationProvider>
+    <ThemeProvider defaultTheme={config.theme.defaultTheme}>
+      <TranslationProvider messages={messages} locale={t.locale}>
+        <PersonSchema data={config} />
+        <Header
+          left={<Logo name={config.author} />}
+          right={
+            <>
+              <ThemeSwitcher />
+              <CommandBar
+                content={[...posts, ...pages].map((p: ContentAttributes) => ({
+                  href: p.href,
+                  title: p.title,
+                  language: p.language,
+                }))}
+                repository={config.repository}
+              />
+            </>
+          }
+        />
+        {children}
+        <Footer author={config.author} links={config.links} t={t} />
+      </TranslationProvider>
+    </ThemeProvider>
   );
 }
 

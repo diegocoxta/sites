@@ -6,6 +6,8 @@ import config from '~/app/diegocosta.com.br/config';
 
 const content = contentFor(config);
 
+export const revalidate = false;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const { domain } = config;
 

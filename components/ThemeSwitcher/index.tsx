@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes';
 
 import _ThemeSwitcher from './ThemeSwitcher';
 
-export default function ThemeSwitcher(): React.ReactElement {
+export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === 'dark';

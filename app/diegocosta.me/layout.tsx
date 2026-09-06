@@ -1,27 +1,26 @@
 import type { Metadata } from 'next';
+import { ThemeProvider } from 'next-themes';
 
 import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
 
 import TranslationProvider from '~/components/TranslationProvider';
 import PersonSchema from '~/components/PersonSchema';
-import Header from '~/components/Header';
-import Branding from '~/components/Branding';
-import ThemeSwitcher from '~/components/ThemeSwitcher';
-import Footer from '~/components/Footer';
+import Container from '~/components/Container';
 
 import config from '~/app/diegocosta.me/config';
 
-export default function RootLayout({ children }: React.PropsWithChildren) {
+export default function RootLayout({ children, modal }: React.PropsWithChildren<{ modal: React.ReactNode }>) {
   const t = getTranslations(config);
   const messages = getClientMessages(config);
 
   return (
-    <TranslationProvider messages={messages} locale={t.locale}>
-      <PersonSchema data={config} />
-      <Header left={<Branding name={config.author} />} right={<ThemeSwitcher />} />
-      {children}
-      <Footer author={config.author} t={t} />
-    </TranslationProvider>
+    <ThemeProvider defaultTheme={config.theme.defaultTheme}>
+      <TranslationProvider messages={messages} locale={t.locale}>
+        <PersonSchema data={config} />
+        <Container maxWidth="1600px">{children}</Container>
+        {modal}
+      </TranslationProvider>
+    </ThemeProvider>
   );
 }
 

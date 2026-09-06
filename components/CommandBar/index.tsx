@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes';
 import { LuHouse, LuMoon, LuNewspaper, LuNotepadText, LuPalette, LuSun, LuCodeXml, LuSunMoon } from 'react-icons/lu';
 
 import type { ContentAttributes } from '~/lib/content';
+
 import { useTranslator } from '~/components/TranslationProvider';
 
 import _CommandBar from './CommandBar';
@@ -19,7 +20,7 @@ interface CommandBarProps {
 
 export type ExtendedAction = Action & Partial<ContentAction>;
 
-export default function CommandBar({ content, repository }: CommandBarProps): React.ReactElement {
+export default function CommandBar({ content, repository }: CommandBarProps) {
   const t = useTranslator();
   const { setTheme } = useTheme();
   const router = useRouter();

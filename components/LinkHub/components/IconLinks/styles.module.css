@@ -1,0 +1,34 @@
+.list {
+  display: flex;
+  gap: 5px;
+  margin: 26px 0;
+  padding: 0;
+  width: 100%;
+  justify-content: center;
+
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.item {
+  color: var(--main-accent-color);
+  transition: 0.2s all linear;
+  border-radius: 100%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    transform: scale(1.3);
+    background-color: var(--main-box-color);
+  }
+
+  svg {
+    font-size: 22px;
+  }
+}

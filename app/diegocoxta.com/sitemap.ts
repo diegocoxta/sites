@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 import config from '~/app/diegocoxta.com/config';
 
-export const revalidate = 76800;
+export const revalidate = false;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const { domain, locales } = config;

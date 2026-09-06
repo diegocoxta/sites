@@ -1,6 +1,6 @@
-import config from '~/app/config';
-
 import SiteBrandingIcon from '~/components/SiteBrandingIcon';
+
+import config from '~/app/config';
 
 export const size = { width: 180, height: 180 };
 export const contentType = 'image/png';

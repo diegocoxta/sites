@@ -1,6 +1,6 @@
-import PageDescription from '~/components/PageDescription';
-
 import { getTranslations } from '~/lib/i18n/messages';
+
+import PageDescription from '~/components/PageDescription';
 
 import config from '~/app/diegocosta.com.br/config';
 

@@ -47,4 +47,5 @@ export type SiteType = Pick<ConfigType, 'domain' | 'locales'>;
 export type SiteThemeType = {
   accentColor: string;
   textColor: string;
+  defaultTheme: 'light' | 'dark' | 'system';
 };
