@@ -30,6 +30,5 @@
   "components.linkHub.qrHint": "Escaneie para ver no celular",
   "components.recentActivity.hardcover.pageProgress": "Página {current} de {total}",
   "components.recentActivity.lastfm.plays": "{count} reproduções",
-  "client.components.notFound.message": "Sinto muito, mas a página que você está buscando não foi encontrada.\nVolte para <a href=\"https://{domain}\">{domain}</a> e tente novamente.",
-  "client.components.themeSwitcher.ariaLabel": "Trocar a cor do tema."
+  "client.components.notFound.message": "Sinto muito, mas a página que você está buscando não foi encontrada.\nVolte para <a href=\"https://{domain}\">{domain}</a> e tente novamente."
 }

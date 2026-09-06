@@ -30,6 +30,5 @@
   "components.linkHub.qrHint": "Scan to view on your phone",
   "components.recentActivity.hardcover.pageProgress": "Page {current} of {total}",
   "components.recentActivity.lastfm.plays": "{count} plays",
-  "client.components.notFound.message": "The page you are looking for was not found. \nPlease go back to <a href=\"https://{domain}\">{domain}</a> and try again.",
-  "client.components.themeSwitcher.ariaLabel": "Toggle theme color."
+  "client.components.notFound.message": "The page you are looking for was not found. \nPlease go back to <a href=\"https://{domain}\">{domain}</a> and try again."
 }
