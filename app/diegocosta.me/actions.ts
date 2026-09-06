@@ -13,6 +13,7 @@ const PAGE_SIZE = 30;
 const MAX_PAGES = 20;
 
 const SOURCE_NAME = 'Unsplash';
+const SOURCE_URL = 'https://unsplash.com';
 
 /** Unsplash photo/collection ids are short URL-safe tokens — reject anything else before it reaches a request URL. */
 const VALID_ID = /^[\w-]{1,64}$/;
@@ -33,7 +34,12 @@ function toPhoto(photo: UnsplashPhoto): Photo {
     width: photo.width,
     height: photo.height,
     placeholderColor: photo.color,
-    source: { name: SOURCE_NAME, url: photo.links.html },
+    source: {
+      name: SOURCE_NAME,
+      url: SOURCE_URL,
+      author: photo.user.name,
+      authorUrl: photo.user.links.html,
+    },
   };
 }
 

@@ -43,9 +43,16 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails 
           {index + 1} / {total}
         </span>
         {photo.source && (
-          <a href={photo.source.url} target="_blank" rel="noopener noreferrer">
-            {t('client.components.photoShowcase.lightbox.source', { source: photo.source.name })}
-          </a>
+          <span
+            dangerouslySetInnerHTML={{
+              __html: t('client.components.photoShowcase.lightbox.credit', {
+                author: photo.source.author,
+                authorUrl: photo.source.authorUrl,
+                source: photo.source.name,
+                sourceUrl: photo.source.url,
+              }),
+            }}
+          />
         )}
       </figcaption>
       <Exif photoId={photo.id} getPhotoDetails={getPhotoDetails} inverted={inverted} />

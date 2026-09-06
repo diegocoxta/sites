@@ -32,6 +32,13 @@ export type UnsplashPhoto = {
   links: {
     html: string;
   };
+  user: {
+    name: string;
+    username: string;
+    links: {
+      html: string;
+    };
+  };
 };
 
 type GetRecentUserPhotosResponseType = null | UnsplashPhoto[];

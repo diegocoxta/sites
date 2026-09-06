@@ -8,6 +8,8 @@ export type Photo = {
   source?: {
     name: string;
     url: string;
+    author: string;
+    authorUrl: string;
   };
 };
 
