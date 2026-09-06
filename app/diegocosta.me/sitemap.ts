@@ -31,13 +31,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `https://${domain}/p/${photo.id}`,
       priority: 0.5,
     })),
-    {
-      url: `https://${domain}/collections`,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
     ...collections.map((collection) => ({
-      url: `https://${domain}/collections/${collection.id}`,
+      url: `https://${domain}/c/${collection.id}`,
       priority: 0.6,
     })),
   ];

@@ -4,23 +4,17 @@ import { useMemo } from 'react';
 import { Masonry as PlockMasonry } from 'react-plock';
 
 import { useHasMounted } from '../../hooks/useHasMounted';
+
 import styles from './styles.module.css';
 
 export type MasonryEntry = { id: string; node: React.ReactNode };
 
 interface MasonryProps {
-  /** Rendered as the first cell, interleaved into the same balanced columns as `items`. */
   leading?: React.ReactElement;
   items: MasonryEntry[];
 }
 
-/**
- * The single react-plock masonry shared by every gallery page — the feed, the collections
- * index and each collection — so they all lay out identically. Renders a plain CSS-column
- * fallback for the server paint / no-JS clients and swaps to the JS-balanced columns once
- * mounted.
- */
-export default function Masonry({ leading, items }: MasonryProps): React.ReactElement {
+export default function Masonry({ leading, items }: MasonryProps) {
   const mounted = useHasMounted();
 
   const entries = useMemo<MasonryEntry[]>(
@@ -29,7 +23,7 @@ export default function Masonry({ leading, items }: MasonryProps): React.ReactEl
   );
 
   // react-plock only balances its columns after mount — fall back to plain, real markup
-  // (not a skeleton) so crawlers and no-JS   clients still get the real cells too.
+  // (not a skeleton) so crawlers and no-JS clients still get the real cells too.
   if (!mounted) {
     return (
       <div className={styles.fallbackGrid}>
@@ -47,9 +41,13 @@ export default function Masonry({ leading, items }: MasonryProps): React.ReactEl
       className={styles.masonry}
       items={entries}
       config={{
-        columns: [1, 3, 4],
-        gap: [3, 3, 3],
-        media: [640, 768, 1024],
+        // 1 column on phones, then 2 / 3 / 4 at 640 / 1024 / 1536 — kept in sync with
+        // the `.fallbackGrid` pre-hydration CSS. react-plock reads columns[i] once `i`
+        // breakpoints are passed and clamps `i` to media.length - 1, so the trailing
+        // 2560 is filler that just makes the 4-column tier reachable.
+        columns: [1, 2, 3, 4],
+        gap: [3, 3, 3, 3],
+        media: [640, 1024, 1536, 2560],
         useBalancedLayout: true,
       }}
       render={(entry) => entry.node}

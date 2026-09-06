@@ -15,8 +15,7 @@ type ProfileProps = ComponentWithTranslator<{
   socialLinks?: SocialLink[];
 }>;
 
-/** The "who's behind this" tile — portrait, name, bio and social links. First cell of every gallery page. */
-export default function Profile({ t, name, avatar, socialLinks }: ProfileProps): React.ReactElement {
+export default function Profile({ t, name, avatar, socialLinks }: ProfileProps) {
   return (
     <div className={styles.card}>
       <Image
@@ -30,7 +29,7 @@ export default function Profile({ t, name, avatar, socialLinks }: ProfileProps):
       />
       <div className={styles.overlay}>
         <Logo name={name} size={56} />
-        <p className={styles.text}>{t('page.home.bio')}</p>
+        <p className={styles.text}>{t('components.photoShowcase.profile.bio')}</p>
         {socialLinks && socialLinks.length > 0 && (
           <ul className={styles.social}>
             {socialLinks.map((link) => {

@@ -8,20 +8,18 @@ import { useTranslator } from '~/components/TranslationProvider';
 import type { Photo, PhotoDetails } from '../../types';
 import ApertureSpinner from '../ApertureSpinner';
 import Exif from '../Exif';
+
 import styles from './styles.module.css';
 
 interface FigureProps {
   photo: Photo;
   index: number;
   total: number;
-  /** Modal variant sits on a permanently-dark background — flips caption text to light. */
   inverted: boolean;
   getPhotoDetails: (id: string) => Promise<PhotoDetails | null>;
 }
 
-// Keyed by `photo.id` at the call site in Lightbox, so switching photos remounts this
-// (and its children), and `imageLoaded` / the exif panel start fresh.
-export default function Figure({ photo, index, total, inverted, getPhotoDetails }: FigureProps): React.ReactElement {
+export default function Figure({ photo, index, total, inverted, getPhotoDetails }: FigureProps) {
   const t = useTranslator();
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -46,7 +44,7 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails 
         </span>
         {photo.source && (
           <a href={photo.source.url} target="_blank" rel="noopener noreferrer">
-            {t('client.components.lightbox.source', { source: photo.source.name })}
+            {t('client.components.photoShowcase.lightbox.source', { source: photo.source.name })}
           </a>
         )}
       </figcaption>

@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { getTranslations } from '~/lib/i18n/messages';
 
-import { CollectionDetails, CollectionsCard, Feed, Profile } from '~/components/PhotoShowcase';
+import { CollectionDetails, Feed, Profile } from '~/components/PhotoShowcase';
 
 import config from '~/app/diegocosta.me/config';
 import { getCollection, getCollectionPhotosPage, getCollections } from '~/app/diegocosta.me/actions';
@@ -30,19 +30,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: collection.title,
     description: collection.description ?? t('page.collections.description'),
-    alternates: { canonical: `/collections/${id}` },
+    alternates: { canonical: `/c/${id}` },
   };
 }
 
 export default async function CollectionPage({ params }: PageProps) {
   const { id } = await params;
   const t = getTranslations(config);
-  const [collection, firstPage, collections] = await Promise.all([
-    getCollection(id),
-    getCollectionPhotosPage(id, 1),
-    getCollections(),
-  ]);
-  const collectionIndex = collections.findIndex((entry) => entry.id === id);
+  const [collection, firstPage] = await Promise.all([getCollection(id), getCollectionPhotosPage(id, 1)]);
 
   if (!collection && firstPage.ok && firstPage.photos.length === 0) {
     notFound();
@@ -59,14 +54,12 @@ export default async function CollectionPage({ params }: PageProps) {
       {collection && (
         <CollectionDetails
           t={t}
-          index={collectionIndex >= 0 ? collections.length - collectionIndex : collections.length}
           title={collection.title}
           description={collection.description}
           photoCount={collection.photoCount}
           publishedAt={collection.publishedAt}
         />
       )}
-      {collections.length > 0 && <CollectionsCard t={t} collections={collections} activeId={id} />}
     </>
   );
 

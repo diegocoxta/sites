@@ -22,33 +22,35 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px 24px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  dt {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--main-subtitle-color);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 13px;
+    color: var(--main-text-color);
+  }
 }
 
-.grid div {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
+.gridInverted {
+  dt {
+    color: rgb(255 255 255 / 60%);
+  }
 
-.grid dt {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  color: var(--main-subtitle-color);
-}
-
-.grid dd {
-  margin: 0;
-  font-size: 13px;
-  color: var(--main-text-color);
-}
-
-.gridInverted dt {
-  color: rgb(255 255 255 / 60%);
-}
-
-.gridInverted dd {
-  color: rgb(255 255 255 / 90%);
+  dd {
+    color: rgb(255 255 255 / 90%);
+  }
 }
 
 /* Sizing comes from <Skeleton>'s own width/height props — these two just add the

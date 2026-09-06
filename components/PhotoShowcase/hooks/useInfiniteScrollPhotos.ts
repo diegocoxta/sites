@@ -2,12 +2,12 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { Gallery, Photo } from '../types';
+import type { Photo, PhotoFeedPage } from '../types';
 
 export function useInfiniteScrollPhotos(
   initialPhotos: Photo[],
   initialHasMore: boolean,
-  loadMore: (page: number) => Promise<Gallery>
+  loadMore: (page: number) => Promise<PhotoFeedPage>
 ) {
   const [photos, setPhotos] = useState(initialPhotos);
   const [page, setPage] = useState(1);

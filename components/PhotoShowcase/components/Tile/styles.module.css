@@ -1,9 +1,3 @@
-.tile {
-  display: block;
-  overflow: hidden;
-  background-color: var(--main-border-color);
-}
-
 .image {
   display: block;
   width: 100%;
@@ -12,18 +6,22 @@
   transition:
     transform 0.4s ease,
     opacity 0.3s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 }
 
 .imageLoaded {
   opacity: 1;
 }
 
-.tile:hover .image {
-  transform: scale(1.03);
-}
+.tile {
+  display: block;
+  overflow: hidden;
+  background-color: var(--main-border-color);
 
-@media (prefers-reduced-motion: reduce) {
-  .image {
-    transition: none;
+  &:hover .image {
+    transform: scale(1.03);
   }
 }

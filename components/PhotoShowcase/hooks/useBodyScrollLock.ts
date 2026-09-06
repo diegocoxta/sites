@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 
-/** Locks page scroll while `active` — used by the modal variant so the backdrop stays put. */
 export function useBodyScrollLock(active: boolean): void {
   useEffect(() => {
     if (!active) {

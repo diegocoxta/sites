@@ -11,7 +11,6 @@ interface UseLightboxNavigationParams {
   nextId: string | null;
 }
 
-/** hrefFor/goTo/close plus the ← → Esc keyboard bindings that drive them. */
 export function useLightboxNavigation({ variant, hrefBase, closeHref, prevId, nextId }: UseLightboxNavigationParams) {
   const router = useRouter();
 

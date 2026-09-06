@@ -35,7 +35,8 @@ export async function generateMetadata({ params }: PhotoPreviewProps): Promise<M
   };
 }
 
-export default async function PhotoPreviewPage({ params, variant = 'page' }: PhotoPreviewProps) {
+export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
+  const { params, variant = 'page' } = props;
   const { id } = await params;
   const context = await getPhotoContext(id);
 

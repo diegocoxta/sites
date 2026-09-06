@@ -11,20 +11,17 @@ export type Photo = {
   };
 };
 
-export type Gallery = {
+export type PhotoFeedPage = {
   photos: Photo[];
   hasMore: boolean;
   ok: boolean;
 };
 
-export type CollectionSummary = {
+export type Collection = {
   id: string;
   title: string;
   photoCount: number;
   coverSrc: string | null;
-};
-
-export type CollectionDetail = CollectionSummary & {
   description: string | null;
   publishedAt: string;
 };
