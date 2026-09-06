@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+ import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 
 import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
@@ -17,7 +17,7 @@ export default function RootLayout({ children, modal }: React.PropsWithChildren<
     <ThemeProvider defaultTheme={config.theme.defaultTheme} forcedTheme={config.theme.defaultTheme}>
       <TranslationProvider messages={messages} locale={t.locale}>
         <PersonSchema data={config} />
-        <Container maxWidth="1600px">{children}</Container>
+        <Container maxWidth="1600px" padding="0px">{children}</Container>
         {modal}
       </TranslationProvider>
     </ThemeProvider>
