@@ -14,7 +14,7 @@ export default async function HomePage() {
       <Profile
         t={t}
         name={config.author}
-        avatar="/avatar.jpg"
+        avatar={config.avatar ?? ''}
         socialLinks={config.links?.filter((link) => link.type === 'icon')}
       />
       {collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
