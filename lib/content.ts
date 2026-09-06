@@ -71,12 +71,12 @@ const readContentFile = cache(function readContentFile<T extends ContentAttribut
   try {
     ({ data, content } = matter(fs.readFileSync(file, 'utf-8')));
   } catch (error) {
-    console.error(`[content] failed to parse ${file}`, error);
+    console.error('[content] failed to parse %s', file, error);
     return undefined;
   }
 
   if (typeof data.title !== 'string' || data.title.length === 0) {
-    console.warn(`[content] skipping ${file}: missing "title" in front matter`);
+    console.warn('[content] skipping %s: missing "title" in front matter', file);
     return undefined;
   }
 

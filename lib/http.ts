@@ -19,13 +19,13 @@ async function request(url: string, options: RequestOptions): Promise<Response |
     });
 
     if (!response.ok) {
-      console.error(`[${id}] ${response.status} ${response.statusText} — ${url}`);
+      console.error('[%s] %s %s — %s', id, response.status, response.statusText, url);
       return null;
     }
 
     return response;
   } catch (error) {
-    console.error(`[${id}] request failed — ${url}`, error);
+    console.error('[%s] request failed — %s', id, url, error);
     return null;
   }
 }
@@ -46,7 +46,7 @@ export async function fetchJson<T>(url: string, options: RequestOptions = {}): P
   try {
     return (await response.json()) as T;
   } catch (error) {
-    console.error(`[${options.id ?? 'http'}] invalid JSON — ${url}`, error);
+    console.error('[%s] invalid JSON — %s', options.id ?? 'http', url, error);
     return null;
   }
 }
