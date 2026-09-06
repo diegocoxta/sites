@@ -20,6 +20,12 @@ const config: ConfigType = {
     },
     {
       type: 'icon',
+      title: 'config.links.unsplash.title',
+      icon: 'FaUnsplash',
+      href: 'https://unsplash.com/diegocoxta',
+    },
+    {
+      type: 'icon',
       icon: 'FaTiktok',
       title: 'config.links.tiktok.title',
       href: 'https://tiktok.com/@diegocoxta',
@@ -63,16 +69,52 @@ const config: ConfigType = {
     },
     {
       type: 'card',
-      title: 'Unsplash',
-      icon: 'FaUnsplash',
-      href: 'https://unsplash.com/diegocoxta',
-      description: 'config.links.unsplash.description',
+      title: 'config.links.photography.title',
+      icon: 'FaCamera',
+      href: 'https://diegocosta.me',
+      description: 'config.links.photography.description',
       recentActivity: {
         widget: 'UnsplashRecentActivity',
         config: {
-          title: 'config.links.unsplash.recentActivity.title',
+          title: 'config.links.photography.recentActivity.title',
           username: process.env.UNSPLASH_USERNAME,
           authorization: process.env.UNSPLASH_ACCESS_KEY,
+        },
+      },
+    },
+    {
+      type: 'card',
+      title: 'Github',
+      icon: 'FaGithub',
+      href: 'https://github.com/diegocoxta',
+      description: 'config.links.github.description',
+      recentActivity: {
+        widget: 'GithubRecentActivity',
+        config: {
+          title: 'config.links.github.recentActivity.title',
+          username: process.env.GITHUB_USERNAME,
+          authorization: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
+        },
+      },
+    },
+    {
+      type: 'card',
+      title: 'Like this page?',
+      icon: 'FaHeart',
+      href: 'https://github.com/diegocoxta/sites',
+      description: 'config.links.like_page.description',
+    },
+    {
+      type: 'card',
+      title: 'My Tech Blog',
+      icon: 'FaFloppyDisk',
+      href: 'https://diegocosta.com.br',
+      description: 'config.links.blog.description',
+      recentActivity: {
+        widget: 'FeedListingRecentActivity',
+        config: {
+          title: 'config.links.blog.recentActivity.title',
+          feed: 'https://diegocosta.com.br/blog/feed',
         },
       },
     },
@@ -121,35 +163,6 @@ const config: ConfigType = {
     },
     {
       type: 'card',
-      title: 'My Tech Blog',
-      icon: 'FaFloppyDisk',
-      href: 'https://diegocosta.com.br/blog',
-      description: 'config.links.blog.description',
-      recentActivity: {
-        widget: 'FeedListingRecentActivity',
-        config: {
-          title: 'config.links.blog.recentActivity.title',
-          feed: 'https://diegocosta.com.br/blog/feed',
-        },
-      },
-    },
-    {
-      type: 'card',
-      title: 'Github',
-      icon: 'FaGithub',
-      href: 'https://github.com/diegocoxta',
-      description: 'config.links.github.description',
-      recentActivity: {
-        widget: 'GithubRecentActivity',
-        config: {
-          title: 'config.links.github.recentActivity.title',
-          username: process.env.GITHUB_USERNAME,
-          authorization: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
-        },
-      },
-    },
-    {
-      type: 'card',
       title: 'Last.fm',
       icon: 'FaLastfm',
       href: 'https://www.last.fm/user/diego_coxta',
@@ -177,13 +190,6 @@ const config: ConfigType = {
           authorization: process.env.SETLIST_API_KEY,
         },
       },
-    },
-    {
-      type: 'card',
-      title: 'Like this page?',
-      icon: 'FaHeart',
-      href: 'https://github.com/diegocoxta/sites',
-      description: 'config.links.like_page.description',
     },
   ],
 };
