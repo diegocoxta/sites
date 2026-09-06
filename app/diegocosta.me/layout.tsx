@@ -26,6 +26,7 @@ export default function RootLayout({ children, modal }: React.PropsWithChildren<
 
 export function generateMetadata(): Metadata {
   const t = getTranslations(config);
+  const image = config.avatar ?? '';
 
   return {
     metadataBase: new URL(`https://${config.domain}`),
@@ -37,5 +38,7 @@ export function generateMetadata(): Metadata {
     alternates: {
       canonical: '/',
     },
+    openGraph: { siteName: t(config.title), url: '/', images: [image] },
+    twitter: { card: 'summary_large_image', images: [image] },
   };
 }
