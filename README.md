@@ -11,40 +11,62 @@ request host and rewrites `/{pathname}` to `/{domain}/{pathname}`, so each domai
 resolves to its own route tree under [`app/`](app). Per-domain settings (title,
 links, locales, theme) live in `app/<domain>/config.ts`.
 
+The three are different kinds of site: **diegocosta.com.br** is a Markdown blog
+(`pt`), **diegocosta.me** a photography showcase backed by the Unsplash API
+(`en`), and **diegocoxta.com** a localized link hub (`pt`/`en`/`es`).
+
 ## :desktop_computer: Tech Stack
 
 - [Next.js 16](https://nextjs.org/) (App Router, Turbopack) with TypeScript.
-- Content in Markdown via [`next-mdx-remote`](https://github.com/hashicorp/next-mdx-remote) + [`gray-matter`](https://github.com/jonschlinkert/gray-matter), read through [`lib/content.ts`](lib/content.ts).
+- Markdown read and parsed in [`lib/content.ts`](lib/content.ts) with [`gray-matter`](https://github.com/jonschlinkert/gray-matter) (front matter) and [`reading-time`](https://github.com/ngryman/reading-time); rendered as MDX with [`next-mdx-remote`](https://github.com/hashicorp/next-mdx-remote) in [`components/Article`](components/Article).
 - Internationalization with a small custom setup in [`lib/i18n/`](lib/i18n) — edge-safe locale negotiation (used by [`proxy.ts`](proxy.ts)) plus a `server-only` dictionary loader; JSON translations live under `public/<domain>/translations/`.
-- Command bar with [`kbar`](https://kbar.vercel.app/) (`⌘K` / `Ctrl+K`).
+- Command bar with [`kbar`](https://kbar.vercel.app/) (`⌘K` / `Ctrl+K`) on diegocosta.com.br.
 - Dark mode with [`next-themes`](https://github.com/pacocoursey/next-themes).
-- RSS feed generation with [`rss`](https://github.com/dylang/node-rss).
-- "Recent activity" widgets that pull from Discogs, Letterboxd, Unsplash, Hardcover, GitHub, Last.fm, Setlist.fm and Deezer ([`lib/services/`](lib/services)).
+- The diegocosta.com.br blog feed is generated with [`rss`](https://github.com/dylang/node-rss); external feeds are parsed with [`fast-xml-parser`](https://github.com/NaturalIntelligence/fast-xml-parser).
+- diegocosta.me reads its photos live from the Unsplash API — [`app/diegocosta.me/actions.ts`](app/diegocosta.me/actions.ts) is the sole controller.
+- "Recent activity" cards on diegocoxta.com pull from Discogs, Letterboxd, Unsplash, Hardcover, GitHub, Last.fm, Setlist.fm and an RSS feed, with Deezer supplying artist images ([`lib/services/`](lib/services), fetched through [`lib/http.ts`](lib/http.ts)).
 - ESLint, Prettier, stylelint, Husky and lint-staged — and [more](package.json).
 
 ## :file_folder: Project Structure
 
 ```
 app/
-  <domain>/           route tree for one domain (e.g. diegocosta.com.br)
-    config.ts         per-domain config (title, links, locales, theme)
-    [...page]/        catch-all for Markdown pages; notFound() when missing
-    not-found.tsx     404 boundary (single-locale domains)
-    [locale]/         localized routes (multi-locale domains only)
-      not-found.tsx   localized 404 boundary (diegocoxta.com)
-  config.ts           shared config defaults (theme)
-components/            React components (one folder each, co-located CSS Modules)
+  layout.tsx           root <html>: font + base theme var
+  globals.css          the only global stylesheet
+  icon.tsx             fallback favicon (each domain's icon.tsx overrides it)
+  config.ts            shared config defaults (theme)
+  diegocosta.com.br/   Markdown blog (pt)
+    config.ts          per-domain config (title, links, locales, theme)
+    layout.tsx  page.tsx
+    blog/              index, [post]/, tag/[tag]/, feed/ (RSS route handler)
+    [...page]/         catch-all for Markdown under public/<domain>/pages/
+    not-found.tsx      404 boundary (Server Component)
+    icon.tsx · manifest.json/ · robots.txt/ · sitemap.ts
+  diegocosta.me/       photography showcase (en), photos from the Unsplash API
+    config.ts  layout.tsx  page.tsx
+    actions.ts         server actions — the sole Unsplash controller
+    c/[id]/            one collection        p/[id]/  one photo
+    @modal/            intercepted route: a photo as a lightbox modal
+    [...page]/  not-found.tsx  icon.tsx · manifest.json/ · robots.txt/ · sitemap.ts
+  diegocoxta.com/      localized link hub (pt/en/es)
+    config.ts  layout.tsx
+    page.tsx           redirects to the default locale
+    [locale]/          layout, page, [...page]/, localized not-found.tsx
+    icon.tsx · manifest.json/ · robots.txt/ · sitemap.ts
+components/            React components, co-located CSS Modules; larger ones
+                       (LinkHub/, PhotoShowcase/) nest their own components/ + hooks/
 lib/
-  config.ts           shared types for the per-domain config
-  content.ts          Markdown reading, front-matter, locale fallback (contentFor)
-  public-path.ts      helper for building public/<domain>/… paths
+  config.ts            shared types for the per-domain config
+  content.ts           Markdown reading, front-matter, locale fallback (contentFor)
+  http.ts              fetch wrapper: timeout, revalidate, logging (used by services/)
+  public-path.ts       helper for building public/<domain>/… paths
   i18n/
-    locale.ts         locale list + Accept-Language / cookie negotiation (edge-safe)
-    translator.ts     createTranslator: lookup, {param} interpolation, dates
-    messages.ts       loads public/<domain>/translations/<locale>.json (server-only)
-  services/            third-party integrations for the activity widgets
-proxy.ts              host-based rewrite + locale negotiation (Next middleware)
-public/<domain>/       Markdown content (posts/, pages/), translations/ and assets
+    locale.ts          locale list + Accept-Language / cookie negotiation (edge-safe)
+    translator.ts      createTranslator: lookup, {param} interpolation, dates
+    messages.ts        loads public/<domain>/translations/<locale>.json (server-only)
+  services/            third-party integrations for the diegocoxta.com activity cards
+proxy.ts               host-based rewrite + locale negotiation (Next middleware)
+public/<domain>/        Markdown content (blog/, pages/), translations/ and assets
 ```
 
 The `~/*` import alias maps to the repo root (see [`tsconfig.json`](tsconfig.json)).
@@ -84,11 +106,12 @@ The `~/*` import alias maps to the repo root (see [`tsconfig.json`](tsconfig.jso
 
 ## :globe_with_meridians: Content & i18n
 
-Content is plain Markdown under `public/<domain>/`, split into `posts/` and
-`pages/` (one folder per slug). Localized files use an `index.<locale>.md` suffix
-(e.g. `index.en.md`) and fall back to the default locale, then to `index.md`.
-Relative image references (`![](./img.png)`) are rewritten to servable paths at
-read time.
+Content is plain Markdown under `public/<domain>/` — only diegocosta.com.br has
+any — split into `blog/` and `pages/`, one folder per slug. The `blog/` tree has
+its own routes; `pages/` is served by the `[...page]` catch-all. Localized files
+use an `index.<locale>.md` suffix (e.g. `index.en.md`) and fall back to the
+default locale, then to `index.md`. Relative image references (`![](./img.png)`)
+are rewritten to servable paths at read time.
 
 UI strings are flat-key JSON dictionaries at
 `public/<domain>/translations/<locale>.json`. A requested locale is merged over
@@ -103,10 +126,10 @@ single-locale (and skip the `/<locale>` path prefix entirely).
 
 ### 404s
 
-Unmatched URLs are funneled through each domain's catch-all `[...page]` route,
-which calls `notFound()`. There is no root `app/not-found.tsx` — it would need the
-request host to choose a domain, forcing every catch-all to render dynamically —
-so each domain carries its own boundary:
+Missing content calls `notFound()` — from the catch-all `[...page]` route and,
+on diegocosta.com.br, from the blog's dynamic routes too. There is no root
+`app/not-found.tsx` — it would need the request host to choose a domain, forcing
+every catch-all to render dynamically — so each domain carries its own boundary:
 
 - Single-locale domains render `app/<domain>/not-found.tsx` (a Server Component).
 - `diegocoxta.com` places the boundary at
