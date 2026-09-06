@@ -5,17 +5,16 @@ export type Photo = {
   width: number;
   height: number;
   placeholderColor: string | null;
+  source?: {
+    name: string;
+    url: string;
+  };
 };
 
 export type Gallery = {
   photos: Photo[];
   hasMore: boolean;
   ok: boolean;
-};
-
-export type LightboxPhoto = Photo & {
-  href: string;
-  source: string;
 };
 
 export type CollectionSummary = {
@@ -25,7 +24,18 @@ export type CollectionSummary = {
   coverSrc: string | null;
 };
 
-export type CollectionRef = Pick<CollectionSummary, 'id' | 'title'>;
+export type CollectionDetail = CollectionSummary & {
+  description: string | null;
+  publishedAt: string;
+};
+
+export type PhotoContext = {
+  photo: Photo;
+  prevId: string | null;
+  nextId: string | null;
+  index: number;
+  total: number;
+};
 
 export type PhotoDetails = {
   description: string | null;
