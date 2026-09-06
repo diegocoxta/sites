@@ -1,5 +1,5 @@
 .container {
-  composes: container from '~/components/Container/styles.module.css';
+  width: 100%;
   text-align: center;
   height: 60vh;
   min-height: 300px;
