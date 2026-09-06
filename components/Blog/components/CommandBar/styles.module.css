@@ -110,12 +110,10 @@
   padding: 16px;
   backdrop-filter: saturate(300%) blur(25px);
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
   & > div > div::-webkit-scrollbar {
     display: none;
   }
 
-  /* Hide scrollbar for IE, Edge and Firefox */
   & > div > div {
     -ms-overflow-style: none;
     scrollbar-width: none;
