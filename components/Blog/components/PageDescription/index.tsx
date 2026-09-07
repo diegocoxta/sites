@@ -5,7 +5,6 @@ type PageDescriptionProps = {
 };
 
 export default function PageDescription({ children }: PageDescriptionProps) {
-  // A plain wrapper — the page that uses it owns the `<main>` landmark.
   return (
     <div className={styles.container}>
       {children.split('\n').map((paragraph, index) => (

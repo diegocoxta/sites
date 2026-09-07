@@ -16,8 +16,6 @@ const MAX_PAGES = 20;
 
 const SOURCE_NAME = 'Unsplash';
 const SOURCE_URL = 'https://unsplash.com';
-
-/** Unsplash photo/collection ids are short URL-safe tokens — reject anything else before it reaches a request URL. */
 const VALID_ID = /^[\w-]{1,64}$/;
 
 const { username, authorization } = config.unsplash;
@@ -45,7 +43,6 @@ function toPhoto(photo: UnsplashPhoto): Photo {
   };
 }
 
-/** Wrap a fetched page of photos; `null` means the upstream call failed, not "list ended". */
 function toPhotoFeedPage(photos: UnsplashPhoto[] | null): PhotoFeedPage {
   if (photos === null) {
     return { photos: [], hasMore: true, ok: false };
@@ -135,7 +132,6 @@ const allCollections = cache(async (): Promise<UnsplashCollection[]> => {
   return all;
 });
 
-// Neighbours of `id` in the ordered photo list — prev/next + position for the lightbox.
 function contextAt(photos: Photo[], id: string): PhotoContext | null {
   const index = photos.findIndex((photo) => photo.id === id);
 

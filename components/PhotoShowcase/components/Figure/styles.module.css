@@ -11,16 +11,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Height comes from the column flex; width from the photo's aspect ratio, set
-     inline from the API dimensions — so the box is reserved at the right size
-     *before* the image bytes arrive, instead of collapsing until it loads. */
   flex: 1 1 auto;
   min-height: 0;
   align-self: center;
   max-width: 100%;
-
-  /* touch-action prevents the browser from also scrolling the page during a swipe */
   touch-action: pan-y;
   overflow: hidden;
 }

@@ -7,7 +7,6 @@ const CONTEXT = 'https://schema.org' as const;
 
 const origin = (config: ConfigType) => `https://${config.domain}`;
 
-/** schema.org `Person` for a domain, built from its config. */
 export function personLd(config: ConfigType): WithContext<Person> {
   const { author, avatar, links, jobTitle } = config;
 
@@ -23,7 +22,6 @@ export function personLd(config: ConfigType): WithContext<Person> {
   };
 }
 
-/** schema.org `WebSite`. `name` is passed in already resolved (translated / composed). */
 export function websiteLd(config: ConfigType, name: string): WithContext<WebSite> {
   return {
     '@context': CONTEXT,
@@ -36,7 +34,6 @@ export function websiteLd(config: ConfigType, name: string): WithContext<WebSite
 
 type PostDoc = Pick<ContentAttributes, 'title' | 'summary' | 'date' | 'tags'>;
 
-/** schema.org `BlogPosting` for a post at `path` (leading slash, no origin). */
 export function blogPostingLd(config: ConfigType, doc: PostDoc, path: string): WithContext<BlogPosting> {
   const url = `${origin(config)}${path}`;
 
@@ -54,7 +51,6 @@ export function blogPostingLd(config: ConfigType, doc: PostDoc, path: string): W
   };
 }
 
-/** schema.org `BreadcrumbList`. The last crumb usually omits `url` (it's the current page). */
 export function breadcrumbLd(crumbs: Array<{ name: string; url?: string }>): WithContext<BreadcrumbList> {
   const itemListElement: ListItem[] = crumbs.map((crumb, index) => ({
     '@type': 'ListItem',
@@ -68,7 +64,6 @@ export function breadcrumbLd(crumbs: Array<{ name: string; url?: string }>): Wit
 
 type PhotoNode = { id: string; src: string; width: number; height: number };
 
-/** schema.org `ImageObject` for a single photo page. */
 export function imageObjectLd(config: ConfigType, photo: PhotoNode, name: string): WithContext<ImageObject> {
   return {
     '@context': CONTEXT,
