@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -14,7 +14,14 @@ interface TileProps {
 }
 
 export default function Tile({ photo, hrefBase }: TileProps) {
+  const imageRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (imageRef.current?.complete) {
+      setLoaded(true);
+    }
+  }, []);
 
   return (
     <Link
@@ -24,6 +31,7 @@ export default function Tile({ photo, hrefBase }: TileProps) {
       style={{ backgroundColor: photo.placeholderColor ?? undefined }}
     >
       <Image
+        ref={imageRef}
         className={`${styles.image} ${loaded ? styles.imageLoaded : ''}`}
         src={photo.src}
         alt={photo.alt}
