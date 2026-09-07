@@ -20,15 +20,14 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const [collection, firstPage] = await Promise.all([getCollection(id), getCollectionPhotosPage(id, 1)]);
+  const collection = await getCollection(id);
   const t = getTranslations(config);
 
   if (!collection) {
     return {};
   }
 
-  const cover = firstPage.photos[0];
-  const image = cover ? { url: cover.src, width: cover.width, height: cover.height } : (config.avatar ?? '');
+  const image = `/og/c/${id}`;
 
   return {
     title: collection.title,

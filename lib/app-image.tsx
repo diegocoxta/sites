@@ -84,30 +84,53 @@ interface OgImageConfig {
   title: string;
   meta: string;
   accentColor: string;
+  thumbnail?: string;
+  thumbnailColor?: string;
 }
 
 export function renderOgImage(config: OgImageConfig) {
+  const withThumbnail = Boolean(config.thumbnail);
+
   const styles: { [key: string]: React.CSSProperties } = {
     container: {
-      width: '100%',
+      flex: 1,
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      padding: 80,
+      padding: withThumbnail ? 64 : 80,
       background: config.accentColor,
       color: '#fff',
       fontFamily: 'Source Sans 3',
     },
-    title: { fontSize: 68, lineHeight: 1.15, fontWeight: 700, display: 'flex' },
+    title: {
+      fontSize: withThumbnail ? 46 : 68,
+      lineHeight: 1.15,
+      fontWeight: 700,
+      display: withThumbnail ? 'block' : 'flex',
+      overflow: 'hidden',
+      ...(withThumbnail ? { lineClamp: 5 } : {}),
+    },
     meta: { fontSize: 30, opacity: 0.85 },
   };
 
   return new ImageResponse(
-    <div style={styles.container}>
-      <AppIcon name={config.author} color="#fff" accentColor="rgba(255, 255, 255, 0.55)" fontSize={65} />
-      <div style={styles.title}>{config.title}</div>
-      <div style={styles.meta}>{config.meta}</div>
+    <div style={{ width: '100%', height: '100%', display: 'flex' }}>
+      {/* eslint-disable @next/next/no-img-element */}
+      {config.thumbnail && (
+        <img
+          src={config.thumbnail}
+          alt=""
+          width={520}
+          height={630}
+          style={{ objectFit: 'cover', background: config.thumbnailColor ?? config.accentColor }}
+        />
+      )}
+      <div style={styles.container}>
+        <AppIcon name={config.author} color="#fff" accentColor="rgba(255, 255, 255, 0.55)" fontSize={65} />
+        <div style={styles.title}>{config.title}</div>
+        <div style={styles.meta}>{config.meta}</div>
+      </div>
     </div>,
     {
       width: 1200,
