@@ -5,14 +5,15 @@ import styles from './styles.module.css';
 interface LogoProps {
   name: string;
   size?: number;
+  as?: 'h1' | 'p';
 }
 
-export default function Logo({ name, size }: LogoProps) {
+export default function Logo({ name, size, as: Tag = 'p' }: LogoProps) {
   const isHandle = name.startsWith('@') && !name.includes(' ');
   const [firstName, lastName] = name.split(' ');
 
   return (
-    <h1 className={styles.name} style={{ fontSize: size ? `${size}px` : undefined }}>
+    <Tag className={styles.name} style={{ fontSize: size ? `${size}px` : undefined }}>
       <Link className={styles.link} href="/">
         {isHandle ? (
           <>
@@ -31,6 +32,6 @@ export default function Logo({ name, size }: LogoProps) {
           name
         )}
       </Link>
-    </h1>
+    </Tag>
   );
 }

@@ -24,7 +24,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <Hub background={config.avatar}>
-      <Logo name={config.title} size={32} />
+      <Logo name={config.title} size={32} as="h1" />
       <p>{t(config.description)}</p>
       <IconLinks t={t} icons={icons} />
       <CardLinks t={t} cards={cards} />
@@ -46,9 +46,10 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
     },
     description: t(config.description),
     alternates: {
-      canonical: '/',
+      canonical: `/${locale}`,
       languages: {
         ...Object.fromEntries(config.locales.map((loc) => [loc, `/${loc}`])),
+        'x-default': `/${config.locales[0]}`,
       },
     },
   };
