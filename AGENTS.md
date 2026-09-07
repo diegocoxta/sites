@@ -1,7 +1,9 @@
 # AGENTS.md
 
 Guidance for AI coding agents. Keep it short — this file is always in context.
-`CLAUDE.md` is a symlink to this file. Human-facing detail lives in [README.md](README.md).
+`CLAUDE.md` is a symlink to this file. Human-facing detail lives in
+[README.md](README.md), [ARCHITECTURE.md](ARCHITECTURE.md) (the long form of the
+Architecture section below) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Setup & commands
 
