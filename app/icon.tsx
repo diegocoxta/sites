@@ -1,4 +1,4 @@
-import { renderAppIcon } from '~/lib/app-icon';
+import { renderAppIcon } from '~/lib/app-image';
 
 import config from '~/app/config';
 
@@ -8,6 +8,7 @@ export const contentType = 'image/png';
 export default async function Icon() {
   return renderAppIcon({
     ...size,
+    author: config.author,
     textColor: config.theme.textColor,
     accentColor: config.theme.accentColor,
   });

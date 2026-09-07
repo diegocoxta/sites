@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getTranslations } from '~/lib/i18n/messages';
+import { imageObjectLd } from '~/lib/schema';
 
 import { CollectionsCard, Lightbox, Page, Profile } from '~/components/PhotoShowcase';
+import JsonLd from '~/components/JsonLd';
 
 import config from '~/app/diegocosta.me/config';
 import { getAllPhotos, getCollections, getPhotoContext, getPhotoDetails } from '~/app/diegocosta.me/actions';
@@ -11,6 +13,9 @@ import { getAllPhotos, getCollections, getPhotoContext, getPhotoDetails } from '
 interface PhotoPreviewProps {
   params: Promise<{ id: string }>;
 }
+
+const photoTitle = (alt: string, index: number, total: number): string =>
+  alt.trim() || `Photograph ${index + 1} of ${total}`;
 
 export async function generateStaticParams() {
   const photos = await getAllPhotos();
@@ -27,15 +32,16 @@ export async function generateMetadata({ params }: PhotoPreviewProps): Promise<M
     return {};
   }
 
-  const { photo } = context;
+  const { photo, index, total } = context;
   const image = { url: photo.src, width: photo.width, height: photo.height };
+  const title = photoTitle(photo.alt, index, total);
 
   return {
-    title: photo.alt || t('page.photos.title'),
-    description: photo.alt || t('page.photos.description'),
+    title,
+    description: photo.alt.trim() || t('page.photos.description'),
     alternates: { canonical: `/p/${id}` },
-    openGraph: { siteName: t(config.title), url: `/p/${id}`, images: [image] },
-    twitter: { card: 'summary_large_image', images: [image] },
+    openGraph: { siteName: t(config.title), title, url: `/p/${id}`, images: [image] },
+    twitter: { card: 'summary_large_image', title, images: [image] },
   };
 }
 
@@ -49,6 +55,9 @@ export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
   if (!context) {
     notFound();
   }
+
+  const { photo, index, total } = context;
+  const title = photoTitle(photo.alt, index, total);
 
   return (
     <Page
@@ -64,13 +73,15 @@ export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
         </>
       }
     >
+      <h1 className="srOnly">{title}</h1>
+      <JsonLd data={imageObjectLd(config, photo, title)} />
       <Lightbox
         variant="page"
-        photo={context.photo}
+        photo={photo}
         prevId={context.prevId}
         nextId={context.nextId}
-        index={context.index}
-        total={context.total}
+        index={index}
+        total={total}
         hrefBase="/p"
         closeHref="/"
         getPhotoDetails={getPhotoDetails}

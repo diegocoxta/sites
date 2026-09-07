@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 
@@ -19,3 +21,8 @@ export default function HomePage() {
     </Container>
   );
 }
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  alternates: { canonical: '/blog' },
+};

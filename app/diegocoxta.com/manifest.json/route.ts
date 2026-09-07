@@ -1,22 +1,30 @@
 import { NextResponse } from 'next/server';
 
+import { resolveLocale } from '~/lib/i18n';
 import { getTranslations } from '~/lib/i18n/messages';
 
 import config from '~/app/diegocoxta.com/config';
 
 export const revalidate = false;
 
-export const GET = () => {
-  const t = getTranslations(config);
+// `?locale=` is set by the per-locale `<link rel="manifest">` in [locale]/layout.tsx.
+export const GET = (request: Request) => {
+  const locale = resolveLocale(config.locales, new URL(request.url).searchParams.get('locale'));
+  const t = getTranslations(config, locale);
+  const name = `${config.author} (${config.title})`;
 
   return NextResponse.json(
     {
-      name: `${config.author} (${config.title})`,
-      short_name: `${config.author} (${config.title})`,
+      id: `/${locale}`,
+      name,
+      short_name: name,
       description: t(config.description),
-      start_url: '/',
+      lang: locale,
+      dir: 'ltr',
+      start_url: `/${locale}`,
       display: 'standalone',
       theme_color: config.theme.accentColor,
+      background_color: '#fdfdfd',
       icons: [
         {
           src: '/icon',

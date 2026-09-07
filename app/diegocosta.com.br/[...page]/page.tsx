@@ -44,5 +44,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     notFound();
   }
 
-  return { title: doc.title, description: doc.summary };
+  return {
+    title: doc.title,
+    description: doc.summary,
+    alternates: { canonical: `/${page[0]}` },
+  };
 }
