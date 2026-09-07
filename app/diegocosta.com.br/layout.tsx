@@ -3,9 +3,11 @@ import { ThemeProvider } from 'next-themes';
 
 import { contentFor, type ContentAttributes } from '~/lib/content';
 import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
+import { personLd, websiteLd } from '~/lib/schema';
 
 import TranslationProvider from '~/components/TranslationProvider';
-import PersonSchema from '~/components/PersonSchema';
+import HtmlLang from '~/components/HtmlLang';
+import JsonLd from '~/components/JsonLd';
 import Logo from '~/components/Logo';
 import { Header, ThemeSwitcher, CommandBar, Footer } from '~/components/Blog';
 
@@ -23,7 +25,9 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <ThemeProvider defaultTheme={config.theme.defaultTheme}>
       <TranslationProvider messages={messages} locale={t.locale}>
-        <PersonSchema data={config} />
+        <HtmlLang locale={t.locale} />
+        <JsonLd data={websiteLd(config, config.title)} />
+        <JsonLd data={personLd(config)} />
         <Header
           left={<Logo name={config.author} />}
           right={
@@ -58,7 +62,6 @@ export function generateMetadata(): Metadata {
     },
     description: t(config.description),
     alternates: {
-      canonical: '/',
       types: {
         'application/rss+xml': `https://${config.domain}/blog/feed`,
       },
