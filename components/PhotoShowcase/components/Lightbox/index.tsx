@@ -32,9 +32,9 @@ export default function Lightbox(props: LightboxProps) {
 
   useBodyScrollLock(variant === 'modal');
 
-  const prevLabel = t('client.components.photoShowcase.lightbox.previous');
-  const nextLabel = t('client.components.photoShowcase.lightbox.next');
-  const backLabel = t('client.components.photoShowcase.lightbox.backToGallery');
+  const prevLabel = t('client.components.photoshowcase.lightbox.previous');
+  const nextLabel = t('client.components.photoshowcase.lightbox.next');
+  const backLabel = t('client.components.photoshowcase.lightbox.backtogallery');
 
   const figure = (
     <Figure

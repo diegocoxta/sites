@@ -25,12 +25,18 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails 
 
   return (
     <figure className={styles.figure}>
-      <div className={styles.imageWrap} style={{ backgroundColor: photo.placeholderColor ?? undefined }}>
+      <div
+        className={styles.imageWrap}
+        style={{
+          aspectRatio: `${photo.width} / ${photo.height}`,
+          backgroundColor: photo.placeholderColor ?? undefined,
+        }}
+      >
         {!imageLoaded && <ApertureSpinner />}
         <Image
           className={`${styles.image} ${imageLoaded ? styles.imageLoaded : ''}`}
           src={photo.src}
-          alt={photo.alt}
+          alt={photo.alt || t('client.components.photoshowcase.photoalt')}
           width={photo.width}
           height={photo.height}
           sizes="95vw"
@@ -45,7 +51,7 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails 
         {photo.source && (
           <span
             dangerouslySetInnerHTML={{
-              __html: t('client.components.photoShowcase.lightbox.credit', {
+              __html: t('client.components.photoshowcase.lightbox.credit', {
                 author: photo.source.author,
                 authorUrl: photo.source.authorUrl,
                 source: photo.source.name,
