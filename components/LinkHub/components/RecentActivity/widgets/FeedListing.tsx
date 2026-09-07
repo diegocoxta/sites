@@ -18,14 +18,19 @@ export default async function FeedListing({ t, config }: RecentActivityProps) {
   return (
     <div>
       {config.title && <h3 className={styles.title}>{t(config.title)}</h3>}
-      <ul className={styles.list}>
+      <ul className={`${styles.list} ${styles.columns}`}>
         {items?.map((item, itemIndex) => (
           <li key={itemIndex} className={styles.item}>
-            <p className={styles.itemTitle}>{item.title}</p>
-            <p className={styles.itemDescription}>{item.description}</p>
-            <p className={styles.itemDate}>
-              {t.date(item.pubDate, { day: 'numeric', month: 'long', year: 'numeric' })}
-            </p>
+            <span className={styles.mark}>
+              <span className={styles.markLabel}>{t.date(item.pubDate, { day: '2-digit' })}</span>
+              <span className={styles.markSub}>
+                {t.date(item.pubDate, { month: 'short', year: 'numeric' }).replace('.', '')}
+              </span>
+            </span>
+            <div>
+              <p className={styles.itemTitle}>{item.title}</p>
+              <p className={styles.itemDescription}>{item.description}</p>
+            </div>
           </li>
         ))}
       </ul>

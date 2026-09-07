@@ -42,7 +42,7 @@ type GetUserConcertsAttendanceResponseType = null | {
       };
       url: string;
     };
-    tour: {
+    tour?: {
       name: string;
     };
     sets: {
