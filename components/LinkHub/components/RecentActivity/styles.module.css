@@ -42,6 +42,13 @@
   margin: 0;
   padding: 0;
 
+  .columns & {
+    display: grid;
+    grid-template-columns: min-content minmax(0, 1fr);
+    align-items: center;
+    gap: 16px;
+  }
+
   .list & {
     max-width: 100%;
     border-bottom: 1px solid var(--main-border-color);
@@ -84,12 +91,20 @@
   font-weight: 600;
   color: var(--main-subtitle-color);
   font-size: 14px;
+
+  .columns & {
+    margin: 0;
+  }
 }
 
 .itemDescription {
   margin: 5px 0 0;
   color: var(--main-subtitle-color);
   font-size: 12px;
+
+  .columns & {
+    margin: 0;
+  }
 }
 
 .itemLike {
@@ -100,6 +115,32 @@
   margin: 5px 0 0;
   font-size: 12px;
   color: var(--main-subtitle-color);
+}
+
+.mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 40px;
+}
+
+.markLabel {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--main-title-color);
+}
+
+.markSub {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--main-subtitle-color);
+  text-align: center;
 }
 
 .githubRecentActivity {

@@ -1,7 +1,4 @@
-import Image from 'next/image';
-
 import { getMonthlyTopArtists } from '~/lib/services/lastfm';
-import { findArtistPhoto } from '~/lib/services/deezer';
 
 import type { RecentActivityProps } from '../index';
 
@@ -12,34 +9,31 @@ export default async function LastfmWidget({ t, config }: RecentActivityProps) {
     return null;
   }
 
-  const data = await getMonthlyTopArtists({
-    username: config.username,
-    authorization: config.authorization,
-  });
+  const { username, authorization } = config;
+  const data = await getMonthlyTopArtists({ username, authorization });
+  const artists = data?.topartists?.artist ?? [];
 
-  if (data?.topartists.artist.length === 0) {
+  if (artists.length === 0) {
     return null;
   }
 
   return (
     <>
       {config.title && <h3 className={styles.title}>{t(config.title)}</h3>}
-      <ul className={styles.grid}>
-        {data?.topartists.artist.map(async (artist) => {
-          const imageSrc = (await findArtistPhoto({ name: artist.name })) || artist.image?.[2]?.['#text'] || null;
-
-          return (
-            <li className={styles.item} key={artist.mbid || artist.name}>
-              <div className={styles.itemCover} aria-hidden>
-                {imageSrc && <Image src={imageSrc} alt="" fill sizes="120px" />}
-              </div>
+      <ul className={`${styles.list} ${styles.columns}`}>
+        {artists.map((artist, index) => (
+          <li key={artist.mbid || artist.name} className={`${styles.item} ${styles.columns}`}>
+            <span className={styles.mark}>
+              <span className={styles.markLabel}>{String(index + 1).padStart(2, '0')}</span>
+            </span>
+            <div>
               <p className={styles.itemTitle}>{artist.name}</p>
               <p className={styles.itemDescription}>
                 {t('components.recentActivity.lastfm.plays', { count: artist.playcount })}
               </p>
-            </li>
-          );
-        })}
+            </div>
+          </li>
+        ))}
       </ul>
     </>
   );
