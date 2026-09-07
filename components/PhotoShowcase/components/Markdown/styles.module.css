@@ -1,0 +1,79 @@
+.markdown {
+  box-sizing: border-box;
+  padding: 24px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--main-text-color);
+
+  @media (width >= 640px) {
+    padding: 40px;
+  }
+}
+
+.title {
+  margin: 0 0 24px;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+  color: var(--main-title-color);
+}
+
+.markdown :is(h2, h3, h4) {
+  margin: 32px 0 12px;
+  color: var(--main-title-color);
+  line-height: 1.25;
+}
+
+.markdown h2 {
+  font-size: 26px;
+}
+
+.markdown h3 {
+  font-size: 21px;
+}
+
+.markdown p {
+  margin: 16px 0;
+}
+
+.markdown a {
+  color: var(--main-accent-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+
+  &:hover,
+  &:focus {
+    border-bottom-color: var(--main-accent-color);
+    outline: none;
+  }
+}
+
+.markdown img {
+  display: block;
+  margin: 24px auto;
+  max-width: 100%;
+}
+
+.markdown blockquote {
+  margin: 24px 0;
+  padding-left: 20px;
+  border-left: 4px solid var(--main-accent-color);
+  color: var(--main-subtitle-color);
+}
+
+.markdown ul,
+.markdown ol {
+  padding-left: 22px;
+}
+
+.markdown li {
+  margin: 6px 0;
+}
+
+.markdown hr {
+  margin: 40px 0;
+  border: 0;
+  border-top: 1px solid var(--main-border-color);
+}
