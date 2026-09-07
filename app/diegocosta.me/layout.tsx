@@ -30,7 +30,7 @@ export default function RootLayout({ children, modal }: React.PropsWithChildren<
 
 export function generateMetadata(): Metadata {
   const t = getTranslations(config);
-  const image = config.avatar ?? '';
+  const image = '/og/home';
 
   return {
     metadataBase: new URL(`https://${config.domain}`),

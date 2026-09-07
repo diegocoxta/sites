@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: PhotoPreviewProps): Promise<M
   }
 
   const { photo, index, total } = context;
-  const image = { url: photo.src, width: photo.width, height: photo.height };
   const title = photoTitle(photo.alt, index, total);
+  const image = `/og/p/${id}`;
 
   return {
     title,

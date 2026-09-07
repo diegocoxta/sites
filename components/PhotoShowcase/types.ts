@@ -1,6 +1,7 @@
 export type Photo = {
   id: string;
   src: string;
+  thumbnailSrc: string;
   alt: string;
   width: number;
   height: number;
