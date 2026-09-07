@@ -42,7 +42,10 @@ Run `yarn lint` and `yarn build`. Both must pass.
   negotiation in [`lib/i18n/locale.ts`](lib/i18n/locale.ts) (used by `proxy.ts`).
   `getTranslations` sees every key; `getClientMessages` ships only `client.*`
   keys to Client Components — so a string used in a Client Component must be
-  named `client.*`.
+  named `client.*`. JSON keys are **all lowercase**; `t()` lower-cases the
+  lookup, so call sites may mirror component names
+  (`t('components.photoShowcase.LoadMore.label')`) and still resolve. A key that
+  isn't found is returned unchanged (brand/proper names pass straight through).
 - **404s:** no root `app/not-found.tsx` (it would need the host, forcing every
   catch-all dynamic). Each domain has its own boundary: single-locale domains use
   `app/<domain>/not-found.tsx` (Server Component); `diegocoxta.com` uses

@@ -10,7 +10,7 @@ export default function NotFound({ t, domain }: NotFoundProps) {
       <p className={styles.code} aria-hidden>
         404
       </p>
-      {t('client.components.notFound.message', { domain })
+      {t('client.components.notfound.message', { domain })
         .split('\n')
         .map((paragraph) => (
           <p className={styles.message} key={paragraph} dangerouslySetInnerHTML={{ __html: paragraph }} />

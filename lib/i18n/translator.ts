@@ -12,7 +12,7 @@ const TRANSLATABLE_KEY = /^(client|config|components|page)\./;
 
 export function createTranslator(messages: Record<string, string>, locale: Locale): Translator {
   const t = ((key: string, params?: Record<string, string | number>): string => {
-    const value = messages[key];
+    const value = messages[key.toLowerCase()];
 
     if (value === undefined) {
       if (process.env.NODE_ENV !== 'production' && TRANSLATABLE_KEY.test(key)) {
