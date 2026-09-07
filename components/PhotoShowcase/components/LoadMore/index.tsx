@@ -8,7 +8,6 @@ interface LoadMoreProps {
   loading: boolean;
   failed: boolean;
   onLoadMore: () => void;
-  /** Observed by the parent's IntersectionObserver to auto-load before the button scrolls into view. */
   sentinelRef: React.RefObject<HTMLDivElement | null>;
 }
 

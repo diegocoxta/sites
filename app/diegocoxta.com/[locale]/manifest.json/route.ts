@@ -5,8 +5,6 @@ import { getTranslations } from '~/lib/i18n/messages';
 
 import config from '~/app/diegocoxta.com/config';
 
-// One static file per locale (`/pt/manifest.json`, …) — the `<link rel="manifest">`
-// in [locale]/layout.tsx points at the matching one.
 export const dynamic = 'force-static';
 
 export function generateStaticParams() {

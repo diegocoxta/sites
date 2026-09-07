@@ -22,8 +22,6 @@ export default function Masonry({ leading, items }: MasonryProps) {
     [leading, items]
   );
 
-  // react-plock only balances its columns after mount — fall back to plain, real markup
-  // (not a skeleton) so crawlers and no-JS clients still get the real cells too.
   if (!mounted) {
     return (
       <div className={styles.fallbackGrid}>
@@ -41,10 +39,6 @@ export default function Masonry({ leading, items }: MasonryProps) {
       className={styles.masonry}
       items={entries}
       config={{
-        // 1 column on phones, then 2 / 3 / 4 at 640 / 1024 / 1536 — kept in sync with
-        // the `.fallbackGrid` pre-hydration CSS. react-plock reads columns[i] once `i`
-        // breakpoints are passed and clamps `i` to media.length - 1, so the trailing
-        // 2560 is filler that just makes the 4-column tier reachable.
         columns: [1, 2, 3, 4],
         gap: [3, 3, 3, 3],
         media: [640, 1024, 1536, 2560],
