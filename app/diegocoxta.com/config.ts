@@ -9,7 +9,6 @@ const config: ConfigType = {
   locales: ['pt', 'en', 'es'],
   jobTitle: ['Engineering Manager', 'Senior Software Engineer', 'Photographer'],
   domain: 'diegocoxta.com',
-  author: 'Diego Costa',
   avatar: '/background_v4.jpg',
   links: [
     {
@@ -71,7 +70,7 @@ const config: ConfigType = {
       recentActivity: {
         widget: 'UnsplashRecentActivity',
         config: {
-          title: 'config.links.photography.recentActivity.title',
+          title: 'config.links.photography.recentactivity.title',
           username: process.env.UNSPLASH_USERNAME,
           authorization: process.env.UNSPLASH_ACCESS_KEY,
         },
@@ -86,7 +85,7 @@ const config: ConfigType = {
       recentActivity: {
         widget: 'FeedListingRecentActivity',
         config: {
-          title: 'config.links.blog.recentActivity.title',
+          title: 'config.links.blog.recentactivity.title',
           feed: 'https://diegocosta.com.br/blog/feed',
         },
       },
@@ -100,7 +99,7 @@ const config: ConfigType = {
       recentActivity: {
         widget: 'GithubRecentActivity',
         config: {
-          title: 'config.links.github.recentActivity.title',
+          title: 'config.links.github.recentactivity.title',
           username: process.env.GITHUB_USERNAME,
           authorization: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
         },
@@ -123,7 +122,7 @@ const config: ConfigType = {
       recentActivity: {
         widget: 'HardcoverRecentActivity',
         config: {
-          title: 'config.links.hardcover.recentActivity.title',
+          title: 'config.links.hardcover.recentactivity.title',
           authorization: process.env.HARDCOVER_TOKEN,
         },
       },
@@ -137,7 +136,7 @@ const config: ConfigType = {
       recentActivity: {
         widget: 'DiscogsRecentActivity',
         config: {
-          title: 'config.links.discogs.recentActivity.title',
+          title: 'config.links.discogs.recentactivity.title',
           username: process.env.DISCOGS_USERNAME,
           authorization: process.env.DISCOGS_TOKEN,
         },
@@ -152,7 +151,7 @@ const config: ConfigType = {
       recentActivity: {
         widget: 'LastfmRecentActivity',
         config: {
-          title: 'config.links.lastfm.recentActivity.title',
+          title: 'config.links.lastfm.recentactivity.title',
           username: process.env.LASTFM_USERNAME,
           authorization: process.env.LASTFM_API_KEY,
         },
@@ -167,7 +166,7 @@ const config: ConfigType = {
       recentActivity: {
         widget: 'SetlistRecentActivity',
         config: {
-          title: 'config.links.setlist.recentActivity.title',
+          title: 'config.links.setlist.recentactivity.title',
           username: process.env.SETLIST_USERNAME,
           authorization: process.env.SETLIST_API_KEY,
         },
@@ -182,7 +181,7 @@ const config: ConfigType = {
       recentActivity: {
         widget: 'LetterboxdRecentActivity',
         config: {
-          title: 'config.links.letterboxd.recentActivity.title',
+          title: 'config.links.letterboxd.recentactivity.title',
           username: process.env.LETTERBOXD_USERNAME,
         },
       },
