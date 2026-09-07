@@ -9,6 +9,13 @@ import { fetchJson } from '~/lib/http';
  */
 const REVALIDATE = 60 * 60 * 24; // 1 day
 
+/**
+ * A rejected or rate-limited token stays rejected for the whole build — fail the
+ * build loudly instead of shipping empty photo pages. 403 is what Unsplash returns
+ * once the hourly quota is spent; 401 is a bad access key.
+ */
+const FAIL_FAST_STATUSES = [401, 403];
+
 type GetRecentUserPhotosParamsType = {
   per_page?: number;
   page?: number;
@@ -54,6 +61,7 @@ export async function getRecentUserPhotos(
       headers: { Authorization: `Client-ID ${authorization}` },
       id: 'unsplash-photos',
       revalidate: REVALIDATE,
+      failFastStatuses: FAIL_FAST_STATUSES,
     }
   );
 
@@ -120,6 +128,7 @@ export async function getUserCollections(
       headers: { Authorization: `Client-ID ${authorization}` },
       id: 'unsplash-collections',
       revalidate: REVALIDATE,
+      failFastStatuses: FAIL_FAST_STATUSES,
     }
   );
 
@@ -185,6 +194,7 @@ export async function getCollectionPhotos(
       headers: { Authorization: `Client-ID ${authorization}` },
       id: 'unsplash-collection-photos',
       revalidate: REVALIDATE,
+      failFastStatuses: FAIL_FAST_STATUSES,
     }
   );
 
