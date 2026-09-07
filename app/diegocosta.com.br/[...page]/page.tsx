@@ -33,7 +33,7 @@ export default async function Page({ params }: PageProps) {
 
 export const generateStaticParams = () =>
   content
-    .getPages()
+    .getAllPages()
     .flatMap(({ slug }) => [{ page: [slug] }, ...config.locales.map((locale) => ({ page: [slug, locale] }))]);
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

@@ -1,6 +1,7 @@
 ---
 title: Tools I Use
 summary: The page where I share the tools that make my life easier and happier.
+listed: false
 ---
 
 

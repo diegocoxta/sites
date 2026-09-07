@@ -14,14 +14,14 @@ export type ContentAttributes = {
   readingTime: number;
   href: string;
   summary?: string;
-  status?: string;
   date?: string;
   language?: string;
   tags?: Array<string>;
   expanded?: boolean;
+  listed?: boolean;
 };
 
-const isPublished = (entry: ContentAttributes): boolean => entry.status !== 'draft';
+const isListed = (entry: ContentAttributes): boolean => entry.listed !== false;
 
 const byDateDesc = (a: ContentAttributes, b: ContentAttributes): number =>
   new Date(b.date ?? 0).getTime() - new Date(a.date ?? 0).getTime();
@@ -82,6 +82,7 @@ const readContentFile = cache(function readContentFile<T extends ContentAttribut
 
   const attributes: Record<string, unknown> = {
     ...data,
+    listed: data.listed !== false,
     readingTime: readingTime(content).minutes,
     content: rewriteRelativeImages(content, filename),
   };
@@ -115,18 +116,24 @@ const listContent = cache(function listContent<T extends ContentAttributes>(
     .filter((entry): entry is T => entry !== undefined);
 });
 
-const getPosts = cache((domain: string, defaultLocale: string, locale?: string): Array<ContentAttributes> =>
+const getAllPosts = cache((domain: string, defaultLocale: string, locale?: string): Array<ContentAttributes> =>
   listContent<ContentAttributes>(domain, '/blog', locale, defaultLocale)
-    .filter(isPublished)
     .sort(byDateDesc)
     .map((post) => ({ ...post, href: `/blog/${post.slug}` }))
 );
 
-const getPages = cache((domain: string, defaultLocale: string, locale?: string): Array<ContentAttributes> =>
-  listContent<ContentAttributes>(domain, '/pages', locale, defaultLocale)
-    .filter(isPublished)
-    .map((page) => ({ ...page, href: `/${page.slug}` }))
+const getAllPages = cache((domain: string, defaultLocale: string, locale?: string): Array<ContentAttributes> =>
+  listContent<ContentAttributes>(domain, '/pages', locale, defaultLocale).map((page) => ({
+    ...page,
+    href: `/${page.slug}`,
+  }))
 );
+
+const getPosts = (domain: string, defaultLocale: string, locale?: string): Array<ContentAttributes> =>
+  getAllPosts(domain, defaultLocale, locale).filter(isListed);
+
+const getPages = (domain: string, defaultLocale: string, locale?: string): Array<ContentAttributes> =>
+  getAllPages(domain, defaultLocale, locale).filter(isListed);
 
 const getTags = cache((domain: string, defaultLocale: string, locale?: string): Array<string> => [
   ...new Set(getPosts(domain, defaultLocale, locale).flatMap((post) => post.tags ?? [])),
@@ -139,7 +146,9 @@ export function contentFor({ domain, locales }: Pick<ConfigType, 'domain' | 'loc
     readFile: <T extends ContentAttributes>(filename: string, locale?: string): T | undefined =>
       readContentFile<T>(domain, filename, locale, defaultLocale),
     getPages: (locale?: string) => getPages(domain, defaultLocale, locale),
+    getAllPages: (locale?: string) => getAllPages(domain, defaultLocale, locale),
     getPosts: (locale?: string) => getPosts(domain, defaultLocale, locale),
+    getAllPosts: (locale?: string) => getAllPosts(domain, defaultLocale, locale),
     getTags: (locale?: string) => getTags(domain, defaultLocale, locale),
   };
 }
