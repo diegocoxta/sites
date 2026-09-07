@@ -15,7 +15,6 @@ const config: LocalConfigType = {
   description: 'config.description',
   domain: 'diegocosta.me',
   locales: ['en'],
-  author: 'Diego Costa',
   jobTitle: ['Photographer'],
   avatar: '/avatar.jpg',
   theme: {

@@ -14,7 +14,6 @@ const config: LocalConfigType = {
   description: 'config.description',
   domain: 'diegocosta.com.br',
   locales: ['pt'],
-  author: 'Diego Costa',
   avatar: 'https://avatars.githubusercontent.com/u/3134422?v=4',
   links: [
     { type: 'text', title: 'config.links.blog.title', href: '/blog' },
