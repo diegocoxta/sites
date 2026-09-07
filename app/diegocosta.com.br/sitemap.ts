@@ -13,7 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const posts = content.getPosts();
   const pages = content.getPages();
-  const tags = content.getTags();
 
   return [
     {
@@ -37,11 +36,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...[...posts, ...pages].map(({ href }) => ({
       url: `https://${domain}${href}`,
       priority: 0.8,
-    })),
-    ...tags.map((tag) => ({
-      url: `https://${domain}/blog/tag/${tag}`,
-      changeFrequency: 'weekly',
-      priority: 0.6,
     })),
   ];
 }

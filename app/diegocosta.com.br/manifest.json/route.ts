@@ -11,12 +11,16 @@ export const GET = () => {
 
   return NextResponse.json(
     {
+      id: '/',
       name: config.title,
       short_name: config.title,
       description: t(config.description),
+      lang: config.locales[0],
+      dir: 'ltr',
       start_url: '/',
       display: 'standalone',
       theme_color: config.theme.accentColor,
+      background_color: '#fdfdfd',
       icons: [
         {
           src: '/icon',

@@ -13,7 +13,7 @@ const faIcon = (name?: string) => (name ? Fa6[name as keyof typeof Fa6] : undefi
 
 export default function IconLinks({ t, icons }: IconLinksProps) {
   return (
-    <nav>
+    <nav aria-label={t('components.linkhub.iconlinks.nav')}>
       <ul className={styles.list}>
         {icons.map((icon) => {
           const Icon = faIcon(icon.icon);

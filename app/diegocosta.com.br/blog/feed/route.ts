@@ -18,15 +18,22 @@ export function GET() {
     description: t(config.description),
     feed_url: `https://${config.domain}/blog/feed`,
     site_url: `https://${config.domain}`,
+    language: 'pt-br',
+    copyright: `CC-BY ${new Date().getFullYear()} ${config.author}`,
     pubDate: new Date(),
   });
 
   content.getPosts().forEach((post) => {
+    const url = `https://${config.domain}${post.href}`;
+
     feed.item({
       title: post.title,
-      url: `https://${config.domain}${post.href}`,
+      url,
+      guid: url,
       date: post.date!,
       description: post.summary ?? '',
+      author: config.author,
+      categories: post.tags ?? [],
     });
   });
 

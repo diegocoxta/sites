@@ -35,6 +35,12 @@ export const generateStaticParams = () => content.getTags().map((tag) => ({ tag 
 
 export async function generateMetadata({ params }: TagsSinglePageProps): Promise<Metadata> {
   const { tag } = await params;
+  const t = getTranslations(config);
 
-  return { title: `#${tag}` };
+  return {
+    title: `#${tag}`,
+    description: t('page.tag.description', { tag }),
+    alternates: { canonical: `/blog/tag/${tag}` },
+    robots: { index: false, follow: true },
+  };
 }
