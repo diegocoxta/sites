@@ -19,7 +19,7 @@ export default function ThemeSwitcher({ isDarkMode, onClick }: ThemeSwitcherProp
       className={styles.container}
       data-isdarkmode={`${isDarkMode}`}
       aria-checked={isDarkMode}
-      aria-label={t('client.components.themeSwitcher.ariaLabel')}
+      aria-label={t('client.components.blog.themeswitcher.arialabel')}
       onClick={onClick}
       role="switch"
     >

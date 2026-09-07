@@ -37,7 +37,7 @@ export default function BackToTop() {
       type="button"
       className={`${styles.button} ${visible ? styles.visible : ''}`}
       onClick={scrollToTop}
-      aria-label={t('client.components.photoShowcase.backToTop.label')}
+      aria-label={t('client.components.photoshowcase.backtotop.label')}
     >
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden focusable="false">
         <path d="M12 5.4 4.6 12.8 6 14.2l5-5V20h2V9.2l5 5 1.4-1.4z" fill="currentColor" />

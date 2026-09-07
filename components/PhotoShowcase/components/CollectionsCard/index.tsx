@@ -13,7 +13,7 @@ type CollectionsCardProps = ComponentWithTranslator<{
 export default function CollectionsCard({ t, collections }: CollectionsCardProps) {
   return (
     <div className={styles.card}>
-      <div className={styles.kicker}>{t('components.photoShowcase.collectionsCard.title')}</div>
+      <div className={styles.kicker}>{t('components.photoshowcase.collectionscard.title')}</div>
       <ul className={styles.list}>
         {collections.map((collection) => (
           <li key={collection.id}>

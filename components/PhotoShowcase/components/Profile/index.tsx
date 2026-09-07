@@ -29,7 +29,7 @@ export default function Profile({ t, name, avatar, socialLinks }: ProfileProps) 
       />
       <div className={styles.overlay}>
         <Logo name={name} size={48} />
-        <p className={styles.text}>{t('components.photoShowcase.profile.bio')}</p>
+        <p className={styles.text}>{t('components.photoshowcase.profile.bio')}</p>
         {socialLinks && socialLinks.length > 0 && (
           <ul className={styles.social}>
             {socialLinks.map((link) => {

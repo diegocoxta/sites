@@ -15,7 +15,7 @@ export default function Footer({ t, ...props }: FooterProps) {
 
   return (
     <footer className={styles.container}>
-      <nav aria-label={t('components.footer.ariaLabel')}>
+      <nav aria-label={t('components.blog.footer.arialabel')}>
         {props.links && (
           <ul className={styles.links}>
             {props.links.map((link, index) => (

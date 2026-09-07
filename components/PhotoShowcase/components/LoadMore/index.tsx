@@ -19,10 +19,10 @@ export default function LoadMore({ loading, failed, onLoadMore, sentinelRef }: L
     <div className={styles.more}>
       <button className={styles.button} type="button" onClick={onLoadMore} disabled={loading}>
         {loading
-          ? t('client.components.photoShowcase.loadMore.loading')
+          ? t('client.components.photoshowcase.loadmore.loading')
           : failed
-            ? t('client.components.photoShowcase.loadMore.retry')
-            : t('client.components.photoShowcase.loadMore.label')}
+            ? t('client.components.photoshowcase.loadmore.retry')
+            : t('client.components.photoshowcase.loadmore.label')}
       </button>
       <div ref={sentinelRef} className={styles.sentinel} aria-hidden />
     </div>
