@@ -10,20 +10,22 @@ import styles from './styles.module.css';
 type ArticleProps = ComponentWithTranslator<
   Partial<ContentAttributes> & {
     renderHeader?: boolean;
+    headingLevel?: 1 | 2;
   }
 >;
 
 export default function Article({ t, ...props }: ArticleProps) {
-  const { renderHeader = true, expanded = true } = props;
+  const { renderHeader = true, expanded = true, headingLevel = 2 } = props;
+  const Title = `h${headingLevel}` as const;
 
   return (
     <article>
       {renderHeader && (
         <header>
           {props.title && (
-            <h3 className={styles.title}>
+            <Title className={styles.title}>
               <Link href={props.href ?? ''}>{props.title}</Link>
-            </h3>
+            </Title>
           )}
           <div className={styles.attributes}>
             {props.date && (
@@ -34,12 +36,14 @@ export default function Article({ t, ...props }: ArticleProps) {
             {props.readingTime && (
               <span>
                 {props.readingTime <= 1
-                  ? t('components.attributes.readingTimeUnderMinute')
-                  : t('components.attributes.readingTime', { count: Number(props.readingTime!.toFixed()) })}
+                  ? t('components.blog.article.attributes.readingtimeunderminute')
+                  : t('components.blog.article.attributes.readingtime', {
+                      count: Number(props.readingTime!.toFixed()),
+                    })}
               </span>
             )}
           </div>
-          <ul className={styles.tagList} aria-label={t('components.attributes.tagsLabel')}>
+          <ul className={styles.tagList} aria-label={t('components.blog.article.attributes.tagslabel')}>
             {props.tags?.map((tag: string, index: number) => (
               <li className={styles.tagItem} key={`${index}-${tag}`}>
                 <Link className={styles.tagLink} href={`/blog/tag/${tag}`}>{`#${tag}`}</Link>

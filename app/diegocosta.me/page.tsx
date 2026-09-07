@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+
 import { getTranslations } from '~/lib/i18n/messages';
 
 import { CollectionsCard, Feed, Profile } from '~/components/PhotoShowcase';
@@ -21,9 +23,24 @@ export default async function HomePage() {
     </>
   );
 
-  return photos.length > 0 || hasMore ? (
-    <Feed initialPhotos={photos} initialHasMore={hasMore} loadMore={getPhotosPage} hrefBase="/p" leading={leading} />
-  ) : (
-    <p>{t('page.photos.empty')}</p>
+  return (
+    <>
+      <h1 className="srOnly">{t('page.photos.heading')}</h1>
+      {photos.length > 0 || hasMore ? (
+        <Feed
+          initialPhotos={photos}
+          initialHasMore={hasMore}
+          loadMore={getPhotosPage}
+          hrefBase="/p"
+          leading={leading}
+        />
+      ) : (
+        <p>{t('page.photos.empty')}</p>
+      )}
+    </>
   );
 }
+
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
