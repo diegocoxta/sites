@@ -1,5 +1,7 @@
 'use server';
 
+import { cache } from 'react';
+
 import { getCollectionPhotos, getPhoto, getRecentUserPhotos, getUserCollections } from '~/lib/services/unsplash';
 import type { UnsplashCollection, UnsplashPhoto, UnsplashPhotoDetails } from '~/lib/services/unsplash';
 
@@ -93,7 +95,7 @@ function fetchCollectionPhotos(id: string, page: number): Promise<UnsplashPhoto[
   return getCollectionPhotos({ id, authorization: creds.authorization, per_page: PAGE_SIZE, page });
 }
 
-async function allUserPhotos(): Promise<UnsplashPhoto[]> {
+const allUserPhotos = cache(async (): Promise<UnsplashPhoto[]> => {
   const all: UnsplashPhoto[] = [];
 
   for (let page = 1; page <= MAX_PAGES; page += 1) {
@@ -111,9 +113,9 @@ async function allUserPhotos(): Promise<UnsplashPhoto[]> {
   }
 
   return all;
-}
+});
 
-async function allCollections(): Promise<UnsplashCollection[]> {
+const allCollections = cache(async (): Promise<UnsplashCollection[]> => {
   const all: UnsplashCollection[] = [];
 
   for (let page = 1; page <= MAX_PAGES; page += 1) {
@@ -131,7 +133,7 @@ async function allCollections(): Promise<UnsplashCollection[]> {
   }
 
   return all;
-}
+});
 
 // Neighbours of `id` in the ordered photo list — prev/next + position for the lightbox.
 function contextAt(photos: Photo[], id: string): PhotoContext | null {
