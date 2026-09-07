@@ -5,11 +5,16 @@ import { getTranslations } from '~/lib/i18n/messages';
 
 import config from '~/app/diegocoxta.com/config';
 
-export const revalidate = false;
+// One static file per locale (`/pt/manifest.json`, …) — the `<link rel="manifest">`
+// in [locale]/layout.tsx points at the matching one.
+export const dynamic = 'force-static';
 
-// `?locale=` is set by the per-locale `<link rel="manifest">` in [locale]/layout.tsx.
-export const GET = (request: Request) => {
-  const locale = resolveLocale(config.locales, new URL(request.url).searchParams.get('locale'));
+export function generateStaticParams() {
+  return config.locales.map((locale) => ({ locale }));
+}
+
+export async function GET(_request: Request, { params }: { params: Promise<{ locale: string }> }) {
+  const locale = resolveLocale(config.locales, (await params).locale);
   const t = getTranslations(config, locale);
   const name = `${config.author} (${config.title})`;
 
@@ -39,4 +44,4 @@ export const GET = (request: Request) => {
       },
     }
   );
-};
+}

@@ -58,5 +58,5 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 export async function generateMetadata({ params }: Pick<LocaleLayoutProps, 'params'>): Promise<Metadata> {
   const { locale } = await params;
 
-  return { manifest: `/manifest.json?locale=${locale}` };
+  return { manifest: `/${locale}/manifest.json` };
 }
