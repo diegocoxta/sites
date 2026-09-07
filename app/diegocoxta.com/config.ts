@@ -60,6 +60,7 @@ const config: ConfigType = {
       icon: 'FaCartShopping',
       href: 'https://lista.mercadolivre.com.br/_CustId_126689975?',
       description: 'config.links.shop.description',
+      highlight: true,
     },
     {
       type: 'card',
@@ -73,6 +74,20 @@ const config: ConfigType = {
           title: 'config.links.photography.recentActivity.title',
           username: process.env.UNSPLASH_USERNAME,
           authorization: process.env.UNSPLASH_ACCESS_KEY,
+        },
+      },
+    },
+    {
+      type: 'card',
+      title: 'My Tech Blog',
+      icon: 'FaFloppyDisk',
+      href: 'https://diegocosta.com.br',
+      description: 'config.links.blog.description',
+      recentActivity: {
+        widget: 'FeedListingRecentActivity',
+        config: {
+          title: 'config.links.blog.recentActivity.title',
+          feed: 'https://diegocosta.com.br/blog/feed',
         },
       },
     },
@@ -97,35 +112,7 @@ const config: ConfigType = {
       icon: 'FaHeart',
       href: 'https://github.com/diegocoxta/sites',
       description: 'config.links.like_page.description',
-    },
-    {
-      type: 'card',
-      title: 'My Tech Blog',
-      icon: 'FaFloppyDisk',
-      href: 'https://diegocosta.com.br',
-      description: 'config.links.blog.description',
-      recentActivity: {
-        widget: 'FeedListingRecentActivity',
-        config: {
-          title: 'config.links.blog.recentActivity.title',
-          feed: 'https://diegocosta.com.br/blog/feed',
-        },
-      },
-    },
-    {
-      type: 'card',
-      title: 'Discogs',
-      icon: 'FaRecordVinyl',
-      href: 'https://www.discogs.com/user/diegocoxta',
-      description: 'config.links.discogs.description',
-      recentActivity: {
-        widget: 'DiscogsRecentActivity',
-        config: {
-          title: 'config.links.discogs.recentActivity.title',
-          username: process.env.DISCOGS_USERNAME,
-          authorization: process.env.DISCOGS_TOKEN,
-        },
-      },
+      highlight: true,
     },
     {
       type: 'card',
@@ -143,15 +130,16 @@ const config: ConfigType = {
     },
     {
       type: 'card',
-      title: 'Letterboxd',
-      icon: 'FaLetterboxd',
-      href: 'https://letterboxd.com/diegocoxta/',
-      description: 'config.links.letterboxd.description',
+      title: 'Discogs',
+      icon: 'FaRecordVinyl',
+      href: 'https://www.discogs.com/user/diegocoxta',
+      description: 'config.links.discogs.description',
       recentActivity: {
-        widget: 'LetterboxdRecentActivity',
+        widget: 'DiscogsRecentActivity',
         config: {
-          title: 'config.links.letterboxd.recentActivity.title',
-          username: process.env.LETTERBOXD_USERNAME,
+          title: 'config.links.discogs.recentActivity.title',
+          username: process.env.DISCOGS_USERNAME,
+          authorization: process.env.DISCOGS_TOKEN,
         },
       },
     },
@@ -182,6 +170,20 @@ const config: ConfigType = {
           title: 'config.links.setlist.recentActivity.title',
           username: process.env.SETLIST_USERNAME,
           authorization: process.env.SETLIST_API_KEY,
+        },
+      },
+    },
+    {
+      type: 'card',
+      title: 'Letterboxd',
+      icon: 'FaLetterboxd',
+      href: 'https://letterboxd.com/diegocoxta/',
+      description: 'config.links.letterboxd.description',
+      recentActivity: {
+        widget: 'LetterboxdRecentActivity',
+        config: {
+          title: 'config.links.letterboxd.recentActivity.title',
+          username: process.env.LETTERBOXD_USERNAME,
         },
       },
     },
