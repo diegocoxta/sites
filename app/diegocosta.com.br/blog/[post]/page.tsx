@@ -32,7 +32,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   );
 }
 
-export const generateStaticParams = () => content.getPosts().map(({ slug: post }) => ({ post }));
+export const generateStaticParams = () => content.getAllPosts().map(({ slug: post }) => ({ post }));
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const { post } = await params;

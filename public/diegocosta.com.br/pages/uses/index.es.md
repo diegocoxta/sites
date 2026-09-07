@@ -1,6 +1,7 @@
 ---
 title: Herramientas que Uso
 summary: La página donde comparto las herramientas que hacen mi vida más fácil y feliz.
+listed: false
 ---
 
 # Herramientas que Uso
