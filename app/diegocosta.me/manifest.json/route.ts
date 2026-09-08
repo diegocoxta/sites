@@ -13,7 +13,7 @@ export const GET = () => {
     {
       id: '/',
       name: t(config.title),
-      short_name: t(config.title),
+      short_name: config.author,
       description: t(config.description),
       lang: config.locales[0],
       dir: 'ltr',

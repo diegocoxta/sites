@@ -25,7 +25,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <h1 className="srOnly">{t('page.photos.heading')}</h1>
+      <h1 className="srOnly">{t('config.title')}</h1>
       {photos.length > 0 || hasMore ? (
         <Feed
           initialPhotos={photos}
