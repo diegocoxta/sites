@@ -1,6 +1,6 @@
 {
   "config.title": "Diego Costa",
-  "config.description": "My photography portfolio",
+  "config.description": "Amateur photographer and software engineer from Brazil, happiest traveling with a camera — and dreaming of the day that's all I do.",
   "config.links.unsplash.title": "Find me on Unsplash",
   "config.links.instagram.title": "Find me on Instagram",
   "config.links.mail.title": "Drop me a line",
@@ -9,7 +9,7 @@
   "page.photos.description": "A photo I took and didn't have words for.",
   "page.photos.empty": "Empty for now. Either I haven't posted or something broke — try again later.",
   "page.collections.description": "A few photos I kept together for a reason I didn't write down.",
-  "components.photoshowcase.profile.bio": "Amateur photographer and software engineer from Brazil, happiest traveling with a camera — and dreaming of the day that's all I do. This is where the photos end up; the rest of me is on the links below.",
+  "components.photoshowcase.profile.bio": "This is where the photos end up; the rest of me is on the links below.",
   "components.photoshowcase.collectionscard.title": "Collections",
   "components.photoshowcase.collectiondetails.photocount": "{count} photos",
   "components.photoshowcase.collectiondetails.allphotos": "All photos",
