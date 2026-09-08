@@ -36,7 +36,9 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails 
         <Image
           className={`${styles.image} ${imageLoaded ? styles.imageLoaded : ''}`}
           src={photo.src}
-          alt={photo.alt || t('client.components.photoshowcase.photoalt')}
+          alt={
+            [photo.description, photo.alt].filter(Boolean).join(' - ') || t('client.components.photoshowcase.photoalt')
+          }
           width={photo.width}
           height={photo.height}
           sizes="95vw"

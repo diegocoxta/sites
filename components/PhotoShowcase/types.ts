@@ -3,6 +3,7 @@ export type Photo = {
   src: string;
   thumbnailSrc: string;
   alt: string;
+  description: string | null;
   width: number;
   height: number;
   placeholderColor: string | null;

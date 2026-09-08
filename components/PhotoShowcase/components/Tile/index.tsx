@@ -37,7 +37,9 @@ export default function Tile({ photo, hrefBase }: TileProps) {
         ref={imageRef}
         className={`${styles.image} ${loaded ? styles.imageLoaded : ''}`}
         src={photo.src}
-        alt={photo.alt || t('client.components.photoshowcase.photoalt')}
+        alt={
+          [photo.description, photo.alt].filter(Boolean).join(' - ') || t('client.components.photoshowcase.photoalt')
+        }
         width={photo.width}
         height={photo.height}
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px"

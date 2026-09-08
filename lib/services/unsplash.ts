@@ -27,6 +27,7 @@ export type UnsplashPhoto = {
   id: string;
   created_at: string;
   alt_description: string;
+  description: string | null;
   width: number;
   height: number;
   color: string | null;
