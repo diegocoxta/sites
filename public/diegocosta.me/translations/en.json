@@ -6,6 +6,7 @@
   "config.links.mail.title": "Drop me a line",
   "config.links.personal.title": "Find me everywhere else",
   "page.photos.heading": "Photographs by Diego Costa",
+  "page.photos.counter": "Photo {index} of {total}",
   "page.photos.description": "A photo I took and didn't have words for.",
   "page.photos.empty": "Empty for now. Either I haven't posted or something broke — try again later.",
   "page.collections.description": "A few photos I kept together for a reason I didn't write down.",

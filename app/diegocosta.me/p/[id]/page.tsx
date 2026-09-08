@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getTranslations } from '~/lib/i18n/messages';
+import type { Translator } from '~/lib/i18n/translator';
 import { imageObjectLd } from '~/lib/schema';
 
 import { CollectionsCard, Lightbox, Page, Profile } from '~/components/PhotoShowcase';
@@ -14,8 +15,8 @@ interface PhotoPreviewProps {
   params: Promise<{ id: string }>;
 }
 
-const photoTitle = (alt: string, index: number, total: number): string =>
-  alt.trim() || `Photograph ${index + 1} of ${total}`;
+const photoTitle = (t: Translator, alt: string, index: number, total: number): string =>
+  alt.trim() || t('page.photos.counter', { index: index + 1, total });
 
 export async function generateStaticParams() {
   const photos = await getAllPhotos();
@@ -33,12 +34,12 @@ export async function generateMetadata({ params }: PhotoPreviewProps): Promise<M
   }
 
   const { photo, index, total } = context;
-  const title = photoTitle(photo.alt, index, total);
+  const title = photoTitle(t, photo.alt, index, total);
   const image = `/og/p/${id}`;
 
   return {
     title,
-    description: photo.alt.trim() || t('page.photos.description'),
+    description: [photo.description, photo.alt].filter(Boolean).join(' - ') || t('page.photos.description'),
     alternates: { canonical: `/p/${id}` },
     openGraph: { siteName: t(config.title), title, url: `/p/${id}`, images: [image] },
     twitter: { card: 'summary_large_image', title, images: [image] },
@@ -57,7 +58,7 @@ export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
   }
 
   const { photo, index, total } = context;
-  const title = photoTitle(photo.alt, index, total);
+  const title = photoTitle(t, photo.alt, index, total);
 
   return (
     <Page
