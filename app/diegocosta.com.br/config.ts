@@ -20,7 +20,7 @@ const config: LocalConfigType = {
     { type: 'text', title: 'config.links.cv.title', href: '/cv' },
     { type: 'text', title: 'E-mail', href: 'mailto:diego@diegocosta.com.br' },
     { type: 'text', title: 'LinkedIn', href: 'https://linkedin.com/in/diegocoxta' },
-    { type: 'text', title: 'Mastodon', href: 'https://mastodon.social/@diegocoxta' },
+    { type: 'text', title: 'Github', href: 'https://github.com/diegocoxta' },
     { type: 'text', title: 'config.links.more.title', href: 'https://diegocoxta.com' },
   ],
   repository: npmPackage.repository.url,
