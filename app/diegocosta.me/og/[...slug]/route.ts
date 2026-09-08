@@ -40,10 +40,9 @@ type Card = Pick<Parameters<typeof renderOgImage>[0], 'title' | 'meta' | 'thumbn
 
 async function resolveCard(slug: string[]): Promise<Card | null> {
   const [kind, id] = slug;
+  const t = getTranslations(config);
 
   if (kind === 'home' && !id) {
-    const t = getTranslations(config);
-
     return {
       title: t(config.description),
       meta: [config.jobTitle?.join(', '), config.domain].filter(Boolean).join('  ·  '),
@@ -59,10 +58,11 @@ async function resolveCard(slug: string[]): Promise<Card | null> {
     }
 
     const { photo, index, total } = context;
+    const counter = t('page.photos.counter', { index: index + 1, total });
 
     return {
-      title: photo.alt.trim() || `Photograph ${index + 1} of ${total}`,
-      meta: `Photo ${index + 1} of ${total}  ·  ${config.domain}`,
+      title: photo.description || photo.alt || counter,
+      meta: [counter, config.domain].join('  ·  '),
       thumbnail: photo.thumbnailSrc,
       thumbnailColor: photo.placeholderColor ?? undefined,
     };
@@ -77,7 +77,10 @@ async function resolveCard(slug: string[]): Promise<Card | null> {
 
     return {
       title: collection.title,
-      meta: `${collection.photoCount} photos  ·  ${config.domain}`,
+      meta: [
+        t('components.photoshowcase.collectiondetails.photocount', { count: collection.photoCount }),
+        config.domain,
+      ].join('  ·  '),
       thumbnail: collection.coverSrc,
     };
   }
