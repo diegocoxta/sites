@@ -45,7 +45,7 @@ async function resolveCard(slug: string[]): Promise<Card | null> {
     const t = getTranslations(config);
 
     return {
-      title: t(config.title),
+      title: t(config.description),
       meta: [config.jobTitle?.join(', '), config.domain].filter(Boolean).join('  ·  '),
       thumbnail: loadThumbnail(config.domain, config.avatar),
     };
