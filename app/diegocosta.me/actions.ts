@@ -32,6 +32,7 @@ function toPhoto(photo: UnsplashPhoto): Photo {
     src: photo.urls.regular,
     thumbnailSrc: photo.urls.small,
     alt: photo.alt_description?.trim() ?? '',
+    description: photo.description?.trim() || null,
     width: photo.width,
     height: photo.height,
     placeholderColor: photo.color,
