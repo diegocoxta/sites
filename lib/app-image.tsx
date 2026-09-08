@@ -104,7 +104,7 @@ export function renderOgImage(config: OgImageConfig) {
       fontFamily: 'Source Sans 3',
     },
     title: {
-      fontSize: withThumbnail ? 46 : 68,
+      fontSize: withThumbnail ? 32 : 46,
       lineHeight: 1.15,
       fontWeight: 700,
       display: withThumbnail ? 'block' : 'flex',
