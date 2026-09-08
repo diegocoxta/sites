@@ -35,8 +35,8 @@ export function generateMetadata(): Metadata {
   return {
     metadataBase: new URL(`https://${config.domain}`),
     title: {
-      template: `%s | ${t(config.title)}`,
-      default: t(config.title),
+      template: `%s | ${page.photos.heading} - ${t(config.title)}`,
+      default:  `${page.photos.heading} - ${t(config.title)}`,
     },
     description: t(config.description),
     openGraph: { siteName: t(config.title), url: '/', images: [image] },
