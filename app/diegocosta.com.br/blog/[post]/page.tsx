@@ -32,7 +32,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <JsonLd
         data={breadcrumbLd([
           { name: config.title, url: `https://${config.domain}` },
-          { name: 'Blog', url: `https://${config.domain}/blog` },
+          { name: t('page.blog.title'), url: `https://${config.domain}/blog` },
           { name: doc.title },
         ])}
       />
