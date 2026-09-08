@@ -14,7 +14,7 @@ export default function HomePage() {
 
   return (
     <Container>
-      <PageTitle>blog</PageTitle>
+      <PageTitle>{t('page.blog.title')}</PageTitle>
       {content.getPosts().map((post, index: number) => (
         <Article key={`blog-article-${index}`} t={t} expanded={false} {...post} />
       ))}
@@ -22,7 +22,11 @@ export default function HomePage() {
   );
 }
 
-export const metadata: Metadata = {
-  title: 'Blog',
-  alternates: { canonical: '/blog' },
-};
+export function generateMetadata(): Metadata {
+  const t = getTranslations(config);
+
+  return {
+    title: t('page.blog.title'),
+    alternates: { canonical: '/blog' },
+  };
+}

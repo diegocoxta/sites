@@ -3,6 +3,7 @@
   "config.links.blog.title": "Blog",
   "config.links.cv.title": "Currículo",
   "config.links.more.title": "Mais",
+  "page.blog.title": "Blog",
   "page.home.arialabel": "Sobre mim",
   "page.home.heading": "Diego Costa — Engineering Manager",
   "page.tag.description": "Todos os posts marcados com #{tag}.",
