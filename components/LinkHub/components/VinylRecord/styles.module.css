@@ -1,7 +1,7 @@
 .container {
   position: relative;
   display: block;
-  width: min(100%, calc(var(--vinyl-size, 300px) * 1.5));
+  width: 100%;
   aspect-ratio: 3 / 2;
   transition: transform 0.3s ease;
 }
@@ -9,13 +9,17 @@
 .sleeve {
   z-index: 2;
   position: relative;
+  overflow: hidden;
   width: 66.667%;
   height: 100%;
   background-color: #efefef;
-  background-size: cover;
-  background-position: center;
   border-radius: 4px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%);
+}
+
+.sleeveImage {
+  object-fit: cover;
+  object-position: center;
 }
 
 .vinylContainer {

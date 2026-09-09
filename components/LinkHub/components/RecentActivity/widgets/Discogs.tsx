@@ -28,11 +28,7 @@ export default async function DiscogsWidget({ t, config }: RecentActivityProps) 
         {data?.releases.map((release) => (
           <li className={styles.item} key={release.id}>
             {release.basic_information.cover_image && (
-              <VinylRecord
-                coverSrc={release.basic_information.cover_image}
-                title={release.basic_information.title}
-                size={150}
-              />
+              <VinylRecord coverSrc={release.basic_information.cover_image} title={release.basic_information.title} />
             )}
             <p className={styles.itemTitle}>
               {release.basic_information.title} - {release.basic_information.artists?.[0]?.name}
