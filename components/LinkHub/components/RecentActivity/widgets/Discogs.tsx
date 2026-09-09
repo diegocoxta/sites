@@ -14,7 +14,6 @@ export default async function DiscogsWidget({ t, config }: RecentActivityProps) 
   const data = await getUserCollection({
     username: config.username,
     authorization: config.authorization,
-    per_page: 2,
   });
 
   if (!data || data?.releases?.length === 0) {
