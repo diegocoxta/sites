@@ -42,3 +42,60 @@ export async function getMonthlyTopArtists(
 
   return response;
 }
+
+type GetNowPlayingParamsType = {
+  username: string;
+  authorization: string;
+};
+
+type GetNowPlayingResponseType = null | {
+  artist: {
+    mbid: string;
+    '#text': string;
+  };
+  streamable: string;
+  image: Array<{
+    size: string;
+    '#text': string;
+  }>;
+  mbid: string;
+  album: {
+    mbid: string;
+    '#text': string;
+  };
+  name: string;
+  '@attr': {
+    nowplaying: string;
+  };
+  url: string;
+};
+
+type RecentTracksAPIResponseType = {
+  recenttracks: {
+    track: Array<NonNullable<GetNowPlayingResponseType>>;
+  };
+};
+
+export async function getNowPlaying(params: GetNowPlayingParamsType): Promise<GetNowPlayingResponseType> {
+  const { username, authorization } = params;
+
+  const url = new URL('https://ws.audioscrobbler.com/2.0/');
+  url.searchParams.set('method', 'user.getrecenttracks');
+  url.searchParams.set('user', username);
+  url.searchParams.set('api_key', authorization);
+  url.searchParams.set('format', 'json');
+  url.searchParams.set('limit', '1');
+
+  const response = await fetchJson<RecentTracksAPIResponseType | null>(url.toString(), {
+    id: 'lastfmno-get-now-playing',
+    revalidate: 0,
+  });
+
+  const track = response?.recenttracks?.track?.[0];
+
+  if (!track || track['@attr']?.nowplaying !== 'true') {
+    return null;
+  }
+
+  return track as GetNowPlayingResponseType;
+}

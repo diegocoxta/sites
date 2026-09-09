@@ -2,6 +2,8 @@ import { getMonthlyTopArtists } from '~/lib/services/lastfm';
 
 import type { RecentActivityProps } from '../index';
 
+import NowPlaying from './NowPlaying';
+
 import styles from '../styles.module.css';
 
 export default async function LastfmWidget({ t, config }: RecentActivityProps) {
@@ -10,6 +12,7 @@ export default async function LastfmWidget({ t, config }: RecentActivityProps) {
   }
 
   const { username, authorization } = config;
+
   const data = await getMonthlyTopArtists({ username, authorization });
   const artists = data?.topartists?.artist ?? [];
 
@@ -19,6 +22,7 @@ export default async function LastfmWidget({ t, config }: RecentActivityProps) {
 
   return (
     <>
+      <NowPlaying />
       {config.title && <h3 className={styles.title}>{t(config.title)}</h3>}
       <ul className={`${styles.list} ${styles.columns}`}>
         {artists.map((artist, index) => (
