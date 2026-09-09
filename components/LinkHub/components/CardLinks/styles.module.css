@@ -1,6 +1,8 @@
 .list {
   display: flex;
   flex-direction: column;
+  max-width: 90%;
+  width: 100%;
 }
 
 .item {
@@ -9,7 +11,7 @@
   padding: 16px;
   background-color: var(--main-box-color);
   color: var(--main-text-color);
-  border-radius: 20px;
+  border-radius: 10px;
   transition: 0.2s all linear;
   box-sizing: border-box;
 
