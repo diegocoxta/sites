@@ -16,7 +16,7 @@ export default async function UnsplashWidget({ t, config }: RecentActivityProps)
     authorization: config.authorization,
   });
 
-  if (data?.length === 0) {
+  if (!data || data?.length === 0) {
     return null;
   }
 

@@ -11,7 +11,7 @@ export default async function FeedListing({ t, config }: RecentActivityProps) {
 
   const items = await getFeedListing({ feed: config.feed });
 
-  if (items?.length === 0) {
+  if (!items || items?.length === 0) {
     return null;
   }
 

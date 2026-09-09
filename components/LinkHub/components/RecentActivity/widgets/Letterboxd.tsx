@@ -14,7 +14,7 @@ export default async function LetterboxdWidget({ t, config }: RecentActivityProp
 
   const data = await getRecentlyWatchedMovies({ username: config.username });
 
-  if (data?.length === 0) {
+  if (!data || data?.length === 0) {
     return null;
   }
 
