@@ -4422,10 +4422,10 @@ stylelint@^17.15.0:
     table "^6.9.0"
     write-file-atomic "^7.0.1"
 
-sugar-high@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/sugar-high/-/sugar-high-2.3.0.tgz#04a89b58ce35b7ab5a81895e5be47882f36366ed"
-  integrity sha512-Ht4Lvy2xieZLpDQdVrHRAdiJdfEJd8Q2U5MA3/DHrMaU6EEj5MErOlEQMN5vs2c7Pm4RCtFb8n/kHlFN6LP+wQ==
+sugar-high@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/sugar-high/-/sugar-high-2.3.1.tgz#795c99c6f6662c9439e1922d77f8dfbf70865c26"
+  integrity sha512-LwFbTGo9j3qYLnId35kkKufYdSil0jsmiac27MM6jTT5V62rmVM4r65XpSaiB9CSKqZUNCIrL64HZkGhVEDu9g==
 
 supports-color@^10.2.2:
   version "10.2.2"
