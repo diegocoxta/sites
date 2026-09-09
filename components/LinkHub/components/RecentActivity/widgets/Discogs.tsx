@@ -31,10 +31,10 @@ export default async function DiscogsWidget({ t, config }: RecentActivityProps) 
               <VinylRecord coverSrc={release.basic_information.cover_image} title={release.basic_information.title} />
             )}
             <p className={styles.itemTitle}>
-              {release.basic_information.title} - {release.basic_information.artists?.[0]?.name}
+              {release.basic_information.title}
             </p>
             <time dateTime={release.date_added} className={styles.itemDate}>
-              {t.date(release.date_added, { month: 'long', year: 'numeric' })}
+              {release.basic_information.artists?.[0]?.name}
             </time>
           </li>
         ))}
