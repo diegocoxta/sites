@@ -1,7 +1,6 @@
-import Image from 'next/image';
-import { FaBook } from 'react-icons/fa6';
-
 import { getUserCurrentReads } from '~/lib/services/hardcover';
+
+import Book from '../../Book';
 
 import type { RecentActivityProps } from '../index';
 
@@ -23,18 +22,10 @@ export default async function HardcoverWidget({ t, config }: RecentActivityProps
   return (
     <>
       {config.title && <h3 className={styles.title}>{t(config.title)}</h3>}
-      <ul className={styles.grid}>
+      <ul className={`${styles.grid} ${styles.fixedGrid3}`}>
         {books.map((book) => (
           <li className={styles.item} key={book.id}>
-            {book.book.image ? (
-              <div className={`${styles.itemCover} ${styles.tall}`} aria-hidden>
-                <Image src={book.book.image.url} alt="" fill sizes="120px" />
-              </div>
-            ) : (
-              <p className={`${styles.itemCover} ${styles.tall} ${styles.empty}`} aria-hidden>
-                <FaBook />
-              </p>
-            )}
+            <Book coverSrc={book.book.image?.url} title={book.book.title} />
             <h4 className={styles.itemTitle}>{book.book.title}</h4>
             <p className={styles.itemDate}>
               {t('components.linkhub.recentactivity.hardcover.pageprogress', {

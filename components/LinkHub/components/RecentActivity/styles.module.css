@@ -48,6 +48,14 @@
     gap: 16px;
   }
 
+  .fixedGrid2 & {
+    width: 50%;
+  }
+
+  .fixedGrid3 & {
+    width: 33%;
+  }
+
   .list & {
     max-width: 100%;
     border-bottom: 1px solid var(--main-border-color);
