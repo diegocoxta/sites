@@ -12,9 +12,10 @@
   overflow: hidden;
   width: 66.667%;
   height: 100%;
-  background-color: #efefef;
+  background-color: var(--main-box-color);
   border-radius: 4px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%);
+  transform: translateZ(0);
 }
 
 .sleeveImage {
