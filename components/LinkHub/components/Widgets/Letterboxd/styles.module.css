@@ -1,0 +1,39 @@
+.itemCover {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 10px;
+  transition: all linear 0.5s;
+  height: 146px;
+
+  & img {
+    object-fit: cover;
+  }
+
+  &.tall {
+    height: 190px;
+  }
+}
+
+.itemTitle {
+  margin: 5px 0 0;
+  font-weight: 600;
+  color: var(--main-subtitle-color);
+  font-size: 14px;
+}
+
+.itemDescription {
+  margin: 5px 0 0;
+  color: var(--main-subtitle-color);
+  font-size: 12px;
+}
+
+.itemLike {
+  font-size: 10px;
+}
+
+.itemDate {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: var(--main-subtitle-color);
+}

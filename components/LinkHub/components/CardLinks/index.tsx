@@ -5,8 +5,8 @@ import { FiExternalLink } from 'react-icons/fi';
 import type { ComponentWithTranslator } from '~/lib/i18n';
 import type { CardLinkType } from '~/lib/config';
 
-import * as RecentActivity from '../RecentActivity';
-import WidgetBoundary from '../WidgetBoundary';
+import * as Widgets from '~/components/LinkHub/components/Widgets';
+import WidgetBoundary from '~/components/LinkHub/components/WidgetBoundary';
 
 import styles from './styles.module.css';
 
@@ -21,7 +21,7 @@ export default function CardLinks({ t, cards }: CardLinksProps) {
     <div className={styles.list}>
       {cards.map((card) => {
         const RecentActivityWidget = card.recentActivity
-          ? RecentActivity[card.recentActivity.widget as keyof typeof RecentActivity]
+          ? Widgets[card.recentActivity.widget as keyof typeof Widgets]
           : undefined;
         const Icon = faIcon(card.icon);
         const isExternalLink = card.href.startsWith('http');
@@ -50,11 +50,9 @@ export default function CardLinks({ t, cards }: CardLinksProps) {
             {card.description && <p className={styles.description}>{t(card.description)}</p>}
 
             {RecentActivityWidget && card.recentActivity?.config && (
-              <div>
-                <WidgetBoundary>
-                  <RecentActivityWidget config={card.recentActivity.config} t={t} />
-                </WidgetBoundary>
-              </div>
+              <WidgetBoundary>
+                <RecentActivityWidget config={card.recentActivity.config} t={t} />
+              </WidgetBoundary>
             )}
           </section>
         );

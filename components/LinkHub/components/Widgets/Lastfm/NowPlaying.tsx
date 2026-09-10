@@ -6,7 +6,7 @@ import { useTranslator } from '~/components/TranslationProvider';
 
 import { getLastfmNowPlayingTrack, type NowPlayingTrack } from '~/app/diegocoxta.com/actions';
 
-import styles from '../styles.module.css';
+import styles from './styles.module.css';
 
 export default function NowPlaying() {
   const t = useTranslator();
@@ -34,9 +34,9 @@ export default function NowPlaying() {
 
   return (
     <p className={styles.nowPlaying}>
-      <span className={styles.nowPlayingPulse} aria-hidden />
-      <span className={styles.nowPlayingLabel}>{t('client.components.linkhub.recentactivity.lastfm.nowplaying')}</span>
-      <a className={styles.nowPlayingTrack} href={track.url} target="_blank" rel="noopener">
+      <span className={styles.pulse} aria-hidden />
+      <span className={styles.label}>{t('client.components.linkhub.recentactivity.lastfm.nowplaying')}</span>
+      <a className={styles.track} href={track.url} target="_blank" rel="noopener">
         {track.name} — {track.artist}
       </a>
     </p>

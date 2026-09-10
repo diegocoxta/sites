@@ -1,10 +1,10 @@
 import { getContributionsCalendar } from '~/lib/services/github';
 
-import type { RecentActivityProps } from '../index';
+import RecentActivity, { type RecentActivityWidgetProps } from '~/components/LinkHub/components/RecentActivity';
 
-import styles from '../styles.module.css';
+import styles from './styles.module.css';
 
-export default async function GithubWidget({ t, config }: RecentActivityProps) {
+export default async function GithubWidget({ t, config }: RecentActivityWidgetProps) {
   if (!config.username || !config.authorization) {
     return null;
   }
@@ -14,18 +14,19 @@ export default async function GithubWidget({ t, config }: RecentActivityProps) {
     authorization: config.authorization,
   });
 
-  if (!data) {
+  const weeks = data?.data?.user?.contributionsCollection?.contributionCalendar?.weeks ?? [];
+
+  if (weeks.length === 0) {
     return null;
   }
 
   return (
-    <>
-      {config.title && <h3 className={styles.title}>{t(config.title)}</h3>}
-      <div className={styles.githubRecentActivity} aria-hidden>
-        <div className={styles.scrollWrapper}>
+    <RecentActivity title={config.title && t(config.title)}>
+      <div className={styles.container} aria-hidden>
+        <div className={styles.wrapper}>
           <div className={styles.graph}>
-            {data?.data?.user?.contributionsCollection?.contributionCalendar?.weeks?.map((week, weekIndex) => (
-              <div key={weekIndex} className={styles.weekColumn}>
+            {weeks.map((week, weekIndex) => (
+              <div key={weekIndex} className={styles.week}>
                 {week.contributionDays?.map((day, dayIndex) => (
                   <div
                     key={dayIndex}
@@ -39,6 +40,6 @@ export default async function GithubWidget({ t, config }: RecentActivityProps) {
           </div>
         </div>
       </div>
-    </>
+    </RecentActivity>
   );
 }

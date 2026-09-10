@@ -1,12 +1,14 @@
+//@TODO refactor
+
 import { getMonthlyTopArtists } from '~/lib/services/lastfm';
 
-import type { RecentActivityProps } from '../index';
+import RecentActivity, { type RecentActivityWidgetProps } from '~/components/LinkHub/components/RecentActivity';
 
 import NowPlaying from './NowPlaying';
 
-import styles from '../styles.module.css';
+import styles from './styles.module.css';
 
-export default async function LastfmWidget({ t, config }: RecentActivityProps) {
+export default async function LastfmWidget({ t, config }: RecentActivityWidgetProps) {
   if (!config.username || !config.authorization) {
     return null;
   }
@@ -23,10 +25,9 @@ export default async function LastfmWidget({ t, config }: RecentActivityProps) {
   return (
     <>
       <NowPlaying />
-      {config.title && <h3 className={styles.title}>{t(config.title)}</h3>}
-      <ul className={`${styles.list} ${styles.columns}`}>
+      <RecentActivity title={config.title && t(config.title)} layout="list">
         {artists.map((artist, index) => (
-          <li key={artist.mbid || artist.name} className={`${styles.item} ${styles.columns}`}>
+          <RecentActivity.Item key={artist.mbid || artist.name} className={styles.row}>
             <span className={styles.mark}>
               <span className={styles.markLabel}>{String(index + 1).padStart(2, '0')}</span>
             </span>
@@ -36,9 +37,9 @@ export default async function LastfmWidget({ t, config }: RecentActivityProps) {
                 {t('components.linkhub.recentactivity.lastfm.plays', { count: artist.playcount })}
               </p>
             </div>
-          </li>
+          </RecentActivity.Item>
         ))}
-      </ul>
+      </RecentActivity>
     </>
   );
 }

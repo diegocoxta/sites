@@ -1,0 +1,12 @@
+.itemCover {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 10px;
+  transition: all linear 0.5s;
+  height: 146px;
+
+  & img {
+    object-fit: cover;
+  }
+}
