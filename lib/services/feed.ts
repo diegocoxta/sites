@@ -17,7 +17,7 @@ type GetRecentlFeedListingResponseType = null | Array<{
 export async function getFeedListing(
   params: GetRecentlFeedListingParamsType
 ): Promise<GetRecentlFeedListingResponseType> {
-  const { feed, limit = 3 } = params;
+  const { feed, limit = 2 } = params;
 
   const response = await fetchText(feed);
 
