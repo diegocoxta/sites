@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-
 import { ImageResponse } from 'next/og';
+import sharp from 'sharp';
 
 const brandFont = {
   name: 'Source Sans 3',
@@ -88,7 +88,7 @@ interface OgImageConfig {
   thumbnailColor?: string;
 }
 
-export function renderOgImage(config: OgImageConfig) {
+export async function renderOgImage(config: OgImageConfig) {
   const withThumbnail = Boolean(config.thumbnail);
 
   const styles: { [key: string]: React.CSSProperties } = {
@@ -114,7 +114,7 @@ export function renderOgImage(config: OgImageConfig) {
     meta: { fontSize: 30, opacity: 0.85 },
   };
 
-  return new ImageResponse(
+  const png = new ImageResponse(
     <div style={{ width: '100%', height: '100%', display: 'flex' }}>
       {/* eslint-disable @next/next/no-img-element */}
       {config.thumbnail && (
@@ -138,4 +138,15 @@ export function renderOgImage(config: OgImageConfig) {
       fonts: [brandFont],
     }
   );
+
+  const jpeg = await sharp(Buffer.from(await png.arrayBuffer()))
+    .jpeg({ quality: 72, mozjpeg: true })
+    .toBuffer();
+
+  return new Response(jpeg, {
+    headers: {
+      'Content-Type': 'image/jpeg',
+      'Cache-Control': 'public, max-age=31536000, immutable',
+    },
+  });
 }
