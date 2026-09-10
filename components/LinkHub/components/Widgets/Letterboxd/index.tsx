@@ -23,7 +23,7 @@ export default async function LetterboxdWidget({ t, config }: RecentActivityWidg
       {movies.map((movie) => (
         <RecentActivity.Item key={movie.pubDate}>
           <div className={styles.cover} aria-hidden>
-            {movie.cover && <Image src={movie.cover} alt="" fill sizes="(max-width: 575px) 30vw, 140px" />}
+            {movie.cover && <Image src={movie.cover} alt="" fill sizes="(max-width: 575px) 30vw, 140px" unoptimized />}
             <FaPlay />
           </div>
           <h4 className={styles.title}>

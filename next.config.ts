@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   // AGENTS.md is hand-maintained (CLAUDE.md symlinks to it); don't auto-generate.
   agentRules: false,
   images: {
+    minimumCacheTTL: 2678400,
     remotePatterns: [
       {
         protocol: 'https',

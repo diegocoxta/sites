@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 
 import { useTranslator } from '~/components/TranslationProvider';
 
 import type { Photo, PhotoDetails } from '../../types';
+
 import ApertureSpinner from '../ApertureSpinner';
+import UnsplashImage from '../UnsplashImage';
 import Exif from '../Exif';
 
 import styles from './styles.module.css';
@@ -33,15 +34,14 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails 
         }}
       >
         {!imageLoaded && <ApertureSpinner />}
-        <Image
+        <UnsplashImage
           className={`${styles.image} ${imageLoaded ? styles.imageLoaded : ''}`}
           src={photo.src}
           alt={
             [photo.description, photo.alt].filter(Boolean).join(' - ') || t('client.components.photoshowcase.photoalt')
           }
-          width={photo.width}
-          height={photo.height}
-          sizes="95vw"
+          fill
+          sizes="(min-width: 1024px) 55vw, 95vw"
           priority
           onLoad={() => setImageLoaded(true)}
         />

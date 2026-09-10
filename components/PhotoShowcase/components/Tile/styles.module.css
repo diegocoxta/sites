@@ -1,7 +1,5 @@
 .image {
-  display: block;
-  width: 100%;
-  height: auto;
+  object-fit: cover;
   opacity: 0;
   transition:
     transform 0.4s ease,
@@ -16,7 +14,10 @@
   opacity: 1;
 }
 
+/* `aspect-ratio` is set inline from the API dimensions, so the cell is reserved at
+   its final height before the photo loads — the `fill` image just covers it. */
 .tile {
+  position: relative;
   display: block;
   overflow: hidden;
   background-color: var(--main-border-color);
