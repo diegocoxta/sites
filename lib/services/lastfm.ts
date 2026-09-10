@@ -43,6 +43,41 @@ export async function getMonthlyTopArtists(
   return response;
 }
 
+type GetMonthlyScrobblesParamsType = {
+  username: string;
+  authorization: string;
+};
+
+type RecentTracksTotalResponseType = null | {
+  recenttracks: {
+    '@attr'?: {
+      total?: string;
+    };
+  };
+};
+
+const ONE_MONTH_IN_SECONDS = 30 * 24 * 60 * 60;
+
+export async function getMonthlyScrobbles(params: GetMonthlyScrobblesParamsType): Promise<number | null> {
+  const { username, authorization } = params;
+
+  const from = Math.floor(Date.now() / 1000) - ONE_MONTH_IN_SECONDS;
+
+  const url = new URL('https://ws.audioscrobbler.com/2.0/');
+  url.searchParams.set('method', 'user.getrecenttracks');
+  url.searchParams.set('user', username);
+  url.searchParams.set('api_key', authorization);
+  url.searchParams.set('format', 'json');
+  url.searchParams.set('from', String(from));
+  url.searchParams.set('limit', '1');
+
+  const response = await fetchJson<RecentTracksTotalResponseType>(url.toString(), { id: 'lastfm-scrobbles' });
+
+  const total = Number(response?.recenttracks?.['@attr']?.total);
+
+  return Number.isFinite(total) ? total : null;
+}
+
 type GetNowPlayingParamsType = {
   username: string;
   authorization: string;
