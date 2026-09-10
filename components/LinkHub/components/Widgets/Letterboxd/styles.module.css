@@ -1,38 +1,53 @@
-.itemCover {
+.cover {
   position: relative;
   overflow: hidden;
   width: 100%;
+  aspect-ratio: 2 / 3;
   border-radius: 10px;
   transition: all linear 0.5s;
-  height: 146px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: ' ';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-color: rgb(0 0 0 / 30%);
+  }
 
   & img {
     object-fit: cover;
+    z-index: 1;
   }
 
-  &.tall {
-    height: 190px;
+  & svg {
+    z-index: 3;
+    color: white;
+    font-size: 40px;
+    position: relative;
   }
 }
 
-.itemTitle {
+.title {
   margin: 5px 0 0;
   font-weight: 600;
   color: var(--main-subtitle-color);
   font-size: 14px;
 }
 
-.itemDescription {
+.description {
   margin: 5px 0 0;
   color: var(--main-subtitle-color);
   font-size: 12px;
 }
 
-.itemLike {
+.like {
   font-size: 10px;
 }
 
-.itemDate {
+.date {
   margin: 5px 0 0;
   font-size: 12px;
   color: var(--main-subtitle-color);

@@ -1,7 +1,5 @@
-//@TODO refactor
-
 import Image from 'next/image';
-import { FaHeart } from 'react-icons/fa6';
+import { FaHeart, FaPlay } from 'react-icons/fa6';
 
 import { getRecentlyWatchedMovies } from '~/lib/services/letterboxd';
 
@@ -24,14 +22,15 @@ export default async function LetterboxdWidget({ t, config }: RecentActivityWidg
     <RecentActivity title={config.title && t(config.title)} layout="grid">
       {movies.map((movie) => (
         <RecentActivity.Item key={movie.pubDate}>
-          <div className={`${styles.itemCover} ${styles.tall}`} aria-hidden>
-            {movie.cover && <Image src={movie.cover} alt="" fill sizes="120px" />}
+          <div className={styles.cover} aria-hidden>
+            {movie.cover && <Image src={movie.cover} alt="" fill sizes="(max-width: 575px) 30vw, 140px" />}
+            <FaPlay />
           </div>
-          <h4 className={styles.itemTitle}>
-            {movie.memberLike === 'Yes' && <FaHeart className={styles.itemLike} />} {movie.title}
+          <h4 className={styles.title}>
+            {movie.memberLike === 'Yes' && <FaHeart className={styles.like} />} {movie.title}
           </h4>
-          {movie.stars > 0 && <p className={styles.itemDescription}>{'★'.repeat(movie.stars)}</p>}
-          <time dateTime={movie.watchedDate} className={styles.itemDate}>
+          {movie.stars > 0 && <p className={styles.description}>{'★'.repeat(movie.stars)}</p>}
+          <time dateTime={movie.watchedDate} className={styles.date}>
             {t.date(movie.watchedDate, { day: 'numeric', month: 'long', year: 'numeric' })}
           </time>
         </RecentActivity.Item>
