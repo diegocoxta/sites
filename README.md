@@ -35,5 +35,9 @@ Say hello on [Bluesky](https://bsky.app/profile/diegocoxta.com),
 
 ## :scroll: License
 
-Source code is [MIT](LICENSE.md). The publications under `public/**` are
-&copy; Diego Costa, all rights reserved.
+This repository is dual-licensed:
+
+- **Source code** — [MIT](LICENSE.md).
+- **Site content** — everything under `public/` (all three domains) is licensed
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); see
+  [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
