@@ -30,7 +30,6 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails 
         className={styles.imageWrap}
         style={{
           aspectRatio: `${photo.width} / ${photo.height}`,
-          backgroundColor: photo.placeholderColor ?? undefined,
         }}
       >
         {!imageLoaded && <ApertureSpinner />}
