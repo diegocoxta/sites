@@ -54,33 +54,35 @@
   }
 }
 
+.chart {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
 .row {
   display: grid;
-  grid-template-columns: min-content minmax(0, 1fr) min-content;
-  align-items: center;
-  gap: 16px;
+  grid-template-columns: 1.8rem minmax(0, 1fr) min-content;
+  align-items: flex-end;
+  gap: 20px;
+  margin: 6px 0;
+
+  .info {
+    min-width: 0;
+  }
 }
 
 .rank {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 800;
-  line-height: 1;
+  line-height: 0.8;
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
+  text-align: center;
   color: var(--main-title-color);
-}
-
-/* Each row's rank steps down 20% from the one above it. */
-.row:nth-child(2) .rank {
-  font-size: 24px;
-}
-
-.row:nth-child(3) .rank {
-  font-size: 19.2px;
-}
-
-.info {
-  min-width: 0;
 }
 
 .artist {
