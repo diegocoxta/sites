@@ -38,6 +38,7 @@ export default async function DiscogsWidget({ t, config }: RecentActivityWidgetP
                     sizes="(max-width: 575px) 40vw, 160px"
                     className={styles.sleeveImage}
                     fetchPriority="high"
+                    unoptimized
                   />
                 )}
               </div>
@@ -51,6 +52,7 @@ export default async function DiscogsWidget({ t, config }: RecentActivityWidgetP
                         fill
                         sizes="48px"
                         className={styles.cover}
+                        unoptimized
                       />
                     )}
                     <div className={styles.hole} />

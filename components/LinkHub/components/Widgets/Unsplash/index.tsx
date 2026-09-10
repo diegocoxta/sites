@@ -32,6 +32,7 @@ export default async function UnsplashWidget({ t, config }: RecentActivityWidget
               alt={photo.alt_description ?? ''}
               fill
               sizes="(max-width: 575px) 100vw, 320px"
+              unoptimized
             />
           </div>
         ))}
