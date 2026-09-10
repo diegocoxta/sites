@@ -8,6 +8,7 @@ import styles from './styles.module.css';
 type FooterProps = ComponentWithTranslator<{
   author: string;
   links?: ConfigType['links'];
+  repository?: string;
 }>;
 
 export default function Footer({ t, ...props }: FooterProps) {
@@ -34,7 +35,23 @@ export default function Footer({ t, ...props }: FooterProps) {
         )}
       </nav>
       <p className={styles.label}>
-        CC-BY {year} {props.author}
+        <a
+          className={styles.link}
+          href="https://creativecommons.org/licenses/by/4.0/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          CC-BY
+        </a>{' '}
+        {year} {props.author}
+        {props.repository && (
+          <>
+            {' • '}
+            <a className={styles.link} href={props.repository} rel="noopener noreferrer" target="_blank">
+              {t('components.blog.footer.sourcecode')}
+            </a>
+          </>
+        )}
       </p>
     </footer>
   );

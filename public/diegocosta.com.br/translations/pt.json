@@ -9,6 +9,7 @@
   "page.tag.description": "Todos os posts marcados com #{tag}.",
   "page.home.bio": "Sou um engineering manager apaixonado por transformar tecnologia em impacto real. Tenho mais de 10 anos de experiência em engenharia de software, atuando em grandes empresas e startups em rápido crescimento.\nMeus principais interesses incluem liderança de engenharia, gestão de pessoas e a promoção da diversidade e inclusão no setor de tecnologia.\nSe você quiser saber mais sobre mim, confira os links abaixo!",
   "components.blog.footer.arialabel": "Links profissionais e contato",
+  "components.blog.footer.sourcecode": "Código Fonte",
   "client.components.notfound.message": "Sinto muito, mas a página que você está buscando não foi encontrada.\nVolte para <a href=\"https://{domain}\">{domain}</a> e tente novamente.",
   "components.blog.article.attributes.readingtimeunderminute": "Menos de 1 minuto de leitura",
   "components.blog.article.attributes.readingtime": "{count} minutos de leitura",
