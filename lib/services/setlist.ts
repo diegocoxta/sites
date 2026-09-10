@@ -4,6 +4,7 @@ type GetUserConcertsAttendanceParamsType = {
   username: string;
   authorization: string;
   page?: number;
+  per_page?: number;
 };
 
 type GetUserConcertsAttendanceResponseType = null | {
@@ -78,7 +79,7 @@ type GetUserConcertsAttendanceResponseType = null | {
 export async function getUserConcertsAttendance(
   params: GetUserConcertsAttendanceParamsType
 ): Promise<GetUserConcertsAttendanceResponseType> {
-  const { username, authorization, page = 1 } = params;
+  const { username, authorization, page = 1, per_page = 3 } = params;
 
   const data = await fetchJson<GetUserConcertsAttendanceResponseType>(
     `https://api.setlist.fm/rest/1.0/user/${encodeURIComponent(username)}/attended?p=${page}`,
@@ -91,5 +92,9 @@ export async function getUserConcertsAttendance(
     }
   );
 
-  return data;
+  if (!data) {
+    return null;
+  }
+
+  return { ...data, setlist: (data.setlist ?? []).slice(0, per_page) };
 }
