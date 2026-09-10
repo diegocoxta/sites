@@ -9,9 +9,13 @@ import { getAllPhotos, getCollection, getCollections, getPhotoContext } from '~/
 
 export const dynamic = 'force-static';
 
-export function loadThumbnail(domain: string, src: string | undefined): string | undefined {
+function ogThumbnail(src: string | undefined): string | undefined {
   if (!src) {
     return undefined;
+  }
+
+  if (src.startsWith('https://images.unsplash.com/')) {
+    return `${src}&w=520&h=630&fit=crop&fm=jpg&q=70&dpr=1`;
   }
 
   if (src.startsWith('http')) {
@@ -19,7 +23,7 @@ export function loadThumbnail(domain: string, src: string | undefined): string |
   }
 
   try {
-    const bytes = readFileSync(join(process.cwd(), 'public', domain, src));
+    const bytes = readFileSync(join(process.cwd(), 'public', config.domain, src));
     return `data:image/jpeg;base64,${bytes.toString('base64')}`;
   } catch {
     return undefined;
@@ -46,7 +50,7 @@ async function resolveCard(slug: string[]): Promise<Card | null> {
     return {
       title: t(config.description),
       meta: [config.jobTitle?.join(', '), config.domain].filter(Boolean).join('  ·  '),
-      thumbnail: loadThumbnail(config.domain, config.avatar),
+      thumbnail: ogThumbnail(config.avatar),
     };
   }
 
@@ -63,7 +67,7 @@ async function resolveCard(slug: string[]): Promise<Card | null> {
     return {
       title: photo.description || photo.alt || counter,
       meta: [counter, config.domain].join('  ·  '),
-      thumbnail: photo.thumbnailSrc,
+      thumbnail: ogThumbnail(photo.thumbnailSrc),
       thumbnailColor: photo.placeholderColor ?? undefined,
     };
   }
@@ -81,7 +85,7 @@ async function resolveCard(slug: string[]): Promise<Card | null> {
         t('components.photoshowcase.collectiondetails.photocount', { count: collection.photoCount }),
         config.domain,
       ].join('  ·  '),
-      thumbnail: collection.coverSrc,
+      thumbnail: ogThumbnail(collection.coverSrc),
     };
   }
 
