@@ -1,7 +1,9 @@
-The publications located in /public/content folder:
-Copyright (c) Diego Costa. All rights reserved.
+This license covers the **source code** in this repository.
 
-But all the source code is distributed as...
+The site content (everything under `public/`) is licensed separately under
+CC BY 4.0; see [LICENSE-CONTENT.md](LICENSE-CONTENT.md).
+
+---
 
 MIT License
 
