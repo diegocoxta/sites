@@ -1,5 +1,3 @@
-//@TODO refactor
-
 import Image from 'next/image';
 
 import { getRecentUserPhotos } from '~/lib/services/unsplash';
@@ -25,14 +23,19 @@ export default async function UnsplashWidget({ t, config }: RecentActivityWidget
   }
 
   return (
-    <RecentActivity title={config.title && t(config.title)} layout="grid">
-      {photos.map((photo) => (
-        <RecentActivity.Item key={photo.id}>
-          <div className={styles.photo} aria-hidden>
-            <Image src={photo.urls.small} alt={photo.alt_description ?? ''} fill sizes="120px" />
+    <RecentActivity title={config.title && t(config.title)}>
+      <div className={styles.mosaic} data-count={photos.length} aria-hidden>
+        {photos.map((photo) => (
+          <div key={photo.id} className={styles.photo}>
+            <Image
+              src={photo.urls.small}
+              alt={photo.alt_description ?? ''}
+              fill
+              sizes="(max-width: 575px) 100vw, 320px"
+            />
           </div>
-        </RecentActivity.Item>
-      ))}
+        ))}
+      </div>
     </RecentActivity>
   );
 }
