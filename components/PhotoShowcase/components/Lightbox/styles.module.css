@@ -68,8 +68,9 @@
 
 .close {
   position: absolute;
-  top: 16px;
-  right: 20px;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -77,6 +78,11 @@
   line-height: 1;
   cursor: pointer;
   color: #fff;
-  background: rgb(255 255 255 / 12%);
+  background: rgb(40 40 40 / 82%);
   border: 1px solid rgb(255 255 255 / 24%);
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
