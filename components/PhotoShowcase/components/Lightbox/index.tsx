@@ -36,6 +36,12 @@ export default function Lightbox(props: LightboxProps) {
   const nextLabel = t('client.components.photoshowcase.lightbox.next');
   const backLabel = t('client.components.photoshowcase.lightbox.backtogallery');
 
+  const closeButton = variant === 'modal' && (
+    <button className={styles.close} type="button" onClick={close} aria-label={backLabel}>
+      &times;
+    </button>
+  );
+
   const figure = (
     <Figure
       key={photo.id}
@@ -44,6 +50,7 @@ export default function Lightbox(props: LightboxProps) {
       total={total}
       inverted={variant === 'modal'}
       getPhotoDetails={getPhotoDetails}
+      topRight={closeButton}
     />
   );
 
@@ -85,14 +92,13 @@ export default function Lightbox(props: LightboxProps) {
       role="dialog"
       aria-modal="true"
       onClick={(event) => {
-        if (event.target === event.currentTarget) {
+        const target = event.target as HTMLElement;
+
+        if (target === event.currentTarget || target.classList.contains(styles.stage)) {
           close();
         }
       }}
     >
-      <button className={styles.close} type="button" onClick={close} aria-label={backLabel}>
-        &times;
-      </button>
       <div className={styles.stage} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         {prevControl}
         {figure}

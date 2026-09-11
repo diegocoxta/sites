@@ -18,14 +18,16 @@ interface FigureProps {
   total: number;
   inverted: boolean;
   getPhotoDetails: (id: string) => Promise<PhotoDetails | null>;
+  topRight?: React.ReactNode;
 }
 
-export default function Figure({ photo, index, total, inverted, getPhotoDetails }: FigureProps) {
+export default function Figure({ photo, index, total, inverted, getPhotoDetails, topRight }: FigureProps) {
   const t = useTranslator();
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <figure className={styles.figure} style={{ '--ratio': photo.width / photo.height } as React.CSSProperties}>
+      {topRight}
       <div className={styles.imageWrap}>
         {!imageLoaded && <ApertureSpinner />}
         <UnsplashImage
