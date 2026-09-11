@@ -25,13 +25,8 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails 
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <figure className={styles.figure}>
-      <div
-        className={styles.imageWrap}
-        style={{
-          aspectRatio: `${photo.width} / ${photo.height}`,
-        }}
-      >
+    <figure className={styles.figure} style={{ '--ratio': photo.width / photo.height } as React.CSSProperties}>
+      <div className={styles.imageWrap}>
         {!imageLoaded && <ApertureSpinner />}
         <UnsplashImage
           className={`${styles.image} ${imageLoaded ? styles.imageLoaded : ''}`}

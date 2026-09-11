@@ -24,6 +24,8 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
+  width: 100%;
+  min-width: 0;
 }
 
 .nav {
