@@ -91,11 +91,11 @@
     }
 
     @media print {
-      &[href^='http'] {
+      &[href^='http']:not([href*='wa.me']) {
         font-size: 0;
       }
 
-      &[href^='http']::after {
+      &[href^='http']:not([href*='wa.me'])::after {
         content: attr(href);
         font-size: 14px;
       }
