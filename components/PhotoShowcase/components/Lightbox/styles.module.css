@@ -30,59 +30,10 @@
 
 .nav {
   flex: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  font-size: 28px;
-  line-height: 1;
-  text-decoration: none;
-  color: var(--main-text-color);
-  background: var(--main-box-color);
-  border: 1px solid var(--main-border-color);
-  transition: transform 0.15s ease;
-
-  .overlay & {
-    color: #fff;
-    background: rgb(255 255 255 / 12%);
-    border-color: rgb(255 255 255 / 24%);
-  }
-
-  &:hover {
-    transform: scale(1.1);
-  }
-
-  @media (width <= 640px) {
-    width: 36px;
-    height: 36px;
-    font-size: 22px;
-  }
-}
-
-.navDisabled {
-  opacity: 0.3;
-  pointer-events: none;
 }
 
 .close {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 1;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 26px;
-  line-height: 1;
-  cursor: pointer;
-  color: #fff;
-  background: rgb(40 40 40 / 82%);
-  border: 1px solid rgb(255 255 255 / 24%);
-  transition: transform 0.15s ease;
-
-  &:hover {
-    transform: scale(1.1);
-  }
+  top: 0;
+  right: -52px;
 }
