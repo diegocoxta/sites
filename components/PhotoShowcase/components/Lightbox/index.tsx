@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-
 import { useTranslator } from '~/components/TranslationProvider';
 
 import type { Photo, PhotoDetails } from '../../types';
@@ -9,6 +7,7 @@ import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 import { useLightboxNavigation } from '../../hooks/useLightboxNavigation';
 import { useSwipeNavigation } from '../../hooks/useSwipeNavigation';
 import Figure from '../Figure';
+import LightboxActionButton from './ActionButton';
 
 import styles from './styles.module.css';
 
@@ -37,9 +36,9 @@ export default function Lightbox(props: LightboxProps) {
   const backLabel = t('client.components.photoshowcase.lightbox.backtogallery');
 
   const closeButton = variant === 'modal' && (
-    <button className={styles.close} type="button" onClick={close} aria-label={backLabel}>
+    <LightboxActionButton className={styles.close} onClick={close} ariaLabel={backLabel}>
       &times;
-    </button>
+    </LightboxActionButton>
   );
 
   const figure = (
@@ -54,24 +53,26 @@ export default function Lightbox(props: LightboxProps) {
     />
   );
 
-  const prevControl = prevId ? (
-    <Link className={styles.nav} href={hrefFor(prevId)} replace scroll={false} aria-label={prevLabel}>
+  const prevControl = (
+    <LightboxActionButton
+      className={styles.nav}
+      href={prevId ? hrefFor(prevId) : undefined}
+      disabled={!prevId}
+      ariaLabel={prevLabel}
+    >
       &lsaquo;
-    </Link>
-  ) : (
-    <span className={`${styles.nav} ${styles.navDisabled}`} aria-hidden>
-      &lsaquo;
-    </span>
+    </LightboxActionButton>
   );
 
-  const nextControl = nextId ? (
-    <Link className={styles.nav} href={hrefFor(nextId)} replace scroll={false} aria-label={nextLabel}>
+  const nextControl = (
+    <LightboxActionButton
+      className={styles.nav}
+      href={nextId ? hrefFor(nextId) : undefined}
+      disabled={!nextId}
+      ariaLabel={nextLabel}
+    >
       &rsaquo;
-    </Link>
-  ) : (
-    <span className={`${styles.nav} ${styles.navDisabled}`} aria-hidden>
-      &rsaquo;
-    </span>
+    </LightboxActionButton>
   );
 
   if (variant === 'page') {
