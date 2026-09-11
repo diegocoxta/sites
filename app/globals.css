@@ -44,3 +44,16 @@ body {
   white-space: nowrap;
   border: 0;
 }
+
+/* CSS to hide content to be rendered in PDF Files */
+.pdfOnly {
+  display: none;
+}
+
+.screenOnly {
+  display: none;
+
+  @media screen {
+    display: inline-block;
+  }
+}

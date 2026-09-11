@@ -1,0 +1,25 @@
+.pdfOnly {
+  display: block;
+}
+
+.screenOnly {
+  display: none;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a[href^='http']:not([href*='wa.me']) {
+  font-size: 0;
+}
+
+a[href^='http']:not([href*='wa.me'])::after {
+  content: attr(href);
+  font-size: 16px;
+}
+
+.pageBreak {
+  break-after: page;
+}

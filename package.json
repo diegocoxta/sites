@@ -22,7 +22,8 @@
     "prettier": "prettier --write .",
     "stylelint": "npx stylelint --fix '{components,app,lib}/**/*.css'",
     "prepare": "husky",
-    "upgrade-latest": "yarn upgrade-interactive --latest"
+    "upgrade-latest": "yarn upgrade-interactive --latest",
+    "cv": "cd public/diegocosta.com.br/pages/cv && npx md-to-pdf index.md --stylesheet pdf.css"
   },
   "dependencies": {
     "fast-xml-parser": "^5.11.1",
