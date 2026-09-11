@@ -30,4 +30,5 @@
   grid-area: content;
   min-width: 0;
   background-color: color-mix(in srgb, var(--main-background-color) 90%, white);
+  padding: 0 10px;
 }
