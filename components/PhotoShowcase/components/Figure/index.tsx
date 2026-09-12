@@ -3,10 +3,10 @@
 import { useState } from 'react';
 
 import { useTranslator } from '~/components/TranslationProvider';
+import Skeleton from '~/components/Skeleton';
 
 import type { Photo, PhotoDetails } from '../../types';
 
-import ApertureSpinner from '../ApertureSpinner';
 import UnsplashImage from '../UnsplashImage';
 import Exif from '../Exif';
 
@@ -28,8 +28,8 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails,
   return (
     <figure className={styles.figure} style={{ '--ratio': photo.width / photo.height } as React.CSSProperties}>
       {topRight}
-      <div className={styles.imageWrap}>
-        {!imageLoaded && <ApertureSpinner />}
+      <div className={styles.imageWrap} style={{ backgroundColor: photo.placeholderColor ?? undefined }}>
+        {!imageLoaded && <Skeleton className={styles.skeleton} borderRadius={0} tinted />}
         <UnsplashImage
           className={`${styles.image} ${imageLoaded ? styles.imageLoaded : ''}`}
           src={photo.src}

@@ -14,8 +14,11 @@
   opacity: 1;
 }
 
-/* `aspect-ratio` is set inline from the API dimensions, so the cell is reserved at
-   its final height before the photo loads — the `fill` image just covers it. */
+.skeleton {
+  position: absolute;
+  inset: 0;
+}
+
 .tile {
   position: relative;
   display: block;
