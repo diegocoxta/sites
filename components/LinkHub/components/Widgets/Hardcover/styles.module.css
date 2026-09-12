@@ -3,6 +3,7 @@
   container-type: inline-size;
   container-name: book;
   position: relative;
+  isolation: isolate;
   width: 90%;
   aspect-ratio: 2 / 3;
   border-radius: 2px 6px 6px 2px;
