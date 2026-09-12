@@ -9,7 +9,8 @@ import TranslationProvider from '~/components/TranslationProvider';
 import HtmlLang from '~/components/HtmlLang';
 import JsonLd from '~/components/JsonLd';
 import Logo from '~/components/Logo';
-import { Header, ThemeSwitcher, CommandBar, Footer } from '~/components/Blog';
+import ThemeSwitcher from '~/components/ThemeSwitcher';
+import { Header, CommandBar, Footer } from '~/components/Blog';
 
 import config from '~/app/diegocosta.com.br/config';
 

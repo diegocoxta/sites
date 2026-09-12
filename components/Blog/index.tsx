@@ -6,4 +6,3 @@ export { default as Header } from './components/Header';
 export { default as Footer } from './components/Footer';
 export { default as PageTitle } from './components/PageTitle';
 export { default as PageDescription } from './components/PageDescription';
-export { default as ThemeSwitcher } from './components/ThemeSwitcher';

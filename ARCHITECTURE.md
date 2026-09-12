@@ -20,7 +20,7 @@ The three are different kinds of site: **diegocosta.com.br** is a Markdown blog
 - Markdown read and parsed in [`lib/content.ts`](lib/content.ts) with [`gray-matter`](https://github.com/jonschlinkert/gray-matter) (front matter) and [`reading-time`](https://github.com/ngryman/reading-time); rendered as MDX with [`next-mdx-remote`](https://github.com/hashicorp/next-mdx-remote) in [`components/Blog/components/Article`](components/Blog/components/Article).
 - Internationalization with a small custom setup in [`lib/i18n/`](lib/i18n) — edge-safe locale negotiation (used by [`proxy.ts`](proxy.ts)) plus a `server-only` dictionary loader; JSON translations live under `public/<domain>/translations/`.
 - Command bar with [`kbar`](https://kbar.vercel.app/) (`⌘K` / `Ctrl+K`) on diegocosta.com.br.
-- Dark mode with [`next-themes`](https://github.com/pacocoursey/next-themes).
+- Dark mode with [`next-themes`](https://github.com/pacocoursey/next-themes); the toggle is a shared [`components/ThemeSwitcher`](components/ThemeSwitcher), used on diegocosta.com.br's header and diegocoxta.com's Hub.
 - The diegocosta.com.br blog feed is generated with [`rss`](https://github.com/dylang/node-rss); external feeds are parsed with [`fast-xml-parser`](https://github.com/NaturalIntelligence/fast-xml-parser).
 - diegocosta.me reads its photos live from the Unsplash API — [`app/diegocosta.me/actions.ts`](app/diegocosta.me/actions.ts) is the sole controller.
 - "Recent activity" cards on diegocoxta.com pull from Discogs, Letterboxd, Unsplash, Hardcover, GitHub, Last.fm, Setlist.fm and an RSS feed, with Deezer supplying artist images ([`lib/services/`](lib/services), fetched through [`lib/http.ts`](lib/http.ts)).

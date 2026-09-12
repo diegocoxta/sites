@@ -1,5 +1,5 @@
 .container {
-  background: transparent;
+  background: color-mix(in srgb, var(--main-background-color) 30%, transparent);
   border: 2px solid var(--main-accent-color);
   border-radius: 18px;
   height: 34px;
