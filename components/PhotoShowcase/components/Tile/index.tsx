@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 
 import { useTranslator } from '~/components/TranslationProvider';
+import Skeleton from '~/components/Skeleton';
 
 import UnsplashImage from '../UnsplashImage';
 
@@ -37,6 +38,7 @@ export default function Tile({ photo, hrefBase }: TileProps) {
         backgroundColor: photo.placeholderColor ?? undefined,
       }}
     >
+      {!loaded && <Skeleton className={styles.skeleton} borderRadius={0} tinted />}
       <UnsplashImage
         ref={imageRef}
         className={`${styles.image} ${loaded ? styles.imageLoaded : ''}`}

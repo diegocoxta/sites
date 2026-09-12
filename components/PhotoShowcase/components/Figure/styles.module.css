@@ -21,6 +21,7 @@
   aspect-ratio: var(--ratio);
   touch-action: pan-y;
   overflow: hidden;
+  background-color: var(--main-border-color);
 }
 
 .image {
@@ -38,6 +39,11 @@
 
 .imageLoaded {
   opacity: 1;
+}
+
+.skeleton {
+  position: absolute;
+  inset: 0;
 }
 
 .caption {
