@@ -4345,7 +4345,7 @@ styled-jsx@5.1.6:
   dependencies:
     client-only "0.0.1"
 
-stylelint-config-css-modules@^4.5.1:
+stylelint-config-css-modules@4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/stylelint-config-css-modules/-/stylelint-config-css-modules-4.6.0.tgz#b56c5198b7484ac0417684431fe8f7d294bc6956"
   integrity sha512-LIgfzNmpiwf/eDxQva2g1mj+mqDpvP1XwOKJC7DSWY/iCQAZdIKnY42jbXuY8thcFN4yM/uF1xfCyfd7fJKh6w==
