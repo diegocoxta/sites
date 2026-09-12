@@ -89,8 +89,19 @@ Run `yarn lint` and `yarn build`. Both must pass.
   `styles.module.css`). No global CSS beyond `app/globals.css`.
 - Match the style of surrounding code; keep diffs minimal.
 - Don't add dependencies without a clear need.
-- **Git commits:** never add a `Co-Authored-By` trailer (or any other AI
-  attribution) to commit messages.
+- **Git commits:** [Conventional Commits](https://www.conventionalcommits.org/)
+  (`type(scope): subject`), with scope chosen as follows:
+  - Change lives entirely (or mostly) under `app/<domain>`, or spans
+    `app/<domain>` plus other files that are exclusive to that domain (e.g. a
+    component or lib only that domain uses) → scope is `<domain>`.
+  - Change is only in `components/`: a global component → scope is the
+    component name; a component inside a namespace (`Blog`, `PhotoShowcase`,
+    `LinkHub`, etc.) → scope is `namespace.component`, e.g.
+    `feat(photoshowcase.lightbox.actionbutton)`, `fix(blog.article)`.
+  - Anything else (libs, other standalone files) → scope is the file name,
+    e.g. `fix(htmllang)`.
+  - Never add a `Co-Authored-By` trailer (or any other AI attribution) to
+    commit messages.
 
 ## Gotchas
 
