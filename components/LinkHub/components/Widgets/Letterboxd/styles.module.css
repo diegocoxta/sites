@@ -1,5 +1,6 @@
 .cover {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   width: 100%;
   aspect-ratio: 2 / 3;

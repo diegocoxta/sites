@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  isolation: isolate;
   display: block;
   width: 100%;
   aspect-ratio: 3 / 2;
