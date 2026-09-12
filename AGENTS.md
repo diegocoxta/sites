@@ -13,12 +13,18 @@ Architecture section below) and [CONTRIBUTING.md](CONTRIBUTING.md).
   (sets `DEV_SITE` so `proxy.ts` maps `localhost` to that domain). Port 3000.
 - `yarn build` — production build (compiles all three domains).
 - `yarn lint` — ESLint. `yarn stylelint` — CSS Modules. `yarn prettier` — format.
+- `yarn cv` — regenerates `public/diegocosta.com.br/pages/cv/cv.pdf` from that
+  page's own Markdown via `md-to-pdf`; run after editing the CV content.
 - No unit test suite. Verify changes with `yarn lint` + `yarn build`, and for
   behavior, `yarn dev:<site>` and hit the route.
 
 ## Before you finish
 
 Run `yarn lint` and `yarn build`. Both must pass.
+
+## Code style
+
+- Only comment corner cases that would otherwise be hard to understand from reading the code alone. Omit comments that just restate basic/obvious behavior or purely stylistic/static choices.
 
 ## Architecture
 
@@ -48,6 +54,22 @@ Run `yarn lint` and `yarn build`. Both must pass.
   lookup, so call sites may mirror component names
   (`t('components.photoShowcase.LoadMore.label')`) and still resolve. A key that
   isn't found is returned unchanged (brand/proper names pass straight through).
+- **OG images, icons & JSON-LD:** favicons and per-page social preview images
+  render at request time with `next/og` + `sharp` in
+  [`lib/app-image.tsx`](lib/app-image.tsx) (`renderAppIcon`, `renderOgImage`),
+  used by each domain's `icon.tsx` and `og/` route handlers
+  (e.g. `app/diegocosta.com.br/blog/[post]/og/`, `app/diegocosta.me/og/[...slug]/`).
+  Structured data (`Person`, `WebSite`, `BlogPosting`, `BreadcrumbList`,
+  `ImageObject`) is built with `schema-dts` in [`lib/schema.ts`](lib/schema.ts)
+  and rendered via `components/JsonLd`.
+- **Activity widgets (diegocoxta.com):** [`lib/services/`](lib/services) fetch
+  Discogs, Letterboxd, Unsplash, Hardcover, GitHub, Last.fm, Setlist.fm, an RSS
+  feed, and Deezer (artist images) through [`lib/http.ts`](lib/http.ts), which
+  adds a timeout + `revalidate` + logging and returns `null` on failure instead
+  of throwing. Each widget in `components/LinkHub/components/Widgets/` is
+  wrapped in `WidgetBoundary` (error boundary + `Suspense` skeleton), so a
+  missing API token or failed fetch renders that one widget empty rather than
+  breaking the page (see `.env.example`).
 - **404s:** no root `app/not-found.tsx` (it would need the host, forcing every
   catch-all dynamic). Each domain has its own boundary: single-locale domains use
   `app/<domain>/not-found.tsx` (Server Component); `diegocoxta.com` uses

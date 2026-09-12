@@ -17,7 +17,7 @@ The three are different kinds of site: **diegocosta.com.br** is a Markdown blog
 ## :desktop_computer: Tech Stack
 
 - [Next.js 16](https://nextjs.org/) (App Router, Turbopack) with TypeScript.
-- Markdown read and parsed in [`lib/content.ts`](lib/content.ts) with [`gray-matter`](https://github.com/jonschlinkert/gray-matter) (front matter) and [`reading-time`](https://github.com/ngryman/reading-time); rendered as MDX with [`next-mdx-remote`](https://github.com/hashicorp/next-mdx-remote) in [`components/Article`](components/Article).
+- Markdown read and parsed in [`lib/content.ts`](lib/content.ts) with [`gray-matter`](https://github.com/jonschlinkert/gray-matter) (front matter) and [`reading-time`](https://github.com/ngryman/reading-time); rendered as MDX with [`next-mdx-remote`](https://github.com/hashicorp/next-mdx-remote) in [`components/Blog/components/Article`](components/Blog/components/Article).
 - Internationalization with a small custom setup in [`lib/i18n/`](lib/i18n) — edge-safe locale negotiation (used by [`proxy.ts`](proxy.ts)) plus a `server-only` dictionary loader; JSON translations live under `public/<domain>/translations/`.
 - Command bar with [`kbar`](https://kbar.vercel.app/) (`⌘K` / `Ctrl+K`) on diegocosta.com.br.
 - Dark mode with [`next-themes`](https://github.com/pacocoursey/next-themes).
