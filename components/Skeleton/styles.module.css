@@ -19,6 +19,11 @@
     );
   }
 
+  &.tinted {
+    background: linear-gradient(100deg, transparent 35%, rgb(255 255 255 / 16%) 50%, transparent 65%);
+    background-size: 200% 100%;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
