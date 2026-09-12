@@ -2,13 +2,13 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 import type { SiteType } from '~/lib/config';
-import { LOCALES, LOCALE_COOKIE, LOCALE_COOKIE_MAX_AGE, isSupportedLocale, negotiateLocale } from '~/lib/i18n';
+import { LOCALE_COOKIE, LOCALE_COOKIE_MAX_AGE, isSupportedLocale, negotiateLocale } from '~/lib/i18n';
 
 import diegocoxtaCom from '~/app/diegocoxta.com/config';
 import diegocostaComBr from '~/app/diegocosta.com.br/config';
 import diegocostaMe from '~/app/diegocosta.me/config';
 
-const SITES: readonly SiteType[] = [diegocoxtaCom, diegocostaComBr, diegocostaMe];
+const SITES: readonly SiteType[] = [diegocostaComBr, diegocoxtaCom, diegocostaMe];
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -17,12 +17,9 @@ export function proxy(request: NextRequest) {
   let hostname = (request.headers.get('host') || '').split(':')[0];
 
   if (hostname === 'localhost') {
-    hostname = process.env.DEV_SITE || 'diegocosta.com.br';
+    hostname = process.env.DEV_SITE || SITES[0].domain;
   }
 
-  // On a *.vercel.app preview/deployment URL there's no custom domain to key
-  // off of, so let the first path segment pick the domain instead, e.g.
-  // my-app.vercel.app/diegocosta.me/some-page.
   let pathPrefix = '';
   let routePath = pathname;
 
@@ -37,7 +34,11 @@ export function proxy(request: NextRequest) {
     }
   }
 
-  const locales = SITES.find((site) => site.domain === hostname)?.locales ?? [LOCALES[0]];
+  const site = SITES.find((s) => s.domain === hostname) ?? SITES[0];
+
+  hostname = site.domain;
+
+  const { locales } = site;
 
   const assetMetadata =
     /^\/(icon|apple-icon|opengraph-image|twitter-image|robots\.txt|manifest\.json|sitemap\.xml)(\/|$)|\.[^/]+$/;
