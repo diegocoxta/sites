@@ -2,8 +2,7 @@
 
 Guidance for AI coding agents. Keep it short — this file is always in context.
 `CLAUDE.md` is a symlink to this file. Human-facing detail lives in
-[README.md](README.md), [ARCHITECTURE.md](ARCHITECTURE.md) (the long form of the
-Architecture section below) and [CONTRIBUTING.md](CONTRIBUTING.md).
+[README.md](README.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Setup & commands
 
@@ -44,7 +43,16 @@ Run `yarn lint` and `yarn build`. Both must pass.
   are single-locale with no `/<locale>` prefix.
 - **Content:** Markdown under `public/<domain>/` (`blog/`, `pages/`; only
   diegocosta.com.br has any), read via [`lib/content.ts`](lib/content.ts)
-  (`contentFor(config)`).
+  (`contentFor(config)`) with `gray-matter` (front matter) and `reading-time`.
+  Localized files use an `index.<locale>.md` suffix (e.g. `index.en.md`),
+  falling back to the default locale then to `index.md`; relative image refs
+  (`![](./img.png)`) are rewritten to servable paths at read time.
+- **Blog rendering (diegocosta.com.br):** posts render as MDX via
+  `next-mdx-remote` in
+  [`components/Blog/components/Article`](components/Blog/components/Article).
+  The `blog/feed` route generates RSS with the `rss` package; other external
+  feeds (e.g. the FeedListing widget) are parsed with `fast-xml-parser`. A
+  `kbar` command bar (`⌘K`/`Ctrl+K`) is also blog-only.
 - **i18n:** flat-key JSON at `public/<domain>/translations/<locale>.json`. Loader
   in [`lib/i18n/messages.ts`](lib/i18n/messages.ts) (`server-only`); edge-safe
   negotiation in [`lib/i18n/locale.ts`](lib/i18n/locale.ts) (used by `proxy.ts`).
@@ -52,8 +60,10 @@ Run `yarn lint` and `yarn build`. Both must pass.
   keys to Client Components — so a string used in a Client Component must be
   named `client.*`. JSON keys are **all lowercase**; `t()` lower-cases the
   lookup, so call sites may mirror component names
-  (`t('components.photoShowcase.LoadMore.label')`) and still resolve. A key that
-  isn't found is returned unchanged (brand/proper names pass straight through).
+  (`t('components.photoShowcase.LoadMore.label')`) and still resolve. Keys are
+  namespaced under `client.`/`config.`/`components.`/`page.`; anything outside
+  those namespaces — or any key with no match — is returned unchanged, which is
+  how brand/proper names pass straight through.
 - **OG images, icons & JSON-LD:** favicons and per-page social preview images
   render at request time with `next/og` + `sharp` in
   [`lib/app-image.tsx`](lib/app-image.tsx) (`renderAppIcon`, `renderOgImage`),

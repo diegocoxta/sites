@@ -24,7 +24,7 @@ Before starting, you may need to know how to contribute in a good way. You can f
 5. Open [`http://localhost:3000`](http://localhost:3000). The `DEV_SITE` env var
    set by these scripts tells [`proxy.ts`](proxy.ts) which domain `localhost` maps to.
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for how the codebase is organized.
+See [AGENTS.md](AGENTS.md) for how the codebase is organized.
 
 ### Useful scripts
 

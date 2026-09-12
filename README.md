@@ -17,9 +17,8 @@ The three are different kinds of site: **diegocosta.com.br** is a Markdown blog
 
 ## :books: Documentation
 
-- [ARCHITECTURE.md](ARCHITECTURE.md) — tech stack, project layout, content & i18n, 404s.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — requirements, local setup, useful scripts, how to contribute.
-- [AGENTS.md](AGENTS.md) — condensed guidance kept in context for AI coding agents.
+- [AGENTS.md](AGENTS.md) — how the codebase is organized, kept in context for AI coding agents.
 
 ## :rocket: Deployment
 
