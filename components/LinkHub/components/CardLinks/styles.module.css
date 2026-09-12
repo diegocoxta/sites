@@ -11,7 +11,7 @@
   background-color: var(--main-box-color);
   color: var(--main-text-color);
   border-radius: 10px;
-  transition: 0.2s all linear;
+  transition: 0.2s transform linear;
   box-sizing: border-box;
 
   &:hover {
