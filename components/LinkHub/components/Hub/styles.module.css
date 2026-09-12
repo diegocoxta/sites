@@ -1,7 +1,7 @@
 .container {
+  min-width: 345px;
   max-width: 580px;
   margin: 0 auto;
-  padding: 380px 16px 26px;
   box-sizing: border-box;
   background-position: top center;
   background-repeat: no-repeat;
@@ -23,12 +23,13 @@
     background: linear-gradient(0deg, var(--main-background-color) 20%, rgb(255 255 255 / 0%) 60%);
     z-index: 1;
   }
+}
 
-  > p {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-  }
+.themeSwitcher {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
 }
 
 .content {
@@ -39,4 +40,11 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+  padding: 380px 16px 26px;
+
+  > p {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
 }

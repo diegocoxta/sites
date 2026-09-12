@@ -33,5 +33,6 @@
   "components.linkhub.recentactivity.hardcover.pageprogress": "Página {current} de {total}",
   "components.linkhub.recentactivity.lastfm.plays": "{count} reproducciones",
   "client.components.linkhub.recentactivity.lastfm.nowplaying": "Sonando ahora",
-  "client.components.notfound.message": "La página que estás buscando no fue encontrada. \nVuelve a <a href=\"https://{domain}\">{domain}</a> e inténtalo de nuevo."
+  "client.components.notfound.message": "La página que estás buscando no fue encontrada. \nVuelve a <a href=\"https://{domain}\">{domain}</a> e inténtalo de nuevo.",
+  "client.components.blog.themeswitcher.arialabel": "Cambiar el color del tema."
 }
