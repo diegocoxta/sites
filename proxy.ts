@@ -20,20 +20,37 @@ export function proxy(request: NextRequest) {
     hostname = process.env.DEV_SITE || 'diegocosta.com.br';
   }
 
+  // On a *.vercel.app preview/deployment URL there's no custom domain to key
+  // off of, so let the first path segment pick the domain instead, e.g.
+  // my-app.vercel.app/diegocosta.me/some-page.
+  let pathPrefix = '';
+  let routePath = pathname;
+
+  if (hostname.endsWith('.vercel.app')) {
+    const [, maybeDomain, ...rest] = pathname.split('/');
+    const matchedSite = SITES.find((site) => site.domain === maybeDomain);
+
+    if (matchedSite) {
+      hostname = matchedSite.domain;
+      pathPrefix = `/${maybeDomain}`;
+      routePath = `/${rest.join('/')}`;
+    }
+  }
+
   const locales = SITES.find((site) => site.domain === hostname)?.locales ?? [LOCALES[0]];
 
   const assetMetadata =
     /^\/(icon|apple-icon|opengraph-image|twitter-image|robots\.txt|manifest\.json|sitemap\.xml)(\/|$)|\.[^/]+$/;
 
-  const onlyOneLanguageOrAssetMetadata = locales.length < 2 || assetMetadata.test(pathname);
+  const onlyOneLanguageOrAssetMetadata = locales.length < 2 || assetMetadata.test(routePath);
 
   if (onlyOneLanguageOrAssetMetadata) {
-    url.pathname = `/${hostname}${pathname}`;
+    url.pathname = `/${hostname}${routePath}`;
 
     return NextResponse.rewrite(url);
   }
 
-  const firstSegment = pathname.split('/')[1];
+  const firstSegment = routePath.split('/')[1];
   const cookie = request.cookies.get(LOCALE_COOKIE)?.value;
 
   const withoutLanguagePrefix = !isSupportedLocale(locales, firstSegment);
@@ -41,12 +58,12 @@ export function proxy(request: NextRequest) {
   if (withoutLanguagePrefix) {
     const locale = negotiateLocale(locales, cookie, request.headers.get('accept-language'));
 
-    url.pathname = `/${locale}${pathname === '/' ? '' : pathname}`;
+    url.pathname = `${pathPrefix}/${locale}${routePath === '/' ? '' : routePath}`;
 
     return NextResponse.redirect(url);
   }
 
-  url.pathname = `/${hostname}${pathname}`;
+  url.pathname = `/${hostname}${routePath}`;
 
   const response = NextResponse.rewrite(url);
 
