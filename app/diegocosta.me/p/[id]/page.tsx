@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 import type { Translator } from '~/lib/i18n/translator';
 import { imageObjectLd } from '~/lib/schema';
@@ -49,8 +50,8 @@ export async function generateMetadata({ params }: PhotoPreviewProps): Promise<M
 export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
   const { params } = props;
   const { id } = await params;
-
   const t = getTranslations(config);
+  const content = contentFor(config);
   const [context, collections] = await Promise.all([getPhotoContext(id), getCollections()]);
 
   if (!context) {
@@ -69,6 +70,7 @@ export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
             name={config.author}
             avatar={config.avatar ?? ''}
             socialLinks={config.links?.filter((link) => link.type === 'icon')}
+            pages={content.getPages()}
           />
           {collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
         </>

@@ -59,6 +59,7 @@ export default async function MarkdownPage({ params }: PageProps) {
             name={config.author}
             avatar={config.avatar ?? ''}
             socialLinks={config.links?.filter((link) => link.type === 'icon')}
+            pages={content.getPages()}
           />
           {collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
         </>

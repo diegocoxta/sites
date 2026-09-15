@@ -7,13 +7,14 @@ import styles from './styles.module.css';
 
 type MarkdownProps = Partial<ContentAttributes>;
 
-export default function Markdown({ title, content }: MarkdownProps) {
+export default function Markdown(props: MarkdownProps) {
   return (
     <article className={styles.markdown}>
-      {title && <h1 className={styles.title}>{title}</h1>}
-      {content && (
+      {props.kicker && <p className={styles.kicker}>{props.kicker}</p>}
+      {props.title && <h1 className={styles.title}>{props.title}</h1>}
+      {props.content && (
         <MDXRemote
-          source={content}
+          source={props.content}
           components={{
             a: (props) => {
               const isExternal = props.href?.startsWith('http');
