@@ -1,0 +1,7 @@
+.end {
+  margin: 100px 40px;
+  color: var(--main-title-color);
+  font-size: 56px;
+  text-align: center;
+  font-weight: 600;
+}

@@ -17,6 +17,7 @@
   "client.components.photoshowcase.loadmore.label": "Load more",
   "client.components.photoshowcase.loadmore.loading": "Loading…",
   "client.components.photoshowcase.loadmore.retry": "Couldn't load — try again",
+  "client.components.photoshowcase.feed.end": "that's all.",
   "client.components.photoshowcase.backtotop.label": "Back to top",
   "client.components.photoshowcase.lightbox.previous": "Previous photo",
   "client.components.photoshowcase.lightbox.next": "Next photo",
