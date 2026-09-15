@@ -6,3 +6,4 @@ export { default as CollectionsCard } from './components/CollectionsCard';
 export { default as Lightbox } from './components/Lightbox';
 export { default as Page } from './components/Page';
 export { default as Markdown } from './components/Markdown';
+export { default as Footer } from './components/Footer';

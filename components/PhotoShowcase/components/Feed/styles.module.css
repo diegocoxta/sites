@@ -1,7 +1,9 @@
 .end {
-  margin: 100px 40px;
+  margin: 100px 40px 0;
+  padding-bottom: 40px;
   color: var(--main-title-color);
   font-size: 56px;
   text-align: center;
   font-weight: 600;
+  border-bottom: 1px solid color-mix(in srgb, var(--main-title-color) 25%, transparent);
 }
