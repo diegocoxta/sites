@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 
 import { CollectionDetails, Feed, Profile } from '~/components/PhotoShowcase';
@@ -41,10 +42,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function CollectionPage({ params }: PageProps) {
   const { id } = await params;
   const t = getTranslations(config);
+  const content = contentFor(config);
   const [collection, firstPage] = await Promise.all([getCollection(id), getCollectionPhotosPage(id, 1)]);
 
   if (!collection && firstPage.photos.length === 0) {
     notFound();
+  }
+
+  if (firstPage.photos.length <= 0) {
+    return <p>{t('page.photos.empty')}</p>;
   }
 
   const leading = (
@@ -54,6 +60,7 @@ export default async function CollectionPage({ params }: PageProps) {
         name={config.author}
         avatar="/avatar.jpg"
         socialLinks={config.links?.filter((link) => link.type === 'icon')}
+        pages={content.getPages()}
       />
       {collection && (
         <CollectionDetails
@@ -67,7 +74,7 @@ export default async function CollectionPage({ params }: PageProps) {
     </>
   );
 
-  return firstPage.photos.length > 0 || firstPage.hasMore ? (
+  return (
     <Feed
       initialPhotos={firstPage.photos}
       initialHasMore={firstPage.hasMore}
@@ -75,7 +82,5 @@ export default async function CollectionPage({ params }: PageProps) {
       hrefBase="/p"
       leading={leading}
     />
-  ) : (
-    <p>{t('page.photos.empty')}</p>
   );
 }

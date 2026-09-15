@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 
 import { CollectionsCard, Feed, Profile } from '~/components/PhotoShowcase';
@@ -9,6 +10,7 @@ import { getCollections, getPhotosPage } from '~/app/diegocosta.me/actions';
 
 export default async function HomePage() {
   const t = getTranslations(config);
+  const content = contentFor(config);
   const [{ photos, hasMore }, collections] = await Promise.all([getPhotosPage(1), getCollections()]);
 
   const leading = (
@@ -18,25 +20,20 @@ export default async function HomePage() {
         name={config.author}
         avatar={config.avatar ?? ''}
         socialLinks={config.links?.filter((link) => link.type === 'icon')}
+        pages={content.getPages()}
       />
       {collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
     </>
   );
 
+  if (photos.length <= 0) {
+    return <p>{t('page.photos.empty')}</p>;
+  }
+
   return (
     <>
       <h1 className="srOnly">{t('config.title')}</h1>
-      {photos.length > 0 || hasMore ? (
-        <Feed
-          initialPhotos={photos}
-          initialHasMore={hasMore}
-          loadMore={getPhotosPage}
-          hrefBase="/p"
-          leading={leading}
-        />
-      ) : (
-        <p>{t('page.photos.empty')}</p>
-      )}
+      <Feed initialPhotos={photos} initialHasMore={hasMore} loadMore={getPhotosPage} hrefBase="/p" leading={leading} />
     </>
   );
 }

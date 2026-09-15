@@ -13,6 +13,7 @@ export type ContentAttributes = {
   content: string;
   readingTime: number;
   href: string;
+  kicker?: string;
   summary?: string;
   date?: string;
   language?: string;
