@@ -7,7 +7,7 @@
     'leading';
 
   @media (width >= 640px) {
-    margin: 40px;
+    margin: 40px 40px 0;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas: 'leading content';
   }
