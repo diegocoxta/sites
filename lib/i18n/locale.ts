@@ -1,9 +1,7 @@
-export const LOCALES = ['pt', 'en', 'es'] as const;
-
 export const LOCALE_COOKIE = 'LOCALE';
 export const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
-export type Locale = (typeof LOCALES)[number];
+export type Locale = 'pt' | 'en' | 'es';
 
 export function isSupportedLocale(supported: readonly Locale[], value?: string | null): value is Locale {
   return !!value && (supported as readonly string[]).includes(value);
