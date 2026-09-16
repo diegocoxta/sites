@@ -59,7 +59,12 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails,
           />
         )}
       </figcaption>
-      <Exif photoId={photo.id} getPhotoDetails={getPhotoDetails} inverted={inverted} />
+      <Exif
+        photoId={photo.id}
+        size={{ width: photo.width, height: photo.height }}
+        getPhotoDetails={getPhotoDetails}
+        inverted={inverted}
+      />
     </figure>
   );
 }

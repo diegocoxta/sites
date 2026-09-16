@@ -8,6 +8,35 @@
   border-top-color: rgb(255 255 255 / 18%);
 }
 
+.viewMetadata {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  color: rgb(255 255 255 / 85%);
+  background: rgb(255 255 255 / 8%);
+  border: 2px solid rgb(255 255 255 / 25%);
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  &:hover {
+    border-color: #fff;
+    color: #fff;
+  }
+}
+
 .description {
   margin: 0 0 10px;
   font-size: 13px;
