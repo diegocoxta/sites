@@ -3,6 +3,7 @@ import type { Locale } from '~/lib/i18n';
 export type ConfigType = {
   title: string;
   description: string;
+  repository: string;
   domain: string;
   author: string;
   avatar?: string;
