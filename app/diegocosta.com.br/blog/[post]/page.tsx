@@ -6,7 +6,7 @@ import { getTranslations } from '~/lib/i18n/messages';
 import { blogPostingLd, breadcrumbLd } from '~/lib/schema';
 
 import JsonLd from '~/components/JsonLd';
-import { Container, Article } from '~/components/Blog';
+import { Article } from '~/components/Blog';
 
 import config from '~/app/diegocosta.com.br/config';
 
@@ -27,7 +27,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <Container>
+    <main>
       <JsonLd data={blogPostingLd(config, doc, `/blog/${post}`)} />
       <JsonLd
         data={breadcrumbLd([
@@ -37,7 +37,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         ])}
       />
       <Article t={t} headingLevel={1} {...doc} />
-    </Container>
+    </main>
   );
 }
 

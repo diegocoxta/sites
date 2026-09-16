@@ -7,8 +7,8 @@ type ContainerProps = React.PropsWithChildren<{
 
 export default function Container({ children, maxWidth, padding }: ContainerProps) {
   return (
-    <main className={styles.container} style={{ maxWidth, padding }}>
+    <div className={styles.container} style={{ maxWidth, padding }}>
       {children}
-    </main>
+    </div>
   );
 }

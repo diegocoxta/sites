@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 
-import { Container, PageTitle, Article } from '~/components/Blog';
+import { PageTitle, Article } from '~/components/Blog';
 
 import config from '~/app/diegocosta.com.br/config';
 
@@ -13,12 +13,12 @@ export default function HomePage() {
   const t = getTranslations(config);
 
   return (
-    <Container>
+    <main>
       <PageTitle>{t('page.blog.title')}</PageTitle>
       {content.getPosts().map((post, index: number) => (
         <Article key={`blog-article-${index}`} t={t} expanded={false} {...post} />
       ))}
-    </Container>
+    </main>
   );
 }
 

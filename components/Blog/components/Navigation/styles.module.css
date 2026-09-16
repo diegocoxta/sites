@@ -1,5 +1,4 @@
 .container {
-  composes: container from '~/components/Blog/components/Container/styles.module.css';
   margin: 20px auto;
   font-size: 14px;
 
@@ -8,14 +7,13 @@
   }
 
   @media (width >= 760px) {
-    margin: 50px auto;
+    margin: 50px auto 0;
   }
 }
 
 .links {
   margin: 0;
   padding: 0;
-  margin-bottom: 50px;
 
   @media (width >= 760px) {
     display: flex;
@@ -55,32 +53,5 @@
 
   &:hover::after {
     color: var(--main-text-color);
-  }
-}
-
-.label {
-  color: var(--main-subtitle-color);
-  font-size: 13px;
-  line-height: 1.5;
-  margin: 0;
-  padding: 0;
-  text-align: left;
-}
-
-.link {
-  color: inherit;
-  text-decoration: underline dotted;
-  text-decoration-color: color-mix(in srgb, currentcolor 30%, transparent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition:
-    color 0.15s ease,
-    text-decoration-color 0.15s ease;
-
-  &:hover,
-  &:focus-visible {
-    color: var(--main-text-color);
-    text-decoration-color: currentcolor;
-    outline: none;
   }
 }

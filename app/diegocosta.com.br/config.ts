@@ -1,13 +1,8 @@
-import npmPackage from '~/package.json';
 import type { ConfigType } from '~/lib/config';
 
 import globalConfig from '~/app/config';
 
-type LocalConfigType = ConfigType & {
-  repository: string;
-};
-
-const config: LocalConfigType = {
+const config: ConfigType = {
   ...globalConfig,
   title: 'Diego Costa',
   jobTitle: ['Engineering Manager', 'Senior Software Engineer'],
@@ -23,7 +18,6 @@ const config: LocalConfigType = {
     { type: 'text', title: 'Github', href: 'https://github.com/diegocoxta' },
     { type: 'text', title: 'config.links.more.title', href: 'https://diegocoxta.com' },
   ],
-  repository: npmPackage.repository.url,
 };
 
 export default config;
