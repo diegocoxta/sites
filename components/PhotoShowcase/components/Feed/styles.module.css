@@ -1,3 +1,9 @@
+.leading {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
 .end {
   margin: 100px 40px 0;
   padding-bottom: 40px;

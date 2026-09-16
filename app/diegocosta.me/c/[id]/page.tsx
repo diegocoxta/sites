@@ -53,34 +53,32 @@ export default async function CollectionPage({ params }: PageProps) {
     return <p>{t('page.photos.empty')}</p>;
   }
 
-  const leading = (
-    <>
-      <Profile
-        t={t}
-        name={config.author}
-        avatar="/avatar.jpg"
-        socialLinks={config.links?.filter((link) => link.type === 'icon')}
-        pages={content.getPages()}
-      />
-      {collection && (
-        <CollectionDetails
-          t={t}
-          title={collection.title}
-          description={collection.description}
-          photoCount={collection.photoCount}
-          publishedAt={collection.publishedAt}
-        />
-      )}
-    </>
-  );
-
   return (
     <Feed
       initialPhotos={firstPage.photos}
       initialHasMore={firstPage.hasMore}
       loadMore={getCollectionPhotosPage.bind(null, id)}
       hrefBase="/p"
-      leading={leading}
+      leading={
+        <Profile
+          t={t}
+          name={config.author}
+          avatar="/avatar.jpg"
+          socialLinks={config.links?.filter((link) => link.type === 'icon')}
+          pages={content.getPages()}
+        />
+      }
+      trailing={
+        collection && (
+          <CollectionDetails
+            t={t}
+            title={collection.title}
+            description={collection.description}
+            photoCount={collection.photoCount}
+            publishedAt={collection.publishedAt}
+          />
+        )
+      }
     />
   );
 }
