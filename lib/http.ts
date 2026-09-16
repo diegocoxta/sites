@@ -12,7 +12,7 @@ type RequestOptions = Omit<RequestInit, 'signal'> & {
   failFastStatuses?: number[];
 };
 
-export class HttpError extends Error {
+class HttpError extends Error {
   constructor(
     public readonly status: number,
     public readonly url: string,
@@ -22,8 +22,6 @@ export class HttpError extends Error {
     this.name = 'HttpError';
   }
 }
-
-export const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function request(url: string, options: RequestOptions): Promise<Response | null> {
   const { revalidate = 3600, timeoutMs = SERVICE_TIMEOUT_MS, id = 'http', failFastStatuses, ...init } = options;
