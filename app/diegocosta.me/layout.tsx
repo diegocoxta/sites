@@ -7,7 +7,8 @@ import { personLd, websiteLd } from '~/lib/schema';
 import TranslationProvider from '~/components/TranslationProvider';
 import HtmlLang from '~/components/HtmlLang';
 import JsonLd from '~/components/JsonLd';
-import { Container, Footer } from '~/components/PhotoShowcase';
+import { Container } from '~/components/PhotoShowcase';
+import Footer from '~/components/Footer';
 
 import config from '~/app/diegocosta.me/config';
 
@@ -21,10 +22,8 @@ export default function RootLayout({ children, modal }: React.PropsWithChildren<
         <HtmlLang locale={t.locale} />
         <JsonLd data={websiteLd(config, t(config.title))} />
         <JsonLd data={personLd(config)} />
-        <Container>
-          {children}
-          <Footer t={t} name={config.author} />
-        </Container>
+        <Container>{children}</Container>
+        <Footer t={t} name={config.author} />
         {modal}
       </TranslationProvider>
     </ThemeProvider>
