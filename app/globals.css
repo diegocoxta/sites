@@ -57,3 +57,11 @@ body {
     display: inline-block;
   }
 }
+
+.printOnly {
+  display: none;
+
+  @media print {
+    display: inline-block;
+  }
+}
