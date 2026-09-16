@@ -16,12 +16,11 @@ interface FigureProps {
   photo: Photo;
   index: number;
   total: number;
-  inverted: boolean;
   getPhotoDetails: (id: string) => Promise<PhotoDetails | null>;
   topRight?: React.ReactNode;
 }
 
-export default function Figure({ photo, index, total, inverted, getPhotoDetails, topRight }: FigureProps) {
+export default function Figure({ photo, index, total, getPhotoDetails, topRight }: FigureProps) {
   const t = useTranslator();
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -42,7 +41,7 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails,
           onLoad={() => setImageLoaded(true)}
         />
       </div>
-      <figcaption className={`${styles.caption} ${inverted ? styles.captionInverted : ''}`}>
+      <figcaption className={styles.caption}>
         <span>
           {index + 1} / {total}
         </span>
@@ -59,12 +58,8 @@ export default function Figure({ photo, index, total, inverted, getPhotoDetails,
           />
         )}
       </figcaption>
-      <Exif
-        photoId={photo.id}
-        size={{ width: photo.width, height: photo.height }}
-        getPhotoDetails={getPhotoDetails}
-        inverted={inverted}
-      />
+      <p className={styles.description}>{photo.description}</p>
+      <Exif photoId={photo.id} size={{ width: photo.width, height: photo.height }} getPhotoDetails={getPhotoDetails} />
     </figure>
   );
 }

@@ -4,10 +4,6 @@
   border-top: 1px solid var(--main-border-color);
 }
 
-.panelInverted {
-  border-top-color: rgb(255 255 255 / 18%);
-}
-
 .viewMetadata {
   display: inline-flex;
   align-items: center;
@@ -20,7 +16,7 @@
   padding: 9px 16px;
   color: rgb(255 255 255 / 85%);
   background: rgb(255 255 255 / 8%);
-  border: 2px solid rgb(255 255 255 / 25%);
+  border: 1px solid rgb(255 255 255 / 25%);
   cursor: pointer;
   transition:
     border-color 0.15s ease,
@@ -35,16 +31,6 @@
     border-color: #fff;
     color: #fff;
   }
-}
-
-.description {
-  margin: 0 0 10px;
-  font-size: 13px;
-  color: var(--main-text-color);
-}
-
-.descriptionInverted {
-  color: rgb(255 255 255 / 90%);
 }
 
 .grid {
@@ -70,16 +56,6 @@
     margin: 0;
     font-size: 13px;
     color: var(--main-text-color);
-  }
-}
-
-.gridInverted {
-  dt {
-    color: rgb(255 255 255 / 60%);
-  }
-
-  dd {
-    color: rgb(255 255 255 / 90%);
   }
 }
 
