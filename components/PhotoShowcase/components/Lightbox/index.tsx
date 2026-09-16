@@ -47,7 +47,6 @@ export default function Lightbox(props: LightboxProps) {
       photo={photo}
       index={index}
       total={total}
-      inverted={variant === 'modal'}
       getPhotoDetails={getPhotoDetails}
       topRight={closeButton}
     />

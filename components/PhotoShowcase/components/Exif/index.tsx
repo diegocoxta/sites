@@ -16,15 +16,15 @@ function formatFocalLength(value: string): string {
 
 const SKELETON_FIELD_WIDTHS = [64, 56, 46, 58, 34, 84];
 
-function ExifSkeleton({ inverted }: { inverted: boolean }) {
+function ExifSkeleton() {
   return (
     <div className={styles.panel} aria-hidden>
-      <Skeleton colorInverted={inverted} height={13} width="65%" className={styles.skeletonDescription} />
+      <Skeleton height={13} width="65%" className={styles.skeletonDescription} />
       <dl className={styles.grid}>
         {SKELETON_FIELD_WIDTHS.map((width, i) => (
           <div key={i}>
-            <Skeleton colorInverted={inverted} height={8} width={36} className={styles.skeletonLabel} />
-            <Skeleton colorInverted={inverted} height={13} width={width} />
+            <Skeleton height={8} width={36} className={styles.skeletonLabel} />
+            <Skeleton height={13} width={width} />
           </div>
         ))}
       </dl>
@@ -36,12 +36,11 @@ interface ExifProps {
   photoId: string;
   size: { width: number; height: number };
   getPhotoDetails: (id: string) => Promise<PhotoDetails | null>;
-  inverted: boolean;
 }
 
 type Status = 'idle' | 'loading' | 'loaded';
 
-export default function Exif({ photoId, size, getPhotoDetails, inverted }: ExifProps) {
+export default function Exif({ photoId, size, getPhotoDetails }: ExifProps) {
   const t = useTranslator();
   const [details, setDetails] = useState<PhotoDetails | null>(null);
   const [status, setStatus] = useState<Status>('idle');
@@ -56,7 +55,7 @@ export default function Exif({ photoId, size, getPhotoDetails, inverted }: ExifP
   };
 
   if (status === 'loading') {
-    return <ExifSkeleton inverted={inverted} />;
+    return <ExifSkeleton />;
   }
 
   if (status === 'idle') {
@@ -68,11 +67,8 @@ export default function Exif({ photoId, size, getPhotoDetails, inverted }: ExifP
   }
 
   return (
-    <div className={`${styles.panel} ${inverted ? styles.panelInverted : ''}`}>
-      {details?.description && (
-        <p className={`${styles.description} ${inverted ? styles.descriptionInverted : ''}`}>{details.description}</p>
-      )}
-      <dl className={`${styles.grid} ${inverted ? styles.gridInverted : ''}`}>
+    <div className={styles.panel}>
+      <dl className={styles.grid}>
         <div>
           <dt>{t('client.components.photoshowcase.exif.resolution')}</dt>
           <dd>
