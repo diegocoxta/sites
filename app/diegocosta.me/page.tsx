@@ -13,19 +13,6 @@ export default async function HomePage() {
   const content = contentFor(config);
   const [{ photos, hasMore }, collections] = await Promise.all([getPhotosPage(1), getCollections()]);
 
-  const leading = (
-    <>
-      <Profile
-        t={t}
-        name={config.author}
-        avatar={config.avatar ?? ''}
-        socialLinks={config.links?.filter((link) => link.type === 'icon')}
-        pages={content.getPages()}
-      />
-      {collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
-    </>
-  );
-
   if (photos.length <= 0) {
     return <p>{t('page.photos.empty')}</p>;
   }
@@ -33,7 +20,22 @@ export default async function HomePage() {
   return (
     <>
       <h1 className="srOnly">{t('config.title')}</h1>
-      <Feed initialPhotos={photos} initialHasMore={hasMore} loadMore={getPhotosPage} hrefBase="/p" leading={leading} />
+      <Feed
+        initialPhotos={photos}
+        initialHasMore={hasMore}
+        loadMore={getPhotosPage}
+        hrefBase="/p"
+        leading={
+          <Profile
+            t={t}
+            name={config.author}
+            avatar={config.avatar ?? ''}
+            socialLinks={config.links?.filter((link) => link.type === 'icon')}
+            pages={content.getPages()}
+          />
+        }
+        trailing={collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
+      />
     </>
   );
 }

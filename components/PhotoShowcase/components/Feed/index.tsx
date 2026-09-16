@@ -18,12 +18,13 @@ interface FeedProps {
   initialHasMore: boolean;
   loadMore: (page: number) => Promise<PhotoFeedPage>;
   hrefBase: string;
-  leading?: React.ReactElement;
+  leading?: React.ReactNode;
+  trailing?: React.ReactNode;
 }
 
 export default function Feed(props: FeedProps) {
   const t = useTranslator();
-  const { initialPhotos, initialHasMore, loadMore, hrefBase, leading } = props;
+  const { initialPhotos, initialHasMore, loadMore, hrefBase, leading, trailing } = props;
   const { photos, hasMore, loading, failed, sentinelRef, handleLoadMore } = useInfiniteScrollPhotos(
     initialPhotos,
     initialHasMore,
@@ -35,9 +36,16 @@ export default function Feed(props: FeedProps) {
     [photos, hrefBase]
   );
 
+  const leadingNode = leading ? (
+    <div className={styles.leading}>
+      {leading}
+      {trailing}
+    </div>
+  ) : undefined;
+
   return (
     <>
-      <Masonry leading={leading} items={items} />
+      <Masonry leading={leadingNode} items={items} />
       {hasMore ? (
         <LoadMore loading={loading} failed={failed} onLoadMore={handleLoadMore} sentinelRef={sentinelRef} />
       ) : (
