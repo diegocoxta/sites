@@ -32,6 +32,8 @@
   "components.linkhub.iconlinks.nav": "Redes sociales",
   "components.linkhub.recentactivity.hardcover.pageprogress": "Página {current} de {total}",
   "components.linkhub.recentactivity.lastfm.plays": "{count} reproducciones",
+  "components.footer.caption": "<a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"noopener noreferrer\" target=\"_blank\" >CC-BY</a> {year} por {author}",
+  "components.footer.sourcecode": "Código Fuente",
   "client.components.linkhub.recentactivity.lastfm.nowplaying": "Sonando ahora",
   "client.components.notfound.message": "La página que estás buscando no fue encontrada. \nVuelve a <a href=\"https://{domain}\">{domain}</a> e inténtalo de nuevo.",
   "client.components.blog.themeswitcher.arialabel": "Cambiar el color del tema."

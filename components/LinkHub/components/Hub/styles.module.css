@@ -8,7 +8,7 @@
   position: relative;
 
   @media (width >= 600px) {
-    margin: 30px auto;
+    margin: 30px auto 0;
     border-radius: 20px;
   }
 
@@ -41,7 +41,7 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  padding: 380px 16px 26px;
+  padding: 380px 16px 0;
 
   > p {
     text-align: center;
