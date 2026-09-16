@@ -2,8 +2,8 @@
   color: var(--main-title-color);
   box-shadow: none;
   text-decoration: none;
-  font-size: 36px;
-  margin: 0;
+  font-size: 28px;
+  margin: 30px 0 0;
   font-weight: 700;
 
   a {
@@ -16,12 +16,24 @@
       outline: none;
     }
   }
+
+  @media print {
+    margin: 0;
+  }
+
+  @media (width >= 768px) {
+    font-size: 36px;
+  }
 }
 
 .attributes {
   color: var(--main-subtitle-color);
-  font-size: 19px;
+  font-size: 16px;
   margin: 10px 0;
+
+  @media (width >= 768px) {
+    font-size: 19px;
+  }
 }
 
 .tagList {
@@ -39,10 +51,14 @@
 .tagLink {
   text-decoration: none;
   box-shadow: none;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--main-accent-color);
   font-weight: 700;
   text-transform: lowercase;
+
+  @media (width >= 768px) {
+    font-size: 16px;
+  }
 
   &:hover,
   &:focus {
@@ -53,12 +69,16 @@
 
 .content {
   line-height: 1.5;
-  font-size: 19px;
+  font-size: 16px;
   margin: 0 auto 60px;
   font-weight: 400;
 
   @media print {
     font-size: 14px;
+  }
+
+  @media (width >= 768px) {
+    font-size: 19px;
   }
 
   :global(.responsive) {
@@ -119,6 +139,11 @@
     max-width: 100%;
   }
 
+  h1,
+  h2 {
+    margin: 10px 0;
+  }
+
   h3 {
     font-size: 28px;
 
@@ -134,7 +159,11 @@
   padding: 2px 6px;
   border-radius: 10px;
   font-family: monospace;
-  font-size: 16px;
+  font-size: 14px;
+
+  @media (width >= 768px) {
+    font-size: 16px;
+  }
 
   a {
     color: #fff;
@@ -156,9 +185,13 @@
   padding: 20px;
   border-radius: 5px;
   margin: 16px 0;
-  font-size: 16px;
   overflow: scroll;
   color: #efefef;
+  font-size: 12px;
+
+  @media (width >= 768px) {
+    font-size: 14px;
+  }
 
   a {
     color: #fff;
