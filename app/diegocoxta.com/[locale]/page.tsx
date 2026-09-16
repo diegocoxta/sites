@@ -5,6 +5,7 @@ import type { CardLinkType, IconLinkType } from '~/lib/config';
 
 import Logo from '~/components/Logo';
 import { Hub, CardLinks, IconLinks, QrCode } from '~/components/LinkHub';
+import Footer from '~/components/Footer';
 
 import config from '~/app/diegocoxta.com/config';
 
@@ -23,13 +24,16 @@ export default async function HomePage({ params }: HomePageProps) {
   const cards = config.links?.filter((link): link is CardLinkType => link.type === 'card') ?? [];
 
   return (
-    <Hub background={config.avatar}>
-      <Logo name={config.title} size={32} as="h1" />
-      <p>{t(config.description)}</p>
-      <IconLinks t={t} icons={icons} />
-      <CardLinks t={t} cards={cards} />
-      <QrCode t={t} />
-    </Hub>
+    <>
+      <Hub background={config.avatar}>
+        <Logo name={config.title} size={32} as="h1" />
+        <p>{t(config.description)}</p>
+        <IconLinks t={t} icons={icons} />
+        <CardLinks t={t} cards={cards} />
+        <QrCode t={t} />
+      </Hub>
+      <Footer t={t} name={config.author} sourceCode={config.repository} />
+    </>
   );
 }
 
