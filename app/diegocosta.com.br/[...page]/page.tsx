@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 
-import { Container, Article } from '~/components/Blog';
+import { Article } from '~/components/Blog';
 
 import config from '~/app/diegocosta.com.br/config';
 
@@ -25,9 +25,9 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <Container>
+    <main>
       <Article t={t} renderHeader={false} {...doc} />
-    </Container>
+    </main>
   );
 }
 

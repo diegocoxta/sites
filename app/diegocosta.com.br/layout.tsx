@@ -10,7 +10,8 @@ import HtmlLang from '~/components/HtmlLang';
 import JsonLd from '~/components/JsonLd';
 import Logo from '~/components/Logo';
 import ThemeSwitcher from '~/components/ThemeSwitcher';
-import { Header, CommandBar, Footer } from '~/components/Blog';
+import { Header, CommandBar, Navigation, Container } from '~/components/Blog';
+import Footer from '~/components/Footer';
 
 import config from '~/app/diegocosta.com.br/config';
 
@@ -29,24 +30,27 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <HtmlLang locale={t.locale} />
         <JsonLd data={websiteLd(config, config.title)} />
         <JsonLd data={personLd(config)} />
-        <Header
-          left={<Logo name={config.author} />}
-          right={
-            <>
-              <ThemeSwitcher />
-              <CommandBar
-                content={[...posts, ...pages].map((p: ContentAttributes) => ({
-                  href: p.href,
-                  title: p.title,
-                  language: p.language,
-                }))}
-                repository={config.repository}
-              />
-            </>
-          }
-        />
-        {children}
-        <Footer author={config.author} links={config.links} repository={config.repository} t={t} />
+        <Container>
+          <Header
+            left={<Logo name={config.author} />}
+            right={
+              <>
+                <ThemeSwitcher />
+                <CommandBar
+                  content={[...posts, ...pages].map((p: ContentAttributes) => ({
+                    href: p.href,
+                    title: p.title,
+                    language: p.language,
+                  }))}
+                  repository={config.repository}
+                />
+              </>
+            }
+          />
+          {children}
+          <Navigation t={t} links={config.links} />
+          <Footer horizontal t={t} logoSize={20} name={config.author} sourceCode={config.repository} />
+        </Container>
       </TranslationProvider>
     </ThemeProvider>
   );

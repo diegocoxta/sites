@@ -1,5 +1,4 @@
 .container {
-  composes: container from '~/components/Blog/components/Container/styles.module.css';
   margin: 16px auto 0;
   display: flex;
   justify-content: space-between;
