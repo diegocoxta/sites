@@ -64,17 +64,15 @@ export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
   return (
     <Page
       leading={
-        <>
-          <Profile
-            t={t}
-            name={config.author}
-            avatar={config.avatar ?? ''}
-            socialLinks={config.links?.filter((link) => link.type === 'icon')}
-            pages={content.getPages()}
-          />
-          {collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
-        </>
+        <Profile
+          t={t}
+          name={config.author}
+          avatar={config.avatar ?? ''}
+          socialLinks={config.links?.filter((link) => link.type === 'icon')}
+          pages={content.getPages()}
+        />
       }
+      trailing={collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
     >
       <h1 className="srOnly">{title}</h1>
       <JsonLd data={imageObjectLd(config, photo, title)} />
