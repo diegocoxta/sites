@@ -6,7 +6,7 @@ import { useTranslator } from '~/components/TranslationProvider';
 
 import type { Photo } from '~/components/PhotoShowcase/types';
 import UnsplashImage from '~/components/PhotoShowcase/components/UnsplashImage';
-import { neighborsPhotos } from '~/components/PhotoShowcase/utils/neighborsPhotos';
+import { filmrollPhotos } from '~/components/PhotoShowcase/utils/filmrollPhotos';
 
 import styles from './styles.module.css';
 
@@ -27,29 +27,32 @@ export default function Filmroll({ photos, currentId, hrefBase }: FilmrollProps)
     return null;
   }
 
-  const mobileIds = new Set(neighborsPhotos(photos, currentIndex, MOBILE_RADIUS).map((photo) => photo.id));
+  const mobileIds = new Set(filmrollPhotos(photos, currentIndex, MOBILE_RADIUS).map((photo) => photo.id));
 
   return (
-    <ul className={styles.filmroll} aria-label={t('client.components.photoshowcase.filmroll.label')}>
-      {photos.map((photo) => {
-        const isCurrent = photo.id === currentId;
-        const alt =
-          [photo.description, photo.alt].filter(Boolean).join(' - ') || t('client.components.photoshowcase.photoalt');
+    <div className={styles.filmroll}>
+      <h3 className={styles.title}>{t('client.components.photoshowcase.filmroll.label')}</h3>
+      <ul className={styles.list}>
+        {photos.map((photo) => {
+          const isCurrent = photo.id === currentId;
+          const alt =
+            [photo.description, photo.alt].filter(Boolean).join(' - ') || t('client.components.photoshowcase.photoalt');
 
-        return (
-          <li key={photo.id} className={styles.item} data-mobile={mobileIds.has(photo.id)}>
-            {isCurrent ? (
-              <div className={styles.thumb} aria-current="true">
-                <UnsplashImage className={styles.image} src={photo.thumbnailSrc} alt={alt} fill sizes="120px" />
-              </div>
-            ) : (
-              <Link className={styles.thumb} href={`${hrefBase}/${photo.id}`} scroll={false} aria-label={alt}>
-                <UnsplashImage className={styles.image} src={photo.thumbnailSrc} alt={alt} fill sizes="120px" />
-              </Link>
-            )}
-          </li>
-        );
-      })}
-    </ul>
+          return (
+            <li key={photo.id} className={styles.item} data-mobile={mobileIds.has(photo.id)}>
+              {isCurrent ? (
+                <div className={styles.thumb} aria-current="true">
+                  <UnsplashImage className={styles.image} src={photo.thumbnailSrc} alt={alt} fill sizes="120px" />
+                </div>
+              ) : (
+                <Link className={styles.thumb} href={`${hrefBase}/${photo.id}`} scroll={false} aria-label={alt}>
+                  <UnsplashImage className={styles.image} src={photo.thumbnailSrc} alt={alt} fill sizes="120px" />
+                </Link>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }

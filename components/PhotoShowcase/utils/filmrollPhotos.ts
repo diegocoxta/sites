@@ -3,7 +3,7 @@
  * whichever side has room when `index` is near an edge so the window stays
  * as close to `radius * 2 + 1` items as the array allows.
  */
-export function neighborsPhotos<T>(items: T[], index: number, radius: number): T[] {
+export function filmrollPhotos<T>(items: T[], index: number, radius: number): T[] {
   const size = Math.min(items.length, radius * 2 + 1);
   let start = index - radius;
 
