@@ -6,7 +6,7 @@ import { getTranslations } from '~/lib/i18n/messages';
 import type { Translator } from '~/lib/i18n/translator';
 import { imageObjectLd } from '~/lib/schema';
 
-import { CollectionsCard, Lightbox, Page, Profile } from '~/components/PhotoShowcase';
+import { CollectionsCard, Filmroll, Lightbox, Page, Profile } from '~/components/PhotoShowcase';
 import JsonLd from '~/components/JsonLd';
 
 import config from '~/app/diegocosta.me/config';
@@ -87,6 +87,7 @@ export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
         closeHref="/"
         getPhotoDetails={getPhotoDetails}
       />
+      <Filmroll photos={context.neighbors} currentId={photo.id} hrefBase="/p" />
     </Page>
   );
 }

@@ -1,0 +1,53 @@
+.filmroll {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 40px;
+  padding: 40px 0 0;
+  list-style: none;
+  border-top: 1px solid var(--main-border-color);
+}
+
+.item {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 140px;
+
+  &[data-mobile='false'] {
+    display: none;
+
+    @media (width >= 1024px) {
+      display: block;
+    }
+  }
+}
+
+.thumb {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: var(--main-border-color);
+  opacity: 0.55;
+  transition: opacity 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  &[aria-current='true'] {
+    opacity: 1;
+    outline: 2px solid var(--main-accent-color);
+    outline-offset: 2px;
+  }
+}
+
+.image {
+  object-fit: cover;
+}
