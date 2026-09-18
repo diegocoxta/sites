@@ -1,18 +1,17 @@
 ---
 title: About Me
-kicker: A software engineer by trade and a photographer by habit.
+kicker: Amateur photography, no rush attached.
 summary: Amateur photographer and software engineer from Brazil, happiest traveling with a camera.
-listed: false
 ---
 
-Se você chegou até aqui, acredito que não preciso repetir meu nome, correto? Eu agradeço genuinamente sua visita e interesse em saber mais sobre mim. Primeiramente, a fotografia é o meu jeito de guardar o que vivo, e não há pretensão nenhuma de minha parte em transformá-la em algo maior que isso.
+I'm Diego Costa, born in 1991 in Brazil, and I genuinely appreciate you stopping by and wanting to know more about me. For me, photography is my way of keeping what I live through, and I have no pretension of turning it into anything bigger than that.
 
-Tudo começou numa viagem. Em algum momento, senti a necessidade de guardar aquele momento para a posteridade, mas fotografar com o celular não me dava o controle que eu sentia que necessitava para registrar o momento não apenas do modo que estava vendo, mas também como eu o estava sentindo. Foi aí que comprei minha primeira câmera e, desde então, fui aprendendo sozinho, no erro e acerto, sem aulas formais e, o mais importante, sem pressa.
+It all started on a trip. At some point, I felt the need to keep that moment for posterity, but shooting with my phone didn't give me the control I felt I needed to capture the moment not just as I was seeing it, but as I was feeling it. That's when I bought my first camera, and I've been teaching myself ever since, through trial and error, with no formal classes and, more importantly, no rush.
 
-A pressa e a síndrome do impostor sempre foram vilãs em minha vida e na minha carreira em tecnologia, que também nasceu de um hobby. Mas desta vez quero fazer diferente: a fotografia será meu porto seguro, lugar de paz e sem cobrança.
+Rushing and impostor syndrome have always been the villains in my life and in my career in tech, which was also born from a hobby. But this time I want to do it differently: photography will be my safe place, a place of peace, with no pressure attached.
 
-Fotografo natureza e viagens; o que busco capturar muda de acordo com o lugar. Algumas poucas vezes, alguns estranhos são retratados por minhas lentes quando sinto que sua manifestação cultural me toca de alguma forma; em outros momentos, faço de tudo para esconde-los de meu enquadramento e deixar que o ambiente fale por si só.
+I photograph nature and travel; what I look to capture changes depending on the place. Every once in a while, a few strangers end up in front of my lens when I feel their cultural expression speaks to me somehow; other times, I do everything I can to keep them out of my frame and let the surroundings speak for themselves.
 
-No fim, essas fotos não são para impressionar ninguém. São o meu jeito de guardar memória e lembrar não só onde estive, mas quem eu era em cada um desses lugares.
+In the end, these photos aren't meant to impress anyone. They're my way of holding on to memory, and remembering not just where I've been, but who I was in each of those places.
 
-Esta página também é um manifesto para o eu do futuro: não se cobre, isso aqui é por pura diversão.
+This page is also a message to my future self: don't put pressure on yourself, this is here for the fun of it.
