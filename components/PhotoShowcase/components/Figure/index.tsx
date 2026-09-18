@@ -1,14 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import { FaCircleInfo } from 'react-icons/fa6';
 
 import { useTranslator } from '~/components/TranslationProvider';
 import Skeleton from '~/components/Skeleton';
 
-import type { Photo, PhotoDetails } from '../../types';
-
-import UnsplashImage from '../UnsplashImage';
-import Exif from '../Exif';
+import type { Photo, PhotoDetails } from '~/components/PhotoShowcase/types';
+import { useExifDetails } from '~/components/PhotoShowcase/hooks/useExifDetails';
+import UnsplashImage from '~/components/PhotoShowcase/components/UnsplashImage';
+import Exif from '~/components/PhotoShowcase/components/Exif';
 
 import styles from './styles.module.css';
 
@@ -23,6 +24,7 @@ interface FigureProps {
 export default function Figure({ photo, index, total, getPhotoDetails, topRight }: FigureProps) {
   const t = useTranslator();
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { status: exifStatus, details: exifDetails, load: loadExif } = useExifDetails(photo.id, getPhotoDetails);
 
   return (
     <figure className={styles.figure} style={{ '--ratio': photo.width / photo.height } as React.CSSProperties}>
@@ -40,6 +42,16 @@ export default function Figure({ photo, index, total, getPhotoDetails, topRight 
           priority
           onLoad={() => setImageLoaded(true)}
         />
+        {exifStatus === 'idle' && (
+          <button
+            type="button"
+            className={styles.exifButton}
+            onClick={loadExif}
+            aria-label={t('client.components.photoshowcase.exif.viewmetadata')}
+          >
+            <FaCircleInfo aria-hidden />
+          </button>
+        )}
       </div>
       <figcaption className={styles.caption}>
         <span>
@@ -59,7 +71,7 @@ export default function Figure({ photo, index, total, getPhotoDetails, topRight 
         )}
       </figcaption>
       <p className={styles.description}>{photo.description}</p>
-      <Exif photoId={photo.id} size={{ width: photo.width, height: photo.height }} getPhotoDetails={getPhotoDetails} />
+      <Exif status={exifStatus} details={exifDetails} size={{ width: photo.width, height: photo.height }} />
     </figure>
   );
 }

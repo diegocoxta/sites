@@ -1,12 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { FaCircleInfo } from 'react-icons/fa6';
-
 import Skeleton from '~/components/Skeleton';
 import { useTranslator } from '~/components/TranslationProvider';
 
-import type { PhotoDetails } from '../../types';
+import type { ExifStatus } from '~/components/PhotoShowcase/hooks/useExifDetails';
+import type { PhotoDetails } from '~/components/PhotoShowcase/types';
 
 import styles from './styles.module.css';
 
@@ -33,37 +31,20 @@ function ExifSkeleton() {
 }
 
 interface ExifProps {
-  photoId: string;
+  status: ExifStatus;
+  details: PhotoDetails | null;
   size: { width: number; height: number };
-  getPhotoDetails: (id: string) => Promise<PhotoDetails | null>;
 }
 
-type Status = 'idle' | 'loading' | 'loaded';
-
-export default function Exif({ photoId, size, getPhotoDetails }: ExifProps) {
+export default function Exif({ status, details, size }: ExifProps) {
   const t = useTranslator();
-  const [details, setDetails] = useState<PhotoDetails | null>(null);
-  const [status, setStatus] = useState<Status>('idle');
 
-  const handleViewMetadata = () => {
-    setStatus('loading');
-
-    getPhotoDetails(photoId).then((result) => {
-      setDetails(result);
-      setStatus('loaded');
-    });
-  };
+  if (status === 'idle') {
+    return null;
+  }
 
   if (status === 'loading') {
     return <ExifSkeleton />;
-  }
-
-  if (status === 'idle') {
-    return (
-      <button type="button" className={styles.viewMetadata} onClick={handleViewMetadata}>
-        <FaCircleInfo /> {t('client.components.photoshowcase.exif.viewmetadata')}
-      </button>
-    );
   }
 
   return (
