@@ -4,7 +4,6 @@
   align-items: center;
   gap: 12px;
   padding: 50px 0;
-  width: 100%;
 
   @media (width >= 640px) {
     margin: 0 18px;
