@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { useTranslator } from '~/components/TranslationProvider';
 
 import type { Photo } from '~/components/PhotoShowcase/types';
+import { filmrollPhotos } from '~/components/PhotoShowcase/utils';
 import UnsplashImage from '~/components/PhotoShowcase/components/UnsplashImage';
-import { filmrollPhotos } from '~/components/PhotoShowcase/utils/filmrollPhotos';
 
 import styles from './styles.module.css';
 

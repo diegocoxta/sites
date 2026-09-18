@@ -2,11 +2,10 @@
 
 import { useTranslator } from '~/components/TranslationProvider';
 
-import type { Photo, PhotoDetails } from '../../types';
-import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
-import { useLightboxNavigation } from '../../hooks/useLightboxNavigation';
-import { useSwipeNavigation } from '../../hooks/useSwipeNavigation';
-import Figure from '../Figure';
+import type { Photo, PhotoDetails } from '~/components/PhotoShowcase/types';
+import { useBodyScrollLock, useLightboxNavigation, useSwipeNavigation } from '~/components/PhotoShowcase/hooks';
+import Figure from '~/components/PhotoShowcase/components/Figure';
+
 import LightboxActionButton from './ActionButton';
 
 import styles from './styles.module.css';

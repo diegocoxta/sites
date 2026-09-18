@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import { Masonry as PlockMasonry } from 'react-plock';
 
-import { useHasMounted } from '../../hooks/useHasMounted';
+import { useHasMounted } from '~/components/PhotoShowcase/hooks';
 
 import styles from './styles.module.css';
 
