@@ -6,6 +6,7 @@ import { getCollectionPhotos, getPhoto, getRecentUserPhotos, getUserCollections 
 import type { UnsplashCollection, UnsplashPhoto, UnsplashPhotoDetails } from '~/lib/services/unsplash';
 
 import type { Collection, Photo, PhotoContext, PhotoDetails, PhotoFeedPage } from '~/components/PhotoShowcase/types';
+import { neighborsPhotos } from '~/components/PhotoShowcase/utils/neighborsPhotos';
 
 import config from '~/app/diegocosta.me/config';
 
@@ -134,6 +135,8 @@ const allCollections = cache(async (): Promise<UnsplashCollection[]> => {
   return all;
 });
 
+const NEIGHBOR_RADIUS = 2;
+
 function contextAt(photos: Photo[], id: string): PhotoContext | null {
   const index = photos.findIndex((photo) => photo.id === id);
 
@@ -147,6 +150,7 @@ function contextAt(photos: Photo[], id: string): PhotoContext | null {
     nextId: index < photos.length - 1 ? photos[index + 1].id : null,
     index,
     total: photos.length,
+    neighbors: neighborsPhotos(photos, index, NEIGHBOR_RADIUS),
   };
 }
 

@@ -36,6 +36,7 @@ export type PhotoContext = {
   nextId: string | null;
   index: number;
   total: number;
+  neighbors: Photo[];
 };
 
 export type PhotoDetails = {
