@@ -20,7 +20,7 @@
   "client.components.photoshowcase.loadmore.retry": "Couldn't load — try again",
   "client.components.photoshowcase.feed.end": "that's all.",
   "client.components.photoshowcase.backtotop.label": "Back to top",
-  "client.components.photoshowcase.filmroll.label": "Nearby photos",
+  "client.components.photoshowcase.filmroll.label": "More photos",
   "client.components.photoshowcase.lightbox.previous": "Previous photo",
   "client.components.photoshowcase.lightbox.next": "Next photo",
   "client.components.photoshowcase.lightbox.backtogallery": "Back to gallery",

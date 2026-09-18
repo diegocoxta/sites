@@ -87,7 +87,7 @@ export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
         closeHref="/"
         getPhotoDetails={getPhotoDetails}
       />
-      <Filmroll photos={context.neighbors} currentId={photo.id} hrefBase="/p" />
+      <Filmroll photos={context.filmroll} currentId={photo.id} hrefBase="/p" />
     </Page>
   );
 }
