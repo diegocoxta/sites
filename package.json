@@ -56,6 +56,9 @@
     "stylelint-config-standard": "^40.0.0",
     "typescript": "^6.0.3"
   },
+  "resolutions": {
+    "gray-matter/js-yaml": "^3.15.2"
+  },
   "diegocoxta/npm-cool-off-upgrade": {
     "ignore": [
       "typescript"
