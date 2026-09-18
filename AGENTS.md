@@ -8,14 +8,19 @@ Guidance for AI coding agents. Keep it short — this file is always in context.
 
 - Package manager: **Yarn 1.x** (not npm). Node 24 (`.nvmrc`).
 - `yarn install` — dependencies.
-- `yarn dev:br` / `yarn dev:me` / `yarn dev:com` — dev server for one domain
-  (sets `DEV_SITE` so `proxy.ts` maps `localhost` to that domain). Port 3000.
+- `yarn dev` — dev server for all three domains on port 3000; visit
+  `localhost:3000/<domain>/...` (e.g. `localhost:3000/diegocosta.me/`) to pick
+  which one `proxy.ts` maps `localhost` to.
+- `yarn dev:diegocosta.com.br` / `yarn dev:diegocosta.me` / `yarn dev:diegocoxta.com`
+  — dev server pinned to one domain (sets `DEV_SITE` so `proxy.ts` maps plain
+  `localhost` to that domain, no path prefix needed). Port 3000.
 - `yarn build` — production build (compiles all three domains).
 - `yarn lint` — ESLint. `yarn stylelint` — CSS Modules. `yarn prettier` — format.
 - `yarn cv` — regenerates `public/diegocosta.com.br/pages/cv/cv.pdf` from that
   page's own Markdown via `md-to-pdf`; run after editing the CV content.
 - No unit test suite. Verify changes with `yarn lint` + `yarn build`, and for
-  behavior, `yarn dev:<site>` and hit the route.
+  behavior, `yarn dev:<site>` (or `yarn dev` + `/<domain>` path prefix) and hit
+  the route.
 
 ## Before you finish
 

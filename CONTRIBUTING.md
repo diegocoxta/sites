@@ -14,15 +14,18 @@ Before starting, you may need to know how to contribute in a good way. You can f
 3. Copy the env file: `cp .env.example .env`. Every key is optional — without a
    given token the matching activity widget just renders empty. `SITE_ACCENT_COLOR`
    and `SITE_TEXT_COLOR` control the theme colors.
-4. Start the dev server for one domain:
-   - `yarn dev:br` &rarr; diegocosta.com.br
-   - `yarn dev:me` &rarr; diegocosta.me
-   - `yarn dev:com` &rarr; diegocoxta.com
+4. Start the dev server:
+   - `yarn dev` &rarr; serves all three domains at once. Open
+     [`http://localhost:3000`](http://localhost:3000) and pick the domain via a
+     path prefix, e.g. [`localhost:3000/diegocosta.me`](http://localhost:3000/diegocosta.me)
+     or [`localhost:3000/diegocoxta.com`](http://localhost:3000/diegocoxta.com).
+   - Or pin it to a single domain instead:
+     - `yarn dev:diegocosta.com.br`
+     - `yarn dev:diegocosta.me`
+     - `yarn dev:diegocoxta.com`
 
-   (or the full form, e.g. `yarn dev:diegocosta.com.br`)
-
-5. Open [`http://localhost:3000`](http://localhost:3000). The `DEV_SITE` env var
-   set by these scripts tells [`proxy.ts`](proxy.ts) which domain `localhost` maps to.
+     These set the `DEV_SITE` env var, which tells [`proxy.ts`](proxy.ts) to map
+     plain `localhost` to that domain, so no path prefix is needed.
 
 See [AGENTS.md](AGENTS.md) for how the codebase is organized.
 
