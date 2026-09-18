@@ -16,14 +16,16 @@ export function proxy(request: NextRequest) {
 
   let hostname = (request.headers.get('host') || '').split(':')[0];
 
-  if (hostname === 'localhost') {
-    hostname = process.env.DEV_SITE || SITES[0].domain;
+  const { DEV_SITE, NODE_ENV } = process.env;
+
+  if (hostname === 'localhost' && DEV_SITE) {
+    hostname = DEV_SITE;
   }
 
   let pathPrefix = '';
   let routePath = pathname;
 
-  if (hostname.endsWith('.vercel.app')) {
+  if (hostname.endsWith('.vercel.app') || (hostname === 'localhost' && !DEV_SITE)) {
     const [, maybeDomain, ...rest] = pathname.split('/');
     const matchedSite = SITES.find((site) => site.domain === maybeDomain);
 
@@ -73,7 +75,7 @@ export function proxy(request: NextRequest) {
       path: '/',
       maxAge: LOCALE_COOKIE_MAX_AGE,
       sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production',
+      secure: NODE_ENV === 'production',
     });
   }
 

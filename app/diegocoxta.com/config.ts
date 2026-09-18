@@ -92,6 +92,14 @@ const config: ConfigType = {
     },
     {
       type: 'card',
+      title: 'Like this page?',
+      icon: 'FaHeart',
+      href: 'https://github.com/diegocoxta/sites',
+      description: 'config.links.like_page.description',
+      highlight: true,
+    },
+    {
+      type: 'card',
       title: 'Github',
       icon: 'FaGithub',
       href: 'https://github.com/diegocoxta',
@@ -104,14 +112,6 @@ const config: ConfigType = {
           authorization: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
         },
       },
-    },
-    {
-      type: 'card',
-      title: 'Like this page?',
-      icon: 'FaHeart',
-      href: 'https://github.com/diegocoxta/sites',
-      description: 'config.links.like_page.description',
-      highlight: true,
     },
     {
       type: 'card',
