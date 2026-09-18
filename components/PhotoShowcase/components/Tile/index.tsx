@@ -6,9 +6,8 @@ import Link from 'next/link';
 import { useTranslator } from '~/components/TranslationProvider';
 import Skeleton from '~/components/Skeleton';
 
-import UnsplashImage from '../UnsplashImage';
-
-import type { Photo } from '../../types';
+import type { Photo } from '~/components/PhotoShowcase/types';
+import UnsplashImage from '~/components/PhotoShowcase/components/UnsplashImage';
 
 import styles from './styles.module.css';
 

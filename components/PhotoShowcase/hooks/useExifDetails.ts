@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import type { PhotoDetails } from '../types';
+import type { PhotoDetails } from '~/components/PhotoShowcase/types';
 
 export type ExifStatus = 'idle' | 'loading' | 'loaded';
 

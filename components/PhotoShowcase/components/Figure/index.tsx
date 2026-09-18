@@ -7,7 +7,7 @@ import { useTranslator } from '~/components/TranslationProvider';
 import Skeleton from '~/components/Skeleton';
 
 import type { Photo, PhotoDetails } from '~/components/PhotoShowcase/types';
-import { useExifDetails } from '~/components/PhotoShowcase/hooks/useExifDetails';
+import { useExifDetails } from '~/components/PhotoShowcase/hooks';
 import UnsplashImage from '~/components/PhotoShowcase/components/UnsplashImage';
 import Exif from '~/components/PhotoShowcase/components/Exif';
 

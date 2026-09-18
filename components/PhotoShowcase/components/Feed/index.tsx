@@ -4,12 +4,12 @@ import { useMemo } from 'react';
 
 import { useTranslator } from '~/components/TranslationProvider';
 
-import type { Photo, PhotoFeedPage } from '../../types';
-import { useInfiniteScrollPhotos } from '../../hooks/useInfiniteScrollPhotos';
-import BackToTop from '../BackToTop';
-import Masonry, { type MasonryEntry } from '../Masonry';
-import Tile from '../Tile';
-import LoadMore from '../LoadMore';
+import type { Photo, PhotoFeedPage } from '~/components/PhotoShowcase/types';
+import { useInfiniteScrollPhotos } from '~/components/PhotoShowcase/hooks';
+import BackToTop from '~/components/PhotoShowcase/components/BackToTop';
+import Masonry, { type MasonryEntry } from '~/components/PhotoShowcase/components/Masonry';
+import Tile from '~/components/PhotoShowcase/components/Tile';
+import LoadMore from '~/components/PhotoShowcase/components/LoadMore';
 
 import styles from './styles.module.css';
 

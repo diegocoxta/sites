@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import type { Photo, PhotoFeedPage } from '../types';
+import type { Photo, PhotoFeedPage } from '~/components/PhotoShowcase/types';
 
 export function useInfiniteScrollPhotos(
   initialPhotos: Photo[],

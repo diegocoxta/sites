@@ -3,7 +3,7 @@
 import Skeleton from '~/components/Skeleton';
 import { useTranslator } from '~/components/TranslationProvider';
 
-import type { ExifStatus } from '~/components/PhotoShowcase/hooks/useExifDetails';
+import type { ExifStatus } from '~/components/PhotoShowcase/hooks';
 import type { PhotoDetails } from '~/components/PhotoShowcase/types';
 
 import styles from './styles.module.css';

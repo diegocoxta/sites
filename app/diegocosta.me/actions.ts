@@ -6,7 +6,7 @@ import { getCollectionPhotos, getPhoto, getRecentUserPhotos, getUserCollections 
 import type { UnsplashCollection, UnsplashPhoto, UnsplashPhotoDetails } from '~/lib/services/unsplash';
 
 import type { Collection, Photo, PhotoContext, PhotoDetails, PhotoFeedPage } from '~/components/PhotoShowcase/types';
-import { filmrollPhotos } from '~/components/PhotoShowcase/utils/filmrollPhotos';
+import { filmrollPhotos } from '~/components/PhotoShowcase/utils';
 
 import config from '~/app/diegocosta.me/config';
 

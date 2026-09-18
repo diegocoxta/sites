@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import type { ComponentWithTranslator } from '~/lib/i18n/translator';
 
-import type { Collection } from '../../types';
+import type { Collection } from '~/components/PhotoShowcase/types';
 
 import styles from './styles.module.css';
 
