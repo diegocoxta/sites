@@ -37,7 +37,7 @@
     "reading-time": "^1.5.0",
     "rss": "^1.2.2",
     "sharp": "^0.35.4",
-    "sugar-high": "^2.4.0"
+    "sugar-high": "^2.4.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.7",
