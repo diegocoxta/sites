@@ -47,7 +47,6 @@ Welcome to my `/uses` page that list all my tools, hardware, and software! As a 
 
 - **Body**: Canon EOS R50.
 - **Lenses**:
-  - Canon RF-S 10-18mm f/4.5-6.3 IS STM. [(Available on Mercado Livre)](https://www.mercadolivre.com.br/lente-canon-rfs-1018mm-f4563-is-stm/up/MLBU4991636506)
   - Canon RF 28mm f/2.8mm STM (for street photography/everyday carry due to its small size).
   - Canon RF 50mm f/1.8mm STM (for portraits and general photography).
   - Tamron 18-300mm f/3.5-6.3 Di III-A VC VXD (for landscape and travel photography).
