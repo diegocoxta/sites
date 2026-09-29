@@ -1,7 +1,9 @@
 export { default as Article } from './components/Article';
+export { default as Breadcrumb } from './components/Breadcrumb';
 export { default as CommandBar } from './components/CommandBar';
 export { default as Container } from './components/Container';
+export { default as Divisor } from './components/Divisor';
+export { default as FlashMessage } from './components/FlashMessage';
 export { default as Header } from './components/Header';
 export { default as Navigation } from './components/Navigation';
-export { default as PageTitle } from './components/PageTitle';
 export { default as PageDescription } from './components/PageDescription';
