@@ -17,6 +17,8 @@ export type ConfigLinkType = {
   title: string;
   href: string;
   description?: string;
+  /** Keep the link configured but skip rendering it. */
+  hide?: boolean;
 };
 
 export type TextLinkType = ConfigLinkType & {

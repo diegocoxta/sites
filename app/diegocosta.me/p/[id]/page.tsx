@@ -5,6 +5,7 @@ import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 import type { Translator } from '~/lib/i18n/translator';
 import { imageObjectLd } from '~/lib/schema';
+import type { IconLinkType } from '~/lib/config';
 
 import { CollectionsCard, Filmroll, Lightbox, Page, Profile } from '~/components/PhotoShowcase';
 import JsonLd from '~/components/JsonLd';
@@ -68,7 +69,7 @@ export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
           t={t}
           name={config.author}
           avatar={config.avatar ?? ''}
-          socialLinks={config.links?.filter((link) => link.type === 'icon')}
+          socialLinks={config.links?.filter((link): link is IconLinkType => link.type === 'icon' && !link.hide)}
           pages={content.getPages()}
         />
       }

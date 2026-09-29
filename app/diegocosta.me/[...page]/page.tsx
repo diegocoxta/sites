@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
+import type { IconLinkType } from '~/lib/config';
 
 import { CollectionsCard, Markdown, Page, Profile } from '~/components/PhotoShowcase';
 
@@ -57,7 +58,7 @@ export default async function MarkdownPage({ params }: PageProps) {
           t={t}
           name={config.author}
           avatar={config.avatar ?? ''}
-          socialLinks={config.links?.filter((link) => link.type === 'icon')}
+          socialLinks={config.links?.filter((link): link is IconLinkType => link.type === 'icon' && !link.hide)}
           pages={content.getPages()}
         />
       }
