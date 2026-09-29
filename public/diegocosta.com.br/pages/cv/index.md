@@ -16,7 +16,11 @@ pdf_options:
  
 [diego@diegocosta.com.br](mailto:diego@diegocosta.com.br) •  [in/diegocoxta](https://www.linkedin.com/in/diegocoxta) • [\+55 11 9 9392-6493](https://wa.me/5511993926493) 
 
-Gerente de tecnologia e líder técnico com mais de 10 anos de experiência na construção de plataformas escaláveis e formação de times de alta performance. Com uma fundação sólida como Engenheiro de Software, possuo histórico comprovado em ambientes de hipercrescimento, liderando serviços críticos para mais de 100 milhões de usuários. Meu objetivo é transformar complexidade técnica em valor direto para o cliente final, aliado ao forte compromisso com a promoção da diversidade e inclusão na engenharia.
+Atualmente sou Coordenador de Engenharia de Software na TOTVS, liderando times responsáveis pelos mecanismos de faturamento, garantindo que ele seja contabilizado de forma correta e eficiente e pronto para escalar junto com o crescimento do negócio.
+
+Antes, no Nubank, atuei como Engineering Manager em uma das maiores fintechs do mundo, cuidando da experiência do aplicativo para garantir uma jornada amigável e apaixonante para mais de 100 milhões de clientes no Brasil e na América Latina.
+
+Meus principais interesses incluem liderança de engenharia, gestão de pessoas e a promoção da diversidade e inclusão no setor de tecnologia.
 
 <a class="screenOnly" href="/pages/cv/cv.pdf" download="curriculo-diego-costa.pdf">📥 Baixar esse Currículo em PDF</a>
 
@@ -35,8 +39,6 @@ Gerente de tecnologia e líder técnico com mais de 10 anos de experiência na c
 *   Liderança técnica e estratégica na quebra de um serviço monolítico crítico, conduzindo sessões de *whiteboard*, redação de RFCs, negociação com stakeholders e execução do *sunset* sem incidentes em produção.
 *   Estruturação tecnológica da área de Growth do Nubank Ultravioleta (alta renda), desenvolvendo ferramentas *low-code* (Drag & Drop) para dar autonomia de experimentação ao time de Marketing.
 *   Idealização e gestão de um programa de mentoria *cross-time* na área de negócios, gerenciando o pareamento e o desenvolvimento de 20 duplas (mentor/mentee) por trimestre.
-
-<div class="pageBreak" aria-hidden></div>
 
 **Nubank | Tech Manager (Projeto 1)** | Fev 2021 - Jan 2023
 *   Liderança da reestruturação da homepage do aplicativo (Server Driven UI, Internacionalização, nova UI), impactando diretamente a base de **100 milhões de usuários**, gerindo 8 engenheiros full-stack na implementação de nova linguagem de programação e novos paradigmas de desenvolvimento.
@@ -58,11 +60,13 @@ Gerente de tecnologia e líder técnico com mais de 10 anos de experiência na c
 *   Concepção de plataformas *white-label*, incluindo algoritmos de *Spaced Repetition* e integrações complexas (SSO Cognito, In-App Purchases).
 *   Implementação de pipelines de CI/CD (Bitrise) e atualizações *Over-The-Air* (CodePush) para entregas sem dependência das lojas. Criação do evento React Salvador para fomento da comunidade e captação de talentos.
 
-<div class="pageBreak" aria-hidden></div>
+
 
 **Convergence Works | Software Engineer** | Nov 2015 - Mar 2018
 *   Atuação *full-stack* na construção de portais de notícias de alta disponibilidade para filiais locais de grandes grupos de comunicação.
 *   Desenvolvimento de APIs (Symfony), arquitetura de componentes reutilizáveis (Typo3, WordPress) e aplicativos móveis multiplataforma (Ionic, Cordova e transição para React Native).
+
+<div class="pageBreak" aria-hidden></div> 
 
 **Level131 | Software Engineer** | Jul 2015 - Out 2015
 *   Desenvolvimento *full-stack* e entrega ágil de soluções CMS customizadas utilizando Laravel e ecossistema WordPress.
