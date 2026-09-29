@@ -14,18 +14,20 @@ export default function Navigation({ t, ...props }: NavigationProps) {
     <nav className={styles.container} aria-label={t('components.blog.navigation.arialabel')}>
       {props.links && (
         <ul className={styles.links}>
-          {props.links.map((link, index) => (
-            <li className={styles.linksItem} key={`nav-${index}`}>
-              <Link
-                className={styles.linksLink}
-                href={link.href}
-                rel="me noopener"
-                target={link.href.startsWith('http') ? '_blank' : undefined}
-              >
-                {t(link.title)}
-              </Link>
-            </li>
-          ))}
+          {props.links
+            .filter((link) => !link.hide)
+            .map((link, index) => (
+              <li className={styles.linksItem} key={`nav-${index}`}>
+                <Link
+                  className={styles.linksLink}
+                  href={link.href}
+                  rel="me noopener"
+                  target={link.href.startsWith('http') ? '_blank' : undefined}
+                >
+                  {t(link.title)}
+                </Link>
+              </li>
+            ))}
         </ul>
       )}
     </nav>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
+import type { IconLinkType } from '~/lib/config';
 
 import { CollectionsCard, Feed, Profile } from '~/components/PhotoShowcase';
 
@@ -30,7 +31,7 @@ export default async function HomePage() {
             t={t}
             name={config.author}
             avatar={config.avatar ?? ''}
-            socialLinks={config.links?.filter((link) => link.type === 'icon')}
+            socialLinks={config.links?.filter((link): link is IconLinkType => link.type === 'icon' && !link.hide)}
             pages={content.getPages()}
           />
         }

@@ -20,8 +20,8 @@ export default async function HomePage({ params }: HomePageProps) {
 
   const t = getTranslations(config, locale);
 
-  const icons = config.links?.filter((link): link is IconLinkType => link.type === 'icon') ?? [];
-  const cards = config.links?.filter((link): link is CardLinkType => link.type === 'card') ?? [];
+  const icons = config.links?.filter((link): link is IconLinkType => link.type === 'icon' && !link.hide) ?? [];
+  const cards = config.links?.filter((link): link is CardLinkType => link.type === 'card' && !link.hide) ?? [];
 
   return (
     <>

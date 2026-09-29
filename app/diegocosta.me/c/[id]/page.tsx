@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
+import type { IconLinkType } from '~/lib/config';
 
 import { CollectionDetails, Feed, Profile } from '~/components/PhotoShowcase';
 
@@ -64,7 +65,7 @@ export default async function CollectionPage({ params }: PageProps) {
           t={t}
           name={config.author}
           avatar="/avatar.jpg"
-          socialLinks={config.links?.filter((link) => link.type === 'icon')}
+          socialLinks={config.links?.filter((link): link is IconLinkType => link.type === 'icon' && !link.hide)}
           pages={content.getPages()}
         />
       }

@@ -60,6 +60,7 @@ const config: ConfigType = {
       href: 'https://lista.mercadolivre.com.br/_CustId_126689975?',
       description: 'config.links.shop.description',
       highlight: true,
+      hide: true,
     },
     {
       type: 'card',
