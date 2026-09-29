@@ -1,0 +1,7 @@
+.container {
+  padding: 10px;
+  background-color: color-mix(in srgb, var(--main-accent-color) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--main-accent-color) 20%, transparent);
+  color: var(--main-title-color);
+  font-size: 14px;
+}
