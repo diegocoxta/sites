@@ -7,7 +7,7 @@
   "page.home.arialabel": "Sobre mim",
   "page.home.heading": "Diego Costa — Engineering Manager",
   "page.tag.description": "Todos os posts marcados com #{tag}.",
-  "page.home.bio": "Sou um engineering manager apaixonado por transformar tecnologia em impacto real. Tenho mais de 10 anos de experiência em engenharia de software, atuando em grandes empresas e startups em rápido crescimento.\nMeus principais interesses incluem liderança de engenharia, gestão de pessoas e a promoção da diversidade e inclusão no setor de tecnologia.\nSe você quiser saber mais sobre mim, confira os links abaixo!",
+  "page.home.bio": "Atualmente sou Coordenador de Engenharia de Software na TOTVS, liderando times responsáveis pelos mecanismos de faturamento, garantindo que ele seja contabilizado de forma correta e eficiente e pronto para escalar junto com o crescimento do negócio.\nAntes, no Nubank, atuei como Engineering Manager em uma das maiores fintechs do mundo, cuidando da experiência do aplicativo para garantir uma jornada amigável e apaixonante para mais de 100 milhões de clientes no Brasil e na América Latina.\nMeus principais interesses incluem liderança de engenharia, gestão de pessoas e a promoção da diversidade e inclusão no setor de tecnologia.\nSe você quiser saber mais sobre mim, confira os links abaixo!",
   "client.components.notfound.message": "Sinto muito, mas a página que você está buscando não foi encontrada.\nVolte para <a href=\"https://{domain}\">{domain}</a> e tente novamente.",
   "components.blog.article.attributes.readingtimeunderminute": "Menos de 1 minuto de leitura",
   "components.blog.article.attributes.readingtime": "{count} minutos de leitura",
