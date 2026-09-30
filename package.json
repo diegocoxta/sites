@@ -36,7 +36,7 @@
     "react-plock": "^3.6.1",
     "reading-time": "^1.5.0",
     "rss": "^1.2.2",
-    "sharp": "^0.35.4",
+    "sharp": "^0.35.5",
     "sugar-high": "^2.5.0"
   },
   "devDependencies": {
