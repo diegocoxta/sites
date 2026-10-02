@@ -24,7 +24,7 @@
     "cv": "cd public/diegocosta.com.br/pages/cv && npx md-to-pdf index.md --stylesheet pdf.css"
   },
   "dependencies": {
-    "fast-xml-parser": "^5.11.1",
+    "fast-xml-parser": "^5.11.2",
     "gray-matter": "^4.0.3",
     "kbar": "^1.0.0",
     "next": "16.3.6",
