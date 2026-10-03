@@ -73,7 +73,7 @@ const config: ConfigType = {
         config: {
           title: 'config.links.photography.recentactivity.title',
           username: process.env.UNSPLASH_USERNAME,
-          authorization: process.env.UNSPLASH_ACCESS_KEY,
+          authorization: process.env.DIEGOCOXTACOM_UNSPLASH_ACCESS_KEY,
         },
       },
     },
