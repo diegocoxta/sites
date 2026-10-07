@@ -79,7 +79,7 @@ const config: ConfigType = {
     },
     {
       type: 'card',
-      title: 'My Tech Blog',
+      title: 'config.links.blog.title',
       icon: 'FaFloppyDisk',
       href: 'https://diegocosta.com.br',
       description: 'config.links.blog.description',
@@ -93,7 +93,7 @@ const config: ConfigType = {
     },
     {
       type: 'card',
-      title: 'Like this page?',
+      title: 'config.links.like_page.title',
       icon: 'FaHeart',
       href: 'https://github.com/diegocoxta/sites',
       description: 'config.links.like_page.description',
