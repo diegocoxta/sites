@@ -130,21 +130,6 @@ const config: ConfigType = {
     },
     {
       type: 'card',
-      title: 'Discogs',
-      icon: 'FaRecordVinyl',
-      href: 'https://www.discogs.com/user/diegocoxta',
-      description: 'config.links.discogs.description',
-      recentActivity: {
-        widget: 'DiscogsRecentActivity',
-        config: {
-          title: 'config.links.discogs.recentactivity.title',
-          username: process.env.DISCOGS_USERNAME,
-          authorization: process.env.DISCOGS_TOKEN,
-        },
-      },
-    },
-    {
-      type: 'card',
       title: 'Last.fm',
       icon: 'FaLastfm',
       href: 'https://www.last.fm/user/diego_coxta',
@@ -155,6 +140,21 @@ const config: ConfigType = {
           title: 'config.links.lastfm.recentactivity.title',
           username: process.env.LASTFM_USERNAME,
           authorization: process.env.LASTFM_API_KEY,
+        },
+      },
+    },
+    {
+      type: 'card',
+      title: 'Discogs',
+      icon: 'FaRecordVinyl',
+      href: 'https://www.discogs.com/user/diegocoxta',
+      description: 'config.links.discogs.description',
+      recentActivity: {
+        widget: 'DiscogsRecentActivity',
+        config: {
+          title: 'config.links.discogs.recentactivity.title',
+          username: process.env.DISCOGS_USERNAME,
+          authorization: process.env.DISCOGS_TOKEN,
         },
       },
     },
@@ -172,6 +172,7 @@ const config: ConfigType = {
           authorization: process.env.SETLIST_API_KEY,
         },
       },
+      hide: true,
     },
     {
       type: 'card',
