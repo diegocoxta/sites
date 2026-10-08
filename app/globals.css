@@ -22,6 +22,7 @@ body {
   color: var(--main-text-color);
   background: var(--main-background-color);
   font-family: var(--main-font);
+  overflow-x: clip;
 
   &:has(#centered-page) {
     display: flex;
