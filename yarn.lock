@@ -1896,10 +1896,10 @@ eslint-visitor-keys@^5.0.0, eslint-visitor-keys@^5.0.1:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-5.0.1.tgz#9e3c9489697824d2d4ce3a8ad12628f91e9f59be"
   integrity sha512-tD40eHxA35h0PEIZNeIjkHoDR4YjjJp34biM0mDvplBe//mB+IHCqHDGV7pxF+7MklTvighcCPPZC7ynWyjdTA==
 
-eslint@^10.11.0:
-  version "10.11.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-10.11.0.tgz#304d1591b7c6a327e3f64b4f550f99fda160ae20"
-  integrity sha512-P7a6UEEqb9G95MYAtqkmsTbVXIYyzIfl6NGOIJk162PaahFxFyeGcrlXYFSiagECg4sEm8IseJdZBKR3rx6MsQ==
+eslint@^10.12.0:
+  version "10.12.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-10.12.0.tgz#4f2f7e679bdce9d71438c2900f2c8d4d297332b0"
+  integrity sha512-npHjrHb2o4ehH3mE+YuxABR+0gyb0aVWCIolgJDArwCiHEIsonBm3ZKjel5b0U5+a+MbEvIyRCGCzD3eKKK2NA==
   dependencies:
     "@eslint-community/eslint-utils" "^4.8.0"
     "@eslint-community/regexpp" "^4.12.2"
@@ -3984,17 +3984,17 @@ scheduler@^0.28.0:
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.28.0.tgz#03d3ca348aeaf8b7502f64468f217b27523f9695"
   integrity sha512-juorfCmIkIw8tT+p5BXSm6PJjQF/ycEYmKyzURCIt/RaZIhL+PulbQ9Yu2z1HdOJDdqDTlxA1+xKBmHXJsczAw==
 
-schema-dts-lib@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/schema-dts-lib/-/schema-dts-lib-1.0.0.tgz#e10f1e06604fb6c5dcf2d7d56993447a6139364a"
-  integrity sha512-9MEO5vpQH9JdBioUupqluzxSYxPLjhmqRUudk15adUl/ypnRsM2/M1kN3AmVJQeG7nZqcL68H8JlGqQQT6vy9A==
+schema-dts-lib@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/schema-dts-lib/-/schema-dts-lib-1.1.0.tgz#43be42d5d0536eacb93844459c42b4307adf0f1a"
+  integrity sha512-Nx00FDPHDimSENMznVpADeYUJDsqlMiO9wcs2S+giggNTm5+ruNkM4m9z9qCk6xUJT+ThDM3NxxpwfHfFk1G+Q==
 
-schema-dts@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-2.0.0.tgz#9b2550e9e6d5230773376b27615c756226609b6e"
-  integrity sha512-t7NoCy3Rn5GHGx6p7s1qIYK/AeIb8ZxJNR9WUNFkwMv2CiiGZBmqqYWc2FlZVm5ZbiHMY4OvBWhj7QtyrFO2Jw==
+schema-dts@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-2.1.0.tgz#7f52579c6dd266ad758c5d3f71aba874b6a6b1e7"
+  integrity sha512-Y/NvOvuJUZwrm+EmNqJF3M+bRufERJs1h5GJPLilUuK5D5b53ttU+XZgIjEFaAVRToh+ib+cQawFmxKC5Jt9ow==
   dependencies:
-    schema-dts-lib "^1.0.0"
+    schema-dts-lib "^1.1.0"
 
 section-matter@^1.0.0:
   version "1.0.0"
