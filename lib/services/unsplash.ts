@@ -39,6 +39,7 @@ export type UnsplashPhoto = {
   };
   links: {
     html: string;
+    download: string;
   };
   user: {
     name: string;

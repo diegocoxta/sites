@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaCircleInfo } from 'react-icons/fa6';
+import { FaCircleInfo, FaDownload } from 'react-icons/fa6';
 
 import { useTranslator } from '~/components/TranslationProvider';
 import Skeleton from '~/components/Skeleton';
@@ -42,16 +42,26 @@ export default function Figure({ photo, index, total, getPhotoDetails, topRight 
           priority
           onLoad={() => setImageLoaded(true)}
         />
-        {exifStatus === 'idle' && (
-          <button
-            type="button"
-            className={styles.exifButton}
-            onClick={loadExif}
-            aria-label={t('client.components.photoshowcase.exif.viewmetadata')}
+        <div className={styles.actions}>
+          {exifStatus === 'idle' && (
+            <button
+              type="button"
+              className={styles.actionButton}
+              onClick={loadExif}
+              aria-label={t('client.components.photoshowcase.exif.viewmetadata')}
+            >
+              <FaCircleInfo aria-hidden />
+            </button>
+          )}
+          <a
+            className={styles.actionButton}
+            href={photo.downloadUrl}
+            rel="noopener noreferrer"
+            aria-label={t('client.components.photoshowcase.figure.download')}
           >
-            <FaCircleInfo aria-hidden />
-          </button>
-        )}
+            <FaDownload aria-hidden />
+          </a>
+        </div>
       </div>
       <figcaption className={styles.caption}>
         <span>
