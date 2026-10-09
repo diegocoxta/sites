@@ -64,7 +64,7 @@ export default async function MarkdownPage({ params }: PageProps) {
       }
       trailing={collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
     >
-      <Markdown {...doc} />
+      <Markdown t={t} {...doc} />
     </Page>
   );
 }

@@ -38,10 +38,12 @@ function resolveContentFile(
   defaultLocale?: string
 ): string | undefined {
   const candidates = [
-    locale && `index.${locale}.md`,
-    defaultLocale && defaultLocale !== locale && `index.${defaultLocale}.md`,
-    'index.md',
-  ].filter((name): name is string => Boolean(name));
+    locale && `index.${locale}`,
+    defaultLocale && defaultLocale !== locale && `index.${defaultLocale}`,
+    'index',
+  ]
+    .filter((name): name is string => Boolean(name))
+    .flatMap((name) => [`${name}.mdx`, `${name}.md`]);
 
   for (const name of candidates) {
     const file = publicPath(domain, filename, name);

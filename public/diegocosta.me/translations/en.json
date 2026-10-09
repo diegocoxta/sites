@@ -13,6 +13,8 @@
   "components.photoshowcase.collectionscard.title": "Collections",
   "components.photoshowcase.collectiondetails.photocount": "{count} photos",
   "components.photoshowcase.collectiondetails.allphotos": "All photos",
+  "components.photoshowcase.unsplashstats.downloads": "Downloads",
+  "components.photoshowcase.unsplashstats.views": "Views",
   "components.footer.caption": "© Photographs by Diego Costa",
   "client.components.photoshowcase.photoalt": "Photograph by Diego Costa",
   "client.components.photoshowcase.loadmore.label": "Load more",
