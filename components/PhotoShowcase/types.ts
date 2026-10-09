@@ -7,6 +7,7 @@ export type Photo = {
   width: number;
   height: number;
   placeholderColor: string | null;
+  downloadUrl: string;
   source?: {
     name: string;
     url: string;

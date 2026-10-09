@@ -40,6 +40,14 @@ if (!username || !authorization) {
 
 const creds = { username, authorization };
 
+/** `force=true` makes Unsplash answer with a Content-Disposition attachment instead of just displaying the image. */
+function toDownloadUrl(photo: UnsplashPhoto): string {
+  const url = new URL(photo.links.download);
+  url.searchParams.set('force', 'true');
+
+  return url.toString();
+}
+
 function toPhoto(photo: UnsplashPhoto): Photo {
   return {
     id: photo.id,
@@ -50,6 +58,7 @@ function toPhoto(photo: UnsplashPhoto): Photo {
     width: photo.width,
     height: photo.height,
     placeholderColor: photo.color,
+    downloadUrl: toDownloadUrl(photo),
     source: {
       name: SOURCE_NAME,
       url: SOURCE_URL,
