@@ -56,3 +56,8 @@ export type PhotoDetails = {
     longitude: number | null;
   } | null;
 };
+
+export type UserStatistics = {
+  downloads: number;
+  views: number;
+};

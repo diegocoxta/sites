@@ -201,3 +201,34 @@ export async function getCollectionPhotos(
 
   return photos;
 }
+
+type GetUserStatisticsParamsType = {
+  username: string;
+  authorization: string;
+};
+
+export type UnsplashUserStatistics = {
+  downloads: {
+    total: number;
+  };
+  views: {
+    total: number;
+  };
+};
+
+type GetUserStatisticsResponseType = null | UnsplashUserStatistics;
+
+export async function getUserStatistics(params: GetUserStatisticsParamsType): Promise<GetUserStatisticsResponseType> {
+  const { username, authorization } = params;
+
+  const statistics = await fetchJson<GetUserStatisticsResponseType>(
+    `https://api.unsplash.com/users/${encodeURIComponent(username)}/statistics`,
+    {
+      headers: { Authorization: `Client-ID ${authorization}` },
+      id: 'unsplash-statistics',
+      revalidate: REVALIDATE,
+    }
+  );
+
+  return statistics;
+}

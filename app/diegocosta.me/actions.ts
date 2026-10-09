@@ -2,10 +2,23 @@
 
 import { cache } from 'react';
 
-import { getCollectionPhotos, getPhoto, getRecentUserPhotos, getUserCollections } from '~/lib/services/unsplash';
+import {
+  getCollectionPhotos,
+  getPhoto,
+  getRecentUserPhotos,
+  getUserCollections,
+  getUserStatistics,
+} from '~/lib/services/unsplash';
 import type { UnsplashCollection, UnsplashPhoto, UnsplashPhotoDetails } from '~/lib/services/unsplash';
 
-import type { Collection, Photo, PhotoContext, PhotoDetails, PhotoFeedPage } from '~/components/PhotoShowcase/types';
+import type {
+  Collection,
+  Photo,
+  PhotoContext,
+  PhotoDetails,
+  PhotoFeedPage,
+  UserStatistics,
+} from '~/components/PhotoShowcase/types';
 import { filmrollPhotos } from '~/components/PhotoShowcase/utils';
 
 import config from '~/app/diegocosta.me/config';
@@ -196,4 +209,10 @@ export async function getPhotoDetails(id: string): Promise<PhotoDetails | null> 
   const photo = await getPhoto({ id, authorization: creds.authorization });
 
   return photo ? toPhotoDetails(photo) : null;
+}
+
+export async function getStatistics(): Promise<UserStatistics | null> {
+  const statistics = await getUserStatistics(creds);
+
+  return statistics && { downloads: statistics.downloads.total, views: statistics.views.total };
 }
