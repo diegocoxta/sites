@@ -26,6 +26,13 @@ Guidance for AI coding agents. Keep it short — this file is always in context.
 
 Run `yarn lint` and `yarn build`. Both must pass.
 
+## Dependabot
+
+`.github/workflows/dependabot.yml` runs `yarn lint` and `tsc` (the build fetches content and calls external APIs, so it doesn't run in CI) on Dependabot PRs
+and squash-merges only the patch ones; minors and majors stay manual. Minor and patch updates arrive grouped in one PR
+(`.github/dependabot.yml`). It doesn't use branch protection or `gh pr merge --auto`: the merge
+happens inside the job, after the checks.
+
 ## Code style
 
 - Only comment corner cases that would otherwise be hard to understand from reading the code alone. Omit comments that just restate basic/obvious behavior or purely stylistic/static choices.
