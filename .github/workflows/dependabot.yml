@@ -5,11 +5,14 @@ on: pull_request
 permissions:
   contents: write
   pull-requests: write
+  checks: read
+  statuses: read
 
 jobs:
   merge:
     if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v6
 
@@ -26,6 +29,21 @@ jobs:
 
       - id: metadata
         uses: dependabot/fetch-metadata@v2
+
+      # The merge happens here, not through branch protection, so the other workflows and the
+      # Vercel checks are awaited by hand: merging with any of them pending or failed is wrong.
+      # Cancelled is fine (Vercel's Ignored Build Step cancels most builds), only failed blocks.
+      - name: Wait for the other checks
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        run: |
+          while gh pr checks "$PR_URL" --json workflow,bucket --jq '.[] | select(.workflow != "Dependabot" and .bucket == "pending")' | grep -q .; do
+            sleep 30
+          done
+          failed=$(gh pr checks "$PR_URL" --json workflow,bucket --jq '[.[] | select(.workflow != "Dependabot" and .bucket == "fail")] | length' || true)
+          [ "$failed" = 0 ]
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Patch only: the build fetches content and calls external APIs, so it can't run here and only lint and tsc guard the update.
       - if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
