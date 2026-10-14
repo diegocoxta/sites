@@ -79,7 +79,9 @@ happens inside the job, after the checks. Before merging, the job waits for ever
 - **OG images, icons & JSON-LD:** favicons and per-page social preview images
   render at request time with `next/og` + `sharp` in
   [`lib/app-image.tsx`](lib/app-image.tsx) (`renderAppIcon`, `renderOgImage`),
-  used by each domain's `icon.tsx` and `og/` route handlers
+  used by each domain's `icon.tsx` and `og/` route handlers. The icon's `?v=` in
+  `app/layout.tsx` is `NEXT_PUBLIC_APP_IMAGE_VERSION` (default `1`): change it by
+  hand and redeploy to make browsers fetch the icon again
   (e.g. `app/diegocosta.com.br/blog/[post]/og/`, `app/diegocosta.me/og/[...slug]/`).
   Structured data (`Person`, `WebSite`, `BlogPosting`, `BreadcrumbList`,
   `ImageObject`) is built with `schema-dts` in [`lib/schema.ts`](lib/schema.ts)
