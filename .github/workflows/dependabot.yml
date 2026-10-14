@@ -1,6 +1,11 @@
 name: Dependabot
 
-on: pull_request
+on:
+  schedule:
+    # 11:00 no horário da Bahia
+    - cron: '0 11 * * *'
+      timezone: 'America/Bahia'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -9,33 +14,54 @@ permissions:
   checks: read
   statuses: read
 
+concurrency:
+  group: dependabot-merge
+  cancel-in-progress: false
+
 jobs:
+  list:
+    runs-on: ubuntu-latest
+    outputs:
+      prs: ${{ steps.prs.outputs.prs }}
+    steps:
+      - id: prs
+        run: |
+          prs=$(gh pr list --repo "$GITHUB_REPOSITORY" --author "app/dependabot" --state open \
+            --json number,url,headRefName,isDraft,mergeable,commits \
+            --jq '[.[]
+                   | select(.isDraft | not)
+                   | select(.mergeable != "CONFLICTING")
+                   | select([.commits[0].messageBody | scan("update-type: (\\S+)")[0]]
+                            | length > 0 and all(. == "version-update:semver-patch" or . == "version-update:semver-minor"))
+                   | {number, url, branch: .headRefName}]')
+          echo "prs=$prs" >> "$GITHUB_OUTPUT"
+          echo "$prs"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   merge:
-    if: github.actor == 'dependabot[bot]'
+    needs: list
+    if: needs.list.outputs.prs != '[]'
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    strategy:
+      # Um por vez: cada merge muda a main antes do próximo.
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        pr: ${{ fromJSON(needs.list.outputs.prs) }}
+    name: merge #${{ matrix.pr.number }}
     steps:
       - uses: actions/checkout@v6
-
+        with:
+          ref: ${{ matrix.pr.branch }}
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
           cache: yarn
-
       - run: yarn install --frozen-lockfile
-
       - run: yarn lint
-
       - run: npx tsc --noEmit
-
-      - id: metadata
-        uses: dependabot/fetch-metadata@v2
-
-      # The merge happens here, not through branch protection, so the other workflows and the
-      # Vercel checks are awaited by hand: merging with any of them pending or failed is wrong.
-      # Cancelled is fine (Vercel's Ignored Build Step cancels most builds), only failed blocks.
       - name: Wait for the other checks
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
         run: |
           while gh pr checks "$PR_URL" --json workflow,bucket --jq '.[] | select(.workflow != "Dependabot" and .bucket == "pending")' | grep -q .; do
             sleep 30
@@ -43,12 +69,9 @@ jobs:
           failed=$(gh pr checks "$PR_URL" --json workflow,bucket --jq '[.[] | select(.workflow != "Dependabot" and .bucket == "fail")] | length' || true)
           [ "$failed" = 0 ]
         env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_URL: ${{ matrix.pr.url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Patch only: the build fetches content and calls external APIs, so it can't run here and only lint and tsc guard the update.
-      - if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
-        run: gh pr merge --squash "$PR_URL"
+      - run: gh pr merge --squash "$PR_URL"
         env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_URL: ${{ matrix.pr.url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
