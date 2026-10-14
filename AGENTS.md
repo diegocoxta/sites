@@ -29,7 +29,7 @@ Run `yarn lint` and `yarn build`. Both must pass.
 ## Dependabot
 
 `.github/workflows/dependabot.yml` runs `yarn lint` and `tsc` (the build fetches content and calls external APIs, so it doesn't run in CI) on Dependabot PRs
-and squash-merges only the patch ones; minors and majors stay manual. Minor and patch updates arrive grouped in one PR
+and squash-merges only the patch ones; minors and majors stay manual. An indirect (lockfile-only) dependency has no `update-type:` in its commit, so its type comes from comparing `from X to Y` (same major, and same minor when the major is 0). The cron runs at 20:17 Bahia, off the top of the hour, because GitHub delays or drops scheduled runs at `:00`. Minor and patch updates arrive grouped in one PR
 (`.github/dependabot.yml`). It doesn't use branch protection or `gh pr merge --auto`: the merge
 happens inside the job, after the checks. Before merging, the job waits for every other check on the PR (other workflows and Vercel): only a failed one blocks, cancelled is fine. It lists them with `gh pr checks`, which is why the workflow declares `actions`, `checks` and `statuses` read permissions (without them the step fails with "Resource not accessible by integration" and nothing is merged). `typescript` major updates are ignored in `.github/dependabot.yml` until TypeScript 7.1 ships and typescript-eslint and Next support it.
 

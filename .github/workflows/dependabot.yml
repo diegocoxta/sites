@@ -2,8 +2,8 @@ name: Dependabot
 
 on:
   schedule:
-    # 11:00 no horário da Bahia
-    - cron: '0 11 * * *'
+    # 20:17 no horário da Bahia (minuto fora do início da hora, onde o GitHub atrasa ou descarta runs)
+    - cron: '17 20 * * *'
       timezone: 'America/Bahia'
   workflow_dispatch:
 
@@ -25,15 +25,22 @@ jobs:
     steps:
       # PRs abertos do Dependabot, sem draft, sem conflito e só patch/minor.
       # Majors ficam manuais: não há suíte de testes para pegar mudança de comportamento.
+      # Dependência indireta (só no lockfile) vem sem "update-type:" no commit, então o tipo
+      # sai da comparação "from X to Y": mesmo major (e mesmo minor, quando o major é 0).
       - id: prs
         run: |
           prs=$(gh pr list --repo "$GITHUB_REPOSITORY" --author "app/dependabot" --state open \
             --json number,url,headRefOid,isDraft,mergeable,commits \
-            --jq '[.[]
+            --jq 'def types: [.commits[0].messageBody | scan("update-type: (\\S+)")[0]];
+                  def safeIndirect: .commits[0].messageBody
+                    | contains("dependency-type: indirect")
+                      and (capture("from (?<a>\\d+)\\.(?<ai>\\d+)\\S* to (?<b>\\d+)\\.(?<bi>\\d+)")?
+                           | . != null and .a == .b and (.a != "0" or .ai == .bi));
+                  [.[]
                    | select(.isDraft | not)
                    | select(.mergeable != "CONFLICTING")
-                   | select([.commits[0].messageBody | scan("update-type: (\\S+)")[0]]
-                            | length > 0 and all(. == "version-update:semver-patch" or . == "version-update:semver-minor"))
+                   | select((types | length > 0 and all(. == "version-update:semver-patch" or . == "version-update:semver-minor"))
+                            or (types | length == 0) and safeIndirect)
                    | {number, url, sha: .headRefOid}]')
           echo "prs=$prs" >> "$GITHUB_OUTPUT"
           echo "$prs"
