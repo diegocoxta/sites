@@ -7,12 +7,8 @@ on:
       timezone: 'America/Bahia'
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pull-requests: write
-  actions: read
-  checks: read
-  statuses: read
+# Cada job declara só o que precisa.
+permissions: {}
 
 concurrency:
   group: dependabot-merge
@@ -21,39 +17,48 @@ concurrency:
 jobs:
   list:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     outputs:
       prs: ${{ steps.prs.outputs.prs }}
     steps:
+      # PRs abertos do Dependabot, sem draft, sem conflito e só patch/minor.
+      # Majors ficam manuais: não há suíte de testes para pegar mudança de comportamento.
       - id: prs
         run: |
           prs=$(gh pr list --repo "$GITHUB_REPOSITORY" --author "app/dependabot" --state open \
-            --json number,url,headRefName,isDraft,mergeable,commits \
+            --json number,url,headRefOid,isDraft,mergeable,commits \
             --jq '[.[]
                    | select(.isDraft | not)
                    | select(.mergeable != "CONFLICTING")
                    | select([.commits[0].messageBody | scan("update-type: (\\S+)")[0]]
                             | length > 0 and all(. == "version-update:semver-patch" or . == "version-update:semver-minor"))
-                   | {number, url, branch: .headRefName}]')
+                   | {number, url, sha: .headRefOid}]')
           echo "prs=$prs" >> "$GITHUB_OUTPUT"
           echo "$prs"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  merge:
+
+  # Roda o código do PR (install, lint, build...) sem nenhuma permissão de escrita nem segredo:
+  # se uma dependência for maliciosa, não há token útil para roubar.
+  verify:
     needs: list
     if: needs.list.outputs.prs != '[]'
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    permissions:
+      contents: read
     strategy:
-      # Um por vez: cada merge muda a main antes do próximo.
-      max-parallel: 1
       fail-fast: false
       matrix:
         pr: ${{ fromJSON(needs.list.outputs.prs) }}
-    name: merge #${{ matrix.pr.number }}
+    name: 'verify #${{ matrix.pr.number }}'
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ matrix.pr.branch }}
+          ref: ${{ matrix.pr.sha }}
+          persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version-file: .nvmrc
@@ -61,6 +66,40 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn lint
       - run: npx tsc --noEmit
+
+  # Só chamadas à API: nenhum código do PR roda aqui.
+  merge:
+    needs: [list, verify]
+    if: ${{ !cancelled() && needs.list.result == 'success' && needs.list.outputs.prs != '[]' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: read
+      checks: read
+      statuses: read
+    strategy:
+      # Um por vez: cada merge muda a main antes do próximo.
+      max-parallel: 1
+      fail-fast: false
+      matrix:
+        pr: ${{ fromJSON(needs.list.outputs.prs) }}
+    name: 'merge #${{ matrix.pr.number }}'
+    steps:
+      # O needs espera a matriz inteira do verify, então confere o job deste PR.
+      - name: Check verify result
+        run: |
+          conclusion=$(gh api --paginate "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs" \
+            --jq ".jobs[] | select(.name == \"verify #$PR_NUMBER\") | .conclusion")
+          echo "verify #$PR_NUMBER: $conclusion"
+          [ "$conclusion" = success ]
+        env:
+          PR_NUMBER: ${{ matrix.pr.number }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # O merge acontece aqui, não via branch protection, então os outros workflows e os
+      # checks da Vercel são verificados à mão: mergear com algum pendente ou falho é errado.
+      # Cancelled é ok (o Ignored Build Step da Vercel cancela a maioria), só failed bloqueia.
       - name: Wait for the other checks
         run: |
           while gh pr checks "$PR_URL" --json workflow,bucket --jq '.[] | select(.workflow != "Dependabot" and .bucket == "pending")' | grep -q .; do
@@ -71,7 +110,10 @@ jobs:
         env:
           PR_URL: ${{ matrix.pr.url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: gh pr merge --squash "$PR_URL"
+      # --match-head-commit: só mergeia o commit que foi verificado; se o Dependabot
+      # fez rebase no meio do caminho, falha e fica para a próxima execução.
+      - run: gh pr merge --squash --match-head-commit "$PR_SHA" "$PR_URL"
         env:
           PR_URL: ${{ matrix.pr.url }}
+          PR_SHA: ${{ matrix.pr.sha }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
