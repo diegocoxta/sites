@@ -3,6 +3,9 @@ import { Source_Sans_3 } from 'next/font/google';
 
 import './globals.css';
 
+// Cache buster for the icon: change the env to make browsers fetch it again
+const IMAGE_VERSION = process.env.NEXT_PUBLIC_APP_IMAGE_VERSION ?? '1';
+
 const sourceSans = Source_Sans_3({
   variable: '--main-font',
   subsets: ['latin'],
@@ -34,7 +37,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   manifest: '/manifest.json',
   icons: {
-    icon: '/icon?v=1',
-    apple: '/icon?v=1',
+    icon: `/icon?v=${IMAGE_VERSION}`,
+    apple: `/icon?v=${IMAGE_VERSION}`,
   },
 };
