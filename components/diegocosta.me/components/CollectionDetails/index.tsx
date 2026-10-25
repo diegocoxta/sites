@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
-import type { ComponentWithTranslator } from '~/lib/i18n/translator';
+import type { ComponentWithTranslator } from '~/lib/i18n';
 
 import styles from './styles.module.css';
 

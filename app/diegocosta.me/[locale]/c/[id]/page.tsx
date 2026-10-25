@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { contentFor } from '~/lib/content';
-import { localizedAlternates } from '~/lib/i18n/alternates';
+import { localizedAlternates } from '~/lib/i18n';
 import { getTranslations } from '~/lib/i18n/messages';
 import type { IconLinkType } from '~/lib/config';
 
