@@ -1,5 +1,3 @@
-//@TODO refactor
-
 import { getUserConcertsAttendance } from '~/lib/services/setlist';
 
 import RecentActivity, { type RecentActivityWidgetProps } from '~/components/diegocoxta.com/components/RecentActivity';

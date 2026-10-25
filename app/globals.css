@@ -33,7 +33,6 @@ body {
   }
 }
 
-/* Visually hidden, still read by assistive tech and crawlers. */
 .srOnly {
   position: absolute;
   width: 1px;

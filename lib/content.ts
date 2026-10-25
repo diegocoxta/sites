@@ -33,7 +33,6 @@ function rewriteRelativeImages(content: string, dir: string): string {
 
 const LOCALE_BLOCK = /\{start locale:(\w+)\}\r?\n([\s\S]*?)\r?\n\{end locale:\1\}[ \t]*\r?\n?/g;
 
-/** Keeps the `{start locale:x}...{end locale:x}` block of the locale (or the default one) and drops the others. */
 function selectLocaleBlocks(content: string, locale?: string, defaultLocale?: string): string {
   const available = new Set([...content.matchAll(LOCALE_BLOCK)].map(([, name]) => name));
 

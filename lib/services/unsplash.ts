@@ -7,7 +7,7 @@ import { fetchJson } from '~/lib/http';
  * visit after a day triggers one background refetch per distinct URL (~21 total) instead
  * of a request per visit — and new photos on Unsplash show up without a redeploy.
  */
-const REVALIDATE = 60 * 60 * 24; // 1 day
+const REVALIDATE = 60 * 60 * 24;
 
 /**
  * A rejected or rate-limited token stays rejected for the whole build — fail the
