@@ -31,7 +31,7 @@ function rewriteRelativeImages(content: string, dir: string): string {
   return content.replace(/!\[(.*?)\]\(\.\/([^)]+)\)/g, (_, alt, file) => `![${alt}](${dir}/${file})`);
 }
 
-function resolveContentFile(
+function resolveContentName(
   domain: string,
   filename: string,
   locale?: string,
@@ -46,10 +46,8 @@ function resolveContentFile(
     .flatMap((name) => [`${name}.mdx`, `${name}.md`]);
 
   for (const name of candidates) {
-    const file = publicPath(domain, filename, name);
-
-    if (fs.existsSync(file)) {
-      return file;
+    if (fs.existsSync(publicPath(domain, filename, name))) {
+      return name;
     }
   }
 
@@ -62,11 +60,13 @@ const readContentFile = cache(function readContentFile<T extends ContentAttribut
   locale?: string,
   defaultLocale?: string
 ): T | undefined {
-  const file = resolveContentFile(domain, filename, locale, defaultLocale);
+  const name = resolveContentName(domain, filename, locale, defaultLocale);
 
-  if (!file) {
+  if (!name) {
     return undefined;
   }
+
+  const file = publicPath(domain, filename, name);
 
   let data: Record<string, unknown>;
   let content: string;
