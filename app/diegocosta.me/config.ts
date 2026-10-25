@@ -1,29 +1,34 @@
+import { repository } from '~/package.json';
 import type { ConfigType } from '~/lib/config';
 
-import globalConfig from '~/app/config';
+import { domainEnv, themeColor } from '~/lib/domain';
 
 type LocalConfigType = ConfigType & {
   unsplash: {
-    username?: string;
-    authorization?: string;
+    username: string;
+    authorization: string;
   };
 };
 
+const domain = 'diegocosta.me';
+
 const config: LocalConfigType = {
-  ...globalConfig,
+  author: 'Diego Costa',
+  repository: repository.url,
+  theme: {
+    accentColor: themeColor('SITE_ACCENT_COLOR', domain),
+    textColor: themeColor('SITE_TEXT_COLOR', domain),
+    defaultTheme: 'dark',
+  },
   title: 'config.title',
   description: 'config.description',
-  domain: 'diegocosta.me',
+  domain,
   locales: ['en'],
   jobTitle: ['Photographer'],
   avatar: '/avatar.jpg',
-  theme: {
-    ...globalConfig.theme,
-    defaultTheme: 'dark',
-  },
   unsplash: {
-    username: process.env.UNSPLASH_USERNAME,
-    authorization: process.env.UNSPLASH_ACCESS_KEY,
+    username: domainEnv('UNSPLASH_USERNAME', domain),
+    authorization: domainEnv('UNSPLASH_ACCESS_KEY', domain),
   },
   links: [
     {

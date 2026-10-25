@@ -8,6 +8,7 @@ import { personLd, websiteLd } from '~/lib/schema';
 import TranslationProvider from '~/components/shared/TranslationProvider';
 import HtmlLang from '~/components/shared/HtmlLang';
 import JsonLd from '~/components/shared/JsonLd';
+import AccentColor from '~/components/shared/AccentColor';
 
 import config from '~/app/diegocoxta.com/config';
 
@@ -32,6 +33,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   const head = (
     <>
+      <AccentColor color={config.theme.accentColor} />
       <HtmlLang locale={t.locale} />
       <JsonLd data={websiteLd(config, `${config.author} (${config.title})`)} />
       <JsonLd data={personLd(config)} />

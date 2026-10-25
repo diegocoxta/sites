@@ -32,13 +32,7 @@ const SOURCE_NAME = 'Unsplash';
 const SOURCE_URL = 'https://unsplash.com';
 const VALID_ID = /^[\w-]{1,64}$/;
 
-const { username, authorization } = config.unsplash;
-
-if (!username || !authorization) {
-  throw new Error('diegocosta.me: UNSPLASH_USERNAME and UNSPLASH_ACCESS_KEY must be set');
-}
-
-const creds = { username, authorization };
+const creds = config.unsplash;
 
 /** `force=true` makes Unsplash answer with a Content-Disposition attachment instead of just displaying the image. */
 function toDownloadUrl(photo: UnsplashPhoto): string {

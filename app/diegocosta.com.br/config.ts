@@ -1,13 +1,22 @@
+import { repository } from '~/package.json';
 import type { ConfigType } from '~/lib/config';
 
-import globalConfig from '~/app/config';
+import { themeColor } from '~/lib/domain';
+
+const domain = 'diegocosta.com.br';
 
 const config: ConfigType = {
-  ...globalConfig,
+  author: 'Diego Costa',
+  repository: repository.url,
+  theme: {
+    accentColor: themeColor('SITE_ACCENT_COLOR', domain),
+    textColor: themeColor('SITE_TEXT_COLOR', domain),
+    defaultTheme: 'system',
+  },
   title: 'Diego Costa',
   jobTitle: ['Engineering Manager', 'Senior Software Engineer'],
   description: 'config.description',
-  domain: 'diegocosta.com.br',
+  domain,
   locales: ['pt'],
   avatar: 'https://avatars.githubusercontent.com/u/3134422?v=4',
   links: [

@@ -13,7 +13,10 @@ Before starting, you may need to know how to contribute in a good way. You can f
 2. Run `yarn install` inside the project directory.
 3. Copy the env file: `cp .env.example .env`. Every key is optional — without a
    given token the matching activity widget just renders empty. `SITE_ACCENT_COLOR`
-   and `SITE_TEXT_COLOR` control the theme colors.
+   and `SITE_TEXT_COLOR` control the theme colors; any key can be
+   overridden for one site with `<DOMAIN>_<NAME>` (domain upper-cased, dots
+   removed, e.g. `DIEGOCOSTAME_SITE_ACCENT_COLOR` or
+   `DIEGOCOXTACOM_UNSPLASH_ACCESS_KEY`), which takes priority for that site only.
 4. Start the dev server:
    - `yarn dev` &rarr; serves all three domains at once. Open
      [`http://localhost:3000`](http://localhost:3000) and pick the domain via a
