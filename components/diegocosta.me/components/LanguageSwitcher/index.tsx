@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import type { ComponentWithTranslator } from '~/lib/i18n/translator';
+import type { ComponentWithTranslator } from '~/lib/i18n';
 
 import styles from './styles.module.css';
 

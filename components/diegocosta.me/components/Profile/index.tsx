@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import * as Fa from 'react-icons/fa6';
 
-import type { ComponentWithTranslator } from '~/lib/i18n/translator';
+import type { ComponentWithTranslator } from '~/lib/i18n';
 import type { ContentAttributes } from '~/lib/content';
 
 import Logo from '~/components/shared/Logo';
@@ -19,7 +19,7 @@ type ProfileProps = ComponentWithTranslator<{
   socialLinks?: SocialLink[];
   pages?: Array<Pick<ContentAttributes, 'title' | 'href'>>;
   locales: readonly string[];
-  /** Path of the current page below the locale (`''`, `/about-me`, `/p/<id>`), used by the language links. */
+  /** A prop because usePathname() returns the proxy-rewritten path during SSR. */
   path: string;
 }>;
 
