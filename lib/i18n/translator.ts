@@ -8,7 +8,7 @@ export type Translator = {
 
 export type ComponentWithTranslator<P = unknown> = P & { t: Translator };
 
-const TRANSLATABLE_KEY = /^(client|config|components|page)\./;
+const TRANSLATABLE_KEY = /^(config|components|page)\./;
 
 export function createTranslator(messages: Record<string, string>, locale: Locale): Translator {
   const t = ((key: string, params?: Record<string, string | number>): string => {

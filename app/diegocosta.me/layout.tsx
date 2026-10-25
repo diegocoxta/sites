@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 
-import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
+import { getMessages, getTranslations } from '~/lib/i18n/messages';
 import { personLd, websiteLd } from '~/lib/schema';
 
 import TranslationProvider from '~/components/shared/TranslationProvider';
@@ -14,7 +14,7 @@ import config from '~/app/diegocosta.me/config';
 
 export default function RootLayout({ children, modal }: React.PropsWithChildren<{ modal: React.ReactNode }>) {
   const t = getTranslations(config);
-  const messages = getClientMessages(config);
+  const messages = getMessages(config);
 
   return (
     <ThemeProvider forcedTheme={config.theme.defaultTheme}>
