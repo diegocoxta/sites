@@ -43,3 +43,7 @@ export function negotiateLocale(
 
   return supported[0];
 }
+
+export function localeStaticParams(locales: readonly Locale[]): Array<{ locale: Locale }> {
+  return locales.map((locale) => ({ locale }));
+}

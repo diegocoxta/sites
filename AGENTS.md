@@ -83,6 +83,10 @@ happens inside the job, after the checks. Before merging, the job waits for ever
   namespaced under `config.`/`components.`/`page.`; anything outside
   those namespaces — or any key with no match — is returned unchanged, which is
   how brand/proper names pass straight through.
+  Multi-locale sites share `localizedAlternates`/`localizedSitemapEntries`
+  ([`lib/i18n/alternates.ts`](lib/i18n/alternates.ts), `hreflang` + `x-default`),
+  `localeStaticParams` (`lib/i18n/locale.ts`) and `manifestResponse`
+  ([`lib/manifest.ts`](lib/manifest.ts), also used by the single-locale blog).
 - **OG images, icons & JSON-LD:** favicons and per-page social preview images
   render at request time with `next/og` + `sharp` in
   [`lib/app-image.tsx`](lib/app-image.tsx) (`renderAppIcon`, `renderOgImage`),
