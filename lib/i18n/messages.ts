@@ -30,13 +30,11 @@ function loadMessages(site: SiteType, locale: Locale): Record<string, string> {
     : { ...loadDictionary(site.domain, fallback), ...loadDictionary(site.domain, locale) };
 }
 
+export const getMessages = cache((site: SiteType, locale?: string): Record<string, string> =>
+  loadMessages(site, resolveLocale(site.locales, locale))
+);
+
 export const getTranslations = cache((site: SiteType, locale?: string): Translator => {
   const resolved = resolveLocale(site.locales, locale);
-  return createTranslator(loadMessages(site, resolved), resolved);
-});
-
-export const getClientMessages = cache((site: SiteType, locale?: string): Record<string, string> => {
-  const messages = loadMessages(site, resolveLocale(site.locales, locale));
-
-  return Object.fromEntries(Object.entries(messages).filter(([key]) => key.startsWith('client.')));
+  return createTranslator(getMessages(site, resolved), resolved);
 });

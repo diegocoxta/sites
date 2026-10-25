@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 
 import { contentFor, type ContentAttributes } from '~/lib/content';
-import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
+import { getMessages, getTranslations } from '~/lib/i18n/messages';
 import { personLd, websiteLd } from '~/lib/schema';
 
 import TranslationProvider from '~/components/shared/TranslationProvider';
@@ -19,7 +19,7 @@ const content = contentFor(config);
 
 export default function RootLayout({ children }: React.PropsWithChildren) {
   const t = getTranslations(config);
-  const messages = getClientMessages(config);
+  const messages = getMessages(config);
 
   const pages = content.getPages();
   const posts = content.getPosts();

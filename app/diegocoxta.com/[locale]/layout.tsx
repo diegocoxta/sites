@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { isSupportedLocale } from '~/lib/i18n';
-import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
+import { getMessages, getTranslations } from '~/lib/i18n/messages';
 import { personLd, websiteLd } from '~/lib/schema';
 
 import TranslationProvider from '~/components/shared/TranslationProvider';
@@ -28,7 +28,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   }
 
   const t = getTranslations(config, locale);
-  const messages = getClientMessages(config, locale);
+  const messages = getMessages(config, locale);
 
   const head = (
     <>
