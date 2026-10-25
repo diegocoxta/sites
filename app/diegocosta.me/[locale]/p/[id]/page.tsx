@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { contentFor } from '~/lib/content';
+import { localizedAlternates } from '~/lib/i18n/alternates';
 import { getTranslations } from '~/lib/i18n/messages';
 import type { Translator } from '~/lib/i18n/translator';
 import { imageObjectLd } from '~/lib/schema';
@@ -14,7 +15,7 @@ import config from '~/app/diegocosta.me/config';
 import { getAllPhotos, getCollections, getPhotoContext, getPhotoDetails } from '~/app/diegocosta.me/actions';
 
 interface PhotoPreviewProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }
 
 const photoTitle = (t: Translator, alt: string, index: number, total: number): string =>
@@ -27,9 +28,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PhotoPreviewProps): Promise<Metadata> {
-  const { id } = await params;
+  const { locale, id } = await params;
   const context = await getPhotoContext(id);
-  const t = getTranslations(config);
+  const t = getTranslations(config, locale);
 
   if (!context) {
     return {};
@@ -42,16 +43,16 @@ export async function generateMetadata({ params }: PhotoPreviewProps): Promise<M
   return {
     title,
     description: [photo.description, photo.alt].filter(Boolean).join(' - ') || t('page.photos.description'),
-    alternates: { canonical: `/p/${id}` },
-    openGraph: { siteName: t(config.title), title, url: `/p/${id}`, images: [image] },
+    alternates: localizedAlternates(config, locale, `/p/${id}`),
+    openGraph: { siteName: t(config.title), title, url: `/${locale}/p/${id}`, images: [image] },
     twitter: { card: 'summary_large_image', title, images: [image] },
   };
 }
 
 export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
   const { params } = props;
-  const { id } = await params;
-  const t = getTranslations(config);
+  const { locale, id } = await params;
+  const t = getTranslations(config, locale);
   const content = contentFor(config);
   const [context, collections] = await Promise.all([getPhotoContext(id), getCollections()]);
 
@@ -70,7 +71,7 @@ export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
           name={config.author}
           avatar={config.avatar ?? ''}
           socialLinks={config.links?.filter((link): link is IconLinkType => link.type === 'icon' && !link.hide)}
-          pages={content.getPages()}
+          pages={content.getPages(locale)}
         />
       }
       trailing={collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
@@ -84,11 +85,11 @@ export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
         nextId={context.nextId}
         index={index}
         total={total}
-        hrefBase="/p"
-        closeHref="/"
+        hrefBase={`/${locale}/p`}
+        closeHref={`/${locale}`}
         getPhotoDetails={getPhotoDetails}
       />
-      <Filmroll photos={context.filmroll} currentId={photo.id} hrefBase="/p" />
+      <Filmroll photos={context.filmroll} currentId={photo.id} hrefBase={`/${locale}/p`} />
     </Page>
   );
 }

@@ -23,7 +23,7 @@ const config: LocalConfigType = {
   title: 'config.title',
   description: 'config.description',
   domain,
-  locales: ['en'],
+  locales: ['en', 'pt', 'es'],
   jobTitle: ['Photographer'],
   avatar: '/avatar.jpg',
   unsplash: {

@@ -21,7 +21,7 @@ export default function CollectionDetails({ t, title, description, photoCount, p
         <span>{t('components.collectiondetails.photocount', { count: photoCount })}</span>
         {publishedAt && <span>{t.date(publishedAt, { year: 'numeric' })}</span>}
       </p>
-      <Link className={styles.cta} href="/">
+      <Link className={styles.cta} href={`/${t.locale}`}>
         <FaArrowLeftLong /> {t('components.collectiondetails.allphotos')}
       </Link>
     </section>

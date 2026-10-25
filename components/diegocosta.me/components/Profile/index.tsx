@@ -51,7 +51,7 @@ export default function Profile({ t, ...props }: ProfileProps) {
           <ul className={styles.pages}>
             {props.pages.map((page) => (
               <li key={page.href}>
-                <Link href={page.href}>{page.title}</Link>
+                <Link href={`/${t.locale}${page.href}`}>{page.title}</Link>
               </li>
             ))}
           </ul>

@@ -43,7 +43,7 @@ export function proxy(request: NextRequest) {
   const { locales } = site;
 
   const assetMetadata =
-    /^\/(icon|apple-icon|opengraph-image|twitter-image|robots\.txt|manifest\.json|sitemap\.xml)(\/|$)|\.[^/]+$/;
+    /^\/(icon|apple-icon|og|opengraph-image|twitter-image|robots\.txt|manifest\.json|sitemap\.xml)(\/|$)|\.[^/]+$/;
 
   const onlyOneLanguageOrAssetMetadata = locales.length < 2 || assetMetadata.test(routePath);
 

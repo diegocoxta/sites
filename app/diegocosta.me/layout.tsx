@@ -1,49 +1,14 @@
-import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 
-import { getMessages, getTranslations } from '~/lib/i18n/messages';
-import { personLd, websiteLd } from '~/lib/schema';
-
-import TranslationProvider from '~/components/shared/TranslationProvider';
-import HtmlLang from '~/components/shared/HtmlLang';
-import JsonLd from '~/components/shared/JsonLd';
 import AccentColor from '~/components/shared/AccentColor';
-import { Container } from '~/components/diegocosta.me';
-import Footer from '~/components/shared/Footer';
 
 import config from '~/app/diegocosta.me/config';
 
-export default function RootLayout({ children, modal }: React.PropsWithChildren<{ modal: React.ReactNode }>) {
-  const t = getTranslations(config);
-  const messages = getMessages(config);
-
+export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <ThemeProvider forcedTheme={config.theme.defaultTheme}>
-      <TranslationProvider messages={messages} locale={t.locale}>
-        <AccentColor color={config.theme.accentColor} />
-        <HtmlLang locale={t.locale} />
-        <JsonLd data={websiteLd(config, t(config.title))} />
-        <JsonLd data={personLd(config)} />
-        <Container>{children}</Container>
-        <Footer t={t} name={config.author} />
-        {modal}
-      </TranslationProvider>
+      <AccentColor color={config.theme.accentColor} />
+      {children}
     </ThemeProvider>
   );
-}
-
-export function generateMetadata(): Metadata {
-  const t = getTranslations(config);
-  const image = '/og/home';
-
-  return {
-    metadataBase: new URL(`https://${config.domain}`),
-    title: {
-      template: `%s | ${t(config.title)}`,
-      default: t(config.title),
-    },
-    description: t(config.description),
-    openGraph: { siteName: t(config.title), url: '/', images: [image] },
-    twitter: { card: 'summary_large_image', images: [image] },
-  };
 }
