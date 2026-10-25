@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import { localizedAlternates } from '~/lib/i18n';
 import { getTranslations } from '~/lib/i18n/messages';
 import type { CardLinkType, IconLinkType } from '~/lib/config';
 
@@ -49,12 +50,6 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
       default: `${config.author} (${config.title})`,
     },
     description: t(config.description),
-    alternates: {
-      canonical: `/${locale}`,
-      languages: {
-        ...Object.fromEntries(config.locales.map((loc) => [loc, `/${loc}`])),
-        'x-default': `/${config.locales[0]}`,
-      },
-    },
+    alternates: localizedAlternates(config, locale),
   };
 }

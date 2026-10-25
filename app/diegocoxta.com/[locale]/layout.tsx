@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import { isSupportedLocale } from '~/lib/i18n';
+import { isSupportedLocale, localeStaticParams } from '~/lib/i18n';
 import { getMessages, getTranslations } from '~/lib/i18n/messages';
 import { personLd, websiteLd } from '~/lib/schema';
 
@@ -18,7 +18,7 @@ interface LocaleLayoutProps {
 }
 
 export function generateStaticParams() {
-  return config.locales.map((locale) => ({ locale }));
+  return localeStaticParams(config.locales);
 }
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
