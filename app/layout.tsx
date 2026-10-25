@@ -15,16 +15,7 @@ const sourceSans = Source_Sans_3({
 export default async function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html suppressHydrationWarning>
-      <body
-        className={`${sourceSans.variable}`}
-        style={
-          {
-            '--main-accent-color': `#${process.env.SITE_ACCENT_COLOR ?? 'e55242'}`,
-          } as React.CSSProperties
-        }
-      >
-        {children}
-      </body>
+      <body className={`${sourceSans.variable}`}>{children}</body>
     </html>
   );
 }

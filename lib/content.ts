@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import readingTime from 'reading-time';
 import { cache } from 'react';
 
-import { publicPath } from '~/lib/public-path';
+import { publicPath } from '~/lib/domain';
 import type { ConfigType } from '~/lib/config';
 
 export type ContentAttributes = {

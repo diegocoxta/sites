@@ -6,7 +6,7 @@ import { cache } from 'react';
 
 import { createTranslator, type Translator } from '~/lib/i18n/translator';
 import { resolveLocale, type Locale } from '~/lib/i18n/locale';
-import { publicPath } from '~/lib/public-path';
+import { publicPath } from '~/lib/domain';
 import type { SiteType } from '~/lib/config';
 
 const loadDictionary = cache((domain: string, locale: Locale): Record<string, string> => {

@@ -44,8 +44,9 @@ happens inside the job, after the checks. Before merging, the job waits for ever
   reading the Unsplash API (`en`), diegocoxta.com a localized link hub
   (`pt`/`en`/`es`). [`proxy.ts`](proxy.ts) reads the request host and rewrites
   `/{path}` → `/{domain}/{path}`, so each domain resolves to its own tree under
-  [`app/<domain>/`](app). Per-domain settings in `app/<domain>/config.ts`; shared
-  defaults in `app/config.ts`.
+  [`app/<domain>/`](app). Per-domain settings in `app/<domain>/config.ts`. Any env var read through `domainEnv` (`lib/domain.ts`) can be overridden for
+  one site with `<DOMAIN>_<NAME>` (domain upper-cased, dots removed:
+  `DIEGOCOSTAME_SITE_ACCENT_COLOR`, `DIEGOCOXTACOM_UNSPLASH_ACCESS_KEY`).
 - **Routing:** `app/<domain>/[...page]/` is a catch-all for `pages/` Markdown that
   calls `notFound()` when the doc is missing. diegocosta.com.br's blog is its own
   `blog/` route tree; diegocosta.me is dynamic off the Unsplash API

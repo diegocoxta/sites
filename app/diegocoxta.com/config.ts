@@ -1,14 +1,23 @@
+import { repository } from '~/package.json';
 import type { ConfigType } from '~/lib/config';
 
-import globalConfig from '~/app/config';
+import { domainEnv, themeColor } from '~/lib/domain';
+
+const domain = 'diegocoxta.com';
 
 const config: ConfigType = {
-  ...globalConfig,
+  author: 'Diego Costa',
+  repository: repository.url,
+  theme: {
+    accentColor: themeColor('SITE_ACCENT_COLOR', domain),
+    textColor: themeColor('SITE_TEXT_COLOR', domain),
+    defaultTheme: 'system',
+  },
   title: '@diegocoxta',
   description: 'config.description',
   locales: ['pt', 'en', 'es'],
   jobTitle: ['Engineering Manager', 'Senior Software Engineer', 'Photographer'],
-  domain: 'diegocoxta.com',
+  domain,
   avatar: '/background_v4.jpg',
   links: [
     {
@@ -72,8 +81,8 @@ const config: ConfigType = {
         widget: 'UnsplashRecentActivity',
         config: {
           title: 'config.links.photography.recentactivity.title',
-          username: process.env.UNSPLASH_USERNAME,
-          authorization: process.env.DIEGOCOXTACOM_UNSPLASH_ACCESS_KEY,
+          username: domainEnv('UNSPLASH_USERNAME', domain, { required: false }),
+          authorization: domainEnv('UNSPLASH_ACCESS_KEY', domain, { required: false }),
         },
       },
     },
@@ -109,8 +118,8 @@ const config: ConfigType = {
         widget: 'GithubRecentActivity',
         config: {
           title: 'config.links.github.recentactivity.title',
-          username: process.env.GITHUB_USERNAME,
-          authorization: process.env.GITHUB_PERSONAL_ACCESS_TOKEN,
+          username: domainEnv('GITHUB_USERNAME', domain, { required: false }),
+          authorization: domainEnv('GITHUB_PERSONAL_ACCESS_TOKEN', domain, { required: false }),
         },
       },
     },
@@ -124,7 +133,7 @@ const config: ConfigType = {
         widget: 'HardcoverRecentActivity',
         config: {
           title: 'config.links.hardcover.recentactivity.title',
-          authorization: process.env.HARDCOVER_TOKEN,
+          authorization: domainEnv('HARDCOVER_TOKEN', domain, { required: false }),
         },
       },
     },
@@ -138,8 +147,8 @@ const config: ConfigType = {
         widget: 'LastfmRecentActivity',
         config: {
           title: 'config.links.lastfm.recentactivity.title',
-          username: process.env.LASTFM_USERNAME,
-          authorization: process.env.LASTFM_API_KEY,
+          username: domainEnv('LASTFM_USERNAME', domain, { required: false }),
+          authorization: domainEnv('LASTFM_API_KEY', domain, { required: false }),
         },
       },
     },
@@ -153,8 +162,8 @@ const config: ConfigType = {
         widget: 'DiscogsRecentActivity',
         config: {
           title: 'config.links.discogs.recentactivity.title',
-          username: process.env.DISCOGS_USERNAME,
-          authorization: process.env.DISCOGS_TOKEN,
+          username: domainEnv('DISCOGS_USERNAME', domain, { required: false }),
+          authorization: domainEnv('DISCOGS_TOKEN', domain, { required: false }),
         },
       },
     },
@@ -168,8 +177,8 @@ const config: ConfigType = {
         widget: 'SetlistRecentActivity',
         config: {
           title: 'config.links.setlist.recentactivity.title',
-          username: process.env.SETLIST_USERNAME,
-          authorization: process.env.SETLIST_API_KEY,
+          username: domainEnv('SETLIST_USERNAME', domain, { required: false }),
+          authorization: domainEnv('SETLIST_API_KEY', domain, { required: false }),
         },
       },
       hide: true,
@@ -184,7 +193,7 @@ const config: ConfigType = {
         widget: 'LetterboxdRecentActivity',
         config: {
           title: 'config.links.letterboxd.recentactivity.title',
-          username: process.env.LETTERBOXD_USERNAME,
+          username: domainEnv('LETTERBOXD_USERNAME', domain, { required: false }),
         },
       },
     },

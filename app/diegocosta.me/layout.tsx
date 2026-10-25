@@ -7,6 +7,7 @@ import { personLd, websiteLd } from '~/lib/schema';
 import TranslationProvider from '~/components/shared/TranslationProvider';
 import HtmlLang from '~/components/shared/HtmlLang';
 import JsonLd from '~/components/shared/JsonLd';
+import AccentColor from '~/components/shared/AccentColor';
 import { Container } from '~/components/diegocosta.me';
 import Footer from '~/components/shared/Footer';
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children, modal }: React.PropsWithChildren<
   return (
     <ThemeProvider forcedTheme={config.theme.defaultTheme}>
       <TranslationProvider messages={messages} locale={t.locale}>
+        <AccentColor color={config.theme.accentColor} />
         <HtmlLang locale={t.locale} />
         <JsonLd data={websiteLd(config, t(config.title))} />
         <JsonLd data={personLd(config)} />
