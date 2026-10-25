@@ -41,7 +41,7 @@ happens inside the job, after the checks. Before merging, the job waits for ever
 
 - **One Next.js app, three domains**, each a different kind of site:
   diegocosta.com.br a Markdown blog (`pt`), diegocosta.me a photography showcase
-  reading the Unsplash API (`en`), diegocoxta.com a localized link hub
+  reading the Unsplash API (`en`/`pt`/`es`), diegocoxta.com a localized link hub
   (`pt`/`en`/`es`). [`proxy.ts`](proxy.ts) reads the request host and rewrites
   `/{path}` → `/{domain}/{path}`, so each domain resolves to its own tree under
   [`app/<domain>/`](app). Per-domain settings in `app/<domain>/config.ts`. Any env var read through `domainEnv` (`lib/domain.ts`) can be overridden for
@@ -51,14 +51,18 @@ happens inside the job, after the checks. Before merging, the job waits for ever
   calls `notFound()` when the doc is missing. diegocosta.com.br's blog is its own
   `blog/` route tree; diegocosta.me is dynamic off the Unsplash API
   (`app/diegocosta.me/actions.ts` is the only controller — routes `/`, `/c/<id>`,
-  `/p/<id>`, and `@modal` for the lightbox). `diegocoxta.com` is multi-locale
-  (`pt`/`en`/`es`) and nests everything under `[locale]/`; the other two domains
-  are single-locale with no `/<locale>` prefix.
+  `/p/<id>`, and `@modal` for the lightbox). `diegocoxta.com` and `diegocosta.me` are multi-locale
+  (`pt`/`en`/`es`, `en`/`pt`/`es`) and nest everything under `[locale]/`; diegocosta.com.br
+  is single-locale with no `/<locale>` prefix. The Unsplash data is locale-independent,
+  so the extra locales only add renders, not API requests.
 - **Content:** Markdown under `public/<domain>/` (`blog/`, `pages/`; only
   diegocosta.com.br has any), read via [`lib/content.ts`](lib/content.ts)
   (`contentFor(config)`) with `gray-matter` (front matter) and `reading-time`.
   Localized files use an `index.<locale>.md` suffix (e.g. `index.en.md`),
-  falling back to the default locale then to `index.md`; relative image refs
+  falling back to the default locale then to `index.md`. A single file can also hold
+  per-locale blocks (`{start locale:pt}` … `{end locale:pt}` on their own lines; text
+  outside any block is shared, a missing locale falls back to the default one), and
+  `title`/`kicker`/`summary` accept a `{ en, pt, es }` object (diegocosta.me's about-me); relative image refs
   (`![](./img.png)`) are rewritten to servable paths at read time.
 - **Blog rendering (diegocosta.com.br):** posts render as MDX via
   `next-mdx-remote` in
@@ -86,6 +90,8 @@ happens inside the job, after the checks. Before merging, the job waits for ever
   `app/layout.tsx` is `NEXT_PUBLIC_APP_IMAGE_VERSION` (default `1`): change it by
   hand and redeploy to make browsers fetch the icon again
   (e.g. `app/diegocosta.com.br/blog/[post]/og/`, `app/diegocosta.me/og/[...slug]/`).
+  diegocosta.me's `og/` is outside `[locale]` on purpose (one image set, default-locale
+  text, no per-locale storage), so `og` is in the asset list of `proxy.ts`.
   Structured data (`Person`, `WebSite`, `BlogPosting`, `BreadcrumbList`,
   `ImageObject`) is built with `schema-dts` in [`lib/schema.ts`](lib/schema.ts)
   and rendered via `components/shared/JsonLd`.
@@ -103,9 +109,9 @@ happens inside the job, after the checks. Before merging, the job waits for ever
   `components/diegocoxta.com/components/Hub`. Keep theme-toggle UI here rather than
   duplicating it per domain.
 - **404s:** no root `app/not-found.tsx` (it would need the host, forcing every
-  catch-all dynamic). Each domain has its own boundary: single-locale domains use
-  `app/<domain>/not-found.tsx` (Server Component); `diegocoxta.com` uses
-  `app/diegocoxta.com/[locale]/not-found.tsx` (Client Component, reads the
+  catch-all dynamic). Each domain has its own boundary: diegocosta.com.br uses
+  `app/diegocosta.com.br/not-found.tsx` (Server Component); the multi-locale domains use
+  `app/<domain>/[locale]/not-found.tsx` (Client Component, reads the
   translator context) so the 404 is localized. Its copy is
   `components.shared.notFound.message`.
 

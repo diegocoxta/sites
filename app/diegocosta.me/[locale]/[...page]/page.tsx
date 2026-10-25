@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { contentFor } from '~/lib/content';
+import { localizedAlternates } from '~/lib/i18n/alternates';
 import { getTranslations } from '~/lib/i18n/messages';
 import type { IconLinkType } from '~/lib/config';
 
@@ -13,42 +14,42 @@ import { getCollections } from '~/app/diegocosta.me/actions';
 const content = contentFor(config);
 
 interface PageProps {
-  params: Promise<{ page: string[] }>;
+  params: Promise<{ locale: string; page: string[] }>;
 }
 
 export function generateStaticParams() {
-  return content.getAllPages().map(({ slug }) => ({ page: [slug] }));
+  return content.getAllPages(config.locales[0]).map(({ slug }) => ({ page: [slug] }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { page } = await params;
-  const doc = content.readFile(`/pages/${page[0]}`);
+  const { locale, page } = await params;
+  const doc = content.readFile(`/pages/${page[0]}`, locale);
 
   if (!doc) {
     return {};
   }
 
-  const t = getTranslations(config);
+  const t = getTranslations(config, locale);
   const image = config.avatar ?? '';
 
   return {
     title: doc.title,
     description: doc.summary,
-    alternates: { canonical: `/${page[0]}` },
-    openGraph: { siteName: t(config.title), url: `/${page[0]}`, images: [image] },
+    alternates: localizedAlternates(config, locale, `/${page[0]}`),
+    openGraph: { siteName: t(config.title), url: `/${locale}/${page[0]}`, images: [image] },
     twitter: { card: 'summary_large_image', images: [image] },
   };
 }
 
 export default async function MarkdownPage({ params }: PageProps) {
-  const { page } = await params;
-  const doc = content.readFile(`/pages/${page[0]}`);
+  const { locale, page } = await params;
+  const doc = content.readFile(`/pages/${page[0]}`, locale);
 
   if (!doc) {
     notFound();
   }
 
-  const t = getTranslations(config);
+  const t = getTranslations(config, locale);
   const collections = await getCollections();
 
   return (
@@ -59,7 +60,7 @@ export default async function MarkdownPage({ params }: PageProps) {
           name={config.author}
           avatar={config.avatar ?? ''}
           socialLinks={config.links?.filter((link): link is IconLinkType => link.type === 'icon' && !link.hide)}
-          pages={content.getPages()}
+          pages={content.getPages(locale)}
         />
       }
       trailing={collections.length > 0 && <CollectionsCard t={t} collections={collections} />}

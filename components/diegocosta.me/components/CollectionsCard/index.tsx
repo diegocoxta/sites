@@ -17,7 +17,7 @@ export default function CollectionsCard({ t, collections }: CollectionsCardProps
       <ul className={styles.list}>
         {collections.map((collection) => (
           <li key={collection.id}>
-            <Link className={styles.item} href={`/c/${collection.id}`}>
+            <Link className={styles.item} href={`/${t.locale}/c/${collection.id}`}>
               <span className={styles.name}>{collection.title}</span>
               <span className={styles.count}>{collection.photoCount}</span>
             </Link>

@@ -31,6 +31,33 @@ function rewriteRelativeImages(content: string, dir: string): string {
   return content.replace(/!\[(.*?)\]\(\.\/([^)]+)\)/g, (_, alt, file) => `![${alt}](${dir}/${file})`);
 }
 
+const LOCALE_BLOCK = /\{start locale:(\w+)\}\r?\n([\s\S]*?)\r?\n\{end locale:\1\}[ \t]*\r?\n?/g;
+
+/** Keeps the `{start locale:x}...{end locale:x}` block of the locale (or the default one) and drops the others. */
+function selectLocaleBlocks(content: string, locale?: string, defaultLocale?: string): string {
+  const available = new Set([...content.matchAll(LOCALE_BLOCK)].map(([, name]) => name));
+
+  if (available.size === 0) {
+    return content;
+  }
+
+  const chosen = locale && available.has(locale) ? locale : defaultLocale;
+
+  return content
+    .replace(LOCALE_BLOCK, (_, name: string, body: string) => (name === chosen ? `${body}\n` : ''))
+    .replace(/\n{3,}/g, '\n\n');
+}
+
+function localizeValue(value: unknown, locale?: string, defaultLocale?: string): unknown {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+    return value;
+  }
+
+  const byLocale = value as Record<string, unknown>;
+
+  return (locale && byLocale[locale]) ?? (defaultLocale && byLocale[defaultLocale]);
+}
+
 function resolveContentName(
   domain: string,
   filename: string,
@@ -68,6 +95,7 @@ const readContentFile = cache(function readContentFile<T extends ContentAttribut
 
   const file = publicPath(domain, filename, name);
 
+  // gray-matter returns a cached `data` object, so the localized fields below are set on a copy
   let data: Record<string, unknown>;
   let content: string;
 
@@ -78,16 +106,26 @@ const readContentFile = cache(function readContentFile<T extends ContentAttribut
     return undefined;
   }
 
+  data = { ...data };
+
+  for (const key of ['title', 'kicker', 'summary']) {
+    if (key in data) {
+      data[key] = localizeValue(data[key], locale, defaultLocale);
+    }
+  }
+
   if (typeof data.title !== 'string' || data.title.length === 0) {
     console.warn('[content] skipping %s: missing "title" in front matter', file);
     return undefined;
   }
 
+  const body = selectLocaleBlocks(content, locale, defaultLocale);
+
   const attributes: Record<string, unknown> = {
     ...data,
     listed: data.listed !== false,
-    readingTime: readingTime(content).minutes,
-    content: rewriteRelativeImages(content, filename),
+    readingTime: readingTime(body).minutes,
+    content: rewriteRelativeImages(body, filename),
   };
 
   if (data.date) {

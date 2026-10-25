@@ -5,7 +5,7 @@ import { Lightbox } from '~/components/diegocosta.me';
 import { getAllPhotos, getPhotoContext, getPhotoDetails } from '~/app/diegocosta.me/actions';
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }
 
 export async function generateStaticParams() {
@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 
 export default async function PhotoModal(props: PageProps) {
   const { params } = props;
-  const { id } = await params;
+  const { locale, id } = await params;
   const context = await getPhotoContext(id);
 
   if (!context) {
@@ -31,8 +31,8 @@ export default async function PhotoModal(props: PageProps) {
       nextId={context.nextId}
       index={context.index}
       total={context.total}
-      hrefBase="/p"
-      closeHref="/"
+      hrefBase={`/${locale}/p`}
+      closeHref={`/${locale}`}
       getPhotoDetails={getPhotoDetails}
     />
   );
