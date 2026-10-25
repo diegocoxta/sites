@@ -81,10 +81,9 @@ async function resolveCard(slug: string[]): Promise<Card | null> {
 
     return {
       title: collection.title,
-      meta: [
-        t('components.photoshowcase.collectiondetails.photocount', { count: collection.photoCount }),
-        config.domain,
-      ].join('  ·  '),
+      meta: [t('components.collectiondetails.photocount', { count: collection.photoCount }), config.domain].join(
+        '  ·  '
+      ),
       thumbnail: ogThumbnail(collection.coverSrc),
     };
   }

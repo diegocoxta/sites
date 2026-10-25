@@ -36,14 +36,14 @@ export default function Article({ t, ...props }: ArticleProps) {
             {props.readingTime && (
               <span>
                 {props.readingTime <= 1
-                  ? t('components.blog.article.attributes.readingtimeunderminute')
-                  : t('components.blog.article.attributes.readingtime', {
+                  ? t('components.article.attributes.readingtimeunderminute')
+                  : t('components.article.attributes.readingtime', {
                       count: Number(props.readingTime!.toFixed()),
                     })}
               </span>
             )}
           </div>
-          <ul className={styles.tagList} aria-label={t('components.blog.article.attributes.tagslabel')}>
+          <ul className={styles.tagList} aria-label={t('components.article.attributes.tagslabel')}>
             {props.tags?.map((tag: string, index: number) => (
               <li className={styles.tagItem} key={`${index}-${tag}`}>
                 <Link className={styles.tagLink} href={`/blog/tag/${tag}`}>{`#${tag}`}</Link>

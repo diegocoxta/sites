@@ -49,7 +49,7 @@ export default function Feed(props: FeedProps) {
       {hasMore ? (
         <LoadMore loading={loading} failed={failed} onLoadMore={handleLoadMore} sentinelRef={sentinelRef} />
       ) : (
-        <p className={styles.end}>{t('client.components.photoshowcase.feed.end')}</p>
+        <p className={styles.end}>{t('components.feed.end')}</p>
       )}
       <BackToTop />
     </>

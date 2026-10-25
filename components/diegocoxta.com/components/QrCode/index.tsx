@@ -11,13 +11,13 @@ export default function QrCode({ t }: QrCodeProps) {
     <div className={styles.qrCode}>
       <Image
         src="/qr-code.png"
-        alt={t('components.linkhub.qrcode.alt')}
+        alt={t('components.qrcode.alt')}
         width={150}
         height={150}
         className={styles.qrCodeImage}
         unoptimized
       />
-      <p className={styles.qrCodeDescription}>{t('components.linkhub.qrcode.hint')}</p>
+      <p className={styles.qrCodeDescription}>{t('components.qrcode.hint')}</p>
     </div>
   );
 }

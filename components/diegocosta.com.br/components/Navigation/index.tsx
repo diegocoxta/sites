@@ -11,7 +11,7 @@ type NavigationProps = ComponentWithTranslator<{
 
 export default function Navigation({ t, ...props }: NavigationProps) {
   return (
-    <nav className={styles.container} aria-label={t('components.blog.navigation.arialabel')}>
+    <nav className={styles.container} aria-label={t('components.navigation.arialabel')}>
       {props.links && (
         <ul className={styles.links}>
           {props.links

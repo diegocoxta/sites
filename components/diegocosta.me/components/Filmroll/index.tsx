@@ -31,12 +31,11 @@ export default function Filmroll({ photos, currentId, hrefBase }: FilmrollProps)
 
   return (
     <div className={styles.filmroll}>
-      <h3 className={styles.title}>{t('client.components.photoshowcase.filmroll.label')}</h3>
+      <h3 className={styles.title}>{t('components.filmroll.label')}</h3>
       <ul className={styles.list}>
         {photos.map((photo) => {
           const isCurrent = photo.id === currentId;
-          const alt =
-            [photo.description, photo.alt].filter(Boolean).join(' - ') || t('client.components.photoshowcase.photoalt');
+          const alt = [photo.description, photo.alt].filter(Boolean).join(' - ') || t('components.photoalt');
 
           return (
             <li key={photo.id} className={styles.item} data-mobile={mobileIds.has(photo.id)}>

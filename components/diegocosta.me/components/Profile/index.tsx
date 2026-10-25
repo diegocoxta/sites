@@ -32,7 +32,7 @@ export default function Profile({ t, ...props }: ProfileProps) {
       />
       <div className={styles.overlay}>
         <Logo name={props.name} size={48} />
-        <p className={styles.text}>{`${t('config.description')} ${t('components.photoshowcase.profile.bio')}`}</p>
+        <p className={styles.text}>{`${t('config.description')} ${t('components.profile.bio')}`}</p>
         {props.socialLinks && props.socialLinks.length > 0 && (
           <ul className={styles.social}>
             {props.socialLinks.map((link) => {

@@ -15,7 +15,7 @@ export default function HomePage() {
   return (
     <>
       <Breadcrumb items={[{ label: t('page.blog.title'), href: '/blog' }]} />
-      <FlashMessage>{t('components.blog.flashmessage.message')}</FlashMessage>
+      <FlashMessage>{t('components.flashmessage.message')}</FlashMessage>
       {content.getPosts().map((post, index: number) => (
         <Article key={`blog-article-${index}`} t={t} expanded={false} {...post} />
       ))}

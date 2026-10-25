@@ -41,7 +41,7 @@ export default async function HardcoverWidget({ t, config }: RecentActivityWidge
             </div>
             <h4 className={styles.title}>{book.title}</h4>
             <p className={styles.progress}>
-              {t('components.linkhub.recentactivity.hardcover.pageprogress', {
+              {t('components.recentactivity.hardcover.pageprogress', {
                 current: user_book_reads?.[0]?.progress_pages || '0',
                 total: book.pages,
               })}

@@ -35,7 +35,7 @@ export default function NowPlaying() {
   return (
     <p className={styles.nowPlaying}>
       <span className={styles.pulse} aria-hidden />
-      <span className={styles.label}>{t('client.components.linkhub.recentactivity.lastfm.nowplaying')}</span>
+      <span className={styles.label}>{t('components.recentactivity.lastfm.nowplaying')}</span>
       <a className={styles.track} href={track.url} target="_blank" rel="noopener">
         {track.name} — {track.artist}
       </a>
