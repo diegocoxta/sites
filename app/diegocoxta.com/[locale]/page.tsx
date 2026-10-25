@@ -3,9 +3,9 @@ import type { Metadata } from 'next';
 import { getTranslations } from '~/lib/i18n/messages';
 import type { CardLinkType, IconLinkType } from '~/lib/config';
 
-import Logo from '~/components/Logo';
-import { Hub, CardLinks, IconLinks, QrCode } from '~/components/LinkHub';
-import Footer from '~/components/Footer';
+import Logo from '~/components/shared/Logo';
+import { Hub, CardLinks, IconLinks, QrCode } from '~/components/diegocoxta.com';
+import Footer from '~/components/shared/Footer';
 
 import config from '~/app/diegocoxta.com/config';
 

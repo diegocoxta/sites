@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 
-import { Breadcrumb, Article, FlashMessage } from '~/components/Blog';
+import { Breadcrumb, Article, FlashMessage } from '~/components/diegocosta.com.br';
 
 import config from '~/app/diegocosta.com.br/config';
 

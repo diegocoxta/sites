@@ -1,6 +1,6 @@
 import { getTranslations } from '~/lib/i18n/messages';
 
-import NotFound from '~/components/NotFound';
+import NotFound from '~/components/shared/NotFound';
 
 import config from '~/app/diegocosta.me/config';
 

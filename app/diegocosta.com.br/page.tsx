@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { getTranslations } from '~/lib/i18n/messages';
 
-import { PageDescription } from '~/components/Blog';
+import { PageDescription } from '~/components/diegocosta.com.br';
 
 import config from '~/app/diegocosta.com.br/config';
 

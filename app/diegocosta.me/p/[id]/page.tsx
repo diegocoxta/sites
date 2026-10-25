@@ -7,8 +7,8 @@ import type { Translator } from '~/lib/i18n/translator';
 import { imageObjectLd } from '~/lib/schema';
 import type { IconLinkType } from '~/lib/config';
 
-import { CollectionsCard, Filmroll, Lightbox, Page, Profile } from '~/components/PhotoShowcase';
-import JsonLd from '~/components/JsonLd';
+import { CollectionsCard, Filmroll, Lightbox, Page, Profile } from '~/components/diegocosta.me';
+import JsonLd from '~/components/shared/JsonLd';
 
 import config from '~/app/diegocosta.me/config';
 import { getAllPhotos, getCollections, getPhotoContext, getPhotoDetails } from '~/app/diegocosta.me/actions';

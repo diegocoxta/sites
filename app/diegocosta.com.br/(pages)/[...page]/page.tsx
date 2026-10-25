@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 
-import { Article } from '~/components/Blog';
+import { Article } from '~/components/diegocosta.com.br';
 
 import config from '~/app/diegocosta.com.br/config';
 

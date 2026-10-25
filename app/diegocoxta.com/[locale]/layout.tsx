@@ -5,9 +5,9 @@ import { isSupportedLocale } from '~/lib/i18n';
 import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
 import { personLd, websiteLd } from '~/lib/schema';
 
-import TranslationProvider from '~/components/TranslationProvider';
-import HtmlLang from '~/components/HtmlLang';
-import JsonLd from '~/components/JsonLd';
+import TranslationProvider from '~/components/shared/TranslationProvider';
+import HtmlLang from '~/components/shared/HtmlLang';
+import JsonLd from '~/components/shared/JsonLd';
 
 import config from '~/app/diegocoxta.com/config';
 

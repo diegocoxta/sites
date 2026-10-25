@@ -61,7 +61,7 @@ happens inside the job, after the checks. Before merging, the job waits for ever
   (`![](./img.png)`) are rewritten to servable paths at read time.
 - **Blog rendering (diegocosta.com.br):** posts render as MDX via
   `next-mdx-remote` in
-  [`components/Blog/components/Article`](components/Blog/components/Article).
+  [`components/diegocosta.com.br/components/Article`](components/diegocosta.com.br/components/Article).
   The `blog/feed` route generates RSS with the `rss` package; other external
   feeds (e.g. the FeedListing widget) are parsed with `fast-xml-parser`. A
   `kbar` command bar (`⌘K`/`Ctrl+K`) is also blog-only.
@@ -85,19 +85,19 @@ happens inside the job, after the checks. Before merging, the job waits for ever
   (e.g. `app/diegocosta.com.br/blog/[post]/og/`, `app/diegocosta.me/og/[...slug]/`).
   Structured data (`Person`, `WebSite`, `BlogPosting`, `BreadcrumbList`,
   `ImageObject`) is built with `schema-dts` in [`lib/schema.ts`](lib/schema.ts)
-  and rendered via `components/JsonLd`.
+  and rendered via `components/shared/JsonLd`.
 - **Activity widgets (diegocoxta.com):** [`lib/services/`](lib/services) fetch
   Discogs, Letterboxd, Unsplash, Hardcover, GitHub, Last.fm, Setlist.fm, an RSS
   feed, and Deezer (artist images) through [`lib/http.ts`](lib/http.ts), which
   adds a timeout + `revalidate` + logging and returns `null` on failure instead
-  of throwing. Each widget in `components/LinkHub/components/Widgets/` is
+  of throwing. Each widget in `components/diegocoxta.com/components/Widgets/` is
   wrapped in `WidgetBoundary` (error boundary + `Suspense` skeleton), so a
   missing API token or failed fetch renders that one widget empty rather than
   breaking the page (see `.env.example`).
 - **Dark mode:** `next-themes`, toggled by the shared
-  [`components/ThemeSwitcher`](components/ThemeSwitcher) — imported directly by
+  [`components/shared/ThemeSwitcher`](components/shared/ThemeSwitcher) — imported directly by
   diegocosta.com.br's layout and diegocoxta.com's
-  `components/LinkHub/components/Hub`. Keep theme-toggle UI here rather than
+  `components/diegocoxta.com/components/Hub`. Keep theme-toggle UI here rather than
   duplicating it per domain.
 - **404s:** no root `app/not-found.tsx` (it would need the host, forcing every
   catch-all dynamic). Each domain has its own boundary: single-locale domains use
@@ -109,7 +109,8 @@ happens inside the job, after the checks. Before merging, the job waits for ever
 ## Conventions
 
 - TypeScript everywhere. `~/*` import alias = repo root (see `tsconfig.json`).
-- CSS Modules, co-located per component folder (`components/X/index.tsx` +
+- Components live in `components/<domain>/` (one per site) or `components/shared/`.
+- CSS Modules, co-located per component folder (`components/shared/X/index.tsx` +
   `styles.module.css`). No global CSS beyond `app/globals.css`.
 - Match the style of surrounding code; keep diffs minimal.
 - Don't add dependencies without a clear need.
@@ -118,10 +119,11 @@ happens inside the job, after the checks. Before merging, the job waits for ever
   - Change lives entirely (or mostly) under `app/<domain>`, or spans
     `app/<domain>` plus other files that are exclusive to that domain (e.g. a
     component or lib only that domain uses) → scope is `<domain>`.
-  - Change is only in `components/`: a global component → scope is the
-    component name; a component inside a namespace (`Blog`, `PhotoShowcase`,
-    `LinkHub`, etc.) → scope is `namespace.component`, e.g.
-    `feat(photoshowcase.lightbox.actionbutton)`, `fix(blog.article)`.
+  - Change is only in `components/shared/`: scope is the component name, e.g.
+    `fix(themeswitcher)`.
+  - Change is only in `components/<domain>/`: scope is `<domain>`, or
+    `<domain>.component` for a component inside it, e.g.
+    `feat(diegocosta.me.lightbox.actionbutton)`, `fix(diegocosta.com.br.article)`.
   - Anything else (libs, other standalone files) → scope is the file name,
     e.g. `fix(htmllang)`.
   - Never add a `Co-Authored-By` trailer (or any other AI attribution) to

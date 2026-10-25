@@ -5,13 +5,13 @@ import { contentFor, type ContentAttributes } from '~/lib/content';
 import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
 import { personLd, websiteLd } from '~/lib/schema';
 
-import TranslationProvider from '~/components/TranslationProvider';
-import HtmlLang from '~/components/HtmlLang';
-import JsonLd from '~/components/JsonLd';
-import Logo from '~/components/Logo';
-import ThemeSwitcher from '~/components/ThemeSwitcher';
-import { Header, CommandBar, Navigation, Container } from '~/components/Blog';
-import Footer from '~/components/Footer';
+import TranslationProvider from '~/components/shared/TranslationProvider';
+import HtmlLang from '~/components/shared/HtmlLang';
+import JsonLd from '~/components/shared/JsonLd';
+import Logo from '~/components/shared/Logo';
+import ThemeSwitcher from '~/components/shared/ThemeSwitcher';
+import { Header, CommandBar, Navigation, Container } from '~/components/diegocosta.com.br';
+import Footer from '~/components/shared/Footer';
 
 import config from '~/app/diegocosta.com.br/config';
 

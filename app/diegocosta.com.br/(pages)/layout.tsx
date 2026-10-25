@@ -1,4 +1,4 @@
-import { Divisor } from '~/components/Blog';
+import { Divisor } from '~/components/diegocosta.com.br';
 
 export default function BlogLayout(props: React.PropsWithChildren) {
   return (
