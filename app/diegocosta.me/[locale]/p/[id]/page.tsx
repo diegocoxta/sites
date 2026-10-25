@@ -72,6 +72,8 @@ export default async function PhotoPreviewPage(props: PhotoPreviewProps) {
           avatar={config.avatar ?? ''}
           socialLinks={config.links?.filter((link): link is IconLinkType => link.type === 'icon' && !link.hide)}
           pages={content.getPages(locale)}
+          locales={config.locales}
+          path={`/p/${id}`}
         />
       }
       trailing={collections.length > 0 && <CollectionsCard t={t} collections={collections} />}

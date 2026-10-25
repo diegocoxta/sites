@@ -10,6 +10,7 @@
   "page.photos.empty": "Vazio por enquanto. Ou eu ainda não postei, ou algo quebrou. Tente de novo mais tarde.",
   "page.collections.description": "Algumas fotos que mantive juntas por um motivo que não anotei.",
   "components.profile.bio": "É aqui que as fotos vão parar; o resto de mim está nos links abaixo.",
+  "components.languageswitcher.label": "Idioma",
   "components.collectionscard.title": "Coleções",
   "components.collectiondetails.photocount": "{count} fotos",
   "components.collectiondetails.allphotos": "Todas as fotos",

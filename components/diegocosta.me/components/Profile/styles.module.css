@@ -73,10 +73,20 @@
   }
 }
 
-.pages {
+.footer {
   margin: 18px 0 0;
   padding: 14px 0 0;
   border-top: 1px solid color-mix(in srgb, var(--main-title-color) 25%, transparent);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 18px;
+}
+
+.pages {
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 14px 18px;
@@ -94,10 +104,12 @@
     text-transform: uppercase;
     color: var(--main-title-color);
     text-decoration: none;
-    transition: color 0.2s ease;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
 
-    &:hover {
-      color: var(--main-accent-color);
+    &:hover,
+    &[aria-current='page'] {
+      opacity: 1;
     }
   }
 }

@@ -68,6 +68,8 @@ export default async function CollectionPage({ params }: PageProps) {
           avatar="/avatar.jpg"
           socialLinks={config.links?.filter((link): link is IconLinkType => link.type === 'icon' && !link.hide)}
           pages={content.getPages(locale)}
+          locales={config.locales}
+          path={`/c/${id}`}
         />
       }
       trailing={
