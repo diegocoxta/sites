@@ -17,7 +17,7 @@ export default function CommandBar() {
   return (
     <>
       <button
-        aria-label={t('client.components.blog.commandbar.openmenu')}
+        aria-label={t('components.commandbar.openmenu')}
         aria-haspopup="dialog"
         className={styles.button}
         onClick={() => query.toggle()}
@@ -29,10 +29,7 @@ export default function CommandBar() {
           <KBarAnimator className={styles.animator}>
             <div className={styles.item}>
               <LuSearch size={22} aria-hidden />
-              <KBarSearch
-                className={styles.search}
-                defaultPlaceholder={t('client.components.blog.commandbar.searchplaceholder')}
-              />
+              <KBarSearch className={styles.search} defaultPlaceholder={t('components.commandbar.searchplaceholder')} />
               <div className={styles.shortcut} aria-hidden>
                 <kbd className={styles.shortcutIcon}>esc</kbd>
               </div>

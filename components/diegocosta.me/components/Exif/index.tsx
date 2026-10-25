@@ -51,44 +51,44 @@ export default function Exif({ status, details, size }: ExifProps) {
     <div className={styles.panel}>
       <dl className={styles.grid}>
         <div>
-          <dt>{t('client.components.photoshowcase.exif.resolution')}</dt>
+          <dt>{t('components.exif.resolution')}</dt>
           <dd>
             {size.width} × {size.height}
           </dd>
         </div>
         {details?.exif?.camera && (
           <div>
-            <dt>{t('client.components.photoshowcase.exif.camera')}</dt>
+            <dt>{t('components.exif.camera')}</dt>
             <dd>{details.exif.camera}</dd>
           </div>
         )}
         {details?.exif?.focalLength && (
           <div>
-            <dt>{t('client.components.photoshowcase.exif.focallength')}</dt>
+            <dt>{t('components.exif.focallength')}</dt>
             <dd>{formatFocalLength(details.exif.focalLength)}</dd>
           </div>
         )}
         {details?.exif?.aperture && (
           <div>
-            <dt>{t('client.components.photoshowcase.exif.aperture')}</dt>
+            <dt>{t('components.exif.aperture')}</dt>
             <dd>f/{details.exif.aperture}</dd>
           </div>
         )}
         {details?.exif?.shutterSpeed && (
           <div>
-            <dt>{t('client.components.photoshowcase.exif.shutter')}</dt>
+            <dt>{t('components.exif.shutter')}</dt>
             <dd>{details.exif.shutterSpeed}s</dd>
           </div>
         )}
         {details?.exif?.iso != null && (
           <div>
-            <dt>{t('client.components.photoshowcase.exif.iso')}</dt>
+            <dt>{t('components.exif.iso')}</dt>
             <dd>{details.exif.iso}</dd>
           </div>
         )}
         {details?.location?.name && (
           <div>
-            <dt>{t('client.components.photoshowcase.exif.location')}</dt>
+            <dt>{t('components.exif.location')}</dt>
             <dd>{details.location.name}</dd>
           </div>
         )}

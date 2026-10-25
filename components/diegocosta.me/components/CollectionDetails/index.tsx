@@ -18,11 +18,11 @@ export default function CollectionDetails({ t, title, description, photoCount, p
       <h1 className={styles.title}>{title}</h1>
       {<p className={styles.description}>{description || t('page.collections.description')}</p>}
       <p className={styles.meta}>
-        <span>{t('components.photoshowcase.collectiondetails.photocount', { count: photoCount })}</span>
+        <span>{t('components.collectiondetails.photocount', { count: photoCount })}</span>
         {publishedAt && <span>{t.date(publishedAt, { year: 'numeric' })}</span>}
       </p>
       <Link className={styles.cta} href="/">
-        <FaArrowLeftLong /> {t('components.photoshowcase.collectiondetails.allphotos')}
+        <FaArrowLeftLong /> {t('components.collectiondetails.allphotos')}
       </Link>
     </section>
   );

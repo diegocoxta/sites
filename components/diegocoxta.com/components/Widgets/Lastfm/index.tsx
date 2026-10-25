@@ -47,9 +47,7 @@ export default async function LastfmWidget({ t, config }: RecentActivityWidgetPr
                 />
               </div>
             </div>
-            <p className={styles.plays}>
-              {t('components.linkhub.recentactivity.lastfm.plays', { count: artist.playcount })}
-            </p>
+            <p className={styles.plays}>{t('components.recentactivity.lastfm.plays', { count: artist.playcount })}</p>
           </RecentActivity.Item>
         ))}
       </RecentActivity>

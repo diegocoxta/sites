@@ -34,9 +34,7 @@ export default function Figure({ photo, index, total, getPhotoDetails, topRight 
         <UnsplashImage
           className={`${styles.image} ${imageLoaded ? styles.imageLoaded : ''}`}
           src={photo.src}
-          alt={
-            [photo.description, photo.alt].filter(Boolean).join(' - ') || t('client.components.photoshowcase.photoalt')
-          }
+          alt={[photo.description, photo.alt].filter(Boolean).join(' - ') || t('components.photoalt')}
           fill
           sizes="(min-width: 1024px) 55vw, 95vw"
           priority
@@ -48,7 +46,7 @@ export default function Figure({ photo, index, total, getPhotoDetails, topRight 
               type="button"
               className={styles.actionButton}
               onClick={loadExif}
-              aria-label={t('client.components.photoshowcase.exif.viewmetadata')}
+              aria-label={t('components.exif.viewmetadata')}
             >
               <FaCircleInfo aria-hidden />
             </button>
@@ -57,7 +55,7 @@ export default function Figure({ photo, index, total, getPhotoDetails, topRight 
             className={styles.actionButton}
             href={photo.downloadUrl}
             rel="noopener noreferrer"
-            aria-label={t('client.components.photoshowcase.figure.download')}
+            aria-label={t('components.figure.download')}
           >
             <FaDownload aria-hidden />
           </a>
@@ -70,7 +68,7 @@ export default function Figure({ photo, index, total, getPhotoDetails, topRight 
         {photo.source && (
           <span
             dangerouslySetInnerHTML={{
-              __html: t('client.components.photoshowcase.lightbox.credit', {
+              __html: t('components.lightbox.credit', {
                 author: photo.source.author,
                 authorUrl: photo.source.authorUrl,
                 source: photo.source.name,

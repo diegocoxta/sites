@@ -22,7 +22,7 @@ export default function Footer({ t, ...props }: FooterProps) {
         {props.horizontal && separator}
         <span
           dangerouslySetInnerHTML={{
-            __html: t('components.footer.caption', {
+            __html: t('components.shared.footer.caption', {
               year,
               author: props.name,
             }),
@@ -32,7 +32,7 @@ export default function Footer({ t, ...props }: FooterProps) {
           <>
             {separator}
             <a href={props.sourceCode} rel="noopener noreferrer" target="_blank">
-              {t('components.footer.sourcecode')}
+              {t('components.shared.footer.sourcecode')}
             </a>
           </>
         )}

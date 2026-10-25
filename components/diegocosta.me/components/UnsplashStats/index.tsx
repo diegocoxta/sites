@@ -16,11 +16,11 @@ export default async function UnsplashStats({ t }: ComponentWithTranslator) {
   return (
     <dl className={styles.stats}>
       <div className={styles.stat}>
-        <dt className={styles.label}>{t('components.photoshowcase.unsplashstats.downloads')}</dt>
+        <dt className={styles.label}>{t('components.unsplashstats.downloads')}</dt>
         <dd className={styles.value}>{format.format(statistics.downloads)}</dd>
       </div>
       <div className={styles.stat}>
-        <dt className={styles.label}>{t('components.photoshowcase.unsplashstats.views')}</dt>
+        <dt className={styles.label}>{t('components.unsplashstats.views')}</dt>
         <dd className={styles.value}>{format.format(statistics.views)}</dd>
       </div>
     </dl>

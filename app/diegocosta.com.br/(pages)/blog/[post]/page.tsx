@@ -37,7 +37,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         ])}
       />
       <Breadcrumb items={[{ label: t('page.blog.title'), href: '/blog' }]} />
-      <FlashMessage>{t('components.blog.flashmessage.message')}</FlashMessage>
+      <FlashMessage>{t('components.flashmessage.message')}</FlashMessage>
       <Article t={t} headingLevel={1} {...doc} />
     </>
   );

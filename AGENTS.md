@@ -68,12 +68,14 @@ happens inside the job, after the checks. Before merging, the job waits for ever
 - **i18n:** flat-key JSON at `public/<domain>/translations/<locale>.json`. Loader
   in [`lib/i18n/messages.ts`](lib/i18n/messages.ts) (`server-only`); edge-safe
   negotiation in [`lib/i18n/locale.ts`](lib/i18n/locale.ts) (used by `proxy.ts`).
-  `getTranslations` sees every key; `getClientMessages` ships only `client.*`
-  keys to Client Components — so a string used in a Client Component must be
-  named `client.*`. JSON keys are **all lowercase**; `t()` lower-cases the
+  `getTranslations` builds the Server Component translator; `getMessages` ships
+  the site's whole dictionary to `TranslationProvider` for Client Components, so
+  any key works on either side. Each site's JSON holds only its own keys, and a
+  key used by a `components/shared` component is prefixed `components.shared.`
+  (`components.shared.themeswitcher.arialabel`). JSON keys are **all lowercase**; `t()` lower-cases the
   lookup, so call sites may mirror component names
-  (`t('components.photoShowcase.LoadMore.label')`) and still resolve. Keys are
-  namespaced under `client.`/`config.`/`components.`/`page.`; anything outside
+  (`t('components.LoadMore.label')`) and still resolve. Keys are
+  namespaced under `config.`/`components.`/`page.`; anything outside
   those namespaces — or any key with no match — is returned unchanged, which is
   how brand/proper names pass straight through.
 - **OG images, icons & JSON-LD:** favicons and per-page social preview images
@@ -104,7 +106,7 @@ happens inside the job, after the checks. Before merging, the job waits for ever
   `app/<domain>/not-found.tsx` (Server Component); `diegocoxta.com` uses
   `app/diegocoxta.com/[locale]/not-found.tsx` (Client Component, reads the
   translator context) so the 404 is localized. Its copy is
-  `client.components.notFound.message`.
+  `components.shared.notFound.message`.
 
 ## Conventions
 

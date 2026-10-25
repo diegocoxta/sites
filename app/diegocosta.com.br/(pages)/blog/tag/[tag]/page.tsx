@@ -21,7 +21,7 @@ export default async function TagsSinglePage({ params }: TagsSinglePageProps) {
   return (
     <>
       <Breadcrumb items={[{ label: t('page.blog.title'), href: '/blog' }, { label: `#${tag}` }]} />
-      <FlashMessage>{t('components.blog.flashmessage.message')}</FlashMessage>
+      <FlashMessage>{t('components.flashmessage.message')}</FlashMessage>
       {content
         .getPosts()
         .filter((post) => post.tags?.includes(tag))
