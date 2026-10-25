@@ -7,6 +7,8 @@ import type { ContentAttributes } from '~/lib/content';
 
 import Logo from '~/components/shared/Logo';
 
+import LanguageSwitcher from '~/components/diegocosta.me/components/LanguageSwitcher';
+
 import styles from './styles.module.css';
 
 type SocialLink = { href: string; icon: string; title: string };
@@ -16,6 +18,9 @@ type ProfileProps = ComponentWithTranslator<{
   avatar: string;
   socialLinks?: SocialLink[];
   pages?: Array<Pick<ContentAttributes, 'title' | 'href'>>;
+  locales: readonly string[];
+  /** Path of the current page below the locale (`''`, `/about-me`, `/p/<id>`), used by the language links. */
+  path: string;
 }>;
 
 export default function Profile({ t, ...props }: ProfileProps) {
@@ -47,15 +52,20 @@ export default function Profile({ t, ...props }: ProfileProps) {
             })}
           </ul>
         )}
-        {props.pages && props.pages.length > 0 && (
-          <ul className={styles.pages}>
-            {props.pages.map((page) => (
-              <li key={page.href}>
-                <Link href={`/${t.locale}${page.href}`}>{page.title}</Link>
-              </li>
-            ))}
-          </ul>
-        )}
+        <div className={styles.footer}>
+          {props.pages && props.pages.length > 0 && (
+            <ul className={styles.pages}>
+              {props.pages.map((page) => (
+                <li key={page.href}>
+                  <Link href={`/${t.locale}${page.href}`} aria-current={page.href === props.path ? 'page' : undefined}>
+                    {page.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+          <LanguageSwitcher t={t} locales={props.locales} path={props.path} />
+        </div>
       </div>
     </div>
   );

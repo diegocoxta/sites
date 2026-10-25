@@ -10,6 +10,7 @@
   "page.photos.empty": "Vacío por ahora. O aún no he publicado, o algo se rompió. Inténtalo de nuevo más tarde.",
   "page.collections.description": "Algunas fotos que mantuve juntas por una razón que no anoté.",
   "components.profile.bio": "Aquí es donde terminan las fotos; el resto de mí está en los enlaces de abajo.",
+  "components.languageswitcher.label": "Idioma",
   "components.collectionscard.title": "Colecciones",
   "components.collectiondetails.photocount": "{count} fotos",
   "components.collectiondetails.allphotos": "Todas las fotos",

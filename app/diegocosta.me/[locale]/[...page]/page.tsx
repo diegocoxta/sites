@@ -61,6 +61,8 @@ export default async function MarkdownPage({ params }: PageProps) {
           avatar={config.avatar ?? ''}
           socialLinks={config.links?.filter((link): link is IconLinkType => link.type === 'icon' && !link.hide)}
           pages={content.getPages(locale)}
+          locales={config.locales}
+          path={`/${page[0]}`}
         />
       }
       trailing={collections.length > 0 && <CollectionsCard t={t} collections={collections} />}
