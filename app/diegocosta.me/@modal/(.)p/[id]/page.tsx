@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import { Lightbox } from '~/components/PhotoShowcase';
+import { Lightbox } from '~/components/diegocosta.me';
 
 import { getAllPhotos, getPhotoContext, getPhotoDetails } from '~/app/diegocosta.me/actions';
 

@@ -5,8 +5,8 @@ import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 import { blogPostingLd, breadcrumbLd } from '~/lib/schema';
 
-import JsonLd from '~/components/JsonLd';
-import { Breadcrumb, Article, FlashMessage } from '~/components/Blog';
+import JsonLd from '~/components/shared/JsonLd';
+import { Breadcrumb, Article, FlashMessage } from '~/components/diegocosta.com.br';
 
 import config from '~/app/diegocosta.com.br/config';
 

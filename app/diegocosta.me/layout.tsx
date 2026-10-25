@@ -4,11 +4,11 @@ import { ThemeProvider } from 'next-themes';
 import { getClientMessages, getTranslations } from '~/lib/i18n/messages';
 import { personLd, websiteLd } from '~/lib/schema';
 
-import TranslationProvider from '~/components/TranslationProvider';
-import HtmlLang from '~/components/HtmlLang';
-import JsonLd from '~/components/JsonLd';
-import { Container } from '~/components/PhotoShowcase';
-import Footer from '~/components/Footer';
+import TranslationProvider from '~/components/shared/TranslationProvider';
+import HtmlLang from '~/components/shared/HtmlLang';
+import JsonLd from '~/components/shared/JsonLd';
+import { Container } from '~/components/diegocosta.me';
+import Footer from '~/components/shared/Footer';
 
 import config from '~/app/diegocosta.me/config';
 

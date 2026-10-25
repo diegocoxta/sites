@@ -1,7 +1,7 @@
 'use client';
 
-import { useTranslator } from '~/components/TranslationProvider';
-import NotFound from '~/components/NotFound';
+import { useTranslator } from '~/components/shared/TranslationProvider';
+import NotFound from '~/components/shared/NotFound';
 
 import config from '~/app/diegocoxta.com/config';
 

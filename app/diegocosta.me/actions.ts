@@ -18,8 +18,8 @@ import type {
   PhotoDetails,
   PhotoFeedPage,
   UserStatistics,
-} from '~/components/PhotoShowcase/types';
-import { filmrollPhotos } from '~/components/PhotoShowcase/utils';
+} from '~/components/diegocosta.me/types';
+import { filmrollPhotos } from '~/components/diegocosta.me/utils';
 
 import config from '~/app/diegocosta.me/config';
 

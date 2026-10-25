@@ -4,7 +4,7 @@ import { contentFor } from '~/lib/content';
 import { getTranslations } from '~/lib/i18n/messages';
 import type { IconLinkType } from '~/lib/config';
 
-import { CollectionsCard, Feed, Profile } from '~/components/PhotoShowcase';
+import { CollectionsCard, Feed, Profile } from '~/components/diegocosta.me';
 
 import config from '~/app/diegocosta.me/config';
 import { getCollections, getPhotosPage } from '~/app/diegocosta.me/actions';
