@@ -1,11 +1,6 @@
 import path from 'node:path';
 
-/**
- * Reads the env var `NAME`, preferring `<DOMAIN>_NAME` for the given domain.
- * The domain is upper-cased with anything outside `A-Z0-9` removed
- * (`diegocosta.me` + `SITE_ACCENT_COLOR` → `DIEGOCOSTAME_SITE_ACCENT_COLOR`),
- * since env names can't hold dots. A missing value throws unless `required: false`.
- */
+/** Env names can't hold dots, so the domain prefix is upper-cased with non-alphanumerics removed (`diegocosta.me` → `DIEGOCOSTAME_`). */
 export function domainEnv(name: string, domain: string, options: { required: false }): string | undefined;
 export function domainEnv(name: string, domain: string): string;
 export function domainEnv(name: string, domain: string, options?: { required?: boolean }): string | undefined {

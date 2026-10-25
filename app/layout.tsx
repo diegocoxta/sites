@@ -3,7 +3,6 @@ import { Source_Sans_3 } from 'next/font/google';
 
 import './globals.css';
 
-// Cache buster for the icon: change the env to make browsers fetch it again
 const IMAGE_VERSION = process.env.NEXT_PUBLIC_APP_IMAGE_VERSION ?? '1';
 
 const sourceSans = Source_Sans_3({

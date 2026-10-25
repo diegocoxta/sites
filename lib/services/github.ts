@@ -67,7 +67,7 @@ export async function getContributionsCalendar(
       },
     }),
     id: 'github',
-    timeoutMs: 10000, // 10 seconds
+    timeoutMs: 10000,
   });
 
   return response;
