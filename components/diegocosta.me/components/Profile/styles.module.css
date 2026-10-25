@@ -31,8 +31,14 @@
 .overlay {
   position: absolute;
   inset: auto 0 0;
-  padding: 100px 18px 18px;
-  background: linear-gradient(to top, rgb(32 30 29 / 95%) 45%, rgb(32 30 29 / 0%));
+  padding: 140px 18px 18px;
+  background: linear-gradient(
+    to top,
+    rgb(32 30 29 / 95%) 0%,
+    rgb(32 30 29 / 92%) 62%,
+    rgb(32 30 29 / 60%) 82%,
+    rgb(32 30 29 / 0%) 100%
+  );
 }
 
 .text {
