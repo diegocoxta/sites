@@ -27,7 +27,7 @@
     "fast-xml-parser": "^5.11.2",
     "gray-matter": "^4.0.3",
     "kbar": "^1.0.0",
-    "next": "16.4.2",
+    "next": "16.4.3",
     "next-mdx-remote": "^6.0.0",
     "next-themes": "^0.4.6",
     "react": "^19.3.1",
@@ -37,16 +37,16 @@
     "reading-time": "^1.5.0",
     "rss": "^1.2.2",
     "sharp": "^0.35.5",
-    "sugar-high": "^2.6.2"
+    "sugar-high": "2.6.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.7",
-    "@types/node": "^26.6.5",
+    "@types/node": "26.6.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "19.3.0",
     "@types/rss": "^0.0.32",
     "eslint": "10.13.0",
-    "eslint-config-next": "16.4.2",
+    "eslint-config-next": "16.4.3",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
     "prettier": "^3.9.10",
