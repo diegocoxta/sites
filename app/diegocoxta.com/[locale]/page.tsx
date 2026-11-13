@@ -26,7 +26,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <>
-      <Hub background={config.avatar}>
+      <Hub background="/avatar">
         <Logo name={config.title} size={32} as="h1" />
         <p>{t(config.description)}</p>
         <IconLinks t={t} icons={icons} />
