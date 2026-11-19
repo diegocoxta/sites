@@ -2,12 +2,15 @@ import { fetchJson } from '~/lib/http';
 
 /**
  * Unsplash's demo tier allows only 50 requests/hour — far too little to serve every
- * visitor live. All the photo/collection pages are built statically (generateStaticParams
- * walks every page during `yarn build`); this window then keeps them as ISR, so the first
- * visit after a day triggers one background refetch per distinct URL (~21 total) instead
- * of a request per visit — and new photos on Unsplash show up without a redeploy.
+ * visitor live. The photo and collection lists are fetched once during `yarn build`
+ * (generateStaticParams walks every page) and cached until the next deploy, so the
+ * pages that render them stay fully static: a time-based window here would turn every
+ * photo page into ISR and rewrite it in each locale whenever it expires.
+ * Only the EXIF details and the statistics are fetched at runtime, from Client Components.
  */
-const REVALIDATE = 60 * 60 * 24;
+const REVALIDATE = false;
+const DETAILS_REVALIDATE = 60 * 60 * 24;
+const STATISTICS_REVALIDATE = 60 * 60;
 
 /**
  * A rejected or rate-limited token stays rejected for the whole build — fail the
@@ -21,6 +24,7 @@ type GetRecentUserPhotosParamsType = {
   page?: number;
   username: string;
   authorization: string;
+  revalidate?: number | false;
 };
 
 export type UnsplashPhoto = {
@@ -55,14 +59,14 @@ type GetRecentUserPhotosResponseType = null | UnsplashPhoto[];
 export async function getRecentUserPhotos(
   params: GetRecentUserPhotosParamsType
 ): Promise<GetRecentUserPhotosResponseType> {
-  const { per_page = 3, page = 1, username, authorization } = params;
+  const { per_page = 3, page = 1, username, authorization, revalidate = REVALIDATE } = params;
 
   const photos = await fetchJson<GetRecentUserPhotosResponseType>(
     `https://api.unsplash.com/users/${encodeURIComponent(username)}/photos?per_page=${per_page}&page=${page}`,
     {
       headers: { Authorization: `Client-ID ${authorization}` },
       id: 'unsplash-photos',
-      revalidate: REVALIDATE,
+      revalidate,
       failFastStatuses: FAIL_FAST_STATUSES,
     }
   );
@@ -172,7 +176,7 @@ export async function getPhoto(params: GetPhotoParamsType): Promise<GetPhotoResp
   const photo = await fetchJson<GetPhotoResponseType>(`https://api.unsplash.com/photos/${encodeURIComponent(id)}`, {
     headers: { Authorization: `Client-ID ${authorization}` },
     id: 'unsplash-photo',
-    revalidate: REVALIDATE,
+    revalidate: DETAILS_REVALIDATE,
   });
 
   return photo;
@@ -227,7 +231,7 @@ export async function getUserStatistics(params: GetUserStatisticsParamsType): Pr
     {
       headers: { Authorization: `Client-ID ${authorization}` },
       id: 'unsplash-statistics',
-      revalidate: REVALIDATE,
+      revalidate: STATISTICS_REVALIDATE,
     }
   );
 

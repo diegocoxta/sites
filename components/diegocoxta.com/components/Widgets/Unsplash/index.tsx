@@ -16,6 +16,7 @@ export default async function UnsplashWidget({ t, config }: RecentActivityWidget
       username: config.username,
       authorization: config.authorization,
       per_page: 3,
+      revalidate: 60 * 60 * 24,
     })) ?? [];
 
   if (photos.length === 0) {
