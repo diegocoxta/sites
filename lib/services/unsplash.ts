@@ -1,19 +1,8 @@
 import { fetchJson } from '~/lib/http';
 
-/**
- * Unsplash's demo tier allows only 50 requests/hour — far too little to serve every
- * visitor live. All the photo/collection pages are built statically (generateStaticParams
- * walks every page during `yarn build`); this window then keeps them as ISR, so the first
- * visit after a day triggers one background refetch per distinct URL (~21 total) instead
- * of a request per visit — and new photos on Unsplash show up without a redeploy.
- */
-const REVALIDATE = 60 * 60 * 24;
+const REVALIDATE = false;
+const STATISTICS_REVALIDATE = 60 * 60 * 24;
 
-/**
- * A rejected or rate-limited token stays rejected for the whole build — fail the
- * build loudly instead of shipping empty photo pages. 403 is what Unsplash returns
- * once the hourly quota is spent; 401 is a bad access key.
- */
 const FAIL_FAST_STATUSES = [401, 403];
 
 type GetRecentUserPhotosParamsType = {
@@ -21,6 +10,7 @@ type GetRecentUserPhotosParamsType = {
   page?: number;
   username: string;
   authorization: string;
+  revalidate?: number | false;
 };
 
 export type UnsplashPhoto = {
@@ -55,14 +45,14 @@ type GetRecentUserPhotosResponseType = null | UnsplashPhoto[];
 export async function getRecentUserPhotos(
   params: GetRecentUserPhotosParamsType
 ): Promise<GetRecentUserPhotosResponseType> {
-  const { per_page = 3, page = 1, username, authorization } = params;
+  const { per_page = 3, page = 1, username, authorization, revalidate = REVALIDATE } = params;
 
   const photos = await fetchJson<GetRecentUserPhotosResponseType>(
     `https://api.unsplash.com/users/${encodeURIComponent(username)}/photos?per_page=${per_page}&page=${page}`,
     {
       headers: { Authorization: `Client-ID ${authorization}` },
       id: 'unsplash-photos',
-      revalidate: REVALIDATE,
+      revalidate,
       failFastStatuses: FAIL_FAST_STATUSES,
     }
   );
@@ -227,7 +217,7 @@ export async function getUserStatistics(params: GetUserStatisticsParamsType): Pr
     {
       headers: { Authorization: `Client-ID ${authorization}` },
       id: 'unsplash-statistics',
-      revalidate: REVALIDATE,
+      revalidate: STATISTICS_REVALIDATE,
     }
   );
 
