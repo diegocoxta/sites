@@ -1,22 +1,8 @@
 import { fetchJson } from '~/lib/http';
 
-/**
- * Unsplash's demo tier allows only 50 requests/hour — far too little to serve every
- * visitor live. The photo and collection lists are fetched once during `yarn build`
- * (generateStaticParams walks every page) and cached until the next deploy, so the
- * pages that render them stay fully static: a time-based window here would turn every
- * photo page into ISR and rewrite it in each locale whenever it expires.
- * EXIF details are fetched at runtime from Client Components but never change, so they
- * are cached forever too; only the statistics keep a time-based window.
- */
 const REVALIDATE = false;
 const STATISTICS_REVALIDATE = 60 * 60 * 24;
 
-/**
- * A rejected or rate-limited token stays rejected for the whole build — fail the
- * build loudly instead of shipping empty photo pages. 403 is what Unsplash returns
- * once the hourly quota is spent; 401 is a bad access key.
- */
 const FAIL_FAST_STATUSES = [401, 403];
 
 type GetRecentUserPhotosParamsType = {
