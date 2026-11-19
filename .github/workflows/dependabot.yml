@@ -23,7 +23,7 @@ jobs:
       prs: ${{ steps.prs.outputs.prs }}
     steps:
       # PRs abertos do Dependabot, sem draft, sem conflito e só patch/minor.
-      # Majors ficam manuais: não há suíte de testes para pegar mudança de comportamento.
+      # Majors ficam manuais: as checagens do verify não pegam toda mudança de comportamento.
       # Dependência indireta (só no lockfile) vem sem "update-type:" no commit, então o tipo
       # sai da comparação "from X to Y": mesmo major (e mesmo minor, quando o major é 0).
       - id: prs
