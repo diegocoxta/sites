@@ -1,11 +1,21 @@
-import type { ComponentWithTranslator } from '~/lib/i18n';
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import { useTranslator } from '~/components/shared/TranslationProvider';
+import type { UserStatistics } from '~/components/diegocosta.me/types';
 
 import { getStatistics } from '~/app/diegocosta.me/actions';
 
 import styles from './styles.module.css';
 
-export default async function UnsplashStats({ t }: ComponentWithTranslator) {
-  const statistics = await getStatistics();
+export default function UnsplashStats() {
+  const t = useTranslator();
+  const [statistics, setStatistics] = useState<UserStatistics | null>(null);
+
+  useEffect(() => {
+    getStatistics().then(setStatistics);
+  }, []);
 
   if (!statistics) {
     return null;

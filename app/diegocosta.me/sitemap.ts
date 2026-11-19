@@ -8,7 +8,7 @@ import { getAllPhotos, getCollections } from '~/app/diegocosta.me/actions';
 
 const content = contentFor(config);
 
-export const revalidate = 86400;
+export const revalidate = false;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = content.getPages(config.locales[0]);
