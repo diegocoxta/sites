@@ -6,11 +6,11 @@ import { fetchJson } from '~/lib/http';
  * (generateStaticParams walks every page) and cached until the next deploy, so the
  * pages that render them stay fully static: a time-based window here would turn every
  * photo page into ISR and rewrite it in each locale whenever it expires.
- * Only the EXIF details and the statistics are fetched at runtime, from Client Components.
+ * EXIF details are fetched at runtime from Client Components but never change, so they
+ * are cached forever too; only the statistics keep a time-based window.
  */
 const REVALIDATE = false;
-const DETAILS_REVALIDATE = 60 * 60 * 24;
-const STATISTICS_REVALIDATE = 60 * 60;
+const STATISTICS_REVALIDATE = 60 * 60 * 24;
 
 /**
  * A rejected or rate-limited token stays rejected for the whole build — fail the
@@ -176,7 +176,7 @@ export async function getPhoto(params: GetPhotoParamsType): Promise<GetPhotoResp
   const photo = await fetchJson<GetPhotoResponseType>(`https://api.unsplash.com/photos/${encodeURIComponent(id)}`, {
     headers: { Authorization: `Client-ID ${authorization}` },
     id: 'unsplash-photo',
-    revalidate: DETAILS_REVALIDATE,
+    revalidate: REVALIDATE,
   });
 
   return photo;
