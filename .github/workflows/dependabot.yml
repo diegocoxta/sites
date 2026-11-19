@@ -2,8 +2,7 @@ name: Dependabot
 
 on:
   schedule:
-    # 20:17 no horário da Bahia (minuto fora do início da hora, onde o GitHub atrasa ou descarta runs)
-    - cron: '17 20 * * *'
+    - cron: '17 20 * * 5'
       timezone: 'America/Bahia'
   workflow_dispatch:
 
