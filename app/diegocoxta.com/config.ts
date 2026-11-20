@@ -18,7 +18,7 @@ const config: ConfigType = {
   locales: ['pt', 'en', 'es'],
   jobTitle: ['Engineering Manager', 'Senior Software Engineer', 'Photographer'],
   domain,
-  avatar: '/background_v4.jpg',
+  avatar: '/background_v5.jpg',
   links: [
     {
       type: 'icon',
