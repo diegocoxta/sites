@@ -101,9 +101,9 @@ const config: ConfigType = {
     },
     {
       type: 'card',
-      title: 'Discogs',
+      title: 'config.links.discogs.title',
       icon: 'FaRecordVinyl',
-      href: 'https://www.discogs.com/user/diegocoxta',
+      href: 'https://discos.diegocoxta.com',
       description: 'config.links.discogs.description',
       recentActivity: {
         widget: 'DiscogsRecentActivity',
