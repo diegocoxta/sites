@@ -150,6 +150,7 @@ const config: ConfigType = {
           authorization: domainEnv('LASTFM_API_KEY', domain, { required: false }),
         },
       },
+      hide: true,
     },
     {
       type: 'card',
@@ -195,6 +196,7 @@ const config: ConfigType = {
           username: domainEnv('LETTERBOXD_USERNAME', domain, { required: false }),
         },
       },
+      hide: true,
     },
   ],
 };
