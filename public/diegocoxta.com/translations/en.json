@@ -33,6 +33,7 @@
   "components.qrcode.hint": "Scan to view on your phone",
   "components.qrcode.alt": "QR code to open this page on your phone",
   "components.iconlinks.nav": "Social links",
+  "components.socialhandle.text": "Didn't find the social network you were looking for? I'm probably on it as {handle}.",
   "components.recentactivity.hardcover.pageprogress": "Page {current} of {total}",
   "components.recentactivity.lastfm.plays": "{count} plays",
   "components.shared.footer.caption": "<a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"noopener noreferrer\" target=\"_blank\" >CC-BY</a> {year} by {author}",
