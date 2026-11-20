@@ -25,14 +25,6 @@
   }
 }
 
-.themeSwitcher {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 3;
-  transform: scale(1.2);
-}
-
 .content {
   position: relative;
   z-index: 2;

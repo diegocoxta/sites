@@ -109,8 +109,8 @@ happens inside the job, after the checks. Before merging, the job waits for ever
   breaking the page (see `.env.example`).
 - **Dark mode:** `next-themes`, toggled by the shared
   [`components/shared/ThemeSwitcher`](components/shared/ThemeSwitcher) — imported directly by
-  diegocosta.com.br's layout and diegocoxta.com's
-  `components/diegocoxta.com/components/Hub`. Keep theme-toggle UI here rather than
+  diegocosta.com.br's layout. diegocosta.me and diegocoxta.com have no toggle: their
+  layouts pass `forcedTheme` (dark). Keep theme-toggle UI here rather than
   duplicating it per domain.
 - **404s:** no root `app/not-found.tsx` (it would need the host, forcing every
   catch-all dynamic). Each domain has its own boundary: diegocosta.com.br uses

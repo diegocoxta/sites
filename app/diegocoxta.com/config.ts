@@ -11,7 +11,7 @@ const config: ConfigType = {
   theme: {
     accentColor: themeColor('SITE_ACCENT_COLOR', domain),
     textColor: themeColor('SITE_TEXT_COLOR', domain),
-    defaultTheme: 'system',
+    defaultTheme: 'dark',
   },
   title: '@diegocoxta',
   description: 'config.description',

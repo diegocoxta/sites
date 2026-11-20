@@ -38,6 +38,5 @@
   "components.shared.footer.caption": "<a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"noopener noreferrer\" target=\"_blank\" >CC-BY</a> {year} by {author}",
   "components.shared.footer.sourcecode": "Source Code",
   "components.recentactivity.lastfm.nowplaying": "Now playing",
-  "components.shared.notfound.message": "The page you are looking for was not found. \nPlease go back to <a href=\"https://{domain}\">{domain}</a> and try again.",
-  "components.shared.themeswitcher.arialabel": "Switch the theme color."
+  "components.shared.notfound.message": "The page you are looking for was not found. \nPlease go back to <a href=\"https://{domain}\">{domain}</a> and try again."
 }

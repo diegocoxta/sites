@@ -38,6 +38,5 @@
   "components.shared.footer.caption": "<a href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"noopener noreferrer\" target=\"_blank\" >CC-BY</a> {year} por {author}",
   "components.shared.footer.sourcecode": "Código Fonte",
   "components.recentactivity.lastfm.nowplaying": "Tocando agora",
-  "components.shared.notfound.message": "Sinto muito, mas a página que você está buscando não foi encontrada.\nVolte para <a href=\"https://{domain}\">{domain}</a> e tente novamente.",
-  "components.shared.themeswitcher.arialabel": "Trocar a cor do tema."
+  "components.shared.notfound.message": "Sinto muito, mas a página que você está buscando não foi encontrada.\nVolte para <a href=\"https://{domain}\">{domain}</a> e tente novamente."
 }
